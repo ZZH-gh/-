@@ -24,7 +24,7 @@
 - [ ] **CONV-03**: 追问逻辑树遍历器 — JSON 定义的决策树，支持单选/多选/文本输入/确认四种节点类型
 - [ ] **CONV-04**: 3 问题硬限制 — 首轮最多问 3 个问题，之后立即生成草案
 - [ ] **CONV-05**: "我不知道"降级处理 — 3 级渐进简化（简化问题→更宽泛分类→示例引导）
-- [ ] **CONV-06**: 会话上下文管理 — 跨轮次追踪用户选择、已答问题、推导出的上下文
+- [x] **CONV-06**: 会话上下文管理 — 跨轮次追踪用户选择、已答问题、推导出的上下文
 
 ### 提示词生成 v2 (GEN)
 
@@ -84,7 +84,7 @@
 | QA-01 | Phase 1 | Complete |
 | KNOW-03 | Phase 2 | Complete |
 | KNOW-04 | Phase 2 | Complete |
-| CONV-06 | Phase 3 | Pending |
+| CONV-06 | Phase 3 | Complete |
 | CONV-01 | Phase 4 | Pending |
 | CONV-02 | Phase 4 | Pending |
 | CONV-03 | Phase 4 | Pending |

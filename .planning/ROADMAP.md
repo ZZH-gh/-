@@ -8,7 +8,7 @@
 
 - [x] **Phase 1: Foundation** — 知识包 Schema + 构建管线 + 互联网/IT 行业知识包 (completed 2026-06-03)
 - [x] **Phase 2: Knowledge Layer** — Loader、Manager、懒加载机制 (completed 2026-06-03)
-- [ ] **Phase 3: Context Layer** — 会话状态管理与上下文构建
+- [x] **Phase 3: Context Layer** — 会话状态管理与上下文构建 (completed 2026-06-03)
 - [ ] **Phase 4: Conversation Core** — 状态机引擎 + 意图分类器 + 追问树遍历器
 - [ ] **Phase 5: Generation v2** — 意图驱动合成 + 4 级知识注入
 - [ ] **Phase 6: UI** — 对话式交互界面 + AppController
@@ -82,7 +82,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
+- [x] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
 
 ### Phase 4: Conversation Core
 
@@ -103,7 +103,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
+- [x] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
 
 ### Phase 5: Generation v2
 
@@ -146,6 +146,7 @@ Plans:
 **Wave 1**
 
 - [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
+
 **UI hint**: yes
 
 ### Phase 7: Scale
@@ -195,7 +196,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-06-03 |
 | 2. Knowledge Layer | 2/2 | Complete    | 2026-06-03 |
-| 3. Context Layer | 0/0 | Not started | - |
+| 3. Context Layer | 1/1 | Complete    | 2026-06-03 |
 | 4. Conversation Core | 0/0 | Not started | - |
 | 5. Generation v2 | 0/0 | Not started | - |
 | 6. UI | 0/0 | Not started | - |
