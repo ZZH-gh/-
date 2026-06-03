@@ -27,7 +27,11 @@
   2. YAML 源文件可通过编译脚本生成 JSON，编译时自动校验结构完整性
   3. 互联网/IT 行业知识包 V1 编写完成，通过深度检查清单（QA-01）
   4. 构建验证脚本在数据缺失或结构错误时给出明确错误提示
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Schema + 编译管线 + 测试基础设施 + 最小桩知识包
+- [ ] 01-02-PLAN.md — 互联网/IT 知识包 V1 完整内容 + QA-01 深度验证
 
 ### Phase 2: Knowledge Layer
 **Goal**: 知识包可在运行时加载、索引、按需获取
@@ -122,7 +126,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/0 | Not started | - |
+| 1. Foundation | 0/2 | Not started | - |
 | 2. Knowledge Layer | 0/0 | Not started | - |
 | 3. Context Layer | 0/0 | Not started | - |
 | 4. Conversation Core | 0/0 | Not started | - |
