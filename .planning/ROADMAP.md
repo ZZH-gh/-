@@ -77,7 +77,12 @@ Plans:
   3. ContextBuilder 能从原始上下文构建出供生成器使用的 GenerationContext
   4. SessionManager 线程安全，支持多会话隔离
 
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
 
 ### Phase 4: Conversation Core
 
@@ -93,7 +98,12 @@ Plans:
   4. 追问决策树支持单选/多选/文本输入/确认四种节点类型，行业/任务感知
   5. 意图分类器返回置信度评分，低置信度自动进入澄清流程
 
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
 
 ### Phase 5: Generation v2
 
@@ -109,7 +119,12 @@ Plans:
   4. QA-02 评估显示 v4.0 生成质量显著优于 v3.0 模板式输出
   5. 生成基于对话上下文+知识包组合，而非 keyword-to-template 映射
 
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
 
 ### Phase 6: UI
 
@@ -125,7 +140,12 @@ Plans:
   4. 用户可查看当前行业知识包概览（UI-04）
   5. 金融/制造等敏感行业的提示词内容包含合规声明（QA-03）
 
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
 **UI hint**: yes
 
 ### Phase 7: Scale
@@ -142,7 +162,12 @@ Plans:
   4. 制造业行业知识包完成（术语60+、场景10+、追问树2+）
   5. 每个包通过 QA-01 深度检查清单
 
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
 
 ### Phase 8: Packaging
 
@@ -157,7 +182,12 @@ Plans:
   3. 在中文 Windows 10/11 系统、含中文用户名的路径下正常启动和运行（PKG-03）
   4. 最终 exe 体积 < 50MB
 
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
 
 ## Progress
 
