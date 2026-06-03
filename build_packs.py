@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Optional
 
 import yaml
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, ValidationError, field_validator
 from enum import Enum
 
 
@@ -277,7 +277,11 @@ def compile_pack(yaml_path: Path, output_dir: Path) -> dict:
 
 
 def _check_tree_cycles(tree) -> None:
-    """BFS check for circular node references in a follow-up tree.
+    """DFS cycle detection for follow-up tree node references.
+
+    Uses per-path tracking to distinguish DAG merges (paths converging to
+    the same node) from true cycles (child pointing back to an ancestor
+    on the same DFS path).
 
     Args:
         tree: A FollowUpTree instance to validate.
@@ -285,16 +289,16 @@ def _check_tree_cycles(tree) -> None:
     Raises:
         ValueError: If a cycle or missing node reference is found.
     """
-    visited = set()
-    stack = [tree.root_node_id]
+    visited = set()      # fully explored nodes
+    in_stack = set()     # nodes on the current DFS path
 
-    while stack:
-        node_id = stack.pop()
-        if node_id in visited:
+    def _dfs(node_id: str) -> None:
+        if node_id in in_stack:
             raise ValueError(
                 f"循环引用: tree '{tree.task_type}' node '{node_id}'"
             )
-        visited.add(node_id)
+        if node_id in visited:
+            return  # already fully explored, no cycle here
 
         node = tree.nodes.get(node_id)
         if node is None:
@@ -302,9 +306,13 @@ def _check_tree_cycles(tree) -> None:
                 f"引用不存在的节点: tree '{tree.task_type}' node '{node_id}'"
             )
 
+        in_stack.add(node_id)
         for child_id in node.children.values():
-            if child_id not in visited:
-                stack.append(child_id)
+            _dfs(child_id)
+        in_stack.remove(node_id)
+        visited.add(node_id)
+
+    _dfs(tree.root_node_id)
 
 
 def main():

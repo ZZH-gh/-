@@ -1,0 +1,1419 @@
+# ============================================
+# 互联网 / IT 行业知识包 V1
+# Schema 版本: 1.0 | 知识包版本: 1.0.0
+# 覆盖 5 个高频场景：PRD撰写、代码生成、数据分析、技术文档、工作总结
+# ============================================
+
+# ============================================
+# 1. meta — 知识包元数据
+# ============================================
+meta:
+  id: "internet_it"
+  name: "互联网 / IT"
+  version: "1.0.0"
+  schema_version: "1.0"
+  description: >
+    互联网产品、技术开发与运营行业知识包，覆盖产品管理、软件研发、
+    数据分析、技术写作、团队管理五大高频场景，适用于产品经理、
+    前端工程师、后端工程师、数据分析师、技术负责人等角色。
+  last_updated: "2026-06-03"
+  icon: "💻"
+
+# ============================================
+# 2. terms — 行业术语表（>=30 条）
+# ============================================
+terms:
+  # --- 产品管理类（8 条） ---
+  - term: "PRD"
+    category: "产品文档"
+    definition: "产品需求文档（Product Requirements Document），详细描述产品功能、业务流程、界面要求和验收标准的规范文档。"
+    aliases: ["产品需求文档", "需求文档"]
+    usage_context: "产品经理在需求分析阶段编写，用于向研发团队传达功能需求"
+    related_terms: ["BRD", "MRD", "用户故事"]
+
+  - term: "BRD"
+    category: "产品文档"
+    definition: "商业需求文档（Business Requirements Document），从商业角度阐述产品价值、市场机会、收益预期和投入成本的战略级文档。"
+    aliases: ["商业需求文档", "商业分析文档"]
+    usage_context: "产品经理在立项阶段编写，用于向管理层说明产品商业价值"
+    related_terms: ["PRD", "MRD", "商业分析"]
+
+  - term: "MRD"
+    category: "产品文档"
+    definition: "市场需求文档（Market Requirements Document），分析目标市场规模、用户画像、竞品格局和差异化定位的市场策略文档。"
+    aliases: ["市场需求文档"]
+    usage_context: "产品经理在市场调研阶段编写，用于确定产品定位和方向"
+    related_terms: ["BRD", "PRD", "竞品分析"]
+
+  - term: "用户故事"
+    category: "产品管理"
+    definition: "User Story，以用户视角描述功能需求的简短描述，格式为'作为XX角色，我希望XX，以便XX'的标准化表达。"
+    aliases: ["User Story", "用户需求"]
+    usage_context: "敏捷开发中用于表达用户需求，每个用户故事代表一个独立可交付的功能单元"
+    related_terms: ["需求评审", "验收标准", "Sprint"]
+
+  - term: "验收标准"
+    category: "产品管理"
+    definition: "定义功能是否完成的量化或定性条件清单，包含正向场景、异常场景和性能指标的详细验收条件。"
+    aliases: ["Acceptance Criteria", "验收条件", "完成的定义"]
+    usage_context: "产品经理与研发团队共同制定，作为功能交付的验收依据"
+    related_terms: ["PRD", "用户故事", "测试用例"]
+
+  - term: "原型"
+    category: "产品管理"
+    definition: "产品界面和交互流程的低保真或高保真可视化设计稿，用于在开发前验证产品方案和用户体验。"
+    aliases: ["Prototype", "线框图", "设计稿"]
+    usage_context: "产品经理或设计师在需求阶段产出，用于沟通界面布局和交互流程"
+    related_terms: ["PRD", "用户故事", "需求评审"]
+
+  - term: "需求评审"
+    category: "产品管理"
+    definition: "产品经理组织研发、测试、设计等角色对PRD进行集体审查和确认的正式会议。"
+    aliases: ["需求评审会", "PRD评审"]
+    usage_context: "PRD完成后由产品经理发起，各方确认需求理解一致后方可进入开发"
+    related_terms: ["PRD", "技术评审", "验收标准"]
+
+  - term: "竞品分析"
+    category: "产品管理"
+    definition: "对竞争对手的产品功能、用户体验、商业模式和市场策略进行系统性对比分析的方法论和输出报告。"
+    aliases: ["竞品调研", "竞争分析", "竞品研究"]
+    usage_context: "产品规划或功能设计前期，用于了解市场格局和竞品优劣势"
+    related_terms: ["BRD", "MRD", "产品定位"]
+
+  # --- 研发类（9 条） ---
+  - term: "API"
+    category: "研发流程"
+    definition: "应用程序编程接口（Application Programming Interface），定义不同软件组件之间的通信协议和数据交换格式。"
+    aliases: ["接口", "API接口", "应用程序接口"]
+    usage_context: "前后端开发中用于定义服务间调用契约，是系统集成的核心要素"
+    related_terms: ["API文档", "REST", "微服务"]
+
+  - term: "微服务"
+    category: "技术架构"
+    definition: "将单一应用拆分为一组小型、独立部署的服务，每个服务运行在自己的进程中，通过轻量级通信机制协作的架构风格。"
+    aliases: ["Microservices", "微服务架构", "微服务化"]
+    usage_context: "大型系统架构设计时采用，实现各服务的独立开发、部署和扩展"
+    related_terms: ["API", "容器", "Docker", "CI/CD"]
+
+  - term: "CI/CD"
+    category: "研发流程"
+    definition: "持续集成与持续部署，开发人员频繁地将代码变更合并到主干并自动触发构建、测试和部署的工程实践。"
+    aliases: ["持续集成", "持续部署", "持续交付", "CI"]
+    usage_context: "研发团队配置自动化流水线，每次代码提交自动触发构建和部署流程"
+    related_terms: ["代码审查", "灰度发布", "DevOps"]
+
+  - term: "代码审查"
+    category: "研发流程"
+    definition: "开发人员提交代码后由其他团队成员逐行审查代码质量、逻辑正确性和规范符合度的质量保障实践。"
+    aliases: ["Code Review", "CR", "代码评审"]
+    usage_context: "代码合并到主干前必须完成的审查环节，通常通过Pull Request进行"
+    related_terms: ["CI/CD", "技术债", "重构"]
+
+  - term: "技术债"
+    category: "研发管理"
+    definition: "开发团队为追求短期交付速度而采取了低质量的技术方案，导致后续维护和迭代成本不断增加的隐喻性负债。"
+    aliases: ["Technical Debt", "技术负债", "代码债"]
+    usage_context: "技术负责人评估系统健康度时考量，技术债过高会严重影响开发效率"
+    related_terms: ["重构", "代码审查", "架构设计"]
+
+  - term: "重构"
+    category: "研发管理"
+    definition: "在不改变代码外部行为的前提下，对内部结构进行系统性优化以提高可读性、可维护性和可扩展性的过程。"
+    aliases: ["Refactoring", "代码重构", "架构优化"]
+    usage_context: "在功能迭代间隙或技术债积累到一定程度时进行，是保持代码健康的关键活动"
+    related_terms: ["技术债", "代码审查", "测试"]
+
+  - term: "灰度发布"
+    category: "研发流程"
+    definition: "将新版本逐步推送给部分用户，在真实环境中验证稳定性后再全量发布的渐进式上线策略。"
+    aliases: ["灰度", "灰度上线", "金丝雀发布", "Canary Release"]
+    usage_context: "重要功能上线前，先给5%-10%用户使用以发现潜在问题，降低全量发布的失败风险"
+    related_terms: ["上线", "回滚", "A/B测试", "CI/CD"]
+
+  - term: "敏捷开发"
+    category: "研发管理"
+    definition: "以迭代、增量、协作为核心原则的软件开发方法论，强调快速响应需求变化和持续交付价值的开发模式。"
+    aliases: ["Agile", "敏捷", "Scrum", "看板"]
+    usage_context: "互联网产品开发普遍采用的管理方式，按固定周期（通常1-4周）迭代交付"
+    related_terms: ["Sprint", "用户故事", "迭代"]
+
+  - term: "Sprint"
+    category: "研发管理"
+    definition: "Scrum框架中的短周期开发迭代，通常为1-4周，团队在Sprint内完成固定的用户故事并交付可用的产品增量。"
+    aliases: ["冲刺", "迭代周期", "Sprint迭代"]
+    usage_context: "敏捷开发中的时间盒管理单元，每个Sprint有明确的待办事项和交付目标"
+    related_terms: ["敏捷开发", "用户故事", "迭代", "站会"]
+
+  # --- 数据分析类（8 条） ---
+  - term: "DAU"
+    category: "数据分析"
+    definition: "日活跃用户数（Daily Active Users），统计一天内启动并使用产品的唯一用户数量，衡量产品日常活跃度的核心指标。"
+    aliases: ["日活跃", "Daily Active Users", "日活"]
+    usage_context: "产品运营和数据分析师日常监控产品活跃度，DAU趋势反映产品的用户粘性和健康度"
+    related_terms: ["MAU", "留存率", "用户增长"]
+
+  - term: "MAU"
+    category: "数据分析"
+    definition: "月活跃用户数（Monthly Active Users），统计一个月内至少使用一次产品的唯一用户数量，反映产品的覆盖规模。"
+    aliases: ["月活跃", "Monthly Active Users", "月活"]
+    usage_context: "衡量产品长期用户规模和增长趋势，常用于向投资者汇报和业务健康度评估"
+    related_terms: ["DAU", "留存率", "用户增长"]
+
+  - term: "留存率"
+    category: "数据分析"
+    definition: "在特定时间后仍然继续使用产品的用户占初始新增用户的比例，是衡量产品黏性和长期价值的关键指标。"
+    aliases: ["Retention Rate", "用户留存", "留存"]
+    usage_context: "产品运营和数据分析师评估用户召回和产品改进效果，常用次日/7日/30日留存率"
+    related_terms: ["DAU", "MAU", "漏斗分析", "A/B测试"]
+
+  - term: "转化率"
+    category: "数据分析"
+    definition: "完成特定目标行为的用户数占进入该流程的用户总数的比例，衡量流程效率和功能价值的关键指标。"
+    aliases: ["Conversion Rate", "转化", "CVR"]
+    usage_context: "产品运营和增长团队评估注册流程、购买链路、功能使用率等各个环节的效率"
+    related_terms: ["漏斗分析", "A/B测试", "埋点", "BI看板"]
+
+  - term: "漏斗分析"
+    category: "数据分析"
+    definition: "追踪用户在多步骤流程中的逐步流失情况，识别各环节转化率并定位优化机会的分析方法。"
+    aliases: ["Funnel Analysis", "漏斗模型", "转化漏斗"]
+    usage_context: "产品运营分析用户从进入产品到完成核心目标的完整路径，找出流失最严重的环节"
+    related_terms: ["转化率", "埋点", "A/B测试", "留存率"]
+
+  - term: "埋点"
+    category: "数据分析"
+    definition: "在产品前端和后端代码中嵌入数据采集代码，当用户执行特定操作时自动记录行为数据的技术实现方式。"
+    aliases: ["事件跟踪", "数据采集", "埋点上报"]
+    usage_context: "产品和运营团队在开发阶段规划埋点方案，用于后续用户行为分析和产品优化"
+    related_terms: ["漏斗分析", "BI看板", "A/B测试", "数据分析"]
+
+  - term: "BI看板"
+    category: "数据分析"
+    definition: "商业智能仪表盘（Business Intelligence Dashboard），将核心业务指标以图表形式实时可视化展示的数据管理工具。"
+    aliases: ["BI Dashboard", "数据看板", "仪表盘", "数据大屏"]
+    usage_context: "管理层和业务团队日常监控业务健康度，快速发现数据异常和趋势变化"
+    related_terms: ["埋点", "数据分析", "DAU", "留存率"]
+
+  - term: "A/B测试"
+    category: "数据分析"
+    definition: "将用户随机分组，向不同组展示不同版本的产品或功能，通过对比数据指标确定最优方案的实验方法。"
+    aliases: ["A/B实验", "分流测试", "对比实验", "Split Test"]
+    usage_context: "产品和增长团队验证新功能效果、优化UI设计或算法策略时使用，用数据驱动决策"
+    related_terms: ["转化率", "漏斗分析", "灰度发布", "数据分析"]
+
+  # --- 技术写作类（5 条） ---
+  - term: "API文档"
+    category: "技术写作"
+    definition: "描述API接口的功能说明、请求参数格式、响应数据结构、错误码定义和调用示例的技术参考资料。"
+    aliases: ["API文档", "接口文档", "API Reference"]
+    usage_context: "后端开发完成后提供给前端开发或第三方集成方，是服务调用的标准参考手册"
+    related_terms: ["API", "技术文档", "RFC", "SDK"]
+
+  - term: "RFC"
+    category: "技术写作"
+    definition: "请求评议文档（Request for Comments），在实施重大技术变更前向团队征求技术方案反馈的协作文档。"
+    aliases: ["技术方案评审", "Request for Comments", "RFC文档"]
+    usage_context: "技术方案设计阶段，由技术负责人或架构师发起，邀请相关工程师评议方案可行性"
+    related_terms: ["技术方案", "架构图", "代码审查"]
+
+  - term: "README"
+    category: "技术写作"
+    definition: "项目根目录下的说明文档，包含项目概述、安装方式、使用方法、技术栈和贡献指南等关键信息。"
+    aliases: ["项目说明", "自述文件", "Readme"]
+    usage_context: "开源项目或内部项目仓库中，新成员入职或外部贡献者了解项目的第一入口"
+    related_terms: ["技术文档", "API文档", "变更日志"]
+
+  - term: "架构图"
+    category: "技术写作"
+    definition: "用图形化方式展示系统组件、模块关系、数据流向和部署拓扑的技术可视化文档。"
+    aliases: ["架构图", "系统架构图", "系统设计图", "Architecture Diagram"]
+    usage_context: "技术方案设计和文档撰写时，用于直观表达系统结构和各模块间的交互关系"
+    related_terms: ["技术方案", "RFC", "API文档"]
+
+  - term: "技术方案"
+    category: "技术写作"
+    definition: "针对特定业务需求提出的技术实现方案文档，包含技术选型对比、架构设计、风险评估和上线计划。"
+    aliases: ["技术设计文档", "技术方案", "设计文档", "Tech Design Doc"]
+    usage_context: "开发前由技术负责人或资深工程师编写，经评审通过后作为开发实施的技术纲领"
+    related_terms: ["RFC", "架构图", "需求评审", "技术评审"]
+
+  # --- 综合管理类（6 条） ---
+  - term: "OKR"
+    category: "管理"
+    definition: "目标与关键结果（Objectives and Key Results），设定定性目标和量化关键结果的目标管理框架，用于对齐团队方向。"
+    aliases: ["目标与关键结果", "OKR管理"]
+    usage_context: "公司和团队季度目标设定，目标鼓舞人心，关键结果可量化衡量是否达成"
+    related_terms: ["KPI", "迭代", "Sprint"]
+
+  - term: "KPI"
+    category: "管理"
+    definition: "关键绩效指标（Key Performance Indicators），量化衡量个人、团队或业务表现的标准化度量指标。"
+    aliases: ["关键绩效指标", "绩效指标", "KPI指标"]
+    usage_context: "绩效考核和业务回顾时使用，用于评估工作成果和业务健康状况"
+    related_terms: ["OKR", "数据分析", "BI看板"]
+
+  - term: "迭代"
+    category: "研发管理"
+    definition: "软件产品分版本持续交付的开发模式，每个迭代周期内完成规划的功能并发布新版本，不断叠加功能和完善产品。"
+    aliases: ["版本迭代", "Iteration", "迭代开发"]
+    usage_context: "互联网产品采用持续迭代模式，每周或每两周发布一个版本，快速响应用户需求"
+    related_terms: ["Sprint", "敏捷开发", "上线"]
+
+  - term: "上线"
+    category: "研发流程"
+    definition: "将开发完成的软件功能或版本部署到生产环境，正式向用户提供服务的关键发布操作。"
+    aliases: ["发布", "发布上线", "Go Live", "Deploy"]
+    usage_context: "测试验证通过后执行上线操作，通常配合灰度发布策略降低上线风险"
+    related_terms: ["灰度发布", "回滚", "CI/CD", "Sprint"]
+
+  - term: "回滚"
+    category: "研发流程"
+    definition: "在新版本上线出现严重问题时，将系统恢复到上一个稳定版本的风险应对操作。"
+    aliases: ["Rollback", "回退", "版本回退"]
+    usage_context: "上线后发现问题时立即触发回滚，是保障线上稳定性的最后一道防线"
+    related_terms: ["上线", "灰度发布", "CI/CD", "SLA"]
+
+  - term: "SLA"
+    category: "管理"
+    definition: "服务等级协议（Service Level Agreement），定义服务提供方应达到的可用性、响应时间和处理时效等质量承诺标准。"
+    aliases: ["服务等级协议", "服务可用性承诺", "SLA标准"]
+    usage_context: "技术团队与业务方约定的服务质量标准，如系统可用性99.9%、故障响应时间15分钟"
+    related_terms: ["上线", "运维", "线上监控"]
+
+# ============================================
+# 3. tasks — 任务场景定义（5 个场景）
+# ============================================
+tasks:
+  - name: "PRD撰写"
+    description: >
+      撰写产品需求文档（PRD），从用户需求和业务目标出发，定义功能范围、
+      用户流程、界面交互和验收标准。需要与业务方对齐需求，与技术团队
+      确认可实现性，确保文档清晰可执行。
+    typical_output: >
+      PRD文档，包含项目背景与目标、功能范围与边界、用户流程图、
+      界面原型描述、验收标准、上线计划等内容
+    complexity: "medium"
+    frequency: "very_high"
+    follow_up_tree: "prd_writing"
+
+  - name: "代码生成"
+    description: >
+      根据功能需求和技术设计，编写高质量、可维护的代码。包括后端API
+      接口开发、前端页面组件实现、数据处理脚本编写以及SQL查询优化等，
+      需要遵循团队编码规范和最佳实践。
+    typical_output: >
+      源代码文件、单元测试、接口文档、使用说明，以及相关的技术注释
+      和代码示例
+    complexity: "high"
+    frequency: "very_high"
+    follow_up_tree: "code_generation"
+
+  - name: "数据分析"
+    description: >
+      对业务数据进行系统性分析，包括描述性分析（发生了什么）、诊断性
+      分析（为什么会发生）、预测性分析（将会怎样）和建议性分析
+      （该怎么做），产出数据洞察驱动业务决策。
+    typical_output: >
+      数据分析报告、可视化图表、BI看板、关键发现与建议、数据驱动
+      的决策方案
+    complexity: "medium"
+    frequency: "high"
+    follow_up_tree: "data_analysis"
+
+  - name: "技术文档"
+    description: >
+      编写各类技术文档，包括API接口文档、技术设计文档、用户操作手册、
+      运维手册等。要求内容准确、结构清晰、示例完整，帮助目标读者快速
+      理解和使用技术产品。
+    typical_output: >
+      结构化技术文档、代码示例、架构图、API参考手册、排错指南、
+      使用教程
+    complexity: "medium"
+    frequency: "high"
+    follow_up_tree: "tech_doc"
+
+  - name: "工作总结"
+    description: >
+      撰写工作总结或述职报告，回顾周期内的工作成果、分析问题和不足、
+      规划下一阶段目标和行动方案。适配不同岗位（管理岗、执行岗、
+      技术负责人）和不同业绩表现的差异化表达。
+    typical_output: >
+      工作总结报告，包含业绩回顾、亮点分析、问题反思、改进措施和
+      下阶段工作计划的完整汇报材料
+    complexity: "low"
+    frequency: "medium"
+    follow_up_tree: "work_summary"
+
+# ============================================
+# 4. roles — 角色知识定义（>=4 个角色）
+# ============================================
+roles:
+  - name: "产品经理"
+    kpis:
+      - name: "功能上线率"
+        description: "规划的功能按时上线的比例"
+        benchmark: "> 80%"
+      - name: "用户满意度"
+        description: "产品上线后的用户满意度评分"
+        benchmark: "> 4.0/5.0"
+      - name: "需求交付周期"
+        description: "从需求提出到上线的平均天数"
+        benchmark: "< 15天"
+    pain_points:
+      - "需求频繁变更导致计划被打乱"
+      - "与研发团队沟通存在理解偏差"
+      - "多项目并行时优先级冲突难以协调"
+      - "业务方期望过高与开发资源有限的矛盾"
+    common_tasks:
+      - "PRD撰写"
+      - "需求分析"
+      - "竞品分析"
+      - "用户调研"
+      - "数据分析"
+    responsibilities:
+      - "负责产品规划和路线图制定"
+      - "深入理解用户需求并转化为可执行的产品方案"
+      - "协调设计、研发、测试等团队推动产品上线"
+      - "持续跟踪产品数据并根据反馈迭代优化"
+
+  - name: "前端工程师"
+    kpis:
+      - name: "页面加载时间"
+        description: "核心页面的首屏加载耗时"
+        benchmark: "< 2秒"
+      - name: "UI还原度"
+        description: "前端实现与设计稿的视觉还原匹配度"
+        benchmark: "> 95%"
+      - name: "线上Bug率"
+        description: "每百行代码引入的线上缺陷数量"
+        benchmark: "< 0.5个/百行"
+    pain_points:
+      - "产品需求频繁变更导致前端返工率高"
+      - "多浏览器兼容性问题排查耗时"
+      - "设计稿不完整或缺少交互状态说明"
+      - "后端接口联调时接口字段频繁变更"
+    common_tasks:
+      - "页面功能开发"
+      - "组件封装与复用"
+      - "前端性能优化"
+      - "多端适配（PC/移动端/H5）"
+      - "技术方案设计"
+    responsibilities:
+      - "负责前端架构设计和技术选型"
+      - "保障用户交互体验的流畅性和一致性"
+      - "持续优化页面性能和加载速度"
+      - "参与产品需求讨论，从前端视角提供可行性建议"
+
+  - name: "后端工程师"
+    kpis:
+      - name: "API响应时间"
+        description: "核心接口的平均响应耗时"
+        benchmark: "< 200ms"
+      - name: "系统可用性"
+        description: "服务月度可用时间占比"
+        benchmark: "> 99.9%"
+      - name: "代码覆盖率"
+        description: "单元测试对业务代码的覆盖比例"
+        benchmark: "> 80%"
+    pain_points:
+      - "需求文档不清晰导致技术方案反复修改"
+      - "接口频繁变更影响开发和联调进度"
+      - "线上问题排查困难，缺乏有效日志和监控"
+      - "历史遗留系统代码难以维护和扩展"
+    common_tasks:
+      - "API接口开发"
+      - "数据库设计与优化"
+      - "系统性能调优"
+      - "微服务架构设计与拆分"
+      - "技术方案撰写"
+    responsibilities:
+      - "负责服务端架构设计和核心代码开发"
+      - "保障系统的高可用性、安全性和可扩展性"
+      - "优化数据库查询和系统性能"
+      - "参与技术评审和代码审查，把控代码质量"
+
+  - name: "数据分析师"
+    kpis:
+      - name: "数据准确率"
+        description: "数据分析结果与实际情况的匹配度"
+        benchmark: "> 98%"
+      - name: "报表产出时效"
+        description: "定期报表按计划交付的及时率"
+        benchmark: "> 95%"
+      - name: "洞察采纳率"
+        description: "分析建议被业务方采纳并落地的比例"
+        benchmark: "> 60%"
+    pain_points:
+      - "不同部门数据口径不一致导致分析结果互相矛盾"
+      - "大量临时取数需求挤压深度分析时间"
+      - "业务方看不懂分析报告或对数据结论有质疑"
+      - "埋点数据质量差影响分析结果可信度"
+    common_tasks:
+      - "数据提取与清洗"
+      - "报表开发与BI看板搭建"
+      - "归因分析与漏斗分析"
+      - "A/B实验设计与效果评估"
+      - "专题分析与业务洞察报告"
+    responsibilities:
+      - "建设和维护数据指标体系"
+      - "输出高质量数据分析和业务洞察"
+      - "保障数据质量和数据治理规范"
+      - "推动数据驱动决策文化在团队落地"
+
+  - name: "技术负责人"
+    kpis:
+      - name: "项目交付准时率"
+        description: "负责项目按计划时间交付的比例"
+        benchmark: "> 85%"
+      - name: "系统稳定性"
+        description: "负责系统的P0级故障发生频率"
+        benchmark: "< 1次/季度"
+      - name: "团队技术成长"
+        description: "团队成员的技能提升和职级晋升情况"
+        benchmark: "每年至少2人晋升"
+    pain_points:
+      - "技术债积累导致新功能开发效率持续下降"
+      - "团队成员技术水平参差不齐，代码质量难以统一"
+      - "业务压力与技术规范之间的平衡难以把握"
+      - "跨团队协作时技术方案对齐和资源协调困难"
+    common_tasks:
+      - "技术架构设计与评审"
+      - "核心代码Review"
+      - "技术方案决策与选型"
+      - "团队技术规划与人才培养"
+      - "线上事故应急指挥"
+    responsibilities:
+      - "负责技术团队管理和技术方向规划"
+      - "制定编码规范和工程技术标准"
+      - "评估技术风险和推动技术升级"
+      - "培养团队成员并建设技术文化"
+
+# ============================================
+# 5. workflows — 核心流程定义（>=2 个流程）
+# ============================================
+workflows:
+  - name: "功能上线流程"
+    category: "研发流程"
+    steps:
+      - step: 1
+        name: "需求评审"
+        owner: "产品经理"
+        deliverables:
+          - "评审通过的PRD"
+          - "产品原型图"
+      - step: 2
+        name: "技术设计"
+        owner: "技术负责人"
+        deliverables:
+          - "技术方案文档"
+          - "架构设计图"
+      - step: 3
+        name: "开发实现"
+        owner: "研发团队"
+        deliverables:
+          - "功能代码"
+          - "单元测试报告"
+      - step: 4
+        name: "代码审查"
+        owner: "研发团队"
+        deliverables:
+          - "审查通过的Pull Request"
+          - "审查意见记录"
+      - step: 5
+        name: "测试验证"
+        owner: "测试工程师"
+        deliverables:
+          - "测试报告"
+          - "Bug清单"
+      - step: 6
+        name: "灰度发布"
+        owner: "运维/SRE"
+        deliverables:
+          - "灰度环境部署报告"
+          - "灰度数据监控报表"
+      - step: 7
+        name: "全量上线"
+        owner: "运维/SRE"
+        deliverables:
+          - "上线确认报告"
+      - step: 8
+        name: "线上监控"
+        owner: "运维/SRE"
+        deliverables:
+          - "线上监控看板"
+          - "异常告警规则"
+    decision_points:
+      - point: "代码审查是否通过？"
+        yes: "继续到测试验证"
+        no: "返回开发修改后重新审查"
+      - point: "灰度数据是否达标？"
+        yes: "执行全量上线"
+        no: "回滚修复后重新灰度"
+    failure_modes:
+      - name: "跳过灰度直接全量上线"
+        impact: "潜在线上事故风险，故障影响面大"
+        prevention: "强制灰度流程作为上线前置条件"
+      - name: "测试覆盖不足导致回归Bug"
+        impact: "上线后已有功能出现异常"
+        prevention: "建立测试覆盖率红线并自动化检查"
+      - name: "代码审查流于形式"
+        impact: "低质量代码流入主干，积累技术债"
+        prevention: "审查清单标准化，设置审查通过率指标"
+
+  - name: "需求管理流程"
+    category: "产品流程"
+    steps:
+      - step: 1
+        name: "需求收集"
+        owner: "产品经理"
+        deliverables:
+          - "需求记录表"
+      - step: 2
+        name: "优先级排序"
+        owner: "产品经理"
+        deliverables:
+          - "优先级排序列表"
+      - step: 3
+        name: "PRD撰写"
+        owner: "产品经理"
+        deliverables:
+          - "PRD初稿"
+      - step: 4
+        name: "需求评审"
+        owner: "产品经理"
+        deliverables:
+          - "评审通过的PRD"
+      - step: 5
+        name: "技术评审"
+        owner: "技术负责人"
+        deliverables:
+          - "技术方案评审结论"
+      - step: 6
+        name: "进入开发"
+        owner: "研发团队"
+        deliverables:
+          - "开发排期计划"
+      - step: 7
+        name: "验收上线"
+        owner: "产品经理"
+        deliverables:
+          - "验收确认报告"
+          - "上线通知"
+    decision_points:
+      - point: "是否需要技术评审？"
+        yes: "进入技术评审环节"
+        no: "直接进入开发阶段"
+      - point: "需求评审是否通过？"
+        yes: "进入技术评审或开发阶段"
+        no: "修改PRD后重新评审"
+    failure_modes:
+      - name: "需求未经评审直接进入开发"
+        impact: "理解和范围偏差导致返工，浪费开发资源"
+        prevention: "强制需求评审作为开发前置条件"
+      - name: "验收标准不明确导致上线争议"
+        impact: "功能上线后业务方不认可，多次返工"
+        prevention: "PRD中明确可量化的验收标准并双方确认"
+
+  - name: "数据分析流程"
+    category: "数据流程"
+    steps:
+      - step: 1
+        name: "需求沟通"
+        owner: "数据分析师"
+        deliverables:
+          - "分析需求确认文档"
+      - step: 2
+        name: "数据提取"
+        owner: "数据分析师"
+        deliverables:
+          - "原始数据集"
+      - step: 3
+        name: "数据清洗"
+        owner: "数据分析师"
+        deliverables:
+          - "清洗后的干净数据集"
+      - step: 4
+        name: "分析建模"
+        owner: "数据分析师"
+        deliverables:
+          - "分析模型或统计结果"
+      - step: 5
+        name: "报告输出"
+        owner: "数据分析师"
+        deliverables:
+          - "数据分析报告"
+          - "可视化图表"
+      - step: 6
+        name: "业务落地"
+        owner: "业务方"
+        deliverables:
+          - "落地行动计划"
+    decision_points:
+      - point: "数据质量是否达标？"
+        yes: "进入分析建模阶段"
+        no: "返回数据清洗阶段重新处理"
+      - point: "分析结果是否确认？"
+        yes: "输出正式报告并推动落地"
+        no: "返回分析建模阶段调整方法"
+    failure_modes:
+      - name: "数据口径不一致导致结论偏差"
+        impact: "分析结论不可信，业务方不采纳"
+        prevention: "分析前统一指标定义和数据口径"
+      - name: "分析结果缺乏业务可操作性"
+        impact: "报告停留在数据层面，无法推动行动"
+        prevention: "分析过程中与业务方保持沟通，确保洞察可落地"
+
+# ============================================
+# 6. docs — 文档规范模板（>=3 个模板）
+# ============================================
+docs:
+  - name: "PRD模板"
+    task_type: "PRD撰写"
+    sections:
+      - title: "项目背景与目标"
+        prompt_hint: "为什么要做这个功能？解决什么用户痛点？核心指标是什么？"
+      - title: "功能范围与边界"
+        prompt_hint: "这个版本包含哪些功能？明确不做什么，第一期范围是什么？"
+      - title: "用户流程图"
+        prompt_hint: "用户从进入到完成核心目标的完整流程，分支路径如何处理？"
+      - title: "界面原型描述"
+        prompt_hint: "主要页面的布局、交互方式、按钮文案、异常状态说明"
+      - title: "验收标准"
+        prompt_hint: "满足什么条件算完成？包含正常场景、异常场景和边界条件"
+      - title: "上线计划"
+        prompt_hint: "灰度策略、上线时间窗口、回滚方案、监控指标"
+    tone: "专业，数据驱动，逻辑清晰"
+    common_mistakes:
+      - "技术细节过多，业务方和研发关注点混淆"
+      - "缺少量化验收标准，上线后争议不断"
+      - "未区分P0/P1/P2需求优先级，关键功能不突出"
+      - "只写了功能列表，缺少用户视角的流程说明"
+
+  - name: "API文档模板"
+    task_type: "代码生成"
+    sections:
+      - title: "接口概述"
+        prompt_hint: "接口的用途说明、适用场景和调用方说明"
+      - title: "请求方法"
+        prompt_hint: "HTTP方法（GET/POST/PUT/DELETE）、请求URL、Headers说明"
+      - title: "请求参数"
+        prompt_hint: "参数名、类型、是否必填、默认值、示例值、校验规则"
+      - title: "响应格式"
+        prompt_hint: "成功响应的数据结构、字段说明、类型定义和示例JSON"
+      - title: "错误码说明"
+        prompt_hint: "所有错误码的定义、含义和排查建议"
+      - title: "调用示例"
+        prompt_hint: "curl或代码示例，包含请求和响应的完整演示"
+    tone: "精确，规范，无歧义"
+    common_mistakes:
+      - "缺少错误码说明，调用方无法正确处理异常"
+      - "示例代码不可运行，缺少必要的上下文环境说明"
+      - "未标注废弃字段和兼容性说明，调用方升级困难"
+      - "参数校验规则不明确，调用方传参容易出错"
+
+  - name: "技术方案模板"
+    task_type: "技术文档"
+    sections:
+      - title: "背景与目标"
+        prompt_hint: "业务需求背景、技术目标、约束条件和成功标准"
+      - title: "技术选型对比"
+        prompt_hint: "至少2-3种可行方案的对比表格，包含优劣势和适用场景分析"
+      - title: "架构设计"
+        prompt_hint: "系统模块划分、核心类图/组件图、数据流向和交互时序"
+      - title: "关键流程图"
+        prompt_hint: "核心业务流程的技术视角序列图，异常流程的处理路径"
+      - title: "风险评估"
+        prompt_hint: "技术难点、潜在风险、安全合规评估和应对措施"
+      - title: "上线方案"
+        prompt_hint: "发布策略、灰度计划、回滚方案、监控告警和验证步骤"
+    tone: "理性，全面，务实"
+    common_mistakes:
+      - "技术方案过于简略，只有一个方案没有对比选项"
+      - "未考虑回滚方案，出现问题后无法快速恢复"
+      - "忽略了非功能需求（性能、安全、可扩展性）"
+      - "方案缺乏量化数据支撑，仅凭经验判断"
+
+  - name: "数据分析报告模板"
+    task_type: "数据分析"
+    sections:
+      - title: "分析背景与目的"
+        prompt_hint: "为什么做这个分析？业务方想解决什么问题？决策点是什么？"
+      - title: "数据说明"
+        prompt_hint: "数据来源、时间范围、指标口径定义、数据量说明和局限性"
+      - title: "核心发现"
+        prompt_hint: "最重要的3-5个数据洞察，用数据可视化图表呈现关键趋势"
+      - title: "深入分析"
+        prompt_hint: "分维度拆解分析，对比分析、漏斗分析、归因分析等详细方法"
+      - title: "结论与建议"
+        prompt_hint: "基于数据分析的明确结论，以及可落地的具体行动建议"
+    tone: "数据驱动，客观，可执行"
+    common_mistakes:
+      - "堆砌数据但缺乏洞察，没有提炼出有价值的结论"
+      - "结论和建议脱节，建议没有数据支撑和优先级排序"
+      - "未说明数据口径和局限，导致结论被轻易质疑"
+      - "图表选择不当，信息传递效率低"
+
+# ============================================
+# 7. follow_up_trees — 追问逻辑树（5 棵树）
+# ============================================
+follow_up_trees:
+
+  # --- 追问树 1: PRD撰写 ---
+  - task_type: "prd_writing"
+    root_node_id: "prd_q1"
+    nodes:
+      prd_q1:
+        node_id: "prd_q1"
+        question_text: "这个PRD的主要受众是谁？"
+        question_type: "single_choice"
+        info_key: "prd_audience"
+        depth: 1
+        options:
+          - value: "dev_team"
+            label: "研发团队（需要技术细节和实现说明）"
+          - value: "management"
+            label: "管理层（关注ROI、时间线和商业价值）"
+          - value: "cross_dept"
+            label: "跨部门协作（涉及运营、市场等多方）"
+        children:
+          dev_team: "prd_q2_scope"
+          management: "prd_q3_mgmt"
+          cross_dept: "prd_q4_stakeholders"
+        fallback_node_id: "prd_q2_scope"
+        is_leaf: false
+
+      prd_q2_scope:
+        node_id: "prd_q2_scope"
+        question_text: "功能涉及的范围是什么？"
+        question_type: "multi_choice"
+        info_key: "prd_scope"
+        depth: 2
+        options:
+          - value: "new_feature"
+            label: "全新功能"
+          - value: "optimization"
+            label: "优化改进"
+          - value: "migration"
+            label: "技术迁移"
+        children:
+          new_feature: "prd_q5_detail"
+          optimization: "prd_q5_detail"
+          migration: "prd_q5_detail"
+        fallback_node_id: "prd_q5_detail"
+        is_leaf: false
+
+      prd_q3_mgmt:
+        node_id: "prd_q3_mgmt"
+        question_text: "管理层关注的核心目标是什么？"
+        question_type: "single_choice"
+        info_key: "prd_mgmt_goal"
+        depth: 2
+        options:
+          - value: "revenue"
+            label: "提升营收或转化率"
+          - value: "efficiency"
+            label: "降低运营成本或提升效率"
+          - value: "competitive"
+            label: "应对竞争或抢占市场份额"
+        children:
+          revenue: "prd_q6_constraint"
+          efficiency: "prd_q6_constraint"
+          competitive: "prd_q6_constraint"
+        fallback_node_id: "prd_q6_constraint"
+        is_leaf: false
+
+      prd_q4_stakeholders:
+        node_id: "prd_q4_stakeholders"
+        question_text: "涉及哪些协作部门？"
+        question_type: "multi_choice"
+        info_key: "prd_stakeholders"
+        depth: 2
+        options:
+          - value: "ops"
+            label: "运营团队"
+          - value: "market"
+            label: "市场/营销团队"
+          - value: "legal"
+            label: "法务/合规团队"
+          - value: "cs"
+            label: "客服团队"
+        children:
+          ops: "prd_q7_output"
+          market: "prd_q7_output"
+          legal: "prd_q7_output"
+          cs: "prd_q7_output"
+        fallback_node_id: "prd_q7_output"
+        is_leaf: false
+
+      prd_q5_detail:
+        node_id: "prd_q5_detail"
+        question_text: "产品所处的阶段是？"
+        question_type: "single_choice"
+        info_key: "prd_stage"
+        depth: 3
+        options:
+          - value: "0to1"
+            label: "从0到1（全新产品线）"
+          - value: "growth"
+            label: "快速增长期（快速迭代验证）"
+          - value: "mature"
+            label: "成熟稳定期（精细化优化）"
+        children:
+          "0to1": "prd_q6_constraint"
+          growth: "prd_q6_constraint"
+          mature: "prd_q6_constraint"
+        fallback_node_id: "prd_q6_constraint"
+        is_leaf: false
+
+      prd_q6_constraint:
+        node_id: "prd_q6_constraint"
+        question_text: "有哪些已知约束条件？"
+        question_type: "multi_choice"
+        info_key: "prd_constraints"
+        depth: 3
+        options:
+          - value: "time"
+            label: "时间紧迫（deadline压力大）"
+          - value: "resource"
+            label: "人力不足（团队资源有限）"
+          - value: "tech_debt"
+            label: "技术债严重（现有代码扩展困难）"
+          - value: "compliance"
+            label: "合规要求（需满足行业监管）"
+        children:
+          time: "prd_q7_output"
+          resource: "prd_q7_output"
+          tech_debt: "prd_q7_output"
+          compliance: "prd_q7_output"
+        fallback_node_id: "prd_q7_output"
+        is_leaf: false
+
+      prd_q7_output:
+        node_id: "prd_q7_output"
+        question_text: "你希望PRD包含哪些核心部分？"
+        question_type: "multi_choice"
+        info_key: "prd_sections"
+        depth: 4
+        options:
+          - value: "bg"
+            label: "项目背景与目标"
+          - value: "scope"
+            label: "功能范围与边界"
+          - value: "flow"
+            label: "用户流程图"
+          - value: "ui"
+            label: "界面原型描述"
+          - value: "acceptance"
+            label: "验收标准"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 2: 代码生成 ---
+  - task_type: "code_generation"
+    root_node_id: "code_q1"
+    nodes:
+      code_q1:
+        node_id: "code_q1"
+        question_text: "你需要生成什么类型的代码？"
+        question_type: "single_choice"
+        info_key: "code_type"
+        depth: 1
+        options:
+          - value: "api"
+            label: "后端API接口"
+          - value: "frontend"
+            label: "前端页面/组件"
+          - value: "script"
+            label: "脚本/工具"
+          - value: "sql"
+            label: "SQL查询"
+        children:
+          api: "code_q2_tech"
+          frontend: "code_q2_tech"
+          script: "code_q2_tech"
+          sql: "code_q2_tech"
+        fallback_node_id: "code_q2_tech"
+        is_leaf: false
+
+      code_q2_tech:
+        node_id: "code_q2_tech"
+        question_text: "使用的技术栈是什么？（语言、框架、版本等）"
+        question_type: "text_input"
+        info_key: "code_tech_stack"
+        depth: 2
+        options: []
+        children:
+          "_any": "code_q3_style"
+        fallback_node_id: "code_q3_style"
+        is_leaf: false
+
+      code_q3_style:
+        node_id: "code_q3_style"
+        question_text: "代码风格和质量的偏好是什么？"
+        question_type: "multi_choice"
+        info_key: "code_style"
+        depth: 3
+        options:
+          - value: "clean"
+            label: "简洁清晰（代码易读）"
+          - value: "performance"
+            label: "性能优先（运行效率优先）"
+          - value: "robust"
+            label: "健壮防御（全面校验和异常处理）"
+          - value: "testable"
+            label: "可测试性好（便于写UT和Mock）"
+        children:
+          clean: "code_q4_env"
+          performance: "code_q4_env"
+          robust: "code_q4_env"
+          testable: "code_q4_env"
+        fallback_node_id: "code_q4_env"
+        is_leaf: false
+
+      code_q4_env:
+        node_id: "code_q4_env"
+        question_text: "代码运行的上下文环境是什么？（部署环境、依赖约束等）"
+        question_type: "text_input"
+        info_key: "code_context"
+        depth: 3
+        options: []
+        children:
+          "_any": "code_q5_output"
+        fallback_node_id: "code_q5_output"
+        is_leaf: false
+
+      code_q5_output:
+        node_id: "code_q5_output"
+        question_text: "期望的输出格式是什么？"
+        question_type: "multi_choice"
+        info_key: "code_output"
+        depth: 4
+        options:
+          - value: "code_only"
+            label: "纯代码（简洁输出）"
+          - value: "with_comment"
+            label: "含详细注释"
+          - value: "with_test"
+            label: "含单元测试"
+          - value: "with_doc"
+            label: "含使用文档"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+      code_q6_constraint:
+        node_id: "code_q6_constraint"
+        question_text: "有什么特殊约束条件？（安全要求、兼容性、性能指标等）"
+        question_type: "text_input"
+        info_key: "code_constraints"
+        depth: 4
+        options: []
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 3: 数据分析 ---
+  - task_type: "data_analysis"
+    root_node_id: "data_q1"
+    nodes:
+      data_q1:
+        node_id: "data_q1"
+        question_text: "你需要什么类型的分析？"
+        question_type: "single_choice"
+        info_key: "analysis_type"
+        depth: 1
+        options:
+          - value: "descriptive"
+            label: "描述性分析（发生了什么？）"
+          - value: "diagnostic"
+            label: "诊断性分析（为什么会发生？）"
+          - value: "predictive"
+            label: "预测性分析（将会怎样？）"
+          - value: "prescriptive"
+            label: "建议性分析（该怎么办？）"
+        children:
+          descriptive: "data_q2_data"
+          diagnostic: "data_q2_data"
+          predictive: "data_q2_data"
+          prescriptive: "data_q2_data"
+        fallback_node_id: "data_q2_data"
+        is_leaf: false
+
+      data_q2_data:
+        node_id: "data_q2_data"
+        question_text: "数据来源和格式是什么？"
+        question_type: "text_input"
+        info_key: "data_source"
+        depth: 2
+        options: []
+        children:
+          "_any": "data_q3_dim"
+        fallback_node_id: "data_q3_dim"
+        is_leaf: false
+
+      data_q3_dim:
+        node_id: "data_q3_dim"
+        question_text: "关注哪些分析维度？"
+        question_type: "multi_choice"
+        info_key: "data_dimensions"
+        depth: 3
+        options:
+          - value: "user"
+            label: "用户行为（活跃、留存、转化）"
+          - value: "revenue"
+            label: "营收/收入（GMV、ARPU、利润率）"
+          - value: "product"
+            label: "产品功能（使用率、功能渗透）"
+          - value: "operation"
+            label: "运营效率（成本、人效、ROI）"
+        children:
+          user: "data_q4_output"
+          revenue: "data_q4_output"
+          product: "data_q4_output"
+          operation: "data_q4_output"
+        fallback_node_id: "data_q4_output"
+        is_leaf: false
+
+      data_q4_output:
+        node_id: "data_q4_output"
+        question_text: "分析结果的呈现方式是什么？"
+        question_type: "single_choice"
+        info_key: "data_output"
+        depth: 3
+        options:
+          - value: "dashboard"
+            label: "BI看板（实时可视化展示）"
+          - value: "report"
+            label: "分析报告（结构化文档）"
+          - value: "insight"
+            label: "关键洞察（一句话结论）"
+          - value: "presentation"
+            label: "汇报PPT（面向管理层）"
+        children:
+          dashboard: "data_q5_detail"
+          report: "data_q5_detail"
+          insight: "data_q5_detail"
+          presentation: "data_q5_detail"
+        fallback_node_id: "data_q5_detail"
+        is_leaf: false
+
+      data_q5_detail:
+        node_id: "data_q5_detail"
+        question_text: "有哪些特殊分析要求？"
+        question_type: "multi_choice"
+        info_key: "data_special"
+        depth: 4
+        options:
+          - value: "comparison"
+            label: "同比/环比对比分析"
+          - value: "segment"
+            label: "用户分层/分群分析"
+          - value: "funnel"
+            label: "漏斗转化分析"
+          - value: "cohort"
+            label: "Cohort留存分析"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+      data_q6_goal:
+        node_id: "data_q6_goal"
+        question_text: "分析的最终目的是什么？"
+        question_type: "single_choice"
+        info_key: "data_goal"
+        depth: 2
+        options:
+          - value: "exploration"
+            label: "探索性发现（在数据中找趋势和模式）"
+          - value: "reporting"
+            label: "定期汇报（按固定指标出报表）"
+          - value: "decision"
+            label: "决策支持（为具体问题提供数据依据）"
+        children:
+          exploration: "data_q2_data"
+          reporting: "data_q2_data"
+          decision: "data_q2_data"
+        fallback_node_id: "data_q2_data"
+        is_leaf: false
+
+  # --- 追问树 4: 技术文档 ---
+  - task_type: "tech_doc"
+    root_node_id: "doc_q1"
+    nodes:
+      doc_q1:
+        node_id: "doc_q1"
+        question_text: "需要写什么类型的技术文档？"
+        question_type: "single_choice"
+        info_key: "doc_type"
+        depth: 1
+        options:
+          - value: "api_doc"
+            label: "API接口文档"
+          - value: "design_doc"
+            label: "技术设计文档"
+          - value: "user_guide"
+            label: "用户操作手册"
+          - value: "runbook"
+            label: "运维手册/Runbook"
+        children:
+          api_doc: "doc_q2_audience"
+          design_doc: "doc_q2_audience"
+          user_guide: "doc_q2_audience"
+          runbook: "doc_q2_audience"
+        fallback_node_id: "doc_q2_audience"
+        is_leaf: false
+
+      doc_q2_audience:
+        node_id: "doc_q2_audience"
+        question_text: "文档的目标读者是谁？"
+        question_type: "single_choice"
+        info_key: "doc_audience"
+        depth: 2
+        options:
+          - value: "dev"
+            label: "开发工程师（需要技术细节和代码示例）"
+          - value: "ops"
+            label: "运维/SRE（关注部署和运维操作）"
+          - value: "pm"
+            label: "产品/项目经理（关注能力和限制）"
+          - value: "customer"
+            label: "终端用户（需要图文并茂的教程）"
+        children:
+          dev: "doc_q3_level"
+          ops: "doc_q3_level"
+          pm: "doc_q3_level"
+          customer: "doc_q3_level"
+        fallback_node_id: "doc_q3_level"
+        is_leaf: false
+
+      doc_q3_level:
+        node_id: "doc_q3_level"
+        question_text: "读者的技术水平如何？"
+        question_type: "single_choice"
+        info_key: "doc_level"
+        depth: 3
+        options:
+          - value: "beginner"
+            label: "入门级（需要大量背景解释和入门指导）"
+          - value: "intermediate"
+            label: "中级（熟悉基础概念，需要具体用法）"
+          - value: "expert"
+            label: "专家级（只需关键信息、API参考和注意事项）"
+        children:
+          beginner: "doc_q4_scope"
+          intermediate: "doc_q4_scope"
+          expert: "doc_q4_scope"
+        fallback_node_id: "doc_q4_scope"
+        is_leaf: false
+
+      doc_q4_scope:
+        node_id: "doc_q4_scope"
+        question_text: "文档需要覆盖哪些内容范围？"
+        question_type: "multi_choice"
+        info_key: "doc_scope"
+        depth: 4
+        options:
+          - value: "overview"
+            label: "概览/架构说明"
+          - value: "detail"
+            label: "详细操作说明"
+          - value: "example"
+            label: "使用示例和最佳实践"
+          - value: "trouble"
+            label: "排错指南和常见问题"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+      doc_q5_detail:
+        node_id: "doc_q5_detail"
+        question_text: "有什么附加要求或特殊格式需求？"
+        question_type: "text_input"
+        info_key: "doc_extra"
+        depth: 4
+        options: []
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 5: 工作总结 ---
+  - task_type: "work_summary"
+    root_node_id: "sum_q1"
+    nodes:
+      sum_q1:
+        node_id: "sum_q1"
+        question_text: "你的岗位角色是什么？"
+        question_type: "single_choice"
+        info_key: "sum_role"
+        depth: 1
+        options:
+          - value: "manager"
+            label: "管理岗（带团队）"
+          - value: "ic"
+            label: "一线执行（Individual Contributor）"
+          - value: "tech_lead"
+            label: "技术负责人（带项目不带人）"
+        children:
+          manager: "sum_q2_period"
+          ic: "sum_q2_period"
+          tech_lead: "sum_q2_period"
+        fallback_node_id: "sum_q2_period"
+        is_leaf: false
+
+      sum_q2_period:
+        node_id: "sum_q2_period"
+        question_text: "总结的周期是什么？"
+        question_type: "single_choice"
+        info_key: "sum_period"
+        depth: 2
+        options:
+          - value: "weekly"
+            label: "周报（简要、聚焦本周工作）"
+          - value: "monthly"
+            label: "月报（阶段性回顾）"
+          - value: "quarterly"
+            label: "季度述职（正式绩效回顾）"
+          - value: "yearly"
+            label: "年终总结（全年全景回顾）"
+        children:
+          weekly: "sum_q3_perf"
+          monthly: "sum_q3_perf"
+          quarterly: "sum_q3_perf"
+          yearly: "sum_q3_perf"
+        fallback_node_id: "sum_q3_perf"
+        is_leaf: false
+
+      sum_q3_perf:
+        node_id: "sum_q3_perf"
+        question_text: "本周期业绩表现如何？"
+        question_type: "single_choice"
+        info_key: "sum_performance"
+        depth: 3
+        options:
+          - value: "good"
+            label: "完成得很好（达成甚至超出目标）"
+          - value: "mixed"
+            label: "有亮点也有不足（部分完成）"
+          - value: "poor"
+            label: "结果不理想（未达预期）"
+        children:
+          good: "sum_q4_focus"
+          mixed: "sum_q4_focus"
+          poor: "sum_q6_detail"
+        fallback_node_id: "sum_q4_focus"
+        is_leaf: false
+
+      sum_q4_focus:
+        node_id: "sum_q4_focus"
+        question_text: "总结的侧重点是什么？"
+        question_type: "multi_choice"
+        info_key: "sum_focus"
+        depth: 4
+        options:
+          - value: "result"
+            label: "成果展示（突出业绩和产出）"
+          - value: "growth"
+            label: "成长反思（总结经验和教训）"
+          - value: "plan"
+            label: "下阶段规划（目标和行动计划）"
+          - value: "team"
+            label: "团队建设（团队管理和培养）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+      sum_q5_style:
+        node_id: "sum_q5_style"
+        question_text: "期望的表达风格是什么？"
+        question_type: "single_choice"
+        info_key: "sum_style"
+        depth: 4
+        options:
+          - value: "data_driven"
+            label: "数据驱动（用数字和图表说话）"
+          - value: "story"
+            label: "故事叙述（讲过程和关键里程碑）"
+          - value: "concise"
+            label: "精炼要点（PPT风格，条目化）"
+          - value: "comprehensive"
+            label: "全面详尽（正式报告风格）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+      sum_q6_detail:
+        node_id: "sum_q6_detail"
+        question_text: "结果不理想的原因是什么？有哪些反思和改进计划？"
+        question_type: "text_input"
+        info_key: "sum_failure_analysis"
+        depth: 4
+        options: []
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+# ============================================
+# 8. pain_points — 行业痛点清单（>=5 条）
+# ============================================
+pain_points:
+  - name: "需求频繁变更"
+    description: "产品经理不断修改需求，导致开发团队反复返工和资源浪费"
+    why_happens: "前期需求调研不充分、业务方中途产生新想法、市场环境快速变化导致优先级调整"
+    who_feels_it: "研发团队、测试工程师、项目经理"
+    typical_phrases:
+      - "需求又变了"
+      - "这个需求很急，这周就要"
+      - "改改改，说改就改"
+    what_not_to_do: "假设需求一旦确定就不再变更，直接按锁定需求生成完整技术方案"
+
+  - name: "技术债积累"
+    description: "为了赶进度采用快捷方案，导致代码质量持续下降，后续迭代越来越慢"
+    why_happens: "上线压力大缺乏重构时间、代码审查流于形式、团队缺乏统一编码规范"
+    who_feels_it: "研发团队、技术负责人、新入职工程师"
+    typical_phrases:
+      - "先上线再说，后面再优化"
+      - "这段代码看不懂，不敢改"
+      - "又踩坑了，又是之前的历史遗留问题"
+    what_not_to_do: "假设代码质量完美无瑕，不需要考虑技术债的影响"
+
+  - name: "跨部门协作困难"
+    description: "产品、研发、运营、市场等部门之间信息不对称、目标不一致、沟通效率低"
+    why_happens: "部门墙导致信息孤岛、KPI各自为政缺乏统一目标、缺乏高效的跨部门沟通机制"
+    who_feels_it: "产品经理、项目经理、技术负责人"
+    typical_phrases:
+      - "这不是我的KPI"
+      - "他们不懂技术，没法沟通"
+      - "PM又不懂，这是技术问题"
+    what_not_to_do: "假设各部门自动对齐目标，不需要额外的沟通协调工作"
+
+  - name: "数据口径不统一"
+    description: "不同部门使用不同的数据源和计算方式，同一指标得出不同结论，互相矛盾"
+    why_happens: "缺乏统一的数据中台和指标管理体系、埋点规范不统一、指标定义文档缺失"
+    who_feels_it: "数据分析师、运营团队、产品经理、管理层"
+    typical_phrases:
+      - "这个数据不对，和后台对不上"
+      - "口径是什么？你怎么算的？"
+      - "你们的数据和我们差好多"
+    what_not_to_do: "假设所有团队对数据指标的定义和理解一致，直接使用各方数据做对比分析"
+
+  - name: "线上事故频发"
+    description: "上线后出现严重Bug、性能下降或服务不可用，影响用户体验和业务运转"
+    why_happens: "测试覆盖不足缺乏边界测试、灰度发布流程不完善、监控告警缺失、回滚机制不健全"
+    who_feels_it: "SRE/运维、研发团队、终端用户、客服团队"
+    typical_phrases:
+      - "又挂了"
+      - "紧急回滚"
+      - "怎么上线前没发现这个问题"
+      - "oncall电话又响了"
+    what_not_to_do: "假设无Bug无事故的完美上线，不制定回滚预案和监控策略"
+
+  - name: "人员流动导致知识断层"
+    description: "核心成员离职导致业务知识、技术决策背景和系统认知出现断层，新人上手困难"
+    why_happens: "文档缺失或过时、关键决策没有记录、代码注释不足、缺乏知识传承机制"
+    who_feels_it: "技术负责人、HR、新入职员工、管理层"
+    typical_phrases:
+      - "这人走了我们怎么办"
+      - "这段逻辑为什么这么设计，没人知道"
+      - "文档太老了，跟实际不一样"
+    what_not_to_do: "假设核心知识已经沉淀在文档中，不需要额外做知识传承和交接工作"
