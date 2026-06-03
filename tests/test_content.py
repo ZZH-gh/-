@@ -35,19 +35,20 @@ ALL_DIMENSIONS = [
     "pain_points",
 ]
 
-# 数量阈值
+# 数量阈值（KNOW-04 标准）
 THRESHOLDS = {
-    "terms": 30,
-    "tasks": 5,
-    "roles": 4,
-    "workflows": 2,
-    "docs": 3,
-    "pain_points": 5,
-    "follow_up_trees": 5,  # 精确数量
+    "terms": 80,             # KNOW-04 要求 >= 80 术语
+    "tasks": 15,             # KNOW-04 要求 >= 15 场景
+    "roles": 8,              # 扩至 8+ 角色
+    "workflows": 5,          # 扩至 5+ 工作流
+    "docs": 6,               # 扩至 6+ 文档模板
+    "pain_points": 8,        # 扩至 8+ 痛点
+    "follow_up_trees": 15,   # 精确数量（每个场景一棵树）
 }
 
 # 场景级变体检查定义
 VARIANT_CHECKS = {
+    # --- 原有 5 个场景 ---
     "prd_writing": {
         "description": "PRD撰写至少一条路径区分研发团队 vs 管理层",
         "check": lambda tree: _has_children_keys(tree, ["dev_team", "management"]),
@@ -66,6 +67,47 @@ VARIANT_CHECKS = {
     },
     "work_summary": {
         "description": "工作总结至少一条路径区分角色或业绩（children 键数 >= 2）",
+        "check": lambda tree: _has_children_key_count(tree, 2),
+    },
+    # --- 新增 10 个场景 ---
+    "interview_hiring": {
+        "description": "面试招聘至少一条路径区分技术面 vs 行为面（children 键数 >= 2）",
+        "check": lambda tree: _has_children_key_count(tree, 2),
+    },
+    "project_mgmt": {
+        "description": "项目管理至少一条路径区分启动/执行/收尾阶段（children 键数 >= 2）",
+        "check": lambda tree: _has_children_key_count(tree, 2),
+    },
+    "ops_deployment": {
+        "description": "运维部署至少一条路径区分云/本地/混合环境（children 键数 >= 2）",
+        "check": lambda tree: _has_children_key_count(tree, 2),
+    },
+    "uiux_design": {
+        "description": "UI/UX 设计至少一条路径区分研究/原型/设计系统阶段（children 键数 >= 2）",
+        "check": lambda tree: _has_children_key_count(tree, 2),
+    },
+    "test_strategy": {
+        "description": "测试策略至少一条路径区分单元/集成/E2E 层级（children 键数 >= 3）",
+        "check": lambda tree: _has_children_key_count(tree, 3),
+    },
+    "arch_design": {
+        "description": "架构设计至少一条路径区分 Web/微服务/数据平台（children 键数 >= 3）",
+        "check": lambda tree: _has_children_key_count(tree, 3),
+    },
+    "db_optimization": {
+        "description": "数据库优化至少一条路径区分慢查询/扩展性/一致性（children 键数 >= 2）",
+        "check": lambda tree: _has_children_key_count(tree, 2),
+    },
+    "security_audit": {
+        "description": "安全审计至少一条路径区分代码/基础设施/流程范围（children 键数 >= 2）",
+        "check": lambda tree: _has_children_key_count(tree, 2),
+    },
+    "perf_optimization": {
+        "description": "性能优化至少一条路径区分前端/后端/数据库/网络瓶颈（children 键数 >= 3）",
+        "check": lambda tree: _has_children_key_count(tree, 3),
+    },
+    "team_collab": {
+        "description": "团队协作至少一条路径区分流程/沟通/工具/文化痛点（children 键数 >= 2）",
         "check": lambda tree: _has_children_key_count(tree, 2),
     },
 }
