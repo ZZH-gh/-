@@ -16,6 +16,7 @@ from .knowledge import (
     STRATEGIES, get_all_industry_names
 )
 from .knowledge_manager import knowledge_manager
+from .session_manager import session_manager
 
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
@@ -35,6 +36,8 @@ class PromptToolApp:
 
         # Phase 2: Initialize knowledge manager (before AnalysisEngine)
         knowledge_manager.initialize()
+        # Phase 3: Initialize session manager (placeholder — Phase 4 adds session creation)
+        session_manager.initialize()
 
         self.engine = AnalysisEngine()
 
