@@ -9,7 +9,7 @@
 - [x] **Phase 1: Foundation** — 知识包 Schema + 构建管线 + 互联网/IT 行业知识包 (completed 2026-06-03)
 - [x] **Phase 2: Knowledge Layer** — Loader、Manager、懒加载机制 (completed 2026-06-03)
 - [x] **Phase 3: Context Layer** — 会话状态管理与上下文构建 (completed 2026-06-03)
-- [ ] **Phase 4: Conversation Core** — 状态机引擎 + 意图分类器 + 追问树遍历器
+- [x] **Phase 4: Conversation Core** — 状态机引擎 + 意图分类器 + 追问树遍历器 (completed 2026-06-03)
 - [ ] **Phase 5: Generation v2** — 意图驱动合成 + 4 级知识注入
 - [ ] **Phase 6: UI** — 对话式交互界面 + AppController
 - [ ] **Phase 7: Scale** — 剩余 4 个核心行业知识包
@@ -104,7 +104,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 04-01-PLAN.md — ConversationEngine (9-state state machine) + IntentClassifier v2 (confidence-scored industry/task detection, CONV-01 + CONV-02)
+- [x] 04-01-PLAN.md — ConversationEngine (9-state state machine) + IntentClassifier v2 (confidence-scored industry/task detection, CONV-01 + CONV-02)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -131,6 +131,7 @@ Plans:
 **Plans**: [To be planned]
 
 Plans:
+
 - (Planned in Phase 5)
 
 ### Phase 6: UI
@@ -150,6 +151,7 @@ Plans:
 **Plans**: [To be planned]
 
 Plans:
+
 - (Planned in Phase 6)
 
 **UI hint**: yes
@@ -171,6 +173,7 @@ Plans:
 **Plans**: [To be planned]
 
 Plans:
+
 - (Planned in Phase 7)
 
 ### Phase 8: Packaging
@@ -189,6 +192,7 @@ Plans:
 **Plans**: [To be planned]
 
 Plans:
+
 - (Planned in Phase 8)
 
 ## Progress
@@ -198,7 +202,7 @@ Plans:
 | 1. Foundation | 2/2 | Complete    | 2026-06-03 |
 | 2. Knowledge Layer | 2/2 | Complete    | 2026-06-03 |
 | 3. Context Layer | 1/1 | Complete    | 2026-06-03 |
-| 4. Conversation Core | 0/3 | Planned | - |
+| 4. Conversation Core | 1/3 | Complete    | 2026-06-03 |
 | 5. Generation v2 | 0/0 | Not started | - |
 | 6. UI | 0/0 | Not started | - |
 | 7. Scale | 0/0 | Not started | - |
