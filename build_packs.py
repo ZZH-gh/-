@@ -235,7 +235,45 @@ def compile_pack(yaml_path: Path, output_dir: Path) -> dict:
         ValidationError: If data does not match schema.
         ValueError: If file is empty or cycle detected.
     """
-    pass  # Task 2 will implement
+    # 步骤 1: 解析 YAML
+    try:
+        with open(yaml_path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+    except FileNotFoundError:
+        raise
+    except yaml.YAMLError as e:
+        print(f"  YAML 解析错误 ({yaml_path.name}): {e}")
+        raise
+
+    # 步骤 2: 检查空文件
+    if data is None:
+        raise ValueError(f"{yaml_path.name} 是空文件")
+
+    # 步骤 3: Pydantic 验证
+    try:
+        pack = KnowledgePack(**data)
+    except ValidationError as e:
+        print(f"  Schema 验证失败 ({yaml_path.name}):")
+        for error in e.errors():
+            loc = " -> ".join(str(l) for l in error["loc"])
+            print(f"    {loc}: {error['msg']}")
+        raise
+
+    # 步骤 4: 追问树环检测
+    for tree in pack.follow_up_trees:
+        _check_tree_cycles(tree)
+
+    # 步骤 5: 输出 JSON
+    output_path = output_dir / f"{pack.meta.id}.json"
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(pack.model_dump(), f, ensure_ascii=False, indent=2)
+
+    return {
+        "pack_id": pack.meta.id,
+        "terms": len(pack.terms),
+        "tasks": len(pack.tasks),
+        "trees": len(pack.follow_up_trees),
+    }
 
 
 def _check_tree_cycles(tree) -> None:
@@ -247,7 +285,26 @@ def _check_tree_cycles(tree) -> None:
     Raises:
         ValueError: If a cycle or missing node reference is found.
     """
-    pass  # Task 2 will implement
+    visited = set()
+    stack = [tree.root_node_id]
+
+    while stack:
+        node_id = stack.pop()
+        if node_id in visited:
+            raise ValueError(
+                f"循环引用: tree '{tree.task_type}' node '{node_id}'"
+            )
+        visited.add(node_id)
+
+        node = tree.nodes.get(node_id)
+        if node is None:
+            raise ValueError(
+                f"引用不存在的节点: tree '{tree.task_type}' node '{node_id}'"
+            )
+
+        for child_id in node.children.values():
+            if child_id not in visited:
+                stack.append(child_id)
 
 
 def main():
@@ -255,7 +312,52 @@ def main():
 
     Exit code: 0 on success, 1 on any validation failure.
     """
-    pass  # Task 2 will implement
+    project_root = Path(__file__).parent.resolve()
+    source_dir = project_root / "prompt_tool" / "knowledge_packs"
+    output_dir = project_root / "prompt_tool" / "knowledge_packs_compiled"
+
+    if not source_dir.exists():
+        print(f"Error: 源目录不存在: {source_dir}")
+        sys.exit(1)
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    yaml_files = sorted(source_dir.glob("*.yaml"))
+    yaml_files = [f for f in yaml_files if not f.name.startswith("_")]
+
+    if not yaml_files:
+        print("Warning: No YAML knowledge pack files found")
+        print(f"  (looked in: {source_dir})")
+        sys.exit(0)
+
+    print(f"Found {len(yaml_files)} knowledge pack(s)")
+    print(f"Output: {output_dir}\n")
+
+    errors = []
+    for yaml_file in yaml_files:
+        try:
+            stats = compile_pack(yaml_file, output_dir)
+            print(f"  OK  {yaml_file.name} "
+                  f"({stats['terms']} terms, {stats['tasks']} tasks, "
+                  f"{stats['trees']} trees)")
+        except (yaml.YAMLError, ValidationError, ValueError) as e:
+            errors.append((yaml_file.name, str(e)))
+            print(f"  FAIL {yaml_file.name}: {e}")
+
+    print(f"\n{'=' * 50}")
+    print(f"Results: {len(yaml_files) - len(errors)} succeeded, "
+          f"{len(errors)} failed")
+
+    if errors:
+        print(f"\n{'=' * 50}")
+        print("FAILED PACKS:")
+        for name, msg in errors:
+            print(f"  {name}")
+            for line in msg.split("\n"):
+                print(f"    {line}")
+        sys.exit(1)
+
+    print("All packs compiled successfully.")
 
 
 if __name__ == "__main__":

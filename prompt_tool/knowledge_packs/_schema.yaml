@@ -1,0 +1,196 @@
+# Knowledge Pack Schema Reference v1.0
+# ==========================================
+# 知识包 Schema 参考文档 v1.0 — 供人类编写者参考，非程序读取
+#
+# 本文件展示知识包 YAML 源文件的完整结构和所有可用字段。
+# 每个维度包含 1-2 个示例条目，字段名后跟中文注释说明用途。
+#
+# 8 个维度:
+#   1. meta          — 知识包元数据（必填）
+#   2. terms         — 行业术语表
+#   3. tasks         — 任务场景定义
+#   4. roles         — 角色知识定义
+#   5. workflows     — 核心流程定义
+#   6. docs          — 文档规范模板
+#   7. follow_up_trees — 追问逻辑树
+#   8. pain_points   — 行业痛点清单
+
+# ==========================================
+# 1. meta — 知识包元数据（必填）
+# ==========================================
+meta:
+  id: "internet_it"           # 唯一标识符，snake_case 格式
+  name: "互联网 / IT"         # 行业显示名称
+  version: "1.0.0"            # 知识包内容版本号
+  schema_version: "1.0"       # Schema 定义版本号
+  description: "互联网产品、技术开发与运营行业知识包"  # 简要描述
+  last_updated: "2026-06-03"   # 最后更新日期
+  icon: "💻"                    # 图标 emoji
+
+# ==========================================
+# 2. terms — 行业术语表
+# ==========================================
+terms:
+  - term: "PRD"               # 术语名称（必填）
+    category: "产品文档"       # 术语分类
+    definition: "产品需求文档 (Product Requirements Document)"  # 术语定义（必填）
+    aliases:                   # 别名列表
+      - "产品需求文档"
+      - "需求文档"
+    usage_context: "产品经理编写，描述功能需求、业务流程和验收标准"  # 使用场景
+    related_terms:             # 相关术语
+      - "BRD"
+      - "MRD"
+      - "功能规格"
+
+# ==========================================
+# 3. tasks — 任务场景定义
+# ==========================================
+tasks:
+  - name: "PRD撰写"                        # 任务名称（必填）
+    description: "撰写产品需求文档，包含背景、范围、功能、流程、验收标准"  # 任务描述（必填）
+    typical_output: "PRD文档（含功能列表、用户流程、原型图描述、验收标准）"  # 典型输出
+    complexity: "medium"                   # 复杂度: low / medium / high
+    frequency: "very_high"                 # 使用频率: low / medium / high / very_high
+    follow_up_tree: "prd_writing"          # 关联的追问树 id（对应 follow_up_trees 中的某个 task_type）
+
+# ==========================================
+# 4. roles — 角色知识定义
+# ==========================================
+roles:
+  - name: "产品经理"                        # 角色名称（必填）
+    kpis:                                  # 关键绩效指标
+      - name: "功能上线率"                  # KPI 名称（必填）
+        description: "规划的功能按时上线的比例"  # KPI 描述
+        benchmark: "> 80%"                 # 行业基准值
+    pain_points:                           # 常见痛点列表
+      - "需求频繁变更"
+      - "研发团队沟通断层"
+    common_tasks:                          # 常见任务列表
+      - "PRD撰写"
+      - "需求分析"
+    responsibilities:                      # 职责描述列表
+      - "负责产品规划和需求定义"
+      - "协调各方资源推动产品上线"
+
+# ==========================================
+# 5. workflows — 核心流程定义
+# ==========================================
+workflows:
+  - name: "功能上线流程"                    # 流程名称（必填）
+    category: "研发流程"                    # 流程分类
+    steps:                                 # 流程步骤列表
+      - step: 1                            # 步骤编号（必填）
+        name: "需求评审"                    # 步骤名称（必填）
+        owner: "产品经理"                   # 负责人
+        deliverables:                      # 交付物列表
+          - "评审通过的PRD"
+      - step: 2
+        name: "开发实现"
+        owner: "研发团队"
+        deliverables:
+          - "功能代码"
+          - "单元测试报告"
+    decision_points:                       # 决策节点列表
+      - point: "灰度数据达标?"              # 决策问题（必填）
+        yes: "全量上线"                     # 是→路径
+        no: "回滚或修复"                    # 否→路径
+    failure_modes:                         # 失败模式列表
+      - name: "跳过灰度"                    # 失败模式名称（必填）
+        impact: "线上事故风险"               # 影响描述
+        prevention: "强制灰度流程"           # 预防措施
+
+# ==========================================
+# 6. docs — 文档规范模板
+# ==========================================
+docs:
+  - name: "PRD模板"                        # 模板名称（必填）
+    task_type: "PRD撰写"                    # 关联任务类型
+    sections:                              # 文档章节列表
+      - title: "项目背景"                   # 章节标题（必填）
+        prompt_hint: "为什么要做这个功能？解决什么用户痛点？"  # 提示语
+      - title: "功能范围"
+        prompt_hint: "这个功能包含哪些模块？边界在哪里？"
+      - title: "验收标准"
+        prompt_hint: "满足什么条件才算完成？"
+    tone: "专业, 数据驱动"                  # 建议语气风格
+    common_mistakes:                       # 常见错误列表
+      - "技术细节过多"
+      - "缺少验收标准"
+
+# ==========================================
+# 7. follow_up_trees — 追问逻辑树
+# ==========================================
+follow_up_trees:
+  - task_type: "PRD撰写"                   # 关联任务类型（必填）
+    root_node_id: "prd_q1"                 # 根节点 id（必填）
+    nodes:                                 # 节点字典，key 为 node_id
+      prd_q1:                              # 节点 1: 根节点
+        node_id: "prd_q1"                  # 节点唯一标识（必填）
+        question_text: "这个PRD的主要受众是谁？"  # 追问问题（必填）
+        question_type: "single_choice"     # 问题类型: single_choice / multi_choice / text_input / confirm
+        info_key: "prd_audience"           # 存储到上下文中的 key
+        depth: 1                           # 深度（1-10）
+        options:                           # 选项列表（single_choice / multi_choice 必填）
+          - value: "研发团队"               # 选项值
+            label: "研发团队（技术实现导向）"  # 选项显示标签（必填）
+          - value: "管理层"
+            label: "管理层（决策审批导向）"
+          - value: "跨部门"
+            label: "跨部门协作（含运营/市场）"
+        children:                          # 子节点映射: option_value -> next_node_id
+          "研发团队": "prd_q2_tech"
+          "管理层": "prd_q2_mgmt"
+          "跨部门": "prd_q2_cross"
+        fallback_node_id: "prd_q2_tech"    # 默认跳转节点（"不知道"时的回退）
+        is_leaf: false                     # 是否为叶子节点
+      prd_q2_tech:                         # 节点 2: 研发团队分支
+        node_id: "prd_q2_tech"
+        question_text: "这个功能的技术复杂度如何？"
+        question_type: "single_choice"
+        info_key: "tech_complexity"
+        depth: 2
+        options:
+          - value: "简单"
+            label: "简单（单模块改动）"
+          - value: "中等"
+            label: "中等（多模块联动）"
+          - value: "复杂"
+            label: "复杂（架构级改动）"
+        children:
+          "简单": "prd_q3_detail"
+          "中等": "prd_q3_detail"
+          "复杂": "prd_q3_risk"
+        fallback_node_id: "prd_q3_detail"
+        is_leaf: false
+      prd_q3_detail:                       # 节点 3: 叶子节点
+        node_id: "prd_q3_detail"
+        question_text: "你希望PRD包含哪些部分？"
+        question_type: "multi_choice"
+        info_key: "prd_sections"
+        depth: 3
+        options:
+          - value: "bg"
+            label: "项目背景与目标"
+          - value: "scope"
+            label: "功能范围与边界"
+          - value: "flow"
+            label: "用户流程图"
+          - value: "acceptance"
+            label: "验收标准"
+        children: {}                        # 空 map = 叶子
+        fallback_node_id: null
+        is_leaf: true
+
+# ==========================================
+# 8. pain_points — 行业痛点清单
+# ==========================================
+pain_points:
+  - name: "需求频繁变更"                    # 痛点名称（必填）
+    description: "PM不断改需求导致开发返工"   # 痛点描述
+    why_happens: "前期需求调研不充分，业务方中途有新想法"  # 发生原因
+    who_feels_it: "研发团队、测试工程师"     # 受影响人群
+    typical_phrases:                        # 典型用户抱怨
+      - "需求又变了"
+      - "改改改"
+    what_not_to_do: "假设需求锁定不变生成技术方案"  # 生成提示词时不应做的假设

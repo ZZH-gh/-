@@ -53,10 +53,10 @@ tasks: []
 @pytest.fixture
 def temp_yaml_file(tmp_path):
     """工厂 fixture — 在 tmp_path 中写入指定内容的 .yaml 文件并返回 Path"""
-    def _create(content: str, filename: str = "test_pack.yaml") -> str:
+    def _create(content: str, filename: str = "test_pack.yaml"):
         file_path = tmp_path / filename
         file_path.write_text(content, encoding="utf-8")
-        return str(file_path)
+        return file_path
     return _create
 
 
