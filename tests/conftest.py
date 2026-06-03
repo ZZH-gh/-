@@ -186,3 +186,29 @@ def temp_compiled_dir(tmp_path, sample_index_json, sample_pack_json):
         json.dump(sample_pack_json, f, ensure_ascii=False, indent=2)
 
     return compiled_dir
+
+
+# ============================================================
+# Phase 3 Fixtures — Session State & Context Builder Tests
+# ============================================================
+
+
+@pytest.fixture
+def session_manager_instance():
+    """返回一个全新的 SessionManager 实例（非模块级单例），用于隔离测试"""
+    from prompt_tool.session_manager import SessionManager
+    return SessionManager()
+
+
+@pytest.fixture
+def sample_session_with_turns(session_manager_instance):
+    """创建一个包含 3 个轮次、已确认行业/任务、已提取信息的会话"""
+    sm = session_manager_instance
+    sm.create_session()
+    sm.add_turn("system", "你想写什么类型的PRD？", "question")
+    sm.add_turn("user", "我需要一个电商平台的PRD", "answer")
+    sm.add_turn("system", "好的，已确认：电商平台PRD", "confirm")
+    sm.update_confirmed_industry("internet_it")
+    sm.update_confirmed_task("prd_writing")
+    sm.update_extracted_info("tone", "专业")
+    return sm
