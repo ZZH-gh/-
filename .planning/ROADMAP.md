@@ -31,7 +31,8 @@
   4. 构建验证脚本在数据缺失或结构错误时给出明确错误提示
 
 **Plans**: 2 plans
-Plans:
+
+Plans:
 **Wave 1**
 
 - [x] 01-01-PLAN.md — Schema + 编译管线 + 测试基础设施 + 最小桩知识包
@@ -53,7 +54,15 @@
   3. KnowledgeManager 提供行业匹配查询接口，返回置信度排名的行业列表
   4. KnowledgePack 提供 typed 访问方法（get_terms, get_workflows, get_follow_up_tree 等）
 
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+**Wave 1**
+
+- [ ] 02-01-PLAN.md — KnowledgeManager + Index Pipeline + Engine Integration (懒加载机制, KNOW-03)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 02-02-PLAN.md — Internet/IT Knowledge Pack Expansion (80+术语/15+场景/15+追问树, KNOW-04)
 
 ### Phase 3: Context Layer
 
@@ -155,7 +164,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-06-03 |
-| 2. Knowledge Layer | 0/0 | Not started | - |
+| 2. Knowledge Layer | 0/2 | Not started | - |
 | 3. Context Layer | 0/0 | Not started | - |
 | 4. Conversation Core | 0/0 | Not started | - |
 | 5. Generation v2 | 0/0 | Not started | - |
