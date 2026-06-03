@@ -6,7 +6,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** — 知识包 Schema + 构建管线 + 互联网/IT 行业知识包
+- [x] **Phase 1: Foundation** — 知识包 Schema + 构建管线 + 互联网/IT 行业知识包 (completed 2026-06-03)
 - [ ] **Phase 2: Knowledge Layer** — Loader、Manager、懒加载机制
 - [ ] **Phase 3: Context Layer** — 会话状态管理与上下文构建
 - [ ] **Phase 4: Conversation Core** — 状态机引擎 + 意图分类器 + 追问树遍历器
@@ -34,11 +34,11 @@
 Plans:
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Schema + 编译管线 + 测试基础设施 + 最小桩知识包
+- [x] 01-01-PLAN.md — Schema + 编译管线 + 测试基础设施 + 最小桩知识包
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02-PLAN.md — 互联网/IT 知识包 V1 完整内容 + QA-01 深度验证
+- [x] 01-02-PLAN.md — 互联网/IT 知识包 V1 完整内容 + QA-01 深度验证
 
 ### Phase 2: Knowledge Layer
 
@@ -154,7 +154,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Not started | - |
+| 1. Foundation | 2/2 | Complete    | 2026-06-03 |
 | 2. Knowledge Layer | 0/0 | Not started | - |
 | 3. Context Layer | 0/0 | Not started | - |
 | 4. Conversation Core | 0/0 | Not started | - |

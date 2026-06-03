@@ -7,15 +7,15 @@
 
 ### 知识包体系 (KNOW)
 
-- [ ] **KNOW-01**: 知识包数据结构定义 — 设计完整的行业知识包 JSON Schema（术语表、场景、角色、KPI、流程、文档规范、追问树、痛点）
-- [ ] **KNOW-02**: YAML→JSON 编译管线 — 知识包用 YAML 编写，编译为 JSON 供运行时加载
+- [x] **KNOW-01**: 知识包数据结构定义 — 设计完整的行业知识包 JSON Schema（术语表、场景、角色、KPI、流程、文档规范、追问树、痛点）
+- [x] **KNOW-02**: YAML→JSON 编译管线 — 知识包用 YAML 编写，编译为 JSON 供运行时加载
 - [ ] **KNOW-03**: 懒加载机制 — 启动时仅加载索引(~5KB)，识别行业后按需加载完整知识包(~300KB)
 - [ ] **KNOW-04**: 互联网/IT 行业知识包 — 完成首个完整行业包（术语80+、场景15+、追问树3+）
 - [ ] **KNOW-05**: 销售/零售行业知识包
 - [ ] **KNOW-06**: 教育行业知识包
 - [ ] **KNOW-07**: 金融行业知识包
 - [ ] **KNOW-08**: 制造业知识包
-- [ ] **KNOW-09**: 知识包构建验证脚本 — 编译时自动校验知识包结构完整性
+- [x] **KNOW-09**: 知识包构建验证脚本 — 编译时自动校验知识包结构完整性
 
 ### 对话式需求挖掘 (CONV)
 
@@ -48,7 +48,7 @@
 
 ### 质量与治理 (QA)
 
-- [ ] **QA-01**: 行业深度完成标准 — 每个行业包必须通过深度检查清单才能标记为完成
+- [x] **QA-01**: 行业深度完成标准 — 每个行业包必须通过深度检查清单才能标记为完成
 - [ ] **QA-02**: 提示词质量评估 — 建立评估机制，对比 v3.0 模板 vs v4.0 知识包生成的提示词质量
 - [ ] **QA-03**: 受管制行业内容审查 — 金融/医疗等敏感行业的提示词内容合规检查
 
@@ -78,10 +78,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| KNOW-01 | Phase 1 | Pending |
-| KNOW-02 | Phase 1 | Pending |
-| KNOW-09 | Phase 1 | Pending |
-| QA-01 | Phase 1 | Pending |
+| KNOW-01 | Phase 1 | Complete |
+| KNOW-02 | Phase 1 | Complete |
+| KNOW-09 | Phase 1 | Complete |
+| QA-01 | Phase 1 | Complete |
 | KNOW-03 | Phase 2 | Pending |
 | KNOW-04 | Phase 2 | Pending |
 | CONV-06 | Phase 3 | Pending |
@@ -109,6 +109,7 @@
 | PKG-03 | Phase 8 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 29 total
 - Mapped to phases: 29
 - Unmapped: 0 ✓
