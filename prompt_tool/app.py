@@ -171,6 +171,17 @@ class PromptToolApp:
                                       text_color=self.colors["text_light"])
         self.task_info.grid(row=0, column=1, padx=(0, 12), sticky="w")
 
+        # Phase 6: Knowledge pack visibility button (UI-04)
+        self.kb_btn = ctk.CTkButton(self.info_bar, text="📚 知识包",
+                                     width=85, height=22,
+                                     font=ctk.CTkFont(size=11),
+                                     fg_color="transparent",
+                                     text_color=self.colors["primary"],
+                                     border_color=self.colors["border"],
+                                     border_width=1,
+                                     command=self._on_show_knowledge_pack)
+        self.kb_btn.grid(row=0, column=2, padx=(0, 10), sticky="e")
+
     def _build_strategies_area(self):
         """三大方案区域：3个策略标签 + 1个展示区"""
         f = ctk.CTkFrame(self.root, corner_radius=8, fg_color=self.colors["card"])
@@ -381,6 +392,22 @@ class PromptToolApp:
         self.gen_btn.configure(state="normal", text="🎯  生成提示词")
         self.set_status(f"❌ 出错：{msg}")
         messagebox.showerror("错误", f"生成出错：\n{msg}")
+
+    # Phase 6: Knowledge pack visibility (UI-04)
+    def _on_show_knowledge_pack(self):
+        """显示当前行业知识包概览。"""
+        msg = "当前行业知识包概览\n\n"
+        index = knowledge_manager.get_index()
+        if not index:
+            msg += "（无可用知识包，使用 v3.0 兼容模式）"
+        else:
+            for kid, entry in index.items():
+                msg += f"🏢 {entry.get('name', kid)}\n"
+                stats = entry.get('stats', {})
+                msg += f"  术语: {stats.get('term_count', '?')}  场景: {stats.get('scenario_count', '?')}\n"
+                msg += f"  追问树: {stats.get('tree_count', '?')}  角色: {stats.get('role_count', '?')}\n"
+                msg += f"  简介: {entry.get('description', '暂无')}\n\n"
+        messagebox.showinfo("知识包概览", msg)
 
     def _switch_strategy(self, key):
         self.current_strategy = key

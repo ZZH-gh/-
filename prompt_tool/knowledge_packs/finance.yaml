@@ -1,0 +1,121 @@
+meta:
+  id: finance
+  name: 金融
+  version: 1.0.0
+  schema_version: '1.0'
+  description: 金融行业
+  last_updated: '2026-06-03'
+  icon: 💰
+terms:
+- term: 风控
+  category: 风险管理
+  definition: 风险控制体系
+- term: ROI
+  category: 指标
+  definition: 投资回报率
+- term: 流动性
+  category: 指标
+  definition: 资产变现能力
+tasks:
+- name: 投资分析
+  description: 分析投资机会
+  typical_output: 投资报告
+  complexity: medium
+  follow_up_tree: 投资分析
+- name: 风险报告
+  description: 编制风险评估
+  typical_output: 风险报告
+  complexity: medium
+  follow_up_tree: 风险报告
+roles:
+- name: 投资经理
+  KPIs:
+  - 效率
+  - 质量
+  pain_points:
+  - 效率不足
+  common_tasks:
+  - 投资分析
+- name: 风控分析师
+  KPIs:
+  - 效率
+  - 质量
+  pain_points:
+  - 效率不足
+  common_tasks:
+  - 投资分析
+workflows:
+- name: 金融核心流程
+  steps:
+  - step: 1
+    name: 需求分析
+    deliverables:
+    - 分析
+  decision_points:
+  - point: 是否推进
+    'yes': 推进
+    'no': 暂停
+  failure_modes:
+  - name: 沟通不畅
+    impact: 需求错位
+docs:
+- name: 金融文档模板
+  task_type: 投资分析
+  sections:
+  - title: 背景
+    prompt_hint: 介绍背景
+follow_up_trees:
+- task_type: 投资分析
+  root_node_id: n1
+  nodes:
+    n1:
+      node_id: n1
+      question_type: single_choice
+      question_text: 投资分析
+      options:
+      - value: a
+        label: 股票
+      - value: b
+        label: 基金
+      children:
+        a: nx
+        b: nx
+      is_leaf: false
+      fallback_node_id: nx
+    nx:
+      node_id: nx
+      question_type: text_input
+      question_text: 请补充具体需求
+      options: []
+      children: {}
+      is_leaf: true
+      fallback_node_id: null
+- task_type: 风险报告
+  root_node_id: n1
+  nodes:
+    n1:
+      node_id: n1
+      question_type: single_choice
+      question_text: 风险报告
+      options:
+      - value: a
+        label: 合规
+      - value: b
+        label: 市场
+      children:
+        a: nx
+        b: nx
+      is_leaf: false
+      fallback_node_id: nx
+    nx:
+      node_id: nx
+      question_type: text_input
+      question_text: 请补充具体需求
+      options: []
+      children: {}
+      is_leaf: true
+      fallback_node_id: null
+pain_points:
+- name: 金融痛点
+  description: 行业共通挑战
+  severity: medium

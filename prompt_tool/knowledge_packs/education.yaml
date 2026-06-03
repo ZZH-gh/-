@@ -1,0 +1,121 @@
+meta:
+  id: education
+  name: 教育
+  version: 1.0.0
+  schema_version: '1.0'
+  description: 教育行业
+  last_updated: '2026-06-03'
+  icon: 📚
+terms:
+- term: 教案
+  category: 教学
+  definition: 教学设计文档
+- term: 学情分析
+  category: 教学
+  definition: 学习情况分析
+- term: 课程目标
+  category: 教学
+  definition: 教学目标
+tasks:
+- name: 教案设计
+  description: 设计教学方案
+  typical_output: 教案
+  complexity: medium
+  follow_up_tree: 教案设计
+- name: 试题编制
+  description: 编制考试试题
+  typical_output: 试题
+  complexity: medium
+  follow_up_tree: 试题编制
+roles:
+- name: 教师
+  KPIs:
+  - 效率
+  - 质量
+  pain_points:
+  - 效率不足
+  common_tasks:
+  - 教案设计
+- name: 教研组长
+  KPIs:
+  - 效率
+  - 质量
+  pain_points:
+  - 效率不足
+  common_tasks:
+  - 教案设计
+workflows:
+- name: 教育核心流程
+  steps:
+  - step: 1
+    name: 需求分析
+    deliverables:
+    - 分析
+  decision_points:
+  - point: 是否推进
+    'yes': 推进
+    'no': 暂停
+  failure_modes:
+  - name: 沟通不畅
+    impact: 需求错位
+docs:
+- name: 教育文档模板
+  task_type: 教案设计
+  sections:
+  - title: 背景
+    prompt_hint: 介绍背景
+follow_up_trees:
+- task_type: 教案设计
+  root_node_id: n1
+  nodes:
+    n1:
+      node_id: n1
+      question_type: single_choice
+      question_text: 教案设计
+      options:
+      - value: a
+        label: 小学
+      - value: b
+        label: 中学
+      children:
+        a: nx
+        b: nx
+      is_leaf: false
+      fallback_node_id: nx
+    nx:
+      node_id: nx
+      question_type: text_input
+      question_text: 请补充具体需求
+      options: []
+      children: {}
+      is_leaf: true
+      fallback_node_id: null
+- task_type: 试题编制
+  root_node_id: n1
+  nodes:
+    n1:
+      node_id: n1
+      question_type: single_choice
+      question_text: 试题编制
+      options:
+      - value: a
+        label: 期中
+      - value: b
+        label: 期末
+      children:
+        a: nx
+        b: nx
+      is_leaf: false
+      fallback_node_id: nx
+    nx:
+      node_id: nx
+      question_type: text_input
+      question_text: 请补充具体需求
+      options: []
+      children: {}
+      is_leaf: true
+      fallback_node_id: null
+pain_points:
+- name: 教育痛点
+  description: 行业共通挑战
+  severity: medium

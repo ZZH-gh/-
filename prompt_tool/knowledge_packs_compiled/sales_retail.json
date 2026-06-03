@@ -1,0 +1,215 @@
+{
+  "meta": {
+    "id": "sales_retail",
+    "name": "销售/零售",
+    "version": "1.0.0",
+    "schema_version": "1.0",
+    "description": "销售与零售行业",
+    "last_updated": "2026-06-03",
+    "icon": "🛒"
+  },
+  "terms": [
+    {
+      "term": "转化率",
+      "category": "指标",
+      "definition": "完成目标行为的用户比例",
+      "aliases": [],
+      "usage_context": "",
+      "related_terms": []
+    },
+    {
+      "term": "GMV",
+      "category": "指标",
+      "definition": "商品交易总额",
+      "aliases": [],
+      "usage_context": "",
+      "related_terms": []
+    },
+    {
+      "term": "客单价",
+      "category": "指标",
+      "definition": "客均消费金额",
+      "aliases": [],
+      "usage_context": "",
+      "related_terms": []
+    }
+  ],
+  "tasks": [
+    {
+      "name": "销售方案",
+      "description": "制定销售策略",
+      "typical_output": "销售方案",
+      "complexity": "medium",
+      "frequency": "medium",
+      "follow_up_tree": "销售方案"
+    },
+    {
+      "name": "产品文案",
+      "description": "撰写产品描述",
+      "typical_output": "产品文案",
+      "complexity": "medium",
+      "frequency": "medium",
+      "follow_up_tree": "产品文案"
+    }
+  ],
+  "roles": [
+    {
+      "name": "销售经理",
+      "kpis": [],
+      "pain_points": [
+        "效率不足"
+      ],
+      "common_tasks": [
+        "销售方案"
+      ],
+      "responsibilities": []
+    },
+    {
+      "name": "零售店长",
+      "kpis": [],
+      "pain_points": [
+        "效率不足"
+      ],
+      "common_tasks": [
+        "销售方案"
+      ],
+      "responsibilities": []
+    }
+  ],
+  "workflows": [
+    {
+      "name": "销售/零售核心流程",
+      "category": "",
+      "steps": [
+        {
+          "step": 1,
+          "name": "需求分析",
+          "owner": "",
+          "deliverables": [
+            "分析"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "是否推进",
+          "yes": "推进",
+          "no": "暂停"
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "沟通不畅",
+          "impact": "需求错位",
+          "prevention": ""
+        }
+      ]
+    }
+  ],
+  "docs": [
+    {
+      "name": "销售/零售文档模板",
+      "task_type": "销售方案",
+      "sections": [
+        {
+          "title": "背景",
+          "prompt_hint": "介绍背景"
+        }
+      ],
+      "tone": "",
+      "common_mistakes": []
+    }
+  ],
+  "follow_up_trees": [
+    {
+      "task_type": "销售方案",
+      "root_node_id": "n1",
+      "nodes": {
+        "n1": {
+          "node_id": "n1",
+          "question_text": "销售方案",
+          "question_type": "single_choice",
+          "info_key": "",
+          "depth": 1,
+          "options": [
+            {
+              "value": "a",
+              "label": "B2B"
+            },
+            {
+              "value": "b",
+              "label": "B2C"
+            }
+          ],
+          "children": {
+            "a": "nx",
+            "b": "nx"
+          },
+          "fallback_node_id": "nx",
+          "is_leaf": false
+        },
+        "nx": {
+          "node_id": "nx",
+          "question_text": "请补充具体需求",
+          "question_type": "text_input",
+          "info_key": "",
+          "depth": 1,
+          "options": [],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "产品文案",
+      "root_node_id": "n1",
+      "nodes": {
+        "n1": {
+          "node_id": "n1",
+          "question_text": "产品文案",
+          "question_type": "single_choice",
+          "info_key": "",
+          "depth": 1,
+          "options": [
+            {
+              "value": "a",
+              "label": "功能型"
+            },
+            {
+              "value": "b",
+              "label": "营销型"
+            }
+          ],
+          "children": {
+            "a": "nx",
+            "b": "nx"
+          },
+          "fallback_node_id": "nx",
+          "is_leaf": false
+        },
+        "nx": {
+          "node_id": "nx",
+          "question_text": "请补充具体需求",
+          "question_type": "text_input",
+          "info_key": "",
+          "depth": 1,
+          "options": [],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    }
+  ],
+  "pain_points": [
+    {
+      "name": "销售/零售痛点",
+      "description": "行业共通挑战",
+      "why_happens": "",
+      "who_feels_it": "",
+      "typical_phrases": [],
+      "what_not_to_do": ""
+    }
+  ]
+}

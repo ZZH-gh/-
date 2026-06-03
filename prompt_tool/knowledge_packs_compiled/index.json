@@ -1,4 +1,46 @@
 {
+  "education": {
+    "id": "education",
+    "name": "教育",
+    "icon": "📚",
+    "description": "教育行业",
+    "keywords": [
+      "学情分析",
+      "教案",
+      "教案设计",
+      "试题编制",
+      "课程目标"
+    ],
+    "pack_file": "education.json",
+    "stats": {
+      "term_count": 3,
+      "scenario_count": 2,
+      "tree_count": 2,
+      "role_count": 2,
+      "workflow_count": 1
+    }
+  },
+  "finance": {
+    "id": "finance",
+    "name": "金融",
+    "icon": "💰",
+    "description": "金融行业",
+    "keywords": [
+      "ROI",
+      "投资分析",
+      "流动性",
+      "风控",
+      "风险报告"
+    ],
+    "pack_file": "finance.json",
+    "stats": {
+      "term_count": 3,
+      "scenario_count": 2,
+      "tree_count": 2,
+      "role_count": 2,
+      "workflow_count": 1
+    }
+  },
   "internet_it": {
     "id": "internet_it",
     "name": "互联网 / IT",
@@ -393,6 +435,48 @@
       "tree_count": 15,
       "role_count": 10,
       "workflow_count": 5
+    }
+  },
+  "manufacturing": {
+    "id": "manufacturing",
+    "name": "制造业",
+    "icon": "⚙️",
+    "description": "制造业",
+    "keywords": [
+      "产能",
+      "供应链",
+      "生产计划",
+      "良品率",
+      "质量报告"
+    ],
+    "pack_file": "manufacturing.json",
+    "stats": {
+      "term_count": 3,
+      "scenario_count": 2,
+      "tree_count": 2,
+      "role_count": 2,
+      "workflow_count": 1
+    }
+  },
+  "sales_retail": {
+    "id": "sales_retail",
+    "name": "销售/零售",
+    "icon": "🛒",
+    "description": "销售与零售行业",
+    "keywords": [
+      "GMV",
+      "产品文案",
+      "客单价",
+      "转化率",
+      "销售方案"
+    ],
+    "pack_file": "sales_retail.json",
+    "stats": {
+      "term_count": 3,
+      "scenario_count": 2,
+      "tree_count": 2,
+      "role_count": 2,
+      "workflow_count": 1
     }
   }
 }

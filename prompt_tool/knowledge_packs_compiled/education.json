@@ -1,0 +1,215 @@
+{
+  "meta": {
+    "id": "education",
+    "name": "教育",
+    "version": "1.0.0",
+    "schema_version": "1.0",
+    "description": "教育行业",
+    "last_updated": "2026-06-03",
+    "icon": "📚"
+  },
+  "terms": [
+    {
+      "term": "教案",
+      "category": "教学",
+      "definition": "教学设计文档",
+      "aliases": [],
+      "usage_context": "",
+      "related_terms": []
+    },
+    {
+      "term": "学情分析",
+      "category": "教学",
+      "definition": "学习情况分析",
+      "aliases": [],
+      "usage_context": "",
+      "related_terms": []
+    },
+    {
+      "term": "课程目标",
+      "category": "教学",
+      "definition": "教学目标",
+      "aliases": [],
+      "usage_context": "",
+      "related_terms": []
+    }
+  ],
+  "tasks": [
+    {
+      "name": "教案设计",
+      "description": "设计教学方案",
+      "typical_output": "教案",
+      "complexity": "medium",
+      "frequency": "medium",
+      "follow_up_tree": "教案设计"
+    },
+    {
+      "name": "试题编制",
+      "description": "编制考试试题",
+      "typical_output": "试题",
+      "complexity": "medium",
+      "frequency": "medium",
+      "follow_up_tree": "试题编制"
+    }
+  ],
+  "roles": [
+    {
+      "name": "教师",
+      "kpis": [],
+      "pain_points": [
+        "效率不足"
+      ],
+      "common_tasks": [
+        "教案设计"
+      ],
+      "responsibilities": []
+    },
+    {
+      "name": "教研组长",
+      "kpis": [],
+      "pain_points": [
+        "效率不足"
+      ],
+      "common_tasks": [
+        "教案设计"
+      ],
+      "responsibilities": []
+    }
+  ],
+  "workflows": [
+    {
+      "name": "教育核心流程",
+      "category": "",
+      "steps": [
+        {
+          "step": 1,
+          "name": "需求分析",
+          "owner": "",
+          "deliverables": [
+            "分析"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "是否推进",
+          "yes": "推进",
+          "no": "暂停"
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "沟通不畅",
+          "impact": "需求错位",
+          "prevention": ""
+        }
+      ]
+    }
+  ],
+  "docs": [
+    {
+      "name": "教育文档模板",
+      "task_type": "教案设计",
+      "sections": [
+        {
+          "title": "背景",
+          "prompt_hint": "介绍背景"
+        }
+      ],
+      "tone": "",
+      "common_mistakes": []
+    }
+  ],
+  "follow_up_trees": [
+    {
+      "task_type": "教案设计",
+      "root_node_id": "n1",
+      "nodes": {
+        "n1": {
+          "node_id": "n1",
+          "question_text": "教案设计",
+          "question_type": "single_choice",
+          "info_key": "",
+          "depth": 1,
+          "options": [
+            {
+              "value": "a",
+              "label": "小学"
+            },
+            {
+              "value": "b",
+              "label": "中学"
+            }
+          ],
+          "children": {
+            "a": "nx",
+            "b": "nx"
+          },
+          "fallback_node_id": "nx",
+          "is_leaf": false
+        },
+        "nx": {
+          "node_id": "nx",
+          "question_text": "请补充具体需求",
+          "question_type": "text_input",
+          "info_key": "",
+          "depth": 1,
+          "options": [],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "试题编制",
+      "root_node_id": "n1",
+      "nodes": {
+        "n1": {
+          "node_id": "n1",
+          "question_text": "试题编制",
+          "question_type": "single_choice",
+          "info_key": "",
+          "depth": 1,
+          "options": [
+            {
+              "value": "a",
+              "label": "期中"
+            },
+            {
+              "value": "b",
+              "label": "期末"
+            }
+          ],
+          "children": {
+            "a": "nx",
+            "b": "nx"
+          },
+          "fallback_node_id": "nx",
+          "is_leaf": false
+        },
+        "nx": {
+          "node_id": "nx",
+          "question_text": "请补充具体需求",
+          "question_type": "text_input",
+          "info_key": "",
+          "depth": 1,
+          "options": [],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    }
+  ],
+  "pain_points": [
+    {
+      "name": "教育痛点",
+      "description": "行业共通挑战",
+      "why_happens": "",
+      "who_feels_it": "",
+      "typical_phrases": [],
+      "what_not_to_do": ""
+    }
+  ]
+}
