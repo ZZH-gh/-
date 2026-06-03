@@ -9,8 +9,8 @@
 
 - [x] **KNOW-01**: 知识包数据结构定义 — 设计完整的行业知识包 JSON Schema（术语表、场景、角色、KPI、流程、文档规范、追问树、痛点）
 - [x] **KNOW-02**: YAML→JSON 编译管线 — 知识包用 YAML 编写，编译为 JSON 供运行时加载
-- [ ] **KNOW-03**: 懒加载机制 — 启动时仅加载索引(~5KB)，识别行业后按需加载完整知识包(~300KB)
-- [ ] **KNOW-04**: 互联网/IT 行业知识包 — 完成首个完整行业包（术语80+、场景15+、追问树3+）
+- [x] **KNOW-03**: 懒加载机制 — 启动时仅加载索引(~5KB)，识别行业后按需加载完整知识包(~300KB)
+- [x] **KNOW-04**: 互联网/IT 行业知识包 — 完成首个完整行业包（术语80+、场景15+、追问树3+）
 - [ ] **KNOW-05**: 销售/零售行业知识包
 - [ ] **KNOW-06**: 教育行业知识包
 - [ ] **KNOW-07**: 金融行业知识包
@@ -82,8 +82,8 @@
 | KNOW-02 | Phase 1 | Complete |
 | KNOW-09 | Phase 1 | Complete |
 | QA-01 | Phase 1 | Complete |
-| KNOW-03 | Phase 2 | Pending |
-| KNOW-04 | Phase 2 | Pending |
+| KNOW-03 | Phase 2 | Complete |
+| KNOW-04 | Phase 2 | Complete |
 | CONV-06 | Phase 3 | Pending |
 | CONV-01 | Phase 4 | Pending |
 | CONV-02 | Phase 4 | Pending |

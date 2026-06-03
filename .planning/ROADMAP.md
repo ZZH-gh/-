@@ -7,7 +7,7 @@
 ## Phases
 
 - [x] **Phase 1: Foundation** — 知识包 Schema + 构建管线 + 互联网/IT 行业知识包 (completed 2026-06-03)
-- [ ] **Phase 2: Knowledge Layer** — Loader、Manager、懒加载机制
+- [x] **Phase 2: Knowledge Layer** — Loader、Manager、懒加载机制 (completed 2026-06-03)
 - [ ] **Phase 3: Context Layer** — 会话状态管理与上下文构建
 - [ ] **Phase 4: Conversation Core** — 状态机引擎 + 意图分类器 + 追问树遍历器
 - [ ] **Phase 5: Generation v2** — 意图驱动合成 + 4 级知识注入
@@ -58,11 +58,11 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 02-01-PLAN.md — KnowledgeManager + Index Pipeline + Engine Integration (懒加载机制, KNOW-03)
+- [x] 02-01-PLAN.md — KnowledgeManager + Index Pipeline + Engine Integration (懒加载机制, KNOW-03)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 02-02-PLAN.md — Internet/IT Knowledge Pack Expansion (80+术语/15+场景/15+追问树, KNOW-04)
+- [x] 02-02-PLAN.md — Internet/IT Knowledge Pack Expansion (80+术语/15+场景/15+追问树, KNOW-04)
 
 ### Phase 3: Context Layer
 
@@ -164,7 +164,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-06-03 |
-| 2. Knowledge Layer | 0/2 | Not started | - |
+| 2. Knowledge Layer | 2/2 | Complete    | 2026-06-03 |
 | 3. Context Layer | 0/0 | Not started | - |
 | 4. Conversation Core | 0/0 | Not started | - |
 | 5. Generation v2 | 0/0 | Not started | - |
