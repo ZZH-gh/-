@@ -732,6 +732,116 @@ tasks:
     frequency: "medium"
     follow_up_tree: "work_summary"
 
+  - name: "面试招聘"
+    description: >
+      用户需要准备技术面试题目、行为面试问题，或制定招聘评估标准，
+      针对不同岗位和面试类型的专业化面试方案生成。
+    typical_output: >
+      面试题库、面试评估表、技术面试题集、行为面试STAR问题列表、
+      候选人评估报告模板
+    complexity: "medium"
+    frequency: "high"
+    follow_up_tree: "interview_hiring"
+
+  - name: "项目管理"
+    description: >
+      用户需要制定项目计划、识别风险、跟踪里程碑进度，生成项目
+      管理相关文档和工具，确保项目按时按质交付。
+    typical_output: >
+      项目计划书、风险管理表、里程碑路线图、项目周报模板、
+      项目复盘报告
+    complexity: "medium"
+    frequency: "high"
+    follow_up_tree: "project_mgmt"
+
+  - name: "运维部署"
+    description: >
+      用户需要设计部署方案、配置监控告警、制定容灾策略，生成
+      运维相关的规范文档和自动化方案。
+    typical_output: >
+      部署方案文档、监控告警规则配置、容灾备份方案、运维手册、
+      Runbook故障处理流程
+    complexity: "high"
+    frequency: "medium"
+    follow_up_tree: "ops_deployment"
+
+  - name: "UI/UX 设计"
+    description: >
+      用户需要设计用户交互流程、建立设计系统、进行可用性测试，
+      生成用户体验设计相关的规范文档和设计说明。
+    typical_output: >
+      设计规范文档、交互原型说明、设计系统组件指南、可用性测试报告、
+      用户旅程地图
+    complexity: "medium"
+    frequency: "medium"
+    follow_up_tree: "uiux_design"
+
+  - name: "测试策略"
+    description: >
+      用户需要制定测试方案、设计测试用例、评估测试覆盖率，生成
+      系统化的测试计划和质量管理文档。
+    typical_output: >
+      测试计划文档、测试用例集、自动化测试方案、测试覆盖率报告、
+      质量评估报告
+    complexity: "medium"
+    frequency: "high"
+    follow_up_tree: "test_strategy"
+
+  - name: "架构设计"
+    description: >
+      用户需要进行系统架构设计、技术选型、架构评审，生成技术
+      架构相关的方案文档和设计决策记录。
+    typical_output: >
+      架构设计文档、技术选型对比报告、系统架构图、接口规范文档、
+      架构评审记录
+    complexity: "high"
+    frequency: "high"
+    follow_up_tree: "arch_design"
+
+  - name: "数据库优化"
+    description: >
+      用户需要优化数据库查询性能、设计分库分表方案、制定缓存
+      策略，生成数据库优化方案和性能分析报告。
+    typical_output: >
+      数据库优化方案、慢查询分析报告、分库分表设计方案、
+      缓存策略文档、索引优化建议
+    complexity: "high"
+    frequency: "medium"
+    follow_up_tree: "db_optimization"
+
+  - name: "安全审计"
+    description: >
+      用户需要进行安全评估、制定安全策略、整改安全隐患，生成
+      安全审计相关的评估报告和加固方案。
+    typical_output: >
+      安全审计报告、渗透测试报告、安全加固方案、安全基线文档、
+      合规检查清单
+    complexity: "high"
+    frequency: "medium"
+    follow_up_tree: "security_audit"
+
+  - name: "性能优化"
+    description: >
+      用户需要分析性能瓶颈、制定优化方案、进行压测验证，生成
+      性能分析和优化相关的技术方案和评估报告。
+    typical_output: >
+      性能分析报告、优化方案文档、压测报告、性能基线文档、
+      优化前后对比数据
+    complexity: "high"
+    frequency: "medium"
+    follow_up_tree: "perf_optimization"
+
+  - name: "团队协作"
+    description: >
+      用户需要改善团队协作流程、规范会议制度、提升沟通效率，
+      生成团队管理和协作相关的制度和规范文档。
+    typical_output: >
+      团队协作规范、会议制度文档、沟通流程指南、团队建设方案、
+      跨部门协作流程
+    complexity: "low"
+    frequency: "medium"
+    follow_up_tree: "team_collab"
+
 # ============================================
 # 4. roles — 角色知识定义（>=4 个角色）
 # ============================================
@@ -2035,6 +2145,1191 @@ follow_up_trees:
         info_key: "sum_failure_analysis"
         depth: 4
         options: []
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 6: 面试招聘 ---
+  - task_type: "interview_hiring"
+    root_node_id: "ih_q1"
+    nodes:
+      ih_q1:
+        node_id: "ih_q1"
+        question_text: "面试类型是什么？"
+        question_type: "single_choice"
+        info_key: "interview_type"
+        depth: 1
+        options:
+          - value: "tech"
+            label: "技术面试（考察技术能力和编程水平）"
+          - value: "behavioral"
+            label: "行为面试（考察处事方式和软技能）"
+          - value: "comprehensive"
+            label: "综合面试（技术+行为结合）"
+        children:
+          tech: "ih_q2"
+          behavioral: "ih_q2_behavioral"
+          comprehensive: "ih_q2"
+        fallback_node_id: "ih_q2"
+        is_leaf: false
+
+      ih_q2:
+        node_id: "ih_q2"
+        question_text: "候选人经验级别如何？"
+        question_type: "single_choice"
+        info_key: "interview_level"
+        depth: 2
+        options:
+          - value: "junior"
+            label: "初级（1-3年经验，注重基础能力）"
+          - value: "mid"
+            label: "中级（3-5年经验，注重独立工作能力）"
+          - value: "senior"
+            label: "高级（5年+经验，注重架构和领导力）"
+        children:
+          junior: "ih_q3"
+          mid: "ih_q3"
+          senior: "ih_q3"
+        fallback_node_id: "ih_q3"
+        is_leaf: false
+
+      ih_q2_behavioral:
+        node_id: "ih_q2_behavioral"
+        question_text: "行为面试关注的场景是什么？"
+        question_type: "single_choice"
+        info_key: "interview_behavioral_scene"
+        depth: 2
+        options:
+          - value: "conflict"
+            label: "冲突处理（解决团队分歧或矛盾）"
+          - value: "leadership"
+            label: "领导力（带领团队达成目标）"
+          - value: "failure"
+            label: "失败经历（面对挫折的反思和成长）"
+        children:
+          conflict: "ih_q3"
+          leadership: "ih_q3"
+          failure: "ih_q3"
+        fallback_node_id: "ih_q3"
+        is_leaf: false
+
+      ih_q3:
+        node_id: "ih_q3"
+        question_text: "考察重点是什么？"
+        question_type: "multi_choice"
+        info_key: "interview_focus"
+        depth: 3
+        options:
+          - value: "depth"
+            label: "技术深度（知识广度和底层理解）"
+          - value: "problem"
+            label: "解决问题能力（分析和拆解复杂问题）"
+          - value: "comm"
+            label: "沟通协作（团队沟通和跨部门协调）"
+          - value: "growth"
+            label: "学习成长（技术热情和持续学习）"
+        children:
+          depth: "ih_q4"
+          problem: "ih_q4"
+          comm: "ih_q4"
+          growth: "ih_q4"
+        fallback_node_id: "ih_q4"
+        is_leaf: false
+
+      ih_q4:
+        node_id: "ih_q4"
+        question_text: "期望的面试产出物是什么？"
+        question_type: "multi_choice"
+        info_key: "interview_output"
+        depth: 4
+        options:
+          - value: "scorecard"
+            label: "结构化评估表（各维度打分和评语）"
+          - value: "record"
+            label: "面试记录（问题和回答详细记录）"
+          - value: "report"
+            label: "反馈报告（录用建议和发展建议）"
+          - value: "questions"
+            label: "面试题库（针对该岗位的推荐题目）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 7: 项目管理 ---
+  - task_type: "project_mgmt"
+    root_node_id: "pm_q1"
+    nodes:
+      pm_q1:
+        node_id: "pm_q1"
+        question_text: "项目当前处于什么阶段？"
+        question_type: "single_choice"
+        info_key: "pm_phase"
+        depth: 1
+        options:
+          - value: "start"
+            label: "启动阶段（立项、规划、资源确认）"
+          - value: "execute"
+            label: "执行阶段（开发推进、进度跟踪）"
+          - value: "close"
+            label: "收尾阶段（交付验收、复盘总结）"
+        children:
+          start: "pm_q2_start"
+          execute: "pm_q2_execute"
+          close: "pm_q2_close"
+        fallback_node_id: "pm_q2_start"
+        is_leaf: false
+
+      pm_q2_start:
+        node_id: "pm_q2_start"
+        question_text: "项目启动阶段重点是什么？"
+        question_type: "single_choice"
+        info_key: "pm_start_focus"
+        depth: 2
+        options:
+          - value: "goal"
+            label: "目标定义（明确范围和成功标准）"
+          - value: "stakeholder"
+            label: "干系人识别（关键干系人和沟通计划）"
+          - value: "resource"
+            label: "资源规划（人力、预算和时间评估）"
+        children:
+          goal: "pm_q3"
+          stakeholder: "pm_q3"
+          resource: "pm_q3"
+        fallback_node_id: "pm_q3"
+        is_leaf: false
+
+      pm_q2_execute:
+        node_id: "pm_q2_execute"
+        question_text: "执行阶段核心关注点是什么？"
+        question_type: "single_choice"
+        info_key: "pm_execute_focus"
+        depth: 2
+        options:
+          - value: "progress"
+            label: "进度跟踪（里程碑完成情况和偏差）"
+          - value: "quality"
+            label: "质量控制（交付物质量把关）"
+          - value: "team"
+            label: "团队管理（人员调配和冲突协调）"
+        children:
+          progress: "pm_q3"
+          quality: "pm_q3"
+          team: "pm_q3"
+        fallback_node_id: "pm_q3"
+        is_leaf: false
+
+      pm_q2_close:
+        node_id: "pm_q2_close"
+        question_text: "项目收尾需要什么？"
+        question_type: "single_choice"
+        info_key: "pm_close_focus"
+        depth: 2
+        options:
+          - value: "delivery"
+            label: "交付验收（干系人确认和签收）"
+          - value: "review"
+            label: "复盘总结（经验教训和知识归档）"
+          - value: "transition"
+            label: "交接转移（文档移交和团队解散）"
+        children:
+          delivery: "pm_q3"
+          review: "pm_q4"
+          transition: "pm_q4"
+        fallback_node_id: "pm_q3"
+        is_leaf: false
+
+      pm_q3:
+        node_id: "pm_q3"
+        question_text: "项目管理工具和模板需求是什么？"
+        question_type: "multi_choice"
+        info_key: "pm_tools"
+        depth: 3
+        options:
+          - value: "progress"
+            label: "进度跟踪（甘特图、里程碑路线图）"
+          - value: "risk"
+            label: "风险管控（风险登记册、应对计划）"
+          - value: "resource"
+            label: "资源协调（资源分配表、负载视图）"
+          - value: "comm"
+            label: "沟通管理（周报模板、会议纪要）"
+        children:
+          progress: "pm_q4"
+          risk: "pm_q4"
+          resource: "pm_q4"
+          comm: "pm_q4"
+        fallback_node_id: "pm_q4"
+        is_leaf: false
+
+      pm_q4:
+        node_id: "pm_q4"
+        question_text: "期望的交付物格式是什么？"
+        question_type: "multi_choice"
+        info_key: "pm_output"
+        depth: 4
+        options:
+          - value: "plan"
+            label: "项目计划书（含WBS和时间线）"
+          - value: "roadmap"
+            label: "里程碑路线图（关键节点时间表）"
+          - value: "register"
+            label: "风险登记册（风险清单和应对措施）"
+          - value: "report"
+            label: "项目周报（进展、风险和下周计划）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 8: 运维部署 ---
+  - task_type: "ops_deployment"
+    root_node_id: "ops_q1"
+    nodes:
+      ops_q1:
+        node_id: "ops_q1"
+        question_text: "部署环境类型是什么？"
+        question_type: "single_choice"
+        info_key: "ops_env"
+        depth: 1
+        options:
+          - value: "cloud"
+            label: "云环境（公有云/私有云/混合云）"
+          - value: "onprem"
+            label: "本地部署（自建机房、物理服务器）"
+          - value: "hybrid"
+            label: "混合环境（云端+本地结合）"
+        children:
+          cloud: "ops_q2"
+          onprem: "ops_q2"
+          hybrid: "ops_q2"
+        fallback_node_id: "ops_q2"
+        is_leaf: false
+
+      ops_q2:
+        node_id: "ops_q2"
+        question_text: "使用的技术和工具栈是什么？"
+        question_type: "multi_choice"
+        info_key: "ops_tech_stack"
+        depth: 2
+        options:
+          - value: "container"
+            label: "容器化（Docker、容器运行时）"
+          - value: "orchestrate"
+            label: "编排平台（Kubernetes、Swarm）"
+          - value: "monitor"
+            label: "监控方案（Prometheus、Grafana）"
+          - value: "logging"
+            label: "日志系统（ELK、Loki、EFK）"
+        children:
+          container: "ops_q3"
+          orchestrate: "ops_q3"
+          monitor: "ops_q3"
+          logging: "ops_q3"
+        fallback_node_id: "ops_q3"
+        is_leaf: false
+
+      ops_q3:
+        node_id: "ops_q3"
+        question_text: "监控和告警需求是什么？"
+        question_type: "multi_choice"
+        info_key: "ops_monitor"
+        depth: 3
+        options:
+          - value: "infra"
+            label: "基础设施监控（CPU/内存/磁盘/网络）"
+          - value: "apm"
+            label: "应用性能监控（接口延迟/错误率）"
+          - value: "biz"
+            label: "业务指标监控（用户量/交易量/转化率）"
+          - value: "log"
+            label: "日志监控（异常日志/错误聚合分析）"
+        children:
+          infra: "ops_q4"
+          apm: "ops_q4"
+          biz: "ops_q4"
+          log: "ops_q4"
+        fallback_node_id: "ops_q4"
+        is_leaf: false
+
+      ops_q4:
+        node_id: "ops_q4"
+        question_text: "SLA 和容灾要求是什么？"
+        question_type: "single_choice"
+        info_key: "ops_sla"
+        depth: 3
+        options:
+          - value: "standard"
+            label: "标准（99.9%可用性，RTO<4小时）"
+          - value: "high"
+            label: "高要求（99.99%可用性，RTO<1小时）"
+          - value: "critical"
+            label: "关键业务（99.999%可用性，RTO<15分钟）"
+        children:
+          standard: "ops_q5"
+          high: "ops_q5"
+          critical: "ops_q5"
+        fallback_node_id: "ops_q5"
+        is_leaf: false
+
+      ops_q5:
+        node_id: "ops_q5"
+        question_text: "期望的产出物是什么？"
+        question_type: "multi_choice"
+        info_key: "ops_output"
+        depth: 4
+        options:
+          - value: "deploy"
+            label: "部署方案（架构和流程文档）"
+          - value: "monitor"
+            label: "监控配置（告警规则和仪表盘）"
+          - value: "dr"
+            label: "容灾方案（备份策略和切换流程）"
+          - value: "runbook"
+            label: "运维手册（故障处理和日常操作指南）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 9: UI/UX 设计 ---
+  - task_type: "uiux_design"
+    root_node_id: "ux_q1"
+    nodes:
+      ux_q1:
+        node_id: "ux_q1"
+        question_text: "当前设计阶段是什么？"
+        question_type: "single_choice"
+        info_key: "ux_phase"
+        depth: 1
+        options:
+          - value: "research"
+            label: "用户研究（理解用户需求和痛点）"
+          - value: "prototype"
+            label: "原型设计（低保真/高保真原型制作）"
+          - value: "system"
+            label: "设计系统（规范和组件库建设）"
+          - value: "visual"
+            label: "视觉设计（高保真UI和视觉风格）"
+        children:
+          research: "ux_q2"
+          prototype: "ux_q2_proto"
+          system: "ux_q2_sys"
+          visual: "ux_q2_visual"
+        fallback_node_id: "ux_q2"
+        is_leaf: false
+
+      ux_q2:
+        node_id: "ux_q2"
+        question_text: "目标用户群体和研究方法是什么？"
+        question_type: "single_choice"
+        info_key: "ux_research_method"
+        depth: 2
+        options:
+          - value: "interview"
+            label: "用户访谈（深度了解用户需求和痛点）"
+          - value: "survey"
+            label: "问卷调查（大规模收集用户反馈）"
+          - value: "testing"
+            label: "可用性测试（观察用户操作问题）"
+        children:
+          interview: "ux_q3"
+          survey: "ux_q3"
+          testing: "ux_q3"
+        fallback_node_id: "ux_q3"
+        is_leaf: false
+
+      ux_q2_proto:
+        node_id: "ux_q2_proto"
+        question_text: "原型保真度要求是什么？"
+        question_type: "single_choice"
+        info_key: "ux_proto_fidelity"
+        depth: 2
+        options:
+          - value: "lowfi"
+            label: "低保真（线框图、快速验证布局）"
+          - value: "hifi"
+            label: "高保真（接近最终效果的视觉稿）"
+          - value: "interactive"
+            label: "可交互原型（点击跳转的动态原型）"
+        children:
+          lowfi: "ux_q3"
+          hifi: "ux_q3"
+          interactive: "ux_q3"
+        fallback_node_id: "ux_q3"
+        is_leaf: false
+
+      ux_q2_sys:
+        node_id: "ux_q2_sys"
+        question_text: "设计系统建设范围是什么？"
+        question_type: "single_choice"
+        info_key: "ux_system_scope"
+        depth: 2
+        options:
+          - value: "component"
+            label: "组件库（基础UI组件的规范和实现）"
+          - value: "style"
+            label: "样式指南（色彩、字体、间距等视觉规范）"
+          - value: "pattern"
+            label: "模式库（常见交互模式和使用规范）"
+        children:
+          component: "ux_q3"
+          style: "ux_q3"
+          pattern: "ux_q3"
+        fallback_node_id: "ux_q3"
+        is_leaf: false
+
+      ux_q2_visual:
+        node_id: "ux_q2_visual"
+        question_text: "视觉风格倾向是什么？"
+        question_type: "single_choice"
+        info_key: "ux_visual_style"
+        depth: 2
+        options:
+          - value: "minimal"
+            label: "简约风（干净、留白多、聚焦内容）"
+          - value: "vibrant"
+            label: "活力风（色彩丰富、动效多、年轻化）"
+          - value: "enterprise"
+            label: "企业风（稳重、专业、B端风格）"
+        children:
+          minimal: "ux_q3"
+          vibrant: "ux_q3"
+          enterprise: "ux_q3"
+        fallback_node_id: "ux_q3"
+        is_leaf: false
+
+      ux_q3:
+        node_id: "ux_q3"
+        question_text: "需要哪些设计交付物？"
+        question_type: "multi_choice"
+        info_key: "ux_deliverables"
+        depth: 3
+        options:
+          - value: "design"
+            label: "设计稿（多状态、多尺寸的界面设计）"
+          - value: "spec"
+            label: "交互说明（交互逻辑和状态转换描述）"
+          - value: "doc"
+            label: "规范文档（设计规范和组件使用说明）"
+          - value: "asset"
+            label: "切图资源（标注图、切图文件、图标）"
+        children:
+          design: "ux_q4"
+          spec: "ux_q4"
+          doc: "ux_q4"
+          asset: "ux_q4"
+        fallback_node_id: "ux_q4"
+        is_leaf: false
+
+      ux_q4:
+        node_id: "ux_q4"
+        question_text: "是否需要额外支持？"
+        question_type: "multi_choice"
+        info_key: "ux_extra"
+        depth: 4
+        options:
+          - value: "review"
+            label: "设计评审（专家评审和改进建议）"
+          - value: "test"
+            label: "用户测试（验证设计方案的可用性）"
+          - value: "dev"
+            label: "开发支持（配合前端实现设计还原）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 10: 测试策略 ---
+  - task_type: "test_strategy"
+    root_node_id: "ts_q1"
+    nodes:
+      ts_q1:
+        node_id: "ts_q1"
+        question_text: "测试的层级范围是什么？"
+        question_type: "single_choice"
+        info_key: "ts_level"
+        depth: 1
+        options:
+          - value: "unit"
+            label: "单元测试（验证函数和方法的逻辑正确性）"
+          - value: "integration"
+            label: "集成测试（验证模块间的接口交互）"
+          - value: "e2e"
+            label: "端到端测试（全链路业务流程验证）"
+        children:
+          unit: "ts_q2"
+          integration: "ts_q2"
+          e2e: "ts_q2"
+        fallback_node_id: "ts_q2"
+        is_leaf: false
+
+      ts_q2:
+        node_id: "ts_q2"
+        question_text: "被测系统的技术栈是什么？"
+        question_type: "single_choice"
+        info_key: "ts_tech_stack"
+        depth: 2
+        options:
+          - value: "web"
+            label: "Web前端（浏览器端页面和交互）"
+          - value: "api"
+            label: "后端API（REST/GraphQL接口服务）"
+          - value: "mobile"
+            label: "移动端（iOS/Android原生或跨平台）"
+          - value: "micro"
+            label: "微服务（分布式服务间依赖复杂）"
+        children:
+          web: "ts_q3"
+          api: "ts_q3"
+          mobile: "ts_q3"
+          micro: "ts_q3"
+        fallback_node_id: "ts_q3"
+        is_leaf: false
+
+      ts_q3:
+        node_id: "ts_q3"
+        question_text: "期望的测试覆盖目标是什么？"
+        question_type: "single_choice"
+        info_key: "ts_coverage"
+        depth: 3
+        options:
+          - value: "basic"
+            label: "基础覆盖（核心功能路径覆盖约60%）"
+          - value: "medium"
+            label: "中等覆盖（主要功能覆盖约80%）"
+          - value: "full_high"
+            label: "全面覆盖（全部功能覆盖90%+）"
+        children:
+          basic: "ts_q4"
+          medium: "ts_q5"
+          full_high: "ts_q5"
+        fallback_node_id: "ts_q4"
+        is_leaf: false
+
+      ts_q4:
+        node_id: "ts_q4"
+        question_text: "测试类型需求有哪些？"
+        question_type: "multi_choice"
+        info_key: "ts_type"
+        depth: 3
+        options:
+          - value: "func"
+            label: "功能测试（验证功能是否符合需求）"
+          - value: "perf"
+            label: "性能测试（响应时间和吞吐量验证）"
+          - value: "security"
+            label: "安全测试（安全漏洞检测）"
+          - value: "regression"
+            label: "回归测试（确保原有功能不受影响）"
+        children:
+          func: "ts_q6"
+          perf: "ts_q6"
+          security: "ts_q6"
+          regression: "ts_q6"
+        fallback_node_id: "ts_q6"
+        is_leaf: false
+
+      ts_q5:
+        node_id: "ts_q5"
+        question_text: "自动化测试需求是什么？"
+        question_type: "multi_choice"
+        info_key: "ts_automation"
+        depth: 4
+        options:
+          - value: "ci"
+            label: "CI集成（自动化触发和报告）"
+          - value: "report"
+            label: "自动报告（测试结果汇总和趋势分析）"
+          - value: "alert"
+            label: "失败通知（测试失败自动通知团队）"
+        children:
+          ci: "ts_q6"
+          report: "ts_q6"
+          alert: "ts_q6"
+        fallback_node_id: "ts_q6"
+        is_leaf: false
+
+      ts_q6:
+        node_id: "ts_q6"
+        question_text: "期望的输出物是什么？"
+        question_type: "multi_choice"
+        info_key: "ts_output"
+        depth: 4
+        options:
+          - value: "cases"
+            label: "测试用例集（全面覆盖的场景和路径）"
+          - value: "scripts"
+            label: "自动化脚本（可持续执行的测试代码）"
+          - value: "report"
+            label: "测试报告（结果汇总和质量评估）"
+          - value: "assessment"
+            label: "质量评估（上线风险和建议）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 11: 架构设计 ---
+  - task_type: "arch_design"
+    root_node_id: "ad_q1"
+    nodes:
+      ad_q1:
+        node_id: "ad_q1"
+        question_text: "需要架构设计的系统类型是什么？"
+        question_type: "single_choice"
+        info_key: "ad_system_type"
+        depth: 1
+        options:
+          - value: "web_app"
+            label: "Web应用（传统单体或前后端分离）"
+          - value: "micro_service"
+            label: "微服务（多服务分布式系统）"
+          - value: "data_platform"
+            label: "数据平台（大数据处理和存储系统）"
+        children:
+          web_app: "ad_q2"
+          micro_service: "ad_q2"
+          data_platform: "ad_q2"
+        fallback_node_id: "ad_q2"
+        is_leaf: false
+
+      ad_q2:
+        node_id: "ad_q2"
+        question_text: "系统的规模量级如何？"
+        question_type: "single_choice"
+        info_key: "ad_scale"
+        depth: 2
+        options:
+          - value: "small"
+            label: "小型（<10万用户，单机可部署）"
+          - value: "medium"
+            label: "中型（10-100万用户，需多机架构）"
+          - value: "large"
+            label: "大型（>100万用户，需分布式架构）"
+        children:
+          small: "ad_q3"
+          medium: "ad_q3"
+          large: "ad_q3"
+        fallback_node_id: "ad_q3"
+        is_leaf: false
+
+      ad_q3:
+        node_id: "ad_q3"
+        question_text: "关键非功能需求有哪些？"
+        question_type: "multi_choice"
+        info_key: "ad_nfr"
+        depth: 3
+        options:
+          - value: "availability"
+            label: "高可用（冗余部署、故障自动切换）"
+          - value: "performance"
+            label: "高性能（低延迟、高吞吐量）"
+          - value: "scalability"
+            label: "可扩展（水平扩展能力、弹性伸缩）"
+          - value: "security"
+            label: "安全合规（数据保护、合规要求）"
+        children:
+          availability: "ad_q4"
+          performance: "ad_q4"
+          scalability: "ad_q4"
+          security: "ad_q4"
+        fallback_node_id: "ad_q4"
+        is_leaf: false
+
+      ad_q4:
+        node_id: "ad_q4"
+        question_text: "技术约束条件有哪些？"
+        question_type: "multi_choice"
+        info_key: "ad_constraints"
+        depth: 3
+        options:
+          - value: "tech_stack"
+            label: "技术栈限制（必须使用特定语言或框架）"
+          - value: "budget"
+            label: "预算限制（基础设施和License成本限制）"
+          - value: "timeline"
+            label: "时间限制（紧急交付时间要求）"
+          - value: "team"
+            label: "团队能力（团队技术栈和规模限制）"
+        children:
+          tech_stack: "ad_q5"
+          budget: "ad_q5"
+          timeline: "ad_q5"
+          team: "ad_q5"
+        fallback_node_id: "ad_q5"
+        is_leaf: false
+
+      ad_q5:
+        node_id: "ad_q5"
+        question_text: "需要哪些架构交付物？"
+        question_type: "multi_choice"
+        info_key: "ad_output"
+        depth: 4
+        options:
+          - value: "doc"
+            label: "架构设计文档（整体架构和模块划分）"
+          - value: "report"
+            label: "技术选型报告（方案对比和推荐）"
+          - value: "diagram"
+            label: "系统架构图（组件关系和数据流向）"
+          - value: "spec"
+            label: "接口规范（服务间接口和数据格式）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 12: 数据库优化 ---
+  - task_type: "db_optimization"
+    root_node_id: "db_q1"
+    nodes:
+      db_q1:
+        node_id: "db_q1"
+        question_text: "数据库问题的类型是什么？"
+        question_type: "single_choice"
+        info_key: "db_issue_type"
+        depth: 1
+        options:
+          - value: "slow"
+            label: "慢查询（SQL执行时间长、响应慢）"
+          - value: "scale"
+            label: "扩展性问题（数据量大、写入瓶颈）"
+          - value: "consistency"
+            label: "数据一致性问题（脏读、数据偏差）"
+        children:
+          slow: "db_q2"
+          scale: "db_q2"
+          consistency: "db_q2"
+        fallback_node_id: "db_q2"
+        is_leaf: false
+
+      db_q2:
+        node_id: "db_q2"
+        question_text: "使用的数据库类型是什么？"
+        question_type: "single_choice"
+        info_key: "db_type"
+        depth: 2
+        options:
+          - value: "mysql"
+            label: "MySQL（关系型、OLTP场景）"
+          - value: "pg"
+            label: "PostgreSQL（关系型、复杂查询场景）"
+          - value: "mongo"
+            label: "MongoDB（文档型、灵活Schema场景）"
+          - value: "redis"
+            label: "Redis（缓存型、高并发读场景）"
+        children:
+          mysql: "db_q3"
+          pg: "db_q3"
+          mongo: "db_q3"
+          redis: "db_q3"
+        fallback_node_id: "db_q3"
+        is_leaf: false
+
+      db_q3:
+        node_id: "db_q3"
+        question_text: "当前数据量级如何？"
+        question_type: "single_choice"
+        info_key: "db_data_volume"
+        depth: 3
+        options:
+          - value: "small"
+            label: "百万级（单表百万行以内）"
+          - value: "medium"
+            label: "千万级（单表千万行级别）"
+          - value: "large"
+            label: "亿级+（单表上亿行以上）"
+        children:
+          small: "db_q4"
+          medium: "db_q4"
+          large: "db_q4"
+        fallback_node_id: "db_q4"
+        is_leaf: false
+
+      db_q4:
+        node_id: "db_q4"
+        question_text: "已尝试的优化手段有哪些？"
+        question_type: "multi_choice"
+        info_key: "db_attempts"
+        depth: 3
+        options:
+          - value: "index"
+            label: "索引优化（已建索引但效果不明显）"
+          - value: "query"
+            label: "查询重写（已优化SQL写法）"
+          - value: "shard"
+            label: "分库分表（已做一定程度拆分）"
+          - value: "cache"
+            label: "缓存（已引入Redis等缓存层）"
+        children:
+          index: "db_q5"
+          query: "db_q5"
+          shard: "db_q5"
+          cache: "db_q5"
+        fallback_node_id: "db_q5"
+        is_leaf: false
+
+      db_q5:
+        node_id: "db_q5"
+        question_text: "期望的产出物是什么？"
+        question_type: "multi_choice"
+        info_key: "db_output"
+        depth: 4
+        options:
+          - value: "plan"
+            label: "优化方案（索引/查询/架构优化建议）"
+          - value: "analysis"
+            label: "慢查询分析报告（根因分析和建议）"
+          - value: "shard_plan"
+            label: "分片方案（分库分表设计和迁移计划）"
+          - value: "cache_design"
+            label: "缓存设计方案（策略和更新机制）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 13: 安全审计 ---
+  - task_type: "security_audit"
+    root_node_id: "sa_q1"
+    nodes:
+      sa_q1:
+        node_id: "sa_q1"
+        question_text: "安全审计的范围是什么？"
+        question_type: "single_choice"
+        info_key: "sa_scope"
+        depth: 1
+        options:
+          - value: "code"
+            label: "代码审计（源码安全漏洞分析）"
+          - value: "infra"
+            label: "基础设施审计（网络/服务器/云配置）"
+          - value: "process"
+            label: "流程审计（权限管理/合规流程）"
+        children:
+          code: "sa_q2"
+          infra: "sa_q2"
+          process: "sa_q2"
+        fallback_node_id: "sa_q2"
+        is_leaf: false
+
+      sa_q2:
+        node_id: "sa_q2"
+        question_text: "适用的合规标准是什么？"
+        question_type: "single_choice"
+        info_key: "sa_compliance"
+        depth: 2
+        options:
+          - value: "gb"
+            label: "等保2.0（中国网络安全等级保护）"
+          - value: "gdpr"
+            label: "GDPR（欧盟通用数据保护条例）"
+          - value: "iso"
+            label: "ISO 27001（信息安全管理体系）"
+          - value: "custom"
+            label: "企业自定义（内部安全规范）"
+        children:
+          gb: "sa_q3"
+          gdpr: "sa_q3"
+          iso: "sa_q3"
+          custom: "sa_q3"
+        fallback_node_id: "sa_q3"
+        is_leaf: false
+
+      sa_q3:
+        node_id: "sa_q3"
+        question_text: "风险等级和紧迫程度如何？"
+        question_type: "single_choice"
+        info_key: "sa_risk_level"
+        depth: 3
+        options:
+          - value: "low"
+            label: "低风险（例行检查，可计划安排）"
+          - value: "medium"
+            label: "中风险（需限期整改，有潜在影响）"
+          - value: "high"
+            label: "高风险（立即处理，可能已有漏洞被利用）"
+        children:
+          low: "sa_q4"
+          medium: "sa_q4"
+          high: "sa_q4"
+        fallback_node_id: "sa_q4"
+        is_leaf: false
+
+      sa_q4:
+        node_id: "sa_q4"
+        question_text: "审计方法和深度需求是什么？"
+        question_type: "multi_choice"
+        info_key: "sa_method"
+        depth: 3
+        options:
+          - value: "scan"
+            label: "自动化扫描（SAST/DAST工具快速检测）"
+          - value: "pentest"
+            label: "渗透测试（人工模拟攻击深入检测）"
+          - value: "source"
+            label: "源码审计（逐行审查关键代码安全性）"
+          - value: "config"
+            label: "配置审查（检查安全配置和合规基线）"
+        children:
+          scan: "sa_q5"
+          pentest: "sa_q5"
+          source: "sa_q5"
+          config: "sa_q5"
+        fallback_node_id: "sa_q5"
+        is_leaf: false
+
+      sa_q5:
+        node_id: "sa_q5"
+        question_text: "期望的产出物是什么？"
+        question_type: "multi_choice"
+        info_key: "sa_output"
+        depth: 4
+        options:
+          - value: "report"
+            label: "安全审计报告（发现汇总和风险评估）"
+          - value: "vuln_list"
+            label: "漏洞清单（漏洞详情和修复建议）"
+          - value: "fix_plan"
+            label: "整改方案（修复优先级和时间计划）"
+          - value: "baseline"
+            label: "安全基线文档（配置标准和规范）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 14: 性能优化 ---
+  - task_type: "perf_optimization"
+    root_node_id: "po_q1"
+    nodes:
+      po_q1:
+        node_id: "po_q1"
+        question_text: "性能瓶颈主要表现在哪个层面？"
+        question_type: "single_choice"
+        info_key: "po_bottleneck"
+        depth: 1
+        options:
+          - value: "frontend"
+            label: "前端性能（页面加载慢、渲染卡顿）"
+          - value: "backend"
+            label: "后端性能（接口响应慢、CPU/内存高）"
+          - value: "database"
+            label: "数据库性能（查询慢、连接池耗尽）"
+          - value: "network"
+            label: "网络性能（带宽不足、延迟高）"
+        children:
+          frontend: "po_q2"
+          backend: "po_q2"
+          database: "po_q2"
+          network: "po_q2"
+        fallback_node_id: "po_q2"
+        is_leaf: false
+
+      po_q2:
+        node_id: "po_q2"
+        question_text: "是否有性能基线数据？"
+        question_type: "single_choice"
+        info_key: "po_baseline"
+        depth: 2
+        options:
+          - value: "yes"
+            label: "有基线数据（可对比优化前后效果）"
+          - value: "partial"
+            label: "部分有（只监控了部分关键指标）"
+          - value: "no"
+            label: "无基线（凭经验判断瓶颈位置）"
+        children:
+          "yes": "po_q3"
+          partial: "po_q3"
+          "no": "po_q3"
+        fallback_node_id: "po_q3"
+        is_leaf: false
+
+      po_q3:
+        node_id: "po_q3"
+        question_text: "优化目标值是什么？"
+        question_type: "single_choice"
+        info_key: "po_target"
+        depth: 3
+        options:
+          - value: "moderate"
+            label: "适度提升（响应时间降低30-50%）"
+          - value: "significant"
+            label: "显著提升（响应时间降低50-80%）"
+          - value: "drastic"
+            label: "大幅提升（响应时间降低80%+或10倍+）"
+        children:
+          moderate: "po_q4"
+          significant: "po_q4"
+          drastic: "po_q4"
+        fallback_node_id: "po_q4"
+        is_leaf: false
+
+      po_q4:
+        node_id: "po_q4"
+        question_text: "可接受的优化手段有哪些？"
+        question_type: "multi_choice"
+        info_key: "po_methods"
+        depth: 3
+        options:
+          - value: "code"
+            label: "代码优化（算法改进、减少不必要的计算）"
+          - value: "cache"
+            label: "缓存引入（Redis/CDN多级缓存）"
+          - value: "concurrency"
+            label: "并发优化（异步/并行/连接池调优）"
+          - value: "arch"
+            label: "架构调整（拆分、扩容、读写分离）"
+        children:
+          code: "po_q5"
+          cache: "po_q5"
+          concurrency: "po_q5"
+          arch: "po_q5"
+        fallback_node_id: "po_q5"
+        is_leaf: false
+
+      po_q5:
+        node_id: "po_q5"
+        question_text: "产出物需求是什么？"
+        question_type: "multi_choice"
+        info_key: "po_output"
+        depth: 4
+        options:
+          - value: "report"
+            label: "性能分析报告（瓶颈定位和根因分析）"
+          - value: "plan"
+            label: "优化方案（具体改措施和优先级）"
+          - value: "stress"
+            label: "压测报告（优化前后的对比数据）"
+          - value: "baseline_doc"
+            label: "性能基线文档（关键指标和告警阈值）"
+        children: {}
+        fallback_node_id: null
+        is_leaf: true
+
+  # --- 追问树 15: 团队协作 ---
+  - task_type: "team_collab"
+    root_node_id: "tc_q1"
+    nodes:
+      tc_q1:
+        node_id: "tc_q1"
+        question_text: "团队协作的主要痛点是什么？"
+        question_type: "single_choice"
+        info_key: "tc_pain_point"
+        depth: 1
+        options:
+          - value: "process"
+            label: "流程问题（流程不清晰、缺乏规范）"
+          - value: "comm"
+            label: "沟通问题（信息不对称、沟通效率低）"
+          - value: "tool"
+            label: "工具问题（缺乏合适的协作工具）"
+          - value: "culture"
+            label: "文化问题（跨部门壁垒、目标不一致）"
+        children:
+          process: "tc_q2"
+          comm: "tc_q2"
+          tool: "tc_q2"
+          culture: "tc_q2"
+        fallback_node_id: "tc_q2"
+        is_leaf: false
+
+      tc_q2:
+        node_id: "tc_q2"
+        question_text: "团队规模是多少？"
+        question_type: "single_choice"
+        info_key: "tc_team_size"
+        depth: 2
+        options:
+          - value: "small"
+            label: "小型团队（<10人，沟通相对简单）"
+          - value: "medium"
+            label: "中型团队（10-50人，需多组协作）"
+          - value: "large"
+            label: "大型团队（>50人，跨部门协调复杂）"
+        children:
+          small: "tc_q3"
+          medium: "tc_q3"
+          large: "tc_q3"
+        fallback_node_id: "tc_q3"
+        is_leaf: false
+
+      tc_q3:
+        node_id: "tc_q3"
+        question_text: "团队使用的开发方法论是什么？"
+        question_type: "single_choice"
+        info_key: "tc_methodology"
+        depth: 3
+        options:
+          - value: "scrum"
+            label: "Scrum（固定Sprint迭代交付）"
+          - value: "kanban"
+            label: "看板（持续交付、限制在制品）"
+          - value: "scrumban"
+            label: "Scrumban（Scrum+看板混合）"
+          - value: "none"
+            label: "无固定方法（按需灵活开发）"
+        children:
+          scrum: "tc_q4"
+          kanban: "tc_q4"
+          scrumban: "tc_q4"
+          none: "tc_q4"
+        fallback_node_id: "tc_q4"
+        is_leaf: false
+
+      tc_q4:
+        node_id: "tc_q4"
+        question_text: "需要改善的方向是什么？"
+        question_type: "multi_choice"
+        info_key: "tc_improve_area"
+        depth: 3
+        options:
+          - value: "meeting"
+            label: "会议制度（规范各类会议频率和时长）"
+          - value: "comm_tool"
+            label: "沟通工具（统一即时通讯和信息共享工具）"
+          - value: "doc"
+            label: "文档规范（知识沉淀和信息同步机制）"
+          - value: "feedback"
+            label: "反馈机制（定期反馈和持续改进文化）"
+        children:
+          meeting: "tc_q5"
+          comm_tool: "tc_q5"
+          doc: "tc_q5"
+          feedback: "tc_q5"
+        fallback_node_id: "tc_q5"
+        is_leaf: false
+
+      tc_q5:
+        node_id: "tc_q5"
+        question_text: "改进优先级如何？"
+        question_type: "single_choice"
+        info_key: "tc_priority"
+        depth: 4
+        options:
+          - value: "urgent"
+            label: "紧急改进（当前痛点严重影响工作效率）"
+          - value: "short_term"
+            label: "短期优化（1-2周内可落地改进）"
+          - value: "long_term"
+            label: "长期建设（需要持续投入和文化沉淀）"
+        children:
+          urgent: "tc_q6"
+          short_term: "tc_q6"
+          long_term: "tc_q6"
+        fallback_node_id: "tc_q6"
+        is_leaf: false
+
+      tc_q6:
+        node_id: "tc_q6"
+        question_text: "期望的产出物是什么？"
+        question_type: "multi_choice"
+        info_key: "tc_output"
+        depth: 4
+        options:
+          - value: "guidelines"
+            label: "协作规范（流程和制度文档）"
+          - value: "workflow"
+            label: "流程文档（各协作环节的标准操作流程）"
+          - value: "tools"
+            label: "工具推荐（适合团队的协作工具选型）"
+          - value: "training"
+            label: "培训材料（团队协作培训和文化建设）"
         children: {}
         fallback_node_id: null
         is_leaf: true
