@@ -55,7 +55,8 @@ Plans:
   4. KnowledgePack 提供 typed 访问方法（get_terms, get_workflows, get_follow_up_tree 等）
 
 **Plans**: 2 plans
-Plans:
+
+Plans:
 **Wave 1**
 
 - [x] 02-01-PLAN.md — KnowledgeManager + Index Pipeline + Engine Integration (懒加载机制, KNOW-03)
@@ -98,12 +99,20 @@ Plans:
   4. 追问决策树支持单选/多选/文本输入/确认四种节点类型，行业/任务感知
   5. 意图分类器返回置信度评分，低置信度自动进入澄清流程
 
-**Plans**: 1 plan
+**Plans**: 3 plans
 
 Plans:
 **Wave 1**
 
-- [x] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
+- [ ] 04-01-PLAN.md — ConversationEngine (9-state state machine) + IntentClassifier v2 (confidence-scored industry/task detection, CONV-01 + CONV-02)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 04-02-PLAN.md — FollowUpEngine (4 node types, CONV-03) + 3-question hard limit (CONV-04) + "I don't know" 3-level degradation (CONV-05) + ConversationEngine wiring
+
+**Wave 3** *(blocked on Wave 1 + Wave 2 completion)*
+
+- [ ] 04-03-PLAN.md — App Integration: conversation flow UI (confirmation panel, question display, skip/don't-know buttons) wired to ConversationEngine
 
 ### Phase 5: Generation v2
 
@@ -119,12 +128,10 @@ Plans:
   4. QA-02 评估显示 v4.0 生成质量显著优于 v3.0 模板式输出
   5. 生成基于对话上下文+知识包组合，而非 keyword-to-template 映射
 
-**Plans**: 1 plan
+**Plans**: [To be planned]
 
 Plans:
-**Wave 1**
-
-- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
+- (Planned in Phase 5)
 
 ### Phase 6: UI
 
@@ -140,12 +147,10 @@ Plans:
   4. 用户可查看当前行业知识包概览（UI-04）
   5. 金融/制造等敏感行业的提示词内容包含合规声明（QA-03）
 
-**Plans**: 1 plan
+**Plans**: [To be planned]
 
 Plans:
-**Wave 1**
-
-- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
+- (Planned in Phase 6)
 
 **UI hint**: yes
 
@@ -163,12 +168,10 @@ Plans:
   4. 制造业行业知识包完成（术语60+、场景10+、追问树2+）
   5. 每个包通过 QA-01 深度检查清单
 
-**Plans**: 1 plan
+**Plans**: [To be planned]
 
 Plans:
-**Wave 1**
-
-- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
+- (Planned in Phase 7)
 
 ### Phase 8: Packaging
 
@@ -183,12 +186,10 @@ Plans:
   3. 在中文 Windows 10/11 系统、含中文用户名的路径下正常启动和运行（PKG-03）
   4. 最终 exe 体积 < 50MB
 
-**Plans**: 1 plan
+**Plans**: [To be planned]
 
 Plans:
-**Wave 1**
-
-- [ ] 03-01-PLAN.md -- SessionManager (ConversationTurn + SessionState + 单例) + ContextBuilder (build_generation_context 纯函数) + 15 单元测试 + app.py 接线
+- (Planned in Phase 8)
 
 ## Progress
 
@@ -197,7 +198,7 @@ Plans:
 | 1. Foundation | 2/2 | Complete    | 2026-06-03 |
 | 2. Knowledge Layer | 2/2 | Complete    | 2026-06-03 |
 | 3. Context Layer | 1/1 | Complete    | 2026-06-03 |
-| 4. Conversation Core | 0/0 | Not started | - |
+| 4. Conversation Core | 0/3 | Planned | - |
 | 5. Generation v2 | 0/0 | Not started | - |
 | 6. UI | 0/0 | Not started | - |
 | 7. Scale | 0/0 | Not started | - |
