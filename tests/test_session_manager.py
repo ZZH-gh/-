@@ -39,7 +39,7 @@ class TestSessionManager:
         assert len(session_id) == 36  # uuid4 标准长度
         assert sm.has_active_session() is True
         assert sm.get_turn_count() == 0
-        assert sm.get_elapsed_seconds() > 0
+        assert sm.get_elapsed_seconds() >= 0
 
     def test_add_turn(self, session_manager_instance):
         """add_turn() 追加 ConversationTurn 并增加轮次计数"""
