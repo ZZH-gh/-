@@ -282,99 +282,45 @@ class PromptToolApp:
         thread.start()
 
     def _do_generate_v4(self, content):
-        """v4.0 conversation flow: analyze → confirm → follow-up → generate."""
+        """v4.0 conversation flow: analyze → auto-confirm → generate directly."""
         try:
-            from .generator import generate_prompts
             engine = ConversationEngine()
 
-            # Step 1: Analyze + classify
+            # Step 1: Analyze
             result = engine.start(content)
+
             if result.get("needs_clarification"):
-                self.root.after(0, lambda: self._on_need_clarification(engine, result))
+                # Low confidence — use v3.0 fallback for speed
+                manual = self.industry_combo.get()
+                if manual == "自动识别":
+                    manual = None
+                self.analysis_result = self.engine.analyze(content, manual)
+                self.generated_prompts = generate_prompts(self.analysis_result)
+                self.root.after(0, lambda: self._show_generate_result(engine, result))
                 return
 
-            # Step 2: Auto-confirm and get follow-up
-            follow_up = engine.handle_confirmation(True)
+            # Step 2: Auto-confirm → skip follow-up → generate directly
+            engine.handle_confirmation(True)
             self._engine = engine
 
-            if follow_up.get("action") == "follow_up":
-                self.root.after(0, lambda: self._on_show_question(engine, follow_up))
-                return
-
-            # Step 3: Generate directly (no follow-up needed)
-            self.root.after(0, lambda: self._on_v4_generate(engine))
-        except Exception as e:
-            self.root.after(0, lambda: self._on_error(str(e)))
-
-    def _on_need_clarification(self, engine, result):
-        """Low confidence — ask user to clarify, then retry."""
-        self.gen_btn.configure(state="disabled", text="⏳ 需要更多信息...")
-        self.set_status(f"🤔 {result.get('message', '能再说详细一点吗？')}")
-        content = self.input_text.get("1.0", "end-1c").strip()
-        # Simple retry with existing content
-        thread = threading.Thread(target=self._do_generate_v4, args=(content,), daemon=True)
-        thread.start()
-
-    def _on_show_question(self, engine, follow_up):
-        """Display a follow-up question."""
-        q = follow_up.get("question", {})
-        question_num = follow_up.get("question_number", 1)
-        max_q = follow_up.get("max_questions", 3)
-        q_text = q.get("question_text", "")
-        q_type = q.get("question_type", "text_input")
-        options = q.get("options", [])
-
-        self.set_status(f"❓ 追问 ({question_num}/{max_q}): {q_text}")
-
-        if q_type in ("single_choice", "multi_choice") and options:
-            answer = tk.messagebox.askquestion("追问", q_text + "\n\n选项: " + ", ".join(options))
-        else:
-            answer = tk.simpledialog.askstring("追问", q_text) or ""
-
-        # Process answer and continue
-        self.set_status("⏳ 正在处理你的回答...")
-        thread = threading.Thread(
-            target=self._process_answer, args=(engine, answer), daemon=True
-        )
-        thread.start()
-
-    def _process_answer(self, engine, answer):
-        """Process follow-up answer and get next action."""
-        try:
-            result = engine.handle_answer(answer)
-            if result.get("action") == "follow_up":
-                self.root.after(0, lambda: self._on_show_question(engine, result))
-            elif result.get("action") == "generate":
-                self.root.after(0, lambda: self._on_v4_generate(engine))
-            elif result.get("action") == "clarify":
-                self.root.after(0, lambda: self.set_status(
-                    f"🤔 {result.get('message', '能再说详细一点吗？')}"
-                ))
-        except Exception as e:
-            self.root.after(0, lambda: self._on_error(str(e)))
-
-    def _on_v4_generate(self, engine):
-        """Final generation step using v4.0 context + generator_v2."""
-        try:
+            # Skip follow-up, generate with v4.0 context
             from .generator_v2 import generate_prompts_v2
             from .context_builder import build_generation_context
 
             session = session_manager.get_active_session()
             context = build_generation_context(session) if session else {}
 
-            if hasattr(engine, '_follow_up') and engine._follow_up:
-                context["follow_up_answers"] = engine._follow_up._answers
-
-            self.analysis_result = self.engine.analyze(
-                self.input_text.get("1.0", "end-1c").strip(),
-                context.get("industry_name"),
-            )
-            # Use v4.0 generator with knowledge pack context
+            self.analysis_result = self.engine.analyze(content, context.get("industry_name"))
             self.generated_prompts = generate_prompts_v2(self.analysis_result, context)
             engine.generate_complete()
             self.root.after(0, self._on_done)
         except Exception as e:
             self.root.after(0, lambda: self._on_error(str(e)))
+
+    def _show_generate_result(self, engine, result):
+        """Show generation result with clarification note."""
+        self.set_status(f"🤔 {result.get('message', '信息不够详细，已用通用模式生成')}")
+        self._on_done()
 
     def _on_done(self):
         r = self.analysis_result
