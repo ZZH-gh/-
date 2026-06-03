@@ -343,18 +343,23 @@ class PromptToolApp:
             self.root.after(0, lambda: self._on_error(str(e)))
 
     def _on_v4_generate(self, engine):
-        """Final generation step using v4.0 context."""
-        from .generator import generate_prompts
+        """Final generation step using v4.0 context + generator_v2."""
         try:
-            context = engine._last_analysis if hasattr(engine, '_last_analysis') else {}
+            from .generator_v2 import generate_prompts_v2
+            from .context_builder import build_generation_context
+
+            session = session_manager.get_active_session()
+            context = build_generation_context(session) if session else {}
+
             if hasattr(engine, '_follow_up') and engine._follow_up:
                 context["follow_up_answers"] = engine._follow_up._answers
 
             self.analysis_result = self.engine.analyze(
-                context.get("original_input", ""),
+                self.input_text.get("1.0", "end-1c").strip(),
                 context.get("industry_name"),
             )
-            self.generated_prompts = generate_prompts(self.analysis_result)
+            # Use v4.0 generator with knowledge pack context
+            self.generated_prompts = generate_prompts_v2(self.analysis_result, context)
             engine.generate_complete()
             self.root.after(0, self._on_done)
         except Exception as e:

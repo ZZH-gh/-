@@ -1,0 +1,5330 @@
+{
+  "meta": {
+    "id": "internet_it",
+    "name": "互联网 / IT",
+    "version": "1.0.0",
+    "schema_version": "1.0",
+    "description": "互联网产品、技术开发与运营行业知识包，覆盖产品管理、软件研发、 数据分析、技术写作、团队管理五大高频场景，适用于产品经理、 前端工程师、后端工程师、数据分析师、技术负责人等角色。\n",
+    "last_updated": "2026-06-03",
+    "icon": "💻"
+  },
+  "terms": [
+    {
+      "term": "PRD",
+      "category": "产品文档",
+      "definition": "产品需求文档（Product Requirements Document），详细描述产品功能、业务流程、界面要求和验收标准的规范文档。",
+      "aliases": [
+        "产品需求文档",
+        "需求文档"
+      ],
+      "usage_context": "产品经理在需求分析阶段编写，用于向研发团队传达功能需求",
+      "related_terms": [
+        "BRD",
+        "MRD",
+        "用户故事"
+      ]
+    },
+    {
+      "term": "BRD",
+      "category": "产品文档",
+      "definition": "商业需求文档（Business Requirements Document），从商业角度阐述产品价值、市场机会、收益预期和投入成本的战略级文档。",
+      "aliases": [
+        "商业需求文档",
+        "商业分析文档"
+      ],
+      "usage_context": "产品经理在立项阶段编写，用于向管理层说明产品商业价值",
+      "related_terms": [
+        "PRD",
+        "MRD",
+        "商业分析"
+      ]
+    },
+    {
+      "term": "MRD",
+      "category": "产品文档",
+      "definition": "市场需求文档（Market Requirements Document），分析目标市场规模、用户画像、竞品格局和差异化定位的市场策略文档。",
+      "aliases": [
+        "市场需求文档"
+      ],
+      "usage_context": "产品经理在市场调研阶段编写，用于确定产品定位和方向",
+      "related_terms": [
+        "BRD",
+        "PRD",
+        "竞品分析"
+      ]
+    },
+    {
+      "term": "用户故事",
+      "category": "产品管理",
+      "definition": "User Story，以用户视角描述功能需求的简短描述，格式为'作为XX角色，我希望XX，以便XX'的标准化表达。",
+      "aliases": [
+        "User Story",
+        "用户需求"
+      ],
+      "usage_context": "敏捷开发中用于表达用户需求，每个用户故事代表一个独立可交付的功能单元",
+      "related_terms": [
+        "需求评审",
+        "验收标准",
+        "Sprint"
+      ]
+    },
+    {
+      "term": "验收标准",
+      "category": "产品管理",
+      "definition": "定义功能是否完成的量化或定性条件清单，包含正向场景、异常场景和性能指标的详细验收条件。",
+      "aliases": [
+        "Acceptance Criteria",
+        "验收条件",
+        "完成的定义"
+      ],
+      "usage_context": "产品经理与研发团队共同制定，作为功能交付的验收依据",
+      "related_terms": [
+        "PRD",
+        "用户故事",
+        "测试用例"
+      ]
+    },
+    {
+      "term": "原型",
+      "category": "产品管理",
+      "definition": "产品界面和交互流程的低保真或高保真可视化设计稿，用于在开发前验证产品方案和用户体验。",
+      "aliases": [
+        "Prototype",
+        "线框图",
+        "设计稿"
+      ],
+      "usage_context": "产品经理或设计师在需求阶段产出，用于沟通界面布局和交互流程",
+      "related_terms": [
+        "PRD",
+        "用户故事",
+        "需求评审"
+      ]
+    },
+    {
+      "term": "需求评审",
+      "category": "产品管理",
+      "definition": "产品经理组织研发、测试、设计等角色对PRD进行集体审查和确认的正式会议。",
+      "aliases": [
+        "需求评审会",
+        "PRD评审"
+      ],
+      "usage_context": "PRD完成后由产品经理发起，各方确认需求理解一致后方可进入开发",
+      "related_terms": [
+        "PRD",
+        "技术评审",
+        "验收标准"
+      ]
+    },
+    {
+      "term": "竞品分析",
+      "category": "产品管理",
+      "definition": "对竞争对手的产品功能、用户体验、商业模式和市场策略进行系统性对比分析的方法论和输出报告。",
+      "aliases": [
+        "竞品调研",
+        "竞争分析",
+        "竞品研究"
+      ],
+      "usage_context": "产品规划或功能设计前期，用于了解市场格局和竞品优劣势",
+      "related_terms": [
+        "BRD",
+        "MRD",
+        "产品定位"
+      ]
+    },
+    {
+      "term": "API",
+      "category": "研发流程",
+      "definition": "应用程序编程接口（Application Programming Interface），定义不同软件组件之间的通信协议和数据交换格式。",
+      "aliases": [
+        "接口",
+        "API接口",
+        "应用程序接口"
+      ],
+      "usage_context": "前后端开发中用于定义服务间调用契约，是系统集成的核心要素",
+      "related_terms": [
+        "API文档",
+        "REST",
+        "微服务"
+      ]
+    },
+    {
+      "term": "微服务",
+      "category": "技术架构",
+      "definition": "将单一应用拆分为一组小型、独立部署的服务，每个服务运行在自己的进程中，通过轻量级通信机制协作的架构风格。",
+      "aliases": [
+        "Microservices",
+        "微服务架构",
+        "微服务化"
+      ],
+      "usage_context": "大型系统架构设计时采用，实现各服务的独立开发、部署和扩展",
+      "related_terms": [
+        "API",
+        "容器",
+        "Docker",
+        "CI/CD"
+      ]
+    },
+    {
+      "term": "CI/CD",
+      "category": "研发流程",
+      "definition": "持续集成与持续部署，开发人员频繁地将代码变更合并到主干并自动触发构建、测试和部署的工程实践。",
+      "aliases": [
+        "持续集成",
+        "持续部署",
+        "持续交付",
+        "CI"
+      ],
+      "usage_context": "研发团队配置自动化流水线，每次代码提交自动触发构建和部署流程",
+      "related_terms": [
+        "代码审查",
+        "灰度发布",
+        "DevOps"
+      ]
+    },
+    {
+      "term": "代码审查",
+      "category": "研发流程",
+      "definition": "开发人员提交代码后由其他团队成员逐行审查代码质量、逻辑正确性和规范符合度的质量保障实践。",
+      "aliases": [
+        "Code Review",
+        "CR",
+        "代码评审"
+      ],
+      "usage_context": "代码合并到主干前必须完成的审查环节，通常通过Pull Request进行",
+      "related_terms": [
+        "CI/CD",
+        "技术债",
+        "重构"
+      ]
+    },
+    {
+      "term": "技术债",
+      "category": "研发管理",
+      "definition": "开发团队为追求短期交付速度而采取了低质量的技术方案，导致后续维护和迭代成本不断增加的隐喻性负债。",
+      "aliases": [
+        "Technical Debt",
+        "技术负债",
+        "代码债"
+      ],
+      "usage_context": "技术负责人评估系统健康度时考量，技术债过高会严重影响开发效率",
+      "related_terms": [
+        "重构",
+        "代码审查",
+        "架构设计"
+      ]
+    },
+    {
+      "term": "重构",
+      "category": "研发管理",
+      "definition": "在不改变代码外部行为的前提下，对内部结构进行系统性优化以提高可读性、可维护性和可扩展性的过程。",
+      "aliases": [
+        "Refactoring",
+        "代码重构",
+        "架构优化"
+      ],
+      "usage_context": "在功能迭代间隙或技术债积累到一定程度时进行，是保持代码健康的关键活动",
+      "related_terms": [
+        "技术债",
+        "代码审查",
+        "测试"
+      ]
+    },
+    {
+      "term": "灰度发布",
+      "category": "研发流程",
+      "definition": "将新版本逐步推送给部分用户，在真实环境中验证稳定性后再全量发布的渐进式上线策略。",
+      "aliases": [
+        "灰度",
+        "灰度上线",
+        "金丝雀发布",
+        "Canary Release"
+      ],
+      "usage_context": "重要功能上线前，先给5%-10%用户使用以发现潜在问题，降低全量发布的失败风险",
+      "related_terms": [
+        "上线",
+        "回滚",
+        "A/B测试",
+        "CI/CD"
+      ]
+    },
+    {
+      "term": "敏捷开发",
+      "category": "研发管理",
+      "definition": "以迭代、增量、协作为核心原则的软件开发方法论，强调快速响应需求变化和持续交付价值的开发模式。",
+      "aliases": [
+        "Agile",
+        "敏捷",
+        "Scrum",
+        "看板"
+      ],
+      "usage_context": "互联网产品开发普遍采用的管理方式，按固定周期（通常1-4周）迭代交付",
+      "related_terms": [
+        "Sprint",
+        "用户故事",
+        "迭代"
+      ]
+    },
+    {
+      "term": "Sprint",
+      "category": "研发管理",
+      "definition": "Scrum框架中的短周期开发迭代，通常为1-4周，团队在Sprint内完成固定的用户故事并交付可用的产品增量。",
+      "aliases": [
+        "冲刺",
+        "迭代周期",
+        "Sprint迭代"
+      ],
+      "usage_context": "敏捷开发中的时间盒管理单元，每个Sprint有明确的待办事项和交付目标",
+      "related_terms": [
+        "敏捷开发",
+        "用户故事",
+        "迭代",
+        "站会"
+      ]
+    },
+    {
+      "term": "DAU",
+      "category": "数据分析",
+      "definition": "日活跃用户数（Daily Active Users），统计一天内启动并使用产品的唯一用户数量，衡量产品日常活跃度的核心指标。",
+      "aliases": [
+        "日活跃",
+        "Daily Active Users",
+        "日活"
+      ],
+      "usage_context": "产品运营和数据分析师日常监控产品活跃度，DAU趋势反映产品的用户粘性和健康度",
+      "related_terms": [
+        "MAU",
+        "留存率",
+        "用户增长"
+      ]
+    },
+    {
+      "term": "MAU",
+      "category": "数据分析",
+      "definition": "月活跃用户数（Monthly Active Users），统计一个月内至少使用一次产品的唯一用户数量，反映产品的覆盖规模。",
+      "aliases": [
+        "月活跃",
+        "Monthly Active Users",
+        "月活"
+      ],
+      "usage_context": "衡量产品长期用户规模和增长趋势，常用于向投资者汇报和业务健康度评估",
+      "related_terms": [
+        "DAU",
+        "留存率",
+        "用户增长"
+      ]
+    },
+    {
+      "term": "留存率",
+      "category": "数据分析",
+      "definition": "在特定时间后仍然继续使用产品的用户占初始新增用户的比例，是衡量产品黏性和长期价值的关键指标。",
+      "aliases": [
+        "Retention Rate",
+        "用户留存",
+        "留存"
+      ],
+      "usage_context": "产品运营和数据分析师评估用户召回和产品改进效果，常用次日/7日/30日留存率",
+      "related_terms": [
+        "DAU",
+        "MAU",
+        "漏斗分析",
+        "A/B测试"
+      ]
+    },
+    {
+      "term": "转化率",
+      "category": "数据分析",
+      "definition": "完成特定目标行为的用户数占进入该流程的用户总数的比例，衡量流程效率和功能价值的关键指标。",
+      "aliases": [
+        "Conversion Rate",
+        "转化",
+        "CVR"
+      ],
+      "usage_context": "产品运营和增长团队评估注册流程、购买链路、功能使用率等各个环节的效率",
+      "related_terms": [
+        "漏斗分析",
+        "A/B测试",
+        "埋点",
+        "BI看板"
+      ]
+    },
+    {
+      "term": "漏斗分析",
+      "category": "数据分析",
+      "definition": "追踪用户在多步骤流程中的逐步流失情况，识别各环节转化率并定位优化机会的分析方法。",
+      "aliases": [
+        "Funnel Analysis",
+        "漏斗模型",
+        "转化漏斗"
+      ],
+      "usage_context": "产品运营分析用户从进入产品到完成核心目标的完整路径，找出流失最严重的环节",
+      "related_terms": [
+        "转化率",
+        "埋点",
+        "A/B测试",
+        "留存率"
+      ]
+    },
+    {
+      "term": "埋点",
+      "category": "数据分析",
+      "definition": "在产品前端和后端代码中嵌入数据采集代码，当用户执行特定操作时自动记录行为数据的技术实现方式。",
+      "aliases": [
+        "事件跟踪",
+        "数据采集",
+        "埋点上报"
+      ],
+      "usage_context": "产品和运营团队在开发阶段规划埋点方案，用于后续用户行为分析和产品优化",
+      "related_terms": [
+        "漏斗分析",
+        "BI看板",
+        "A/B测试",
+        "数据分析"
+      ]
+    },
+    {
+      "term": "BI看板",
+      "category": "数据分析",
+      "definition": "商业智能仪表盘（Business Intelligence Dashboard），将核心业务指标以图表形式实时可视化展示的数据管理工具。",
+      "aliases": [
+        "BI Dashboard",
+        "数据看板",
+        "仪表盘",
+        "数据大屏"
+      ],
+      "usage_context": "管理层和业务团队日常监控业务健康度，快速发现数据异常和趋势变化",
+      "related_terms": [
+        "埋点",
+        "数据分析",
+        "DAU",
+        "留存率"
+      ]
+    },
+    {
+      "term": "A/B测试",
+      "category": "数据分析",
+      "definition": "将用户随机分组，向不同组展示不同版本的产品或功能，通过对比数据指标确定最优方案的实验方法。",
+      "aliases": [
+        "A/B实验",
+        "分流测试",
+        "对比实验",
+        "Split Test"
+      ],
+      "usage_context": "产品和增长团队验证新功能效果、优化UI设计或算法策略时使用，用数据驱动决策",
+      "related_terms": [
+        "转化率",
+        "漏斗分析",
+        "灰度发布",
+        "数据分析"
+      ]
+    },
+    {
+      "term": "API文档",
+      "category": "技术写作",
+      "definition": "描述API接口的功能说明、请求参数格式、响应数据结构、错误码定义和调用示例的技术参考资料。",
+      "aliases": [
+        "API文档",
+        "接口文档",
+        "API Reference"
+      ],
+      "usage_context": "后端开发完成后提供给前端开发或第三方集成方，是服务调用的标准参考手册",
+      "related_terms": [
+        "API",
+        "技术文档",
+        "RFC",
+        "SDK"
+      ]
+    },
+    {
+      "term": "RFC",
+      "category": "技术写作",
+      "definition": "请求评议文档（Request for Comments），在实施重大技术变更前向团队征求技术方案反馈的协作文档。",
+      "aliases": [
+        "技术方案评审",
+        "Request for Comments",
+        "RFC文档"
+      ],
+      "usage_context": "技术方案设计阶段，由技术负责人或架构师发起，邀请相关工程师评议方案可行性",
+      "related_terms": [
+        "技术方案",
+        "架构图",
+        "代码审查"
+      ]
+    },
+    {
+      "term": "README",
+      "category": "技术写作",
+      "definition": "项目根目录下的说明文档，包含项目概述、安装方式、使用方法、技术栈和贡献指南等关键信息。",
+      "aliases": [
+        "项目说明",
+        "自述文件",
+        "Readme"
+      ],
+      "usage_context": "开源项目或内部项目仓库中，新成员入职或外部贡献者了解项目的第一入口",
+      "related_terms": [
+        "技术文档",
+        "API文档",
+        "变更日志"
+      ]
+    },
+    {
+      "term": "架构图",
+      "category": "技术写作",
+      "definition": "用图形化方式展示系统组件、模块关系、数据流向和部署拓扑的技术可视化文档。",
+      "aliases": [
+        "架构图",
+        "系统架构图",
+        "系统设计图",
+        "Architecture Diagram"
+      ],
+      "usage_context": "技术方案设计和文档撰写时，用于直观表达系统结构和各模块间的交互关系",
+      "related_terms": [
+        "技术方案",
+        "RFC",
+        "API文档"
+      ]
+    },
+    {
+      "term": "技术方案",
+      "category": "技术写作",
+      "definition": "针对特定业务需求提出的技术实现方案文档，包含技术选型对比、架构设计、风险评估和上线计划。",
+      "aliases": [
+        "技术设计文档",
+        "技术方案",
+        "设计文档",
+        "Tech Design Doc"
+      ],
+      "usage_context": "开发前由技术负责人或资深工程师编写，经评审通过后作为开发实施的技术纲领",
+      "related_terms": [
+        "RFC",
+        "架构图",
+        "需求评审",
+        "技术评审"
+      ]
+    },
+    {
+      "term": "OKR",
+      "category": "管理",
+      "definition": "目标与关键结果（Objectives and Key Results），设定定性目标和量化关键结果的目标管理框架，用于对齐团队方向。",
+      "aliases": [
+        "目标与关键结果",
+        "OKR管理"
+      ],
+      "usage_context": "公司和团队季度目标设定，目标鼓舞人心，关键结果可量化衡量是否达成",
+      "related_terms": [
+        "KPI",
+        "迭代",
+        "Sprint"
+      ]
+    },
+    {
+      "term": "KPI",
+      "category": "管理",
+      "definition": "关键绩效指标（Key Performance Indicators），量化衡量个人、团队或业务表现的标准化度量指标。",
+      "aliases": [
+        "关键绩效指标",
+        "绩效指标",
+        "KPI指标"
+      ],
+      "usage_context": "绩效考核和业务回顾时使用，用于评估工作成果和业务健康状况",
+      "related_terms": [
+        "OKR",
+        "数据分析",
+        "BI看板"
+      ]
+    },
+    {
+      "term": "迭代",
+      "category": "研发管理",
+      "definition": "软件产品分版本持续交付的开发模式，每个迭代周期内完成规划的功能并发布新版本，不断叠加功能和完善产品。",
+      "aliases": [
+        "版本迭代",
+        "Iteration",
+        "迭代开发"
+      ],
+      "usage_context": "互联网产品采用持续迭代模式，每周或每两周发布一个版本，快速响应用户需求",
+      "related_terms": [
+        "Sprint",
+        "敏捷开发",
+        "上线"
+      ]
+    },
+    {
+      "term": "上线",
+      "category": "研发流程",
+      "definition": "将开发完成的软件功能或版本部署到生产环境，正式向用户提供服务的关键发布操作。",
+      "aliases": [
+        "发布",
+        "发布上线",
+        "Go Live",
+        "Deploy"
+      ],
+      "usage_context": "测试验证通过后执行上线操作，通常配合灰度发布策略降低上线风险",
+      "related_terms": [
+        "灰度发布",
+        "回滚",
+        "CI/CD",
+        "Sprint"
+      ]
+    },
+    {
+      "term": "回滚",
+      "category": "研发流程",
+      "definition": "在新版本上线出现严重问题时，将系统恢复到上一个稳定版本的风险应对操作。",
+      "aliases": [
+        "Rollback",
+        "回退",
+        "版本回退"
+      ],
+      "usage_context": "上线后发现问题时立即触发回滚，是保障线上稳定性的最后一道防线",
+      "related_terms": [
+        "上线",
+        "灰度发布",
+        "CI/CD",
+        "SLA"
+      ]
+    },
+    {
+      "term": "SLA",
+      "category": "管理",
+      "definition": "服务等级协议（Service Level Agreement），定义服务提供方应达到的可用性、响应时间和处理时效等质量承诺标准。",
+      "aliases": [
+        "服务等级协议",
+        "服务可用性承诺",
+        "SLA标准"
+      ],
+      "usage_context": "技术团队与业务方约定的服务质量标准，如系统可用性99.9%、故障响应时间15分钟",
+      "related_terms": [
+        "上线",
+        "运维",
+        "线上监控"
+      ]
+    },
+    {
+      "term": "行为面试",
+      "category": "团队管理",
+      "definition": "通过考察候选人在过去特定情境下的行为表现来预测其未来工作表现的面试方法，以 STAR 法则（情境-任务-行动-结果）为核心框架。",
+      "aliases": [
+        "BEI面试",
+        "行为事件访谈",
+        "STAR面试"
+      ],
+      "usage_context": "招聘面试中用于评估候选人的实际工作能力和处事方式，特别适用于管理岗位和关键岗位招聘",
+      "related_terms": [
+        "技术面试",
+        "结构化面试",
+        "胜任力模型"
+      ]
+    },
+    {
+      "term": "技术面试",
+      "category": "团队管理",
+      "definition": "评估候选人技术能力和编程水平的面试环节，包括算法题、系统设计、技术深度追问和编码实践等考核内容。",
+      "aliases": [
+        "技术面",
+        "Tech Interview",
+        "技术考核"
+      ],
+      "usage_context": "技术岗位招聘中由技术负责人或资深工程师主导，评估候选人的技术深度和解决问题能力",
+      "related_terms": [
+        "行为面试",
+        "代码审查",
+        "技术方案",
+        "架构设计"
+      ]
+    },
+    {
+      "term": "结构化面试",
+      "category": "团队管理",
+      "definition": "按照预先设计的标准化流程和评估维度进行面试的方法，所有候选人被问及相同的问题集并采用统一的评分标准。",
+      "aliases": [
+        "结构化面谈",
+        "标准化面试",
+        "结构化评估"
+      ],
+      "usage_context": "大规模招聘或校招中确保面试公平性和可比性，减少面试官主观偏差对评估结果的影响",
+      "related_terms": [
+        "行为面试",
+        "胜任力模型",
+        "面试题库"
+      ]
+    },
+    {
+      "term": "胜任力模型",
+      "category": "团队管理",
+      "definition": "针对特定岗位设计的核心能力素质框架，包含知识、技能、态度和行为特质等维度，用于指导人才选拔和发展。",
+      "aliases": [
+        "能力模型",
+        "Competency Model",
+        "胜任力标准"
+      ],
+      "usage_context": "人力资源和招聘团队在岗位定义和人才评估时使用，确保招聘标准与岗位需求匹配",
+      "related_terms": [
+        "结构化面试",
+        "面试题库",
+        "OKR",
+        "KPI"
+      ]
+    },
+    {
+      "term": "面试题库",
+      "category": "团队管理",
+      "definition": "系统化收集和整理面试问题及评分标准的资源库，包含技术题、行为题、场景题等多类型题目及其评估要点。",
+      "aliases": [
+        "面试问题库",
+        "面试题集",
+        "面试资源库"
+      ],
+      "usage_context": "面试官在招聘过程中参考使用，确保面试问题的覆盖面和一致性，提高招聘效率",
+      "related_terms": [
+        "技术面试",
+        "结构化面试",
+        "胜任力模型"
+      ]
+    },
+    {
+      "term": "甘特图",
+      "category": "产品管理",
+      "definition": "以条形图形式展示项目任务、时间排期和依赖关系的可视化项目管理工具，横轴表示时间纵轴表示任务。",
+      "aliases": [
+        "Gantt Chart",
+        "项目进度图",
+        "横道图"
+      ],
+      "usage_context": "项目经理在项目规划阶段创建，用于跟踪各任务的开始/结束时间和关键里程碑",
+      "related_terms": [
+        "里程碑管理",
+        "关键路径",
+        "迭代",
+        "Sprint"
+      ]
+    },
+    {
+      "term": "里程碑管理",
+      "category": "产品管理",
+      "definition": "在项目时间线上设定关键节点和交付目标，通过检查里程碑完成情况来把控项目整体进度的管理方法。",
+      "aliases": [
+        "Milestone管理",
+        "里程碑计划",
+        "节点管理"
+      ],
+      "usage_context": "项目管理中用于划分阶段和评估进度，每个里程碑对应一个重要的可交付成果",
+      "related_terms": [
+        "甘特图",
+        "关键路径",
+        "风险管理",
+        "上线"
+      ]
+    },
+    {
+      "term": "关键路径",
+      "category": "产品管理",
+      "definition": "项目网络图中耗时最长的任务序列路径，决定了项目的最短完成工期，路径上的任何延迟都会影响整体交付时间。",
+      "aliases": [
+        "Critical Path",
+        "关键路径法",
+        "CPM"
+      ],
+      "usage_context": "项目经理在排期和资源调配时分析，识别对项目周期影响最大的关键任务集合",
+      "related_terms": [
+        "甘特图",
+        "里程碑管理",
+        "风险管理",
+        "敏捷开发"
+      ]
+    },
+    {
+      "term": "风险管理",
+      "category": "产品管理",
+      "definition": "系统识别、评估和应对项目潜在风险的持续管理过程，包括风险识别、定性定量分析、应对策略制定和监控。",
+      "aliases": [
+        "Risk Management",
+        "风险管控",
+        "风险应对"
+      ],
+      "usage_context": "项目经理在项目全生命周期中应用，减少不确定性对项目进度和质量的影响",
+      "related_terms": [
+        "里程碑管理",
+        "关键路径",
+        "项目章程",
+        "SLA"
+      ]
+    },
+    {
+      "term": "项目章程",
+      "category": "产品管理",
+      "definition": "正式授权项目启动的纲领性文件，明确项目目标、范围、关键干系人、预算和权限等核心要素，是项目的出生证明。",
+      "aliases": [
+        "Project Charter",
+        "项目立项书",
+        "项目授权书"
+      ],
+      "usage_context": "项目启动阶段由项目发起人签署发布，正式确认项目存在并授权项目经理调配资源",
+      "related_terms": [
+        "BRD",
+        "风险管理",
+        "PRD",
+        "需求评审"
+      ]
+    },
+    {
+      "term": "Docker",
+      "category": "运维部署",
+      "definition": "开源的容器化平台，将应用及其依赖打包到轻量级、可移植的容器中，实现环境一致性和快速部署的标准化交付。",
+      "aliases": [
+        "容器",
+        "Docker容器",
+        "容器化"
+      ],
+      "usage_context": "开发环境和生产环境的标准化交付，微服务架构中每个服务独立容器化运行",
+      "related_terms": [
+        "微服务",
+        "Kubernetes",
+        "CI/CD",
+        "灰度发布"
+      ]
+    },
+    {
+      "term": "Kubernetes",
+      "category": "运维部署",
+      "definition": "开源的容器编排平台，用于自动化容器的部署、扩展、负载均衡和故障恢复，是大规模微服务管理的行业标准方案。",
+      "aliases": [
+        "K8s",
+        "K8S",
+        "容器编排",
+        "Kube"
+      ],
+      "usage_context": "运维/SRE 团队管理大规模容器集群，实现服务的自动调度、弹性伸缩和滚动更新",
+      "related_terms": [
+        "Docker",
+        "微服务",
+        "服务网格",
+        "灰度发布"
+      ]
+    },
+    {
+      "term": "监控告警",
+      "category": "运维部署",
+      "definition": "对系统运行状态、性能指标和业务数据实施持续监测，在异常发生时自动触发通知和响应措施的运维保障体系。",
+      "aliases": [
+        "Monitoring & Alerting",
+        "系统监控",
+        "监控报警"
+      ],
+      "usage_context": "运维团队保障线上系统稳定性，实时监控 CPU/内存/接口延迟等关键指标并在异常时告警",
+      "related_terms": [
+        "SLA",
+        "日志分析",
+        "性能剖析",
+        "上线"
+      ]
+    },
+    {
+      "term": "日志分析",
+      "category": "运维部署",
+      "definition": "收集、存储和分析系统生成的日志数据，用于故障排查、性能分析、安全审计和用户行为追踪的技术实践。",
+      "aliases": [
+        "Log Analysis",
+        "日志管理",
+        "日志监控"
+      ],
+      "usage_context": "开发和运维团队在故障定位、性能调优和安全事件溯源时使用，是了解系统内部状态的主要手段",
+      "related_terms": [
+        "监控告警",
+        "性能剖析",
+        "渗透测试",
+        "数据分析"
+      ]
+    },
+    {
+      "term": "容灾备份",
+      "category": "运维部署",
+      "definition": "建立数据备份和系统冗余机制，在主站点发生故障时能够快速切换至备用站点恢复服务的灾难恢复保障体系。",
+      "aliases": [
+        "Disaster Recovery",
+        "灾备",
+        "容灾",
+        "数据备份"
+      ],
+      "usage_context": "运维和安全管理团队保障业务连续性，制定 RTO/RPO 目标并定期演练恢复流程",
+      "related_terms": [
+        "SLA",
+        "回滚",
+        "Kubernetes",
+        "安全基线"
+      ]
+    },
+    {
+      "term": "CI/CD 管道",
+      "category": "运维部署",
+      "definition": "自动化持续集成与持续部署的流水线系统，代码提交后自动完成构建、测试、审查和部署的全链路自动化流程。",
+      "aliases": [
+        "CI/CD Pipeline",
+        "CI/CD流水线",
+        "自动化发布管道"
+      ],
+      "usage_context": "研发和运维团队配置自动化发布流程，确保每次代码变更经过标准化检查后快速交付到生产环境",
+      "related_terms": [
+        "CI/CD",
+        "Docker",
+        "Kubernetes",
+        "灰度发布"
+      ]
+    },
+    {
+      "term": "用户体验",
+      "category": "设计体验",
+      "definition": "用户在使用产品、系统或服务过程中的整体感受和情感反应，涵盖易用性、效率、满意度和情感连接的综合性体验。",
+      "aliases": [
+        "User Experience",
+        "UX",
+        "用户体验设计"
+      ],
+      "usage_context": "产品经理和设计师在产品设计全周期关注的核心目标，通过用户研究评估和优化产品体验",
+      "related_terms": [
+        "原型",
+        "交互设计",
+        "可用性测试",
+        "信息架构"
+      ]
+    },
+    {
+      "term": "信息架构",
+      "category": "设计体验",
+      "definition": "对产品信息和内容进行结构化组织、分类标识和导航设计的学科，帮助用户高效找到所需信息和完成目标任务。",
+      "aliases": [
+        "Information Architecture",
+        "IA",
+        "信息组织"
+      ],
+      "usage_context": "产品设计和开发初期，规划网站或应用的内容分类体系和导航路径，确保信息可寻性",
+      "related_terms": [
+        "用户体验",
+        "交互设计",
+        "原型",
+        "需求评审"
+      ]
+    },
+    {
+      "term": "交互设计",
+      "category": "设计体验",
+      "definition": "设计产品与用户之间的交互行为、操作反馈和流程逻辑的学科，关注用户如何完成任务以及系统如何响应用户操作。",
+      "aliases": [
+        "Interaction Design",
+        "IxD",
+        "交互设计"
+      ],
+      "usage_context": "设计师定义产品的操作流程、按钮行为、页面转场和反馈机制，确保交互直觉易用",
+      "related_terms": [
+        "用户体验",
+        "原型",
+        "设计系统",
+        "可用性测试"
+      ]
+    },
+    {
+      "term": "设计系统",
+      "category": "设计体验",
+      "definition": "包含可复用组件、设计规范、样式指南和模式库的标准化设计资源集合，确保产品在多平台的一致性和开发效率。",
+      "aliases": [
+        "Design System",
+        "设计规范",
+        "组件库",
+        "UI规范"
+      ],
+      "usage_context": "设计团队和前端开发团队共同维护，用于保持产品视觉一致性并加速设计与开发协作",
+      "related_terms": [
+        "原型",
+        "交互设计",
+        "可用性测试",
+        "前端"
+      ]
+    },
+    {
+      "term": "可用性测试",
+      "category": "设计体验",
+      "definition": "邀请真实用户在受控环境中使用产品并观察其行为，发现可用性问题和验证设计方案的实证研究方法。",
+      "aliases": [
+        "Usability Testing",
+        "可用性评估",
+        "用户测试"
+      ],
+      "usage_context": "产品上线前或改版前由设计师组织，通过观察用户操作发现界面和交互流程中的痛点",
+      "related_terms": [
+        "用户体验",
+        "交互设计",
+        "原型",
+        "A/B测试"
+      ]
+    },
+    {
+      "term": "单元测试",
+      "category": "测试质量",
+      "definition": "对代码中最小的可测试单元（函数、方法、类）进行独立验证的自动化测试实践，确保每个代码单元按照预期工作。",
+      "aliases": [
+        "Unit Test",
+        "UT",
+        "单测"
+      ],
+      "usage_context": "开发人员在编码阶段同步编写，用于验证函数逻辑正确性并防止后续修改引入回归问题",
+      "related_terms": [
+        "集成测试",
+        "端到端测试",
+        "回归测试",
+        "代码审查"
+      ]
+    },
+    {
+      "term": "集成测试",
+      "category": "测试质量",
+      "definition": "验证多个模块或服务之间交互和协作是否正确的测试层级，检测接口调用、数据传递和外部依赖集成的潜在问题。",
+      "aliases": [
+        "Integration Test",
+        "集成测试",
+        "联调测试"
+      ],
+      "usage_context": "各模块开发完成后由开发或测试工程师执行，确保前后端接口、服务间调用和数据流畅通",
+      "related_terms": [
+        "单元测试",
+        "端到端测试",
+        "API",
+        "CI/CD"
+      ]
+    },
+    {
+      "term": "端到端测试",
+      "category": "测试质量",
+      "definition": "模拟真实用户从开始到完成完整业务流程的自动化测试，覆盖前端界面、后端服务、数据库和第三方集成的全链路验证。",
+      "aliases": [
+        "E2E Test",
+        "端到端测试",
+        "全链路测试",
+        "E2E"
+      ],
+      "usage_context": "核心业务流程上线前进行全路径验证，确保用户从进入系统到完成目标的每个环节正常工作",
+      "related_terms": [
+        "集成测试",
+        "单元测试",
+        "回归测试",
+        "自动化测试框架"
+      ]
+    },
+    {
+      "term": "回归测试",
+      "category": "测试质量",
+      "definition": "在代码修改或功能新增后重新执行已有测试用例，验证原有功能没有被破坏的测试策略，防止修改引入新缺陷。",
+      "aliases": [
+        "Regression Test",
+        "回归测试",
+        "回测"
+      ],
+      "usage_context": "每次代码变更后由测试工程师执行，确保新代码不会影响已有功能的正常使用",
+      "related_terms": [
+        "单元测试",
+        "端到端测试",
+        "CI/CD",
+        "自动化测试框架"
+      ]
+    },
+    {
+      "term": "压力测试",
+      "category": "测试质量",
+      "definition": "通过模拟高并发、大流量或极限负载来评估系统性能瓶颈和稳定性边界的非功能性测试方法。",
+      "aliases": [
+        "Stress Test",
+        "压测",
+        "负载测试",
+        "性能测试"
+      ],
+      "usage_context": "上线前或大促活动前由测试或运维团队执行，确定系统的最大承载能力和性能衰减曲线",
+      "related_terms": [
+        "性能剖析",
+        "SLA",
+        "并发优化",
+        "监控告警"
+      ]
+    },
+    {
+      "term": "自动化测试框架",
+      "category": "测试质量",
+      "definition": "提供测试用例编写、执行调度、报告生成和持续集成集成的标准化测试基础设施，提升测试效率和覆盖率。",
+      "aliases": [
+        "测试框架",
+        "自动化测试",
+        "Test Framework"
+      ],
+      "usage_context": "测试团队搭建和维护，支持单元/集成/E2E 多层级的自动化测试执行和管理",
+      "related_terms": [
+        "单元测试",
+        "集成测试",
+        "CI/CD管道",
+        "回归测试"
+      ]
+    },
+    {
+      "term": "分层架构",
+      "category": "架构设计",
+      "definition": "将系统按职责划分为表现层、业务逻辑层、数据访问层等多个层次，每层只与相邻层通信的经典架构模式。",
+      "aliases": [
+        "Layered Architecture",
+        "分层架构",
+        "N层架构"
+      ],
+      "usage_context": "系统设计初期由架构师确定整体结构，适用于业务逻辑清晰的中小型系统",
+      "related_terms": [
+        "微服务",
+        "事件驱动架构",
+        "领域驱动设计",
+        "CQRS"
+      ]
+    },
+    {
+      "term": "事件驱动架构",
+      "category": "架构设计",
+      "definition": "系统组件通过生产和消费事件进行异步通信的架构模式，事件生产者不关心消费者是谁，实现高度解耦和弹性伸缩。",
+      "aliases": [
+        "Event-Driven Architecture",
+        "EDA",
+        "事件驱动"
+      ],
+      "usage_context": "高并发、实时处理和复杂工作流场景中使用，适合需要弹性扩展的系统架构",
+      "related_terms": [
+        "微服务",
+        "CQRS",
+        "异步处理",
+        "服务网格"
+      ]
+    },
+    {
+      "term": "CQRS",
+      "category": "架构设计",
+      "definition": "命令查询职责分离模式（Command Query Responsibility Segregation），将数据的读写操作分离到不同的模型和存储中，优化查询和写入性能。",
+      "aliases": [
+        "命令查询职责分离",
+        "CQRS模式",
+        "读写分离架构"
+      ],
+      "usage_context": "复杂业务系统中读写负载差异大时使用，读模型和写模型可以独立优化和扩展",
+      "related_terms": [
+        "事件驱动架构",
+        "领域驱动设计",
+        "读写分离",
+        "数据库优化"
+      ]
+    },
+    {
+      "term": "领域驱动设计",
+      "category": "架构设计",
+      "definition": "以业务领域为核心驱动软件设计的开发方法论，通过通用语言、限界上下文、实体和值对象等概念建模复杂业务逻辑。",
+      "aliases": [
+        "DDD",
+        "Domain-Driven Design",
+        "领域驱动"
+      ],
+      "usage_context": "复杂业务系统的架构设计中，由领域专家和开发团队共同建模，确保软件反映真实业务规则",
+      "related_terms": [
+        "分层架构",
+        "微服务",
+        "CQRS",
+        "事件驱动架构"
+      ]
+    },
+    {
+      "term": "服务网格",
+      "category": "架构设计",
+      "definition": "在微服务架构中专门处理服务间通信的中间件基础设施层，负责服务发现、负载均衡、熔断限流和可观测性的统一管理。",
+      "aliases": [
+        "Service Mesh",
+        "服务网格",
+        "Istio"
+      ],
+      "usage_context": "大规模微服务部署中由架构师和运维团队引入，将通信逻辑从业务代码中剥离到基础设施层",
+      "related_terms": [
+        "微服务",
+        "Kubernetes",
+        "API",
+        "监控告警"
+      ]
+    },
+    {
+      "term": "微服务治理",
+      "category": "架构设计",
+      "definition": "对微服务集群进行全生命周期管理的工程实践，涵盖服务注册发现、配置管理、流量控制、熔断降级和链路追踪等能力。",
+      "aliases": [
+        "微服务管理",
+        "服务治理",
+        "Microservice Governance"
+      ],
+      "usage_context": "大规模微服务架构中的日常运维管理，确保服务集群的健康运行和故障快速恢复",
+      "related_terms": [
+        "微服务",
+        "服务网格",
+        "Kubernetes",
+        "监控告警"
+      ]
+    },
+    {
+      "term": "索引优化",
+      "category": "数据库",
+      "definition": "通过分析查询执行计划，合理设计和管理数据库索引以提升查询性能的优化过程，包括索引创建、调整和维护策略。",
+      "aliases": [
+        "索引调优",
+        "Index Optimization",
+        "索引策略"
+      ],
+      "usage_context": "后端工程师或DBA在数据库查询缓慢时分析并优化索引，减少全表扫描和提升查询响应速度",
+      "related_terms": [
+        "查询计划",
+        "分库分表",
+        "读写分离",
+        "缓存策略"
+      ]
+    },
+    {
+      "term": "查询计划",
+      "category": "数据库",
+      "definition": "数据库执行 SQL 查询时优化器选择的执行路径和执行方法，包括表的访问顺序、索引使用方式、连接算法等关键信息。",
+      "aliases": [
+        "执行计划",
+        "Query Plan",
+        "Explain Plan"
+      ],
+      "usage_context": "DBA 和开发工程师调优慢查询时使用，通过解读查询计划识别性能瓶颈和优化方向",
+      "related_terms": [
+        "索引优化",
+        "SQL查询",
+        "性能剖析",
+        "数据库优化"
+      ]
+    },
+    {
+      "term": "分库分表",
+      "category": "数据库",
+      "definition": "将单一数据库按水平或垂直维度拆分为多个数据库实例和数据表，解决单库数据量过大导致的性能瓶颈和存储限制问题。",
+      "aliases": [
+        "Sharding",
+        "分片",
+        "数据库分片",
+        "水平拆分"
+      ],
+      "usage_context": "数据量达到单库瓶颈时由 DBA 或架构师设计拆分方案，适用于大规模高并发业务系统",
+      "related_terms": [
+        "读写分离",
+        "索引优化",
+        "缓存策略",
+        "微服务"
+      ]
+    },
+    {
+      "term": "读写分离",
+      "category": "数据库",
+      "definition": "将数据库的读操作和写操作分发到不同的数据库实例上，主库处理写入，从库处理读取，提升系统的整体吞吐能力。",
+      "aliases": [
+        "读写分离架构",
+        "Read-Write Split",
+        "主从分离"
+      ],
+      "usage_context": "读多写少场景下由 DBA 或后端工程师配置，减轻主库压力并利用从库水平扩展读能力",
+      "related_terms": [
+        "分库分表",
+        "索引优化",
+        "CQRS",
+        "缓存策略"
+      ]
+    },
+    {
+      "term": "缓存策略",
+      "category": "数据库",
+      "definition": "将频繁访问的数据存储在高速缓存层（如 Redis/Memcached）中以减少数据库查询次数的技术方案，包含缓存更新、淘汰和穿透防护策略。",
+      "aliases": [
+        "Caching Strategy",
+        "缓存方案",
+        "缓存机制"
+      ],
+      "usage_context": "后端工程师在高并发或读密集场景中实施，通过缓存层降低数据库负载和提升响应速度",
+      "related_terms": [
+        "读写分离",
+        "分库分表",
+        "性能优化",
+        "并发优化"
+      ]
+    },
+    {
+      "term": "渗透测试",
+      "category": "安全合规",
+      "definition": "模拟攻击者视角对系统进行安全入侵测试的方法，通过发现和利用安全漏洞评估系统的实际防护能力和风险暴露面。",
+      "aliases": [
+        "Penetration Test",
+        "渗透测试",
+        "安全测试",
+        "渗透"
+      ],
+      "usage_context": "安全工程师定期或在重大版本上线前执行，识别系统存在的安全漏洞和攻击路径",
+      "related_terms": [
+        "漏洞扫描",
+        "安全基线",
+        "访问控制",
+        "数据加密"
+      ]
+    },
+    {
+      "term": "漏洞扫描",
+      "category": "安全合规",
+      "definition": "使用自动化工具对系统、网络和应用进行已知漏洞检测的过程，快速发现 CVE 漏洞、配置缺陷和不安全的第三方组件。",
+      "aliases": [
+        "Vulnerability Scan",
+        "漏洞检测",
+        "安全扫描"
+      ],
+      "usage_context": "安全团队例行执行的安全检查，作为持续安全监控的一部分，通常集成在 CI/CD 流水线中",
+      "related_terms": [
+        "渗透测试",
+        "安全基线",
+        "CI/CD管道",
+        "代码审查"
+      ]
+    },
+    {
+      "term": "安全基线",
+      "category": "安全合规",
+      "definition": "为系统和应用定义的最低安全配置标准和最佳实践集合，包括密码策略、权限控制、网络安全规则和日志审计要求。",
+      "aliases": [
+        "Security Baseline",
+        "安全基准",
+        "安全配置标准"
+      ],
+      "usage_context": "安全团队制定并推动实施，所有系统和应用上线前必须满足安全基线要求",
+      "related_terms": [
+        "渗透测试",
+        "漏洞扫描",
+        "访问控制",
+        "SLA"
+      ]
+    },
+    {
+      "term": "访问控制",
+      "category": "安全合规",
+      "definition": "通过身份认证和授权策略限制用户对系统资源和数据的访问权限，确保只有经过授权的用户才能执行特定操作的安全机制。",
+      "aliases": [
+        "Access Control",
+        "权限控制",
+        "RBAC",
+        "访问管理"
+      ],
+      "usage_context": "系统设计和运维中贯穿始终的安全机制，按最小权限原则分配用户的系统操作和数据访问权限",
+      "related_terms": [
+        "安全基线",
+        "数据加密",
+        "零信任架构",
+        "API"
+      ]
+    },
+    {
+      "term": "数据加密",
+      "category": "安全合规",
+      "definition": "使用加密算法将明文数据转换为密文数据的技术，包括传输加密（TLS/HTTPS）和存储加密（AES/RSA），保护数据的机密性和完整性。",
+      "aliases": [
+        "Data Encryption",
+        "加密",
+        "信息加密",
+        "加密保护"
+      ],
+      "usage_context": "安全工程师在数据传输和存储环节实施，确保敏感信息在传输和存储过程中不会被非法窃取",
+      "related_terms": [
+        "访问控制",
+        "安全基线",
+        "渗透测试",
+        "零信任架构"
+      ]
+    },
+    {
+      "term": "零信任架构",
+      "category": "安全合规",
+      "definition": "一种不信任任何网络位置的安全模型，默认不信任任何用户或设备，每次访问都需经过严格身份验证和授权检查的安全框架。",
+      "aliases": [
+        "Zero Trust",
+        "零信任",
+        "ZTNA",
+        "零信任网络"
+      ],
+      "usage_context": "安全架构设计时采用的高级安全模型，适用于远程办公、多云环境和云原生架构的安全防护",
+      "related_terms": [
+        "访问控制",
+        "数据加密",
+        "安全基线",
+        "微服务"
+      ]
+    },
+    {
+      "term": "CDN",
+      "category": "运维部署",
+      "definition": "内容分发网络（Content Delivery Network），将静态资源缓存到全球分布的边缘节点，使用户从最近的节点获取内容以加速访问速度。",
+      "aliases": [
+        "内容分发网络",
+        "Content Delivery Network",
+        "CDN加速"
+      ],
+      "usage_context": "前端和运维团队为提升全球用户访问速度配置，适用于图片、视频、JS/CSS 等静态资源加速",
+      "related_terms": [
+        "性能优化",
+        "懒加载",
+        "缓存策略",
+        "前端性能"
+      ]
+    },
+    {
+      "term": "懒加载",
+      "category": "运维部署",
+      "definition": "延迟加载非首屏或非立即需要的资源（图片、组件、数据），直到用户需要它们时才加载，以减少初始页面加载时间的优化技术。",
+      "aliases": [
+        "Lazy Loading",
+        "延迟加载",
+        "按需加载"
+      ],
+      "usage_context": "前端开发中提升页面首屏加载速度，图片较多的页面或长列表滚动加载时尤为有效",
+      "related_terms": [
+        "CDN",
+        "性能优化",
+        "并发优化",
+        "前端"
+      ]
+    },
+    {
+      "term": "并发优化",
+      "category": "运维部署",
+      "definition": "通过多线程、协程、异步 I/O 和连接池等技术手段提升系统同时处理多个请求或任务能力的优化技术集合。",
+      "aliases": [
+        "Concurrency Optimization",
+        "并发处理",
+        "并发性能"
+      ],
+      "usage_context": "后端和高并发系统的性能优化核心手段，适用于高流量 Web 服务和数据处理场景",
+      "related_terms": [
+        "异步处理",
+        "压力测试",
+        "性能剖析",
+        "缓存策略"
+      ]
+    },
+    {
+      "term": "异步处理",
+      "category": "运维部署",
+      "definition": "将任务提交后不等待结果立即返回，任务在后台执行完成后通过回调或轮询获取结果的编程模型，提高系统吞吐和响应速度。",
+      "aliases": [
+        "Async",
+        "异步",
+        "异步编程",
+        "异步处理"
+      ],
+      "usage_context": "I/O 密集型或耗时操作的优化手段，如消息队列处理、文件上传、批量数据处理的非阻塞执行",
+      "related_terms": [
+        "并发优化",
+        "事件驱动架构",
+        "性能剖析",
+        "消息队列"
+      ]
+    },
+    {
+      "term": "性能剖析",
+      "category": "运维部署",
+      "definition": "使用性能分析工具对系统运行时的 CPU 占用、内存分配、I/O 操作和函数调用耗时进行采样分析，定位性能瓶颈的方法。",
+      "aliases": [
+        "Profiling",
+        "性能分析",
+        "性能诊断",
+        "Profile"
+      ],
+      "usage_context": "开发和运维团队在性能调优时使用，通过 profiling 数据精准定位代码层面的性能热点",
+      "related_terms": [
+        "压力测试",
+        "并发优化",
+        "监控告警",
+        "日志分析"
+      ]
+    },
+    {
+      "term": "每日站会",
+      "category": "团队管理",
+      "definition": "敏捷开发团队每天早上进行的 15 分钟同步会议，各成员回答昨天做了什么、今天做什么、有什么阻碍三个核心问题。",
+      "aliases": [
+        "Daily Standup",
+        "站会",
+        "晨会",
+        "每日同步"
+      ],
+      "usage_context": "敏捷团队日常同步信息、暴露风险和协调工作，通常站立进行以控制会议时间",
+      "related_terms": [
+        "Sprint",
+        "回顾会议",
+        "敏捷开发",
+        "需求梳理"
+      ]
+    },
+    {
+      "term": "回顾会议",
+      "category": "团队管理",
+      "definition": "Sprint 或项目周期结束后团队进行的反思和持续改进会议，总结做得好的、需要改进的和下一步行动计划。",
+      "aliases": [
+        "Retrospective",
+        "Sprint回顾",
+        "复盘会",
+        "Retro"
+      ],
+      "usage_context": "每个迭代收尾阶段由 Scrum Master 或项目经理组织，团队共同检视流程并制定改进措施",
+      "related_terms": [
+        "每日站会",
+        "Sprint",
+        "敏捷开发",
+        "项目复盘"
+      ]
+    },
+    {
+      "term": "需求梳理",
+      "category": "团队管理",
+      "definition": "产品经理和开发团队共同对用户故事和需求进行细化讨论、拆分和预估的过程，确保需求在进入开发前足够清晰。",
+      "aliases": [
+        "Backlog Refinement",
+        "需求细化",
+        "待办事项梳理",
+        "Backlog梳理"
+      ],
+      "usage_context": "Sprint 开始前由产品经理主持，与开发团队一起评估需求优先级、拆分任务和估算工时",
+      "related_terms": [
+        "用户故事",
+        "Sprint",
+        "任务拆解",
+        "需求评审"
+      ]
+    },
+    {
+      "term": "任务拆解",
+      "category": "团队管理",
+      "definition": "将大型需求或用户故事拆分为较小的、可独立交付和估算的开发任务的技术，使工作量估算更准确和分配更灵活。",
+      "aliases": [
+        "Task Breakdown",
+        "任务分解",
+        "工作拆分",
+        "WBS"
+      ],
+      "usage_context": "需求梳理和 Sprint 规划阶段由产品经理和开发团队共同完成，确保每个任务都有明确的交付物",
+      "related_terms": [
+        "需求梳理",
+        "Sprint",
+        "用户故事",
+        "敏捷开发"
+      ]
+    },
+    {
+      "term": "跨部门协作",
+      "category": "团队管理",
+      "definition": "不同职能部门（产品、研发、运营、市场、销售等）围绕共同目标开展协同工作的模式，需要有效的沟通机制和利益对齐。",
+      "aliases": [
+        "跨部门合作",
+        "Cross-Functional Collaboration",
+        "部门协同"
+      ],
+      "usage_context": "涉及多部门参与的重大项目或产品上线中，需要建立跨团队的沟通机制和协作流程",
+      "related_terms": [
+        "需求评审",
+        "项目章程",
+        "风险管理",
+        "团队管理"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "name": "PRD撰写",
+      "description": "撰写产品需求文档（PRD），从用户需求和业务目标出发，定义功能范围、 用户流程、界面交互和验收标准。需要与业务方对齐需求，与技术团队 确认可实现性，确保文档清晰可执行。\n",
+      "typical_output": "PRD文档，包含项目背景与目标、功能范围与边界、用户流程图、 界面原型描述、验收标准、上线计划等内容\n",
+      "complexity": "medium",
+      "frequency": "very_high",
+      "follow_up_tree": "prd_writing"
+    },
+    {
+      "name": "代码生成",
+      "description": "根据功能需求和技术设计，编写高质量、可维护的代码。包括后端API 接口开发、前端页面组件实现、数据处理脚本编写以及SQL查询优化等， 需要遵循团队编码规范和最佳实践。\n",
+      "typical_output": "源代码文件、单元测试、接口文档、使用说明，以及相关的技术注释 和代码示例\n",
+      "complexity": "high",
+      "frequency": "very_high",
+      "follow_up_tree": "code_generation"
+    },
+    {
+      "name": "数据分析",
+      "description": "对业务数据进行系统性分析，包括描述性分析（发生了什么）、诊断性 分析（为什么会发生）、预测性分析（将会怎样）和建议性分析 （该怎么做），产出数据洞察驱动业务决策。\n",
+      "typical_output": "数据分析报告、可视化图表、BI看板、关键发现与建议、数据驱动 的决策方案\n",
+      "complexity": "medium",
+      "frequency": "high",
+      "follow_up_tree": "data_analysis"
+    },
+    {
+      "name": "技术文档",
+      "description": "编写各类技术文档，包括API接口文档、技术设计文档、用户操作手册、 运维手册等。要求内容准确、结构清晰、示例完整，帮助目标读者快速 理解和使用技术产品。\n",
+      "typical_output": "结构化技术文档、代码示例、架构图、API参考手册、排错指南、 使用教程\n",
+      "complexity": "medium",
+      "frequency": "high",
+      "follow_up_tree": "tech_doc"
+    },
+    {
+      "name": "工作总结",
+      "description": "撰写工作总结或述职报告，回顾周期内的工作成果、分析问题和不足、 规划下一阶段目标和行动方案。适配不同岗位（管理岗、执行岗、 技术负责人）和不同业绩表现的差异化表达。\n",
+      "typical_output": "工作总结报告，包含业绩回顾、亮点分析、问题反思、改进措施和 下阶段工作计划的完整汇报材料\n",
+      "complexity": "low",
+      "frequency": "medium",
+      "follow_up_tree": "work_summary"
+    },
+    {
+      "name": "面试招聘",
+      "description": "用户需要准备技术面试题目、行为面试问题，或制定招聘评估标准， 针对不同岗位和面试类型的专业化面试方案生成。\n",
+      "typical_output": "面试题库、面试评估表、技术面试题集、行为面试STAR问题列表、 候选人评估报告模板\n",
+      "complexity": "medium",
+      "frequency": "high",
+      "follow_up_tree": "interview_hiring"
+    },
+    {
+      "name": "项目管理",
+      "description": "用户需要制定项目计划、识别风险、跟踪里程碑进度，生成项目 管理相关文档和工具，确保项目按时按质交付。\n",
+      "typical_output": "项目计划书、风险管理表、里程碑路线图、项目周报模板、 项目复盘报告\n",
+      "complexity": "medium",
+      "frequency": "high",
+      "follow_up_tree": "project_mgmt"
+    },
+    {
+      "name": "运维部署",
+      "description": "用户需要设计部署方案、配置监控告警、制定容灾策略，生成 运维相关的规范文档和自动化方案。\n",
+      "typical_output": "部署方案文档、监控告警规则配置、容灾备份方案、运维手册、 Runbook故障处理流程\n",
+      "complexity": "high",
+      "frequency": "medium",
+      "follow_up_tree": "ops_deployment"
+    },
+    {
+      "name": "UI/UX 设计",
+      "description": "用户需要设计用户交互流程、建立设计系统、进行可用性测试， 生成用户体验设计相关的规范文档和设计说明。\n",
+      "typical_output": "设计规范文档、交互原型说明、设计系统组件指南、可用性测试报告、 用户旅程地图\n",
+      "complexity": "medium",
+      "frequency": "medium",
+      "follow_up_tree": "uiux_design"
+    },
+    {
+      "name": "测试策略",
+      "description": "用户需要制定测试方案、设计测试用例、评估测试覆盖率，生成 系统化的测试计划和质量管理文档。\n",
+      "typical_output": "测试计划文档、测试用例集、自动化测试方案、测试覆盖率报告、 质量评估报告\n",
+      "complexity": "medium",
+      "frequency": "high",
+      "follow_up_tree": "test_strategy"
+    },
+    {
+      "name": "架构设计",
+      "description": "用户需要进行系统架构设计、技术选型、架构评审，生成技术 架构相关的方案文档和设计决策记录。\n",
+      "typical_output": "架构设计文档、技术选型对比报告、系统架构图、接口规范文档、 架构评审记录\n",
+      "complexity": "high",
+      "frequency": "high",
+      "follow_up_tree": "arch_design"
+    },
+    {
+      "name": "数据库优化",
+      "description": "用户需要优化数据库查询性能、设计分库分表方案、制定缓存 策略，生成数据库优化方案和性能分析报告。\n",
+      "typical_output": "数据库优化方案、慢查询分析报告、分库分表设计方案、 缓存策略文档、索引优化建议\n",
+      "complexity": "high",
+      "frequency": "medium",
+      "follow_up_tree": "db_optimization"
+    },
+    {
+      "name": "安全审计",
+      "description": "用户需要进行安全评估、制定安全策略、整改安全隐患，生成 安全审计相关的评估报告和加固方案。\n",
+      "typical_output": "安全审计报告、渗透测试报告、安全加固方案、安全基线文档、 合规检查清单\n",
+      "complexity": "high",
+      "frequency": "medium",
+      "follow_up_tree": "security_audit"
+    },
+    {
+      "name": "性能优化",
+      "description": "用户需要分析性能瓶颈、制定优化方案、进行压测验证，生成 性能分析和优化相关的技术方案和评估报告。\n",
+      "typical_output": "性能分析报告、优化方案文档、压测报告、性能基线文档、 优化前后对比数据\n",
+      "complexity": "high",
+      "frequency": "medium",
+      "follow_up_tree": "perf_optimization"
+    },
+    {
+      "name": "团队协作",
+      "description": "用户需要改善团队协作流程、规范会议制度、提升沟通效率， 生成团队管理和协作相关的制度和规范文档。\n",
+      "typical_output": "团队协作规范、会议制度文档、沟通流程指南、团队建设方案、 跨部门协作流程\n",
+      "complexity": "low",
+      "frequency": "medium",
+      "follow_up_tree": "team_collab"
+    }
+  ],
+  "roles": [
+    {
+      "name": "产品经理",
+      "kpis": [
+        {
+          "name": "功能上线率",
+          "description": "规划的功能按时上线的比例",
+          "benchmark": "> 80%"
+        },
+        {
+          "name": "用户满意度",
+          "description": "产品上线后的用户满意度评分",
+          "benchmark": "> 4.0/5.0"
+        },
+        {
+          "name": "需求交付周期",
+          "description": "从需求提出到上线的平均天数",
+          "benchmark": "< 15天"
+        }
+      ],
+      "pain_points": [
+        "需求频繁变更导致计划被打乱",
+        "与研发团队沟通存在理解偏差",
+        "多项目并行时优先级冲突难以协调",
+        "业务方期望过高与开发资源有限的矛盾"
+      ],
+      "common_tasks": [
+        "PRD撰写",
+        "需求分析",
+        "竞品分析",
+        "用户调研",
+        "数据分析"
+      ],
+      "responsibilities": [
+        "负责产品规划和路线图制定",
+        "深入理解用户需求并转化为可执行的产品方案",
+        "协调设计、研发、测试等团队推动产品上线",
+        "持续跟踪产品数据并根据反馈迭代优化"
+      ]
+    },
+    {
+      "name": "前端工程师",
+      "kpis": [
+        {
+          "name": "页面加载时间",
+          "description": "核心页面的首屏加载耗时",
+          "benchmark": "< 2秒"
+        },
+        {
+          "name": "UI还原度",
+          "description": "前端实现与设计稿的视觉还原匹配度",
+          "benchmark": "> 95%"
+        },
+        {
+          "name": "线上Bug率",
+          "description": "每百行代码引入的线上缺陷数量",
+          "benchmark": "< 0.5个/百行"
+        }
+      ],
+      "pain_points": [
+        "产品需求频繁变更导致前端返工率高",
+        "多浏览器兼容性问题排查耗时",
+        "设计稿不完整或缺少交互状态说明",
+        "后端接口联调时接口字段频繁变更"
+      ],
+      "common_tasks": [
+        "页面功能开发",
+        "组件封装与复用",
+        "前端性能优化",
+        "多端适配（PC/移动端/H5）",
+        "技术方案设计"
+      ],
+      "responsibilities": [
+        "负责前端架构设计和技术选型",
+        "保障用户交互体验的流畅性和一致性",
+        "持续优化页面性能和加载速度",
+        "参与产品需求讨论，从前端视角提供可行性建议"
+      ]
+    },
+    {
+      "name": "后端工程师",
+      "kpis": [
+        {
+          "name": "API响应时间",
+          "description": "核心接口的平均响应耗时",
+          "benchmark": "< 200ms"
+        },
+        {
+          "name": "系统可用性",
+          "description": "服务月度可用时间占比",
+          "benchmark": "> 99.9%"
+        },
+        {
+          "name": "代码覆盖率",
+          "description": "单元测试对业务代码的覆盖比例",
+          "benchmark": "> 80%"
+        }
+      ],
+      "pain_points": [
+        "需求文档不清晰导致技术方案反复修改",
+        "接口频繁变更影响开发和联调进度",
+        "线上问题排查困难，缺乏有效日志和监控",
+        "历史遗留系统代码难以维护和扩展"
+      ],
+      "common_tasks": [
+        "API接口开发",
+        "数据库设计与优化",
+        "系统性能调优",
+        "微服务架构设计与拆分",
+        "技术方案撰写"
+      ],
+      "responsibilities": [
+        "负责服务端架构设计和核心代码开发",
+        "保障系统的高可用性、安全性和可扩展性",
+        "优化数据库查询和系统性能",
+        "参与技术评审和代码审查，把控代码质量"
+      ]
+    },
+    {
+      "name": "数据分析师",
+      "kpis": [
+        {
+          "name": "数据准确率",
+          "description": "数据分析结果与实际情况的匹配度",
+          "benchmark": "> 98%"
+        },
+        {
+          "name": "报表产出时效",
+          "description": "定期报表按计划交付的及时率",
+          "benchmark": "> 95%"
+        },
+        {
+          "name": "洞察采纳率",
+          "description": "分析建议被业务方采纳并落地的比例",
+          "benchmark": "> 60%"
+        }
+      ],
+      "pain_points": [
+        "不同部门数据口径不一致导致分析结果互相矛盾",
+        "大量临时取数需求挤压深度分析时间",
+        "业务方看不懂分析报告或对数据结论有质疑",
+        "埋点数据质量差影响分析结果可信度"
+      ],
+      "common_tasks": [
+        "数据提取与清洗",
+        "报表开发与BI看板搭建",
+        "归因分析与漏斗分析",
+        "A/B实验设计与效果评估",
+        "专题分析与业务洞察报告"
+      ],
+      "responsibilities": [
+        "建设和维护数据指标体系",
+        "输出高质量数据分析和业务洞察",
+        "保障数据质量和数据治理规范",
+        "推动数据驱动决策文化在团队落地"
+      ]
+    },
+    {
+      "name": "技术负责人",
+      "kpis": [
+        {
+          "name": "项目交付准时率",
+          "description": "负责项目按计划时间交付的比例",
+          "benchmark": "> 85%"
+        },
+        {
+          "name": "系统稳定性",
+          "description": "负责系统的P0级故障发生频率",
+          "benchmark": "< 1次/季度"
+        },
+        {
+          "name": "团队技术成长",
+          "description": "团队成员的技能提升和职级晋升情况",
+          "benchmark": "每年至少2人晋升"
+        }
+      ],
+      "pain_points": [
+        "技术债积累导致新功能开发效率持续下降",
+        "团队成员技术水平参差不齐，代码质量难以统一",
+        "业务压力与技术规范之间的平衡难以把握",
+        "跨团队协作时技术方案对齐和资源协调困难"
+      ],
+      "common_tasks": [
+        "技术架构设计与评审",
+        "核心代码Review",
+        "技术方案决策与选型",
+        "团队技术规划与人才培养",
+        "线上事故应急指挥"
+      ],
+      "responsibilities": [
+        "负责技术团队管理和技术方向规划",
+        "制定编码规范和工程技术标准",
+        "评估技术风险和推动技术升级",
+        "培养团队成员并建设技术文化"
+      ]
+    },
+    {
+      "name": "项目经理",
+      "kpis": [
+        {
+          "name": "项目交付及时率",
+          "description": "项目按计划里程碑交付的比例",
+          "benchmark": "> 85%"
+        },
+        {
+          "name": "需求变更响应速度",
+          "description": "从需求变更提出到重新排期的平均时间",
+          "benchmark": "< 3天"
+        },
+        {
+          "name": "干系人满意度",
+          "description": "项目干系人对项目进展和沟通的满意度评分",
+          "benchmark": "> 4.0/5.0"
+        }
+      ],
+      "pain_points": [
+        "需求频繁变更导致项目计划反复调整",
+        "跨部门资源协调困难，各团队优先级不一致",
+        "项目信息不透明，管理层得不到及时进展更新",
+        "风险评估不足导致突发问题影响交付"
+      ],
+      "common_tasks": [
+        "制定项目计划",
+        "风险管理",
+        "跨团队协作推进",
+        "里程碑跟踪",
+        "项目复盘总结"
+      ],
+      "responsibilities": [
+        "制定项目计划和时间线，管理关键路径",
+        "协调跨团队资源，推动项目按计划交付",
+        "识别和管理项目风险，制定应对策略",
+        "定期向干系人汇报项目进展和风险状态"
+      ]
+    },
+    {
+      "name": "QA测试工程师",
+      "kpis": [
+        {
+          "name": "缺陷检出率",
+          "description": "测试阶段发现的缺陷占总量比例",
+          "benchmark": "> 90%"
+        },
+        {
+          "name": "测试覆盖率",
+          "description": "核心功能的自动化测试覆盖比例",
+          "benchmark": "> 80%"
+        },
+        {
+          "name": "线上漏测率",
+          "description": "上线后每版本发现的漏测缺陷数",
+          "benchmark": "< 2个/版本"
+        }
+      ],
+      "pain_points": [
+        "需求文档不完整导致测试用例设计困难",
+        "开发联调延期挤压测试时间",
+        "回归测试工作量大，手动测试效率低",
+        "测试环境不稳定影响测试进度"
+      ],
+      "common_tasks": [
+        "测试计划制定",
+        "测试用例设计和评审",
+        "功能测试和回归测试执行",
+        "自动化测试脚本编写",
+        "缺陷跟踪和验证"
+      ],
+      "responsibilities": [
+        "制定测试策略和测试计划",
+        "设计全面的测试用例覆盖正常和异常场景",
+        "搭建和维护自动化测试框架",
+        "跟踪缺陷生命周期并推动修复",
+        "评估产品质量风险并给出上线建议"
+      ]
+    },
+    {
+      "name": "运维/SRE工程师",
+      "kpis": [
+        {
+          "name": "系统可用性",
+          "description": "生产服务月度可用时间占比",
+          "benchmark": "> 99.95%"
+        },
+        {
+          "name": "故障恢复时间",
+          "description": "P0级故障从发现到恢复的平均时长",
+          "benchmark": "< 30分钟"
+        },
+        {
+          "name": "部署成功率",
+          "description": "自动化部署的成功率",
+          "benchmark": "> 99%"
+        }
+      ],
+      "pain_points": [
+        "线上故障时定位问题耗时过长",
+        "凌晨被 oncall 电话打扰影响生活质量",
+        "手动运维操作多且容易出错",
+        "容量规划不足导致大流量时系统不稳定"
+      ],
+      "common_tasks": [
+        "线上监控告警配置",
+        "故障应急响应和处理",
+        "CI/CD流水线维护",
+        "容量规划和性能优化",
+        "容器集群管理"
+      ],
+      "responsibilities": [
+        "保障生产系统的高可用性和稳定性",
+        "建立和完善监控、告警和自动化运维体系",
+        "制定容灾备份方案并定期演练",
+        "优化部署流程和 CI/CD 管道效率"
+      ]
+    },
+    {
+      "name": "UI/UX设计师",
+      "kpis": [
+        {
+          "name": "设计交付满意度",
+          "description": "设计和开发团队对设计稿的满意度评分",
+          "benchmark": "> 4.5/5.0"
+        },
+        {
+          "name": "UI还原度",
+          "description": "前端实现与设计稿的视觉匹配度",
+          "benchmark": "> 95%"
+        },
+        {
+          "name": "可用性问题数",
+          "description": "用户测试中每轮发现的严重可用性问题",
+          "benchmark": "< 3个"
+        }
+      ],
+      "pain_points": [
+        "产品需求不清晰导致设计方向反复调整",
+        "开发实现与设计稿差异大，还原度不达标",
+        "缺乏用户研究机会，设计方案全靠经验判断",
+        "多平台适配工作量大，设计规范难以统一"
+      ],
+      "common_tasks": [
+        "用户界面设计",
+        "交互原型制作",
+        "设计系统维护",
+        "可用性测试",
+        "设计规范制定"
+      ],
+      "responsibilities": [
+        "负责产品视觉设计和交互体验",
+        "建立和维护设计系统与组件库",
+        "进行用户研究和可用性测试",
+        "与开发团队协作确保设计高还原度实现"
+      ]
+    },
+    {
+      "name": "安全工程师",
+      "kpis": [
+        {
+          "name": "漏洞修复周期",
+          "description": "高危漏洞从发现到修复的平均天数",
+          "benchmark": "< 7天"
+        },
+        {
+          "name": "安全事件数",
+          "description": "每季度发生的安全事件数量",
+          "benchmark": "< 1次"
+        },
+        {
+          "name": "安全培训覆盖率",
+          "description": "全员安全培训的完成比例",
+          "benchmark": "> 90%"
+        }
+      ],
+      "pain_points": [
+        "业务方认为安全措施拖慢开发进度",
+        "安全漏洞被忽略直到出现安全事故",
+        "缺乏自动化安全工具，大量依赖人工检查",
+        "开发团队缺乏安全意识，反复出现同类漏洞"
+      ],
+      "common_tasks": [
+        "安全漏洞扫描和渗透测试",
+        "安全架构评审",
+        "安全策略制定和基线检查",
+        "安全事件应急响应",
+        "安全培训和意识提升"
+      ],
+      "responsibilities": [
+        "制定和执行信息安全策略和标准",
+        "定期执行安全评估和渗透测试",
+        "监控和响应安全事件",
+        "推动安全左移，在开发阶段发现和修复漏洞",
+        "建立安全合规体系满足行业监管要求"
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "name": "功能上线流程",
+      "category": "研发流程",
+      "steps": [
+        {
+          "step": 1,
+          "name": "需求评审",
+          "owner": "产品经理",
+          "deliverables": [
+            "评审通过的PRD",
+            "产品原型图"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "技术设计",
+          "owner": "技术负责人",
+          "deliverables": [
+            "技术方案文档",
+            "架构设计图"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "开发实现",
+          "owner": "研发团队",
+          "deliverables": [
+            "功能代码",
+            "单元测试报告"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "代码审查",
+          "owner": "研发团队",
+          "deliverables": [
+            "审查通过的Pull Request",
+            "审查意见记录"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "测试验证",
+          "owner": "测试工程师",
+          "deliverables": [
+            "测试报告",
+            "Bug清单"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "灰度发布",
+          "owner": "运维/SRE",
+          "deliverables": [
+            "灰度环境部署报告",
+            "灰度数据监控报表"
+          ]
+        },
+        {
+          "step": 7,
+          "name": "全量上线",
+          "owner": "运维/SRE",
+          "deliverables": [
+            "上线确认报告"
+          ]
+        },
+        {
+          "step": 8,
+          "name": "线上监控",
+          "owner": "运维/SRE",
+          "deliverables": [
+            "线上监控看板",
+            "异常告警规则"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "代码审查是否通过？",
+          "yes": "",
+          "no": ""
+        },
+        {
+          "point": "灰度数据是否达标？",
+          "yes": "",
+          "no": ""
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "跳过灰度直接全量上线",
+          "impact": "潜在线上事故风险，故障影响面大",
+          "prevention": "强制灰度流程作为上线前置条件"
+        },
+        {
+          "name": "测试覆盖不足导致回归Bug",
+          "impact": "上线后已有功能出现异常",
+          "prevention": "建立测试覆盖率红线并自动化检查"
+        },
+        {
+          "name": "代码审查流于形式",
+          "impact": "低质量代码流入主干，积累技术债",
+          "prevention": "审查清单标准化，设置审查通过率指标"
+        }
+      ]
+    },
+    {
+      "name": "需求管理流程",
+      "category": "产品流程",
+      "steps": [
+        {
+          "step": 1,
+          "name": "需求收集",
+          "owner": "产品经理",
+          "deliverables": [
+            "需求记录表"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "优先级排序",
+          "owner": "产品经理",
+          "deliverables": [
+            "优先级排序列表"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "PRD撰写",
+          "owner": "产品经理",
+          "deliverables": [
+            "PRD初稿"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "需求评审",
+          "owner": "产品经理",
+          "deliverables": [
+            "评审通过的PRD"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "技术评审",
+          "owner": "技术负责人",
+          "deliverables": [
+            "技术方案评审结论"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "进入开发",
+          "owner": "研发团队",
+          "deliverables": [
+            "开发排期计划"
+          ]
+        },
+        {
+          "step": 7,
+          "name": "验收上线",
+          "owner": "产品经理",
+          "deliverables": [
+            "验收确认报告",
+            "上线通知"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "是否需要技术评审？",
+          "yes": "",
+          "no": ""
+        },
+        {
+          "point": "需求评审是否通过？",
+          "yes": "",
+          "no": ""
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "需求未经评审直接进入开发",
+          "impact": "理解和范围偏差导致返工，浪费开发资源",
+          "prevention": "强制需求评审作为开发前置条件"
+        },
+        {
+          "name": "验收标准不明确导致上线争议",
+          "impact": "功能上线后业务方不认可，多次返工",
+          "prevention": "PRD中明确可量化的验收标准并双方确认"
+        }
+      ]
+    },
+    {
+      "name": "数据分析流程",
+      "category": "数据流程",
+      "steps": [
+        {
+          "step": 1,
+          "name": "需求沟通",
+          "owner": "数据分析师",
+          "deliverables": [
+            "分析需求确认文档"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "数据提取",
+          "owner": "数据分析师",
+          "deliverables": [
+            "原始数据集"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "数据清洗",
+          "owner": "数据分析师",
+          "deliverables": [
+            "清洗后的干净数据集"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "分析建模",
+          "owner": "数据分析师",
+          "deliverables": [
+            "分析模型或统计结果"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "报告输出",
+          "owner": "数据分析师",
+          "deliverables": [
+            "数据分析报告",
+            "可视化图表"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "业务落地",
+          "owner": "业务方",
+          "deliverables": [
+            "落地行动计划"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "数据质量是否达标？",
+          "yes": "",
+          "no": ""
+        },
+        {
+          "point": "分析结果是否确认？",
+          "yes": "",
+          "no": ""
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "数据口径不一致导致结论偏差",
+          "impact": "分析结论不可信，业务方不采纳",
+          "prevention": "分析前统一指标定义和数据口径"
+        },
+        {
+          "name": "分析结果缺乏业务可操作性",
+          "impact": "报告停留在数据层面，无法推动行动",
+          "prevention": "分析过程中与业务方保持沟通，确保洞察可落地"
+        }
+      ]
+    },
+    {
+      "name": "敏捷开发Sprint流程",
+      "category": "研发流程",
+      "steps": [
+        {
+          "step": 1,
+          "name": "Sprint规划",
+          "owner": "产品经理 + 研发团队",
+          "deliverables": [
+            "Sprint待办事项列表",
+            "Sprint目标和交付承诺"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "需求梳理",
+          "owner": "产品经理",
+          "deliverables": [
+            "细化的用户故事",
+            "任务拆分和估算结果"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "开发实现",
+          "owner": "研发团队",
+          "deliverables": [
+            "功能代码",
+            "单元测试"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "代码审查",
+          "owner": "研发团队",
+          "deliverables": [
+            "通过的Pull Request",
+            "审查记录"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "测试验证",
+          "owner": "QA测试工程师",
+          "deliverables": [
+            "测试报告",
+            "缺陷清单"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "Sprint评审",
+          "owner": "产品经理 + 研发团队",
+          "deliverables": [
+            "功能演示",
+            "产品增量"
+          ]
+        },
+        {
+          "step": 7,
+          "name": "Sprint回顾",
+          "owner": "Scrum Master",
+          "deliverables": [
+            "回顾会议纪要",
+            "改进行动计划"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "Sprint目标是否完成？",
+          "yes": "",
+          "no": ""
+        },
+        {
+          "point": "代码审查是否通过？",
+          "yes": "",
+          "no": ""
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "需求范围蔓延（Scope Creep）",
+          "impact": "Sprint目标无法按时完成，团队加班赶工",
+          "prevention": "严格限制Sprint中的需求变更，新增需求排入下个Sprint"
+        },
+        {
+          "name": "回顾改进不落地",
+          "impact": "团队重复犯同样的错误，改进流于形式",
+          "prevention": "回顾会议产生具体的改进行动，下个Sprint跟踪完成情况"
+        }
+      ]
+    },
+    {
+      "name": "代码审查流程",
+      "category": "研发流程",
+      "steps": [
+        {
+          "step": 1,
+          "name": "代码提交",
+          "owner": "开发工程师",
+          "deliverables": [
+            "功能代码变更",
+            "变更说明描述"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "分配审查人",
+          "owner": "开发工程师",
+          "deliverables": [
+            "审查请求通知"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "代码审查",
+          "owner": "审查人",
+          "deliverables": [
+            "审查意见列表",
+            "问题标注"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "修改反馈",
+          "owner": "开发工程师",
+          "deliverables": [
+            "修改后的代码",
+            "问题回复说明"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "二次审查",
+          "owner": "审查人",
+          "deliverables": [
+            "审查通过确认"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "合并入库",
+          "owner": "审查人",
+          "deliverables": [
+            "合并提交记录"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "审查是否有阻塞性问题？",
+          "yes": "",
+          "no": ""
+        },
+        {
+          "point": "是否满足代码覆盖率要求？",
+          "yes": "",
+          "no": ""
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "审查流于形式走马观花",
+          "impact": "低质量代码合入主干，积累技术债",
+          "prevention": "审查清单标准化，规定每位审查人的最低审查时间"
+        },
+        {
+          "name": "审查等待时间过长",
+          "impact": "开发效率降低，上下文切换成本高",
+          "prevention": "设置SLA目标（如4小时内完成审查），轮换审查人分担负载"
+        }
+      ]
+    }
+  ],
+  "docs": [
+    {
+      "name": "PRD模板",
+      "task_type": "PRD撰写",
+      "sections": [
+        {
+          "title": "项目背景与目标",
+          "prompt_hint": "为什么要做这个功能？解决什么用户痛点？核心指标是什么？"
+        },
+        {
+          "title": "功能范围与边界",
+          "prompt_hint": "这个版本包含哪些功能？明确不做什么，第一期范围是什么？"
+        },
+        {
+          "title": "用户流程图",
+          "prompt_hint": "用户从进入到完成核心目标的完整流程，分支路径如何处理？"
+        },
+        {
+          "title": "界面原型描述",
+          "prompt_hint": "主要页面的布局、交互方式、按钮文案、异常状态说明"
+        },
+        {
+          "title": "验收标准",
+          "prompt_hint": "满足什么条件算完成？包含正常场景、异常场景和边界条件"
+        },
+        {
+          "title": "上线计划",
+          "prompt_hint": "灰度策略、上线时间窗口、回滚方案、监控指标"
+        }
+      ],
+      "tone": "专业，数据驱动，逻辑清晰",
+      "common_mistakes": [
+        "技术细节过多，业务方和研发关注点混淆",
+        "缺少量化验收标准，上线后争议不断",
+        "未区分P0/P1/P2需求优先级，关键功能不突出",
+        "只写了功能列表，缺少用户视角的流程说明"
+      ]
+    },
+    {
+      "name": "API文档模板",
+      "task_type": "代码生成",
+      "sections": [
+        {
+          "title": "接口概述",
+          "prompt_hint": "接口的用途说明、适用场景和调用方说明"
+        },
+        {
+          "title": "请求方法",
+          "prompt_hint": "HTTP方法（GET/POST/PUT/DELETE）、请求URL、Headers说明"
+        },
+        {
+          "title": "请求参数",
+          "prompt_hint": "参数名、类型、是否必填、默认值、示例值、校验规则"
+        },
+        {
+          "title": "响应格式",
+          "prompt_hint": "成功响应的数据结构、字段说明、类型定义和示例JSON"
+        },
+        {
+          "title": "错误码说明",
+          "prompt_hint": "所有错误码的定义、含义和排查建议"
+        },
+        {
+          "title": "调用示例",
+          "prompt_hint": "curl或代码示例，包含请求和响应的完整演示"
+        }
+      ],
+      "tone": "精确，规范，无歧义",
+      "common_mistakes": [
+        "缺少错误码说明，调用方无法正确处理异常",
+        "示例代码不可运行，缺少必要的上下文环境说明",
+        "未标注废弃字段和兼容性说明，调用方升级困难",
+        "参数校验规则不明确，调用方传参容易出错"
+      ]
+    },
+    {
+      "name": "技术方案模板",
+      "task_type": "技术文档",
+      "sections": [
+        {
+          "title": "背景与目标",
+          "prompt_hint": "业务需求背景、技术目标、约束条件和成功标准"
+        },
+        {
+          "title": "技术选型对比",
+          "prompt_hint": "至少2-3种可行方案的对比表格，包含优劣势和适用场景分析"
+        },
+        {
+          "title": "架构设计",
+          "prompt_hint": "系统模块划分、核心类图/组件图、数据流向和交互时序"
+        },
+        {
+          "title": "关键流程图",
+          "prompt_hint": "核心业务流程的技术视角序列图，异常流程的处理路径"
+        },
+        {
+          "title": "风险评估",
+          "prompt_hint": "技术难点、潜在风险、安全合规评估和应对措施"
+        },
+        {
+          "title": "上线方案",
+          "prompt_hint": "发布策略、灰度计划、回滚方案、监控告警和验证步骤"
+        }
+      ],
+      "tone": "理性，全面，务实",
+      "common_mistakes": [
+        "技术方案过于简略，只有一个方案没有对比选项",
+        "未考虑回滚方案，出现问题后无法快速恢复",
+        "忽略了非功能需求（性能、安全、可扩展性）",
+        "方案缺乏量化数据支撑，仅凭经验判断"
+      ]
+    },
+    {
+      "name": "数据分析报告模板",
+      "task_type": "数据分析",
+      "sections": [
+        {
+          "title": "分析背景与目的",
+          "prompt_hint": "为什么做这个分析？业务方想解决什么问题？决策点是什么？"
+        },
+        {
+          "title": "数据说明",
+          "prompt_hint": "数据来源、时间范围、指标口径定义、数据量说明和局限性"
+        },
+        {
+          "title": "核心发现",
+          "prompt_hint": "最重要的3-5个数据洞察，用数据可视化图表呈现关键趋势"
+        },
+        {
+          "title": "深入分析",
+          "prompt_hint": "分维度拆解分析，对比分析、漏斗分析、归因分析等详细方法"
+        },
+        {
+          "title": "结论与建议",
+          "prompt_hint": "基于数据分析的明确结论，以及可落地的具体行动建议"
+        }
+      ],
+      "tone": "数据驱动，客观，可执行",
+      "common_mistakes": [
+        "堆砌数据但缺乏洞察，没有提炼出有价值的结论",
+        "结论和建议脱节，建议没有数据支撑和优先级排序",
+        "未说明数据口径和局限，导致结论被轻易质疑",
+        "图表选择不当，信息传递效率低"
+      ]
+    },
+    {
+      "name": "项目计划模板",
+      "task_type": "项目管理",
+      "sections": [
+        {
+          "title": "项目背景与目标",
+          "prompt_hint": "项目的起因、商业目标和成功标准是什么？关键干系人有哪些？"
+        },
+        {
+          "title": "范围定义",
+          "prompt_hint": "项目包含的范围和边界，明确不做什么，以及假设和约束条件"
+        },
+        {
+          "title": "工作分解结构",
+          "prompt_hint": "将项目工作拆分为可管理的任务包，每个任务的负责人、工时和依赖关系"
+        },
+        {
+          "title": "里程碑计划",
+          "prompt_hint": "关键节点的交付物和时间点，用于度量项目进度"
+        },
+        {
+          "title": "风险登记册",
+          "prompt_hint": "识别的主要风险、影响程度、发生概率和应对措施，含优先级排序"
+        }
+      ],
+      "tone": "结构化，可量化，务实",
+      "common_mistakes": [
+        "计划过于详细导致难以维护，与实际偏差越来越大",
+        "风险识别流于形式，没有真正的应对措施",
+        "里程碑之间依赖关系不清晰，一处延迟影响全局",
+        "忽略了沟通计划和干系人管理"
+      ]
+    },
+    {
+      "name": "测试方案模板",
+      "task_type": "测试策略",
+      "sections": [
+        {
+          "title": "测试范围与策略",
+          "prompt_hint": "本次测试的范围、测试层级（单元/集成/E2E）和测试类型（功能/性能/安全）"
+        },
+        {
+          "title": "测试环境",
+          "prompt_hint": "测试环境配置、数据准备方案、第三方依赖Mock策略"
+        },
+        {
+          "title": "测试用例设计",
+          "prompt_hint": "核心功能的测试场景、边界条件、异常流程和预期结果"
+        },
+        {
+          "title": "自动化策略",
+          "prompt_hint": "哪些用例需要自动化，自动化框架选择和覆盖率目标"
+        },
+        {
+          "title": "缺陷管理",
+          "prompt_hint": "缺陷等级定义、处理流程、回归策略和上线标准"
+        }
+      ],
+      "tone": "全面，可操作，严谨",
+      "common_mistakes": [
+        "测试范围过于理想化，时间和资源不足时无法执行",
+        "测试数据准备不充分，耽误测试执行进度",
+        "自动化测试用例维护成本高，频繁变更导致大量失败",
+        "缺陷等级定义不明确，导致关键Bug被忽略"
+      ]
+    }
+  ],
+  "follow_up_trees": [
+    {
+      "task_type": "prd_writing",
+      "root_node_id": "prd_q1",
+      "nodes": {
+        "prd_q1": {
+          "node_id": "prd_q1",
+          "question_text": "这个PRD的主要受众是谁？",
+          "question_type": "single_choice",
+          "info_key": "prd_audience",
+          "depth": 1,
+          "options": [
+            {
+              "value": "dev_team",
+              "label": "研发团队（需要技术细节和实现说明）"
+            },
+            {
+              "value": "management",
+              "label": "管理层（关注ROI、时间线和商业价值）"
+            },
+            {
+              "value": "cross_dept",
+              "label": "跨部门协作（涉及运营、市场等多方）"
+            }
+          ],
+          "children": {
+            "dev_team": "prd_q2_scope",
+            "management": "prd_q3_mgmt",
+            "cross_dept": "prd_q4_stakeholders"
+          },
+          "fallback_node_id": "prd_q2_scope",
+          "is_leaf": false
+        },
+        "prd_q2_scope": {
+          "node_id": "prd_q2_scope",
+          "question_text": "功能涉及的范围是什么？",
+          "question_type": "multi_choice",
+          "info_key": "prd_scope",
+          "depth": 2,
+          "options": [
+            {
+              "value": "new_feature",
+              "label": "全新功能"
+            },
+            {
+              "value": "optimization",
+              "label": "优化改进"
+            },
+            {
+              "value": "migration",
+              "label": "技术迁移"
+            }
+          ],
+          "children": {
+            "new_feature": "prd_q5_detail",
+            "optimization": "prd_q5_detail",
+            "migration": "prd_q5_detail"
+          },
+          "fallback_node_id": "prd_q5_detail",
+          "is_leaf": false
+        },
+        "prd_q3_mgmt": {
+          "node_id": "prd_q3_mgmt",
+          "question_text": "管理层关注的核心目标是什么？",
+          "question_type": "single_choice",
+          "info_key": "prd_mgmt_goal",
+          "depth": 2,
+          "options": [
+            {
+              "value": "revenue",
+              "label": "提升营收或转化率"
+            },
+            {
+              "value": "efficiency",
+              "label": "降低运营成本或提升效率"
+            },
+            {
+              "value": "competitive",
+              "label": "应对竞争或抢占市场份额"
+            }
+          ],
+          "children": {
+            "revenue": "prd_q6_constraint",
+            "efficiency": "prd_q6_constraint",
+            "competitive": "prd_q6_constraint"
+          },
+          "fallback_node_id": "prd_q6_constraint",
+          "is_leaf": false
+        },
+        "prd_q4_stakeholders": {
+          "node_id": "prd_q4_stakeholders",
+          "question_text": "涉及哪些协作部门？",
+          "question_type": "multi_choice",
+          "info_key": "prd_stakeholders",
+          "depth": 2,
+          "options": [
+            {
+              "value": "ops",
+              "label": "运营团队"
+            },
+            {
+              "value": "market",
+              "label": "市场/营销团队"
+            },
+            {
+              "value": "legal",
+              "label": "法务/合规团队"
+            },
+            {
+              "value": "cs",
+              "label": "客服团队"
+            }
+          ],
+          "children": {
+            "ops": "prd_q7_output",
+            "market": "prd_q7_output",
+            "legal": "prd_q7_output",
+            "cs": "prd_q7_output"
+          },
+          "fallback_node_id": "prd_q7_output",
+          "is_leaf": false
+        },
+        "prd_q5_detail": {
+          "node_id": "prd_q5_detail",
+          "question_text": "产品所处的阶段是？",
+          "question_type": "single_choice",
+          "info_key": "prd_stage",
+          "depth": 3,
+          "options": [
+            {
+              "value": "0to1",
+              "label": "从0到1（全新产品线）"
+            },
+            {
+              "value": "growth",
+              "label": "快速增长期（快速迭代验证）"
+            },
+            {
+              "value": "mature",
+              "label": "成熟稳定期（精细化优化）"
+            }
+          ],
+          "children": {
+            "0to1": "prd_q6_constraint",
+            "growth": "prd_q6_constraint",
+            "mature": "prd_q6_constraint"
+          },
+          "fallback_node_id": "prd_q6_constraint",
+          "is_leaf": false
+        },
+        "prd_q6_constraint": {
+          "node_id": "prd_q6_constraint",
+          "question_text": "有哪些已知约束条件？",
+          "question_type": "multi_choice",
+          "info_key": "prd_constraints",
+          "depth": 3,
+          "options": [
+            {
+              "value": "time",
+              "label": "时间紧迫（deadline压力大）"
+            },
+            {
+              "value": "resource",
+              "label": "人力不足（团队资源有限）"
+            },
+            {
+              "value": "tech_debt",
+              "label": "技术债严重（现有代码扩展困难）"
+            },
+            {
+              "value": "compliance",
+              "label": "合规要求（需满足行业监管）"
+            }
+          ],
+          "children": {
+            "time": "prd_q7_output",
+            "resource": "prd_q7_output",
+            "tech_debt": "prd_q7_output",
+            "compliance": "prd_q7_output"
+          },
+          "fallback_node_id": "prd_q7_output",
+          "is_leaf": false
+        },
+        "prd_q7_output": {
+          "node_id": "prd_q7_output",
+          "question_text": "你希望PRD包含哪些核心部分？",
+          "question_type": "multi_choice",
+          "info_key": "prd_sections",
+          "depth": 4,
+          "options": [
+            {
+              "value": "bg",
+              "label": "项目背景与目标"
+            },
+            {
+              "value": "scope",
+              "label": "功能范围与边界"
+            },
+            {
+              "value": "flow",
+              "label": "用户流程图"
+            },
+            {
+              "value": "ui",
+              "label": "界面原型描述"
+            },
+            {
+              "value": "acceptance",
+              "label": "验收标准"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "code_generation",
+      "root_node_id": "code_q1",
+      "nodes": {
+        "code_q1": {
+          "node_id": "code_q1",
+          "question_text": "你需要生成什么类型的代码？",
+          "question_type": "single_choice",
+          "info_key": "code_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "api",
+              "label": "后端API接口"
+            },
+            {
+              "value": "frontend",
+              "label": "前端页面/组件"
+            },
+            {
+              "value": "script",
+              "label": "脚本/工具"
+            },
+            {
+              "value": "sql",
+              "label": "SQL查询"
+            }
+          ],
+          "children": {
+            "api": "code_q2_tech",
+            "frontend": "code_q2_tech",
+            "script": "code_q2_tech",
+            "sql": "code_q2_tech"
+          },
+          "fallback_node_id": "code_q2_tech",
+          "is_leaf": false
+        },
+        "code_q2_tech": {
+          "node_id": "code_q2_tech",
+          "question_text": "使用的技术栈是什么？（语言、框架、版本等）",
+          "question_type": "text_input",
+          "info_key": "code_tech_stack",
+          "depth": 2,
+          "options": [],
+          "children": {
+            "_any": "code_q3_style"
+          },
+          "fallback_node_id": "code_q3_style",
+          "is_leaf": false
+        },
+        "code_q3_style": {
+          "node_id": "code_q3_style",
+          "question_text": "代码风格和质量的偏好是什么？",
+          "question_type": "multi_choice",
+          "info_key": "code_style",
+          "depth": 3,
+          "options": [
+            {
+              "value": "clean",
+              "label": "简洁清晰（代码易读）"
+            },
+            {
+              "value": "performance",
+              "label": "性能优先（运行效率优先）"
+            },
+            {
+              "value": "robust",
+              "label": "健壮防御（全面校验和异常处理）"
+            },
+            {
+              "value": "testable",
+              "label": "可测试性好（便于写UT和Mock）"
+            }
+          ],
+          "children": {
+            "clean": "code_q4_env",
+            "performance": "code_q4_env",
+            "robust": "code_q4_env",
+            "testable": "code_q4_env"
+          },
+          "fallback_node_id": "code_q4_env",
+          "is_leaf": false
+        },
+        "code_q4_env": {
+          "node_id": "code_q4_env",
+          "question_text": "代码运行的上下文环境是什么？（部署环境、依赖约束等）",
+          "question_type": "text_input",
+          "info_key": "code_context",
+          "depth": 3,
+          "options": [],
+          "children": {
+            "_any": "code_q5_output"
+          },
+          "fallback_node_id": "code_q5_output",
+          "is_leaf": false
+        },
+        "code_q5_output": {
+          "node_id": "code_q5_output",
+          "question_text": "期望的输出格式是什么？",
+          "question_type": "multi_choice",
+          "info_key": "code_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "code_only",
+              "label": "纯代码（简洁输出）"
+            },
+            {
+              "value": "with_comment",
+              "label": "含详细注释"
+            },
+            {
+              "value": "with_test",
+              "label": "含单元测试"
+            },
+            {
+              "value": "with_doc",
+              "label": "含使用文档"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        },
+        "code_q6_constraint": {
+          "node_id": "code_q6_constraint",
+          "question_text": "有什么特殊约束条件？（安全要求、兼容性、性能指标等）",
+          "question_type": "text_input",
+          "info_key": "code_constraints",
+          "depth": 4,
+          "options": [],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "data_analysis",
+      "root_node_id": "data_q1",
+      "nodes": {
+        "data_q1": {
+          "node_id": "data_q1",
+          "question_text": "你需要什么类型的分析？",
+          "question_type": "single_choice",
+          "info_key": "analysis_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "descriptive",
+              "label": "描述性分析（发生了什么？）"
+            },
+            {
+              "value": "diagnostic",
+              "label": "诊断性分析（为什么会发生？）"
+            },
+            {
+              "value": "predictive",
+              "label": "预测性分析（将会怎样？）"
+            },
+            {
+              "value": "prescriptive",
+              "label": "建议性分析（该怎么办？）"
+            }
+          ],
+          "children": {
+            "descriptive": "data_q2_data",
+            "diagnostic": "data_q2_data",
+            "predictive": "data_q2_data",
+            "prescriptive": "data_q2_data"
+          },
+          "fallback_node_id": "data_q2_data",
+          "is_leaf": false
+        },
+        "data_q2_data": {
+          "node_id": "data_q2_data",
+          "question_text": "数据来源和格式是什么？",
+          "question_type": "text_input",
+          "info_key": "data_source",
+          "depth": 2,
+          "options": [],
+          "children": {
+            "_any": "data_q3_dim"
+          },
+          "fallback_node_id": "data_q3_dim",
+          "is_leaf": false
+        },
+        "data_q3_dim": {
+          "node_id": "data_q3_dim",
+          "question_text": "关注哪些分析维度？",
+          "question_type": "multi_choice",
+          "info_key": "data_dimensions",
+          "depth": 3,
+          "options": [
+            {
+              "value": "user",
+              "label": "用户行为（活跃、留存、转化）"
+            },
+            {
+              "value": "revenue",
+              "label": "营收/收入（GMV、ARPU、利润率）"
+            },
+            {
+              "value": "product",
+              "label": "产品功能（使用率、功能渗透）"
+            },
+            {
+              "value": "operation",
+              "label": "运营效率（成本、人效、ROI）"
+            }
+          ],
+          "children": {
+            "user": "data_q4_output",
+            "revenue": "data_q4_output",
+            "product": "data_q4_output",
+            "operation": "data_q4_output"
+          },
+          "fallback_node_id": "data_q4_output",
+          "is_leaf": false
+        },
+        "data_q4_output": {
+          "node_id": "data_q4_output",
+          "question_text": "分析结果的呈现方式是什么？",
+          "question_type": "single_choice",
+          "info_key": "data_output",
+          "depth": 3,
+          "options": [
+            {
+              "value": "dashboard",
+              "label": "BI看板（实时可视化展示）"
+            },
+            {
+              "value": "report",
+              "label": "分析报告（结构化文档）"
+            },
+            {
+              "value": "insight",
+              "label": "关键洞察（一句话结论）"
+            },
+            {
+              "value": "presentation",
+              "label": "汇报PPT（面向管理层）"
+            }
+          ],
+          "children": {
+            "dashboard": "data_q5_detail",
+            "report": "data_q5_detail",
+            "insight": "data_q5_detail",
+            "presentation": "data_q5_detail"
+          },
+          "fallback_node_id": "data_q5_detail",
+          "is_leaf": false
+        },
+        "data_q5_detail": {
+          "node_id": "data_q5_detail",
+          "question_text": "有哪些特殊分析要求？",
+          "question_type": "multi_choice",
+          "info_key": "data_special",
+          "depth": 4,
+          "options": [
+            {
+              "value": "comparison",
+              "label": "同比/环比对比分析"
+            },
+            {
+              "value": "segment",
+              "label": "用户分层/分群分析"
+            },
+            {
+              "value": "funnel",
+              "label": "漏斗转化分析"
+            },
+            {
+              "value": "cohort",
+              "label": "Cohort留存分析"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        },
+        "data_q6_goal": {
+          "node_id": "data_q6_goal",
+          "question_text": "分析的最终目的是什么？",
+          "question_type": "single_choice",
+          "info_key": "data_goal",
+          "depth": 2,
+          "options": [
+            {
+              "value": "exploration",
+              "label": "探索性发现（在数据中找趋势和模式）"
+            },
+            {
+              "value": "reporting",
+              "label": "定期汇报（按固定指标出报表）"
+            },
+            {
+              "value": "decision",
+              "label": "决策支持（为具体问题提供数据依据）"
+            }
+          ],
+          "children": {
+            "exploration": "data_q2_data",
+            "reporting": "data_q2_data",
+            "decision": "data_q2_data"
+          },
+          "fallback_node_id": "data_q2_data",
+          "is_leaf": false
+        }
+      }
+    },
+    {
+      "task_type": "tech_doc",
+      "root_node_id": "doc_q1",
+      "nodes": {
+        "doc_q1": {
+          "node_id": "doc_q1",
+          "question_text": "需要写什么类型的技术文档？",
+          "question_type": "single_choice",
+          "info_key": "doc_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "api_doc",
+              "label": "API接口文档"
+            },
+            {
+              "value": "design_doc",
+              "label": "技术设计文档"
+            },
+            {
+              "value": "user_guide",
+              "label": "用户操作手册"
+            },
+            {
+              "value": "runbook",
+              "label": "运维手册/Runbook"
+            }
+          ],
+          "children": {
+            "api_doc": "doc_q2_audience",
+            "design_doc": "doc_q2_audience",
+            "user_guide": "doc_q2_audience",
+            "runbook": "doc_q2_audience"
+          },
+          "fallback_node_id": "doc_q2_audience",
+          "is_leaf": false
+        },
+        "doc_q2_audience": {
+          "node_id": "doc_q2_audience",
+          "question_text": "文档的目标读者是谁？",
+          "question_type": "single_choice",
+          "info_key": "doc_audience",
+          "depth": 2,
+          "options": [
+            {
+              "value": "dev",
+              "label": "开发工程师（需要技术细节和代码示例）"
+            },
+            {
+              "value": "ops",
+              "label": "运维/SRE（关注部署和运维操作）"
+            },
+            {
+              "value": "pm",
+              "label": "产品/项目经理（关注能力和限制）"
+            },
+            {
+              "value": "customer",
+              "label": "终端用户（需要图文并茂的教程）"
+            }
+          ],
+          "children": {
+            "dev": "doc_q3_level",
+            "ops": "doc_q3_level",
+            "pm": "doc_q3_level",
+            "customer": "doc_q3_level"
+          },
+          "fallback_node_id": "doc_q3_level",
+          "is_leaf": false
+        },
+        "doc_q3_level": {
+          "node_id": "doc_q3_level",
+          "question_text": "读者的技术水平如何？",
+          "question_type": "single_choice",
+          "info_key": "doc_level",
+          "depth": 3,
+          "options": [
+            {
+              "value": "beginner",
+              "label": "入门级（需要大量背景解释和入门指导）"
+            },
+            {
+              "value": "intermediate",
+              "label": "中级（熟悉基础概念，需要具体用法）"
+            },
+            {
+              "value": "expert",
+              "label": "专家级（只需关键信息、API参考和注意事项）"
+            }
+          ],
+          "children": {
+            "beginner": "doc_q4_scope",
+            "intermediate": "doc_q4_scope",
+            "expert": "doc_q4_scope"
+          },
+          "fallback_node_id": "doc_q4_scope",
+          "is_leaf": false
+        },
+        "doc_q4_scope": {
+          "node_id": "doc_q4_scope",
+          "question_text": "文档需要覆盖哪些内容范围？",
+          "question_type": "multi_choice",
+          "info_key": "doc_scope",
+          "depth": 4,
+          "options": [
+            {
+              "value": "overview",
+              "label": "概览/架构说明"
+            },
+            {
+              "value": "detail",
+              "label": "详细操作说明"
+            },
+            {
+              "value": "example",
+              "label": "使用示例和最佳实践"
+            },
+            {
+              "value": "trouble",
+              "label": "排错指南和常见问题"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        },
+        "doc_q5_detail": {
+          "node_id": "doc_q5_detail",
+          "question_text": "有什么附加要求或特殊格式需求？",
+          "question_type": "text_input",
+          "info_key": "doc_extra",
+          "depth": 4,
+          "options": [],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "work_summary",
+      "root_node_id": "sum_q1",
+      "nodes": {
+        "sum_q1": {
+          "node_id": "sum_q1",
+          "question_text": "你的岗位角色是什么？",
+          "question_type": "single_choice",
+          "info_key": "sum_role",
+          "depth": 1,
+          "options": [
+            {
+              "value": "manager",
+              "label": "管理岗（带团队）"
+            },
+            {
+              "value": "ic",
+              "label": "一线执行（Individual Contributor）"
+            },
+            {
+              "value": "tech_lead",
+              "label": "技术负责人（带项目不带人）"
+            }
+          ],
+          "children": {
+            "manager": "sum_q2_period",
+            "ic": "sum_q2_period",
+            "tech_lead": "sum_q2_period"
+          },
+          "fallback_node_id": "sum_q2_period",
+          "is_leaf": false
+        },
+        "sum_q2_period": {
+          "node_id": "sum_q2_period",
+          "question_text": "总结的周期是什么？",
+          "question_type": "single_choice",
+          "info_key": "sum_period",
+          "depth": 2,
+          "options": [
+            {
+              "value": "weekly",
+              "label": "周报（简要、聚焦本周工作）"
+            },
+            {
+              "value": "monthly",
+              "label": "月报（阶段性回顾）"
+            },
+            {
+              "value": "quarterly",
+              "label": "季度述职（正式绩效回顾）"
+            },
+            {
+              "value": "yearly",
+              "label": "年终总结（全年全景回顾）"
+            }
+          ],
+          "children": {
+            "weekly": "sum_q3_perf",
+            "monthly": "sum_q3_perf",
+            "quarterly": "sum_q3_perf",
+            "yearly": "sum_q3_perf"
+          },
+          "fallback_node_id": "sum_q3_perf",
+          "is_leaf": false
+        },
+        "sum_q3_perf": {
+          "node_id": "sum_q3_perf",
+          "question_text": "本周期业绩表现如何？",
+          "question_type": "single_choice",
+          "info_key": "sum_performance",
+          "depth": 3,
+          "options": [
+            {
+              "value": "good",
+              "label": "完成得很好（达成甚至超出目标）"
+            },
+            {
+              "value": "mixed",
+              "label": "有亮点也有不足（部分完成）"
+            },
+            {
+              "value": "poor",
+              "label": "结果不理想（未达预期）"
+            }
+          ],
+          "children": {
+            "good": "sum_q4_focus",
+            "mixed": "sum_q4_focus",
+            "poor": "sum_q6_detail"
+          },
+          "fallback_node_id": "sum_q4_focus",
+          "is_leaf": false
+        },
+        "sum_q4_focus": {
+          "node_id": "sum_q4_focus",
+          "question_text": "总结的侧重点是什么？",
+          "question_type": "multi_choice",
+          "info_key": "sum_focus",
+          "depth": 4,
+          "options": [
+            {
+              "value": "result",
+              "label": "成果展示（突出业绩和产出）"
+            },
+            {
+              "value": "growth",
+              "label": "成长反思（总结经验和教训）"
+            },
+            {
+              "value": "plan",
+              "label": "下阶段规划（目标和行动计划）"
+            },
+            {
+              "value": "team",
+              "label": "团队建设（团队管理和培养）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        },
+        "sum_q5_style": {
+          "node_id": "sum_q5_style",
+          "question_text": "期望的表达风格是什么？",
+          "question_type": "single_choice",
+          "info_key": "sum_style",
+          "depth": 4,
+          "options": [
+            {
+              "value": "data_driven",
+              "label": "数据驱动（用数字和图表说话）"
+            },
+            {
+              "value": "story",
+              "label": "故事叙述（讲过程和关键里程碑）"
+            },
+            {
+              "value": "concise",
+              "label": "精炼要点（PPT风格，条目化）"
+            },
+            {
+              "value": "comprehensive",
+              "label": "全面详尽（正式报告风格）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        },
+        "sum_q6_detail": {
+          "node_id": "sum_q6_detail",
+          "question_text": "结果不理想的原因是什么？有哪些反思和改进计划？",
+          "question_type": "text_input",
+          "info_key": "sum_failure_analysis",
+          "depth": 4,
+          "options": [],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "interview_hiring",
+      "root_node_id": "ih_q1",
+      "nodes": {
+        "ih_q1": {
+          "node_id": "ih_q1",
+          "question_text": "面试类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "interview_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "tech",
+              "label": "技术面试（考察技术能力和编程水平）"
+            },
+            {
+              "value": "behavioral",
+              "label": "行为面试（考察处事方式和软技能）"
+            },
+            {
+              "value": "comprehensive",
+              "label": "综合面试（技术+行为结合）"
+            }
+          ],
+          "children": {
+            "tech": "ih_q2",
+            "behavioral": "ih_q2_behavioral",
+            "comprehensive": "ih_q2"
+          },
+          "fallback_node_id": "ih_q2",
+          "is_leaf": false
+        },
+        "ih_q2": {
+          "node_id": "ih_q2",
+          "question_text": "候选人经验级别如何？",
+          "question_type": "single_choice",
+          "info_key": "interview_level",
+          "depth": 2,
+          "options": [
+            {
+              "value": "junior",
+              "label": "初级（1-3年经验，注重基础能力）"
+            },
+            {
+              "value": "mid",
+              "label": "中级（3-5年经验，注重独立工作能力）"
+            },
+            {
+              "value": "senior",
+              "label": "高级（5年+经验，注重架构和领导力）"
+            }
+          ],
+          "children": {
+            "junior": "ih_q3",
+            "mid": "ih_q3",
+            "senior": "ih_q3"
+          },
+          "fallback_node_id": "ih_q3",
+          "is_leaf": false
+        },
+        "ih_q2_behavioral": {
+          "node_id": "ih_q2_behavioral",
+          "question_text": "行为面试关注的场景是什么？",
+          "question_type": "single_choice",
+          "info_key": "interview_behavioral_scene",
+          "depth": 2,
+          "options": [
+            {
+              "value": "conflict",
+              "label": "冲突处理（解决团队分歧或矛盾）"
+            },
+            {
+              "value": "leadership",
+              "label": "领导力（带领团队达成目标）"
+            },
+            {
+              "value": "failure",
+              "label": "失败经历（面对挫折的反思和成长）"
+            }
+          ],
+          "children": {
+            "conflict": "ih_q3",
+            "leadership": "ih_q3",
+            "failure": "ih_q3"
+          },
+          "fallback_node_id": "ih_q3",
+          "is_leaf": false
+        },
+        "ih_q3": {
+          "node_id": "ih_q3",
+          "question_text": "考察重点是什么？",
+          "question_type": "multi_choice",
+          "info_key": "interview_focus",
+          "depth": 3,
+          "options": [
+            {
+              "value": "depth",
+              "label": "技术深度（知识广度和底层理解）"
+            },
+            {
+              "value": "problem",
+              "label": "解决问题能力（分析和拆解复杂问题）"
+            },
+            {
+              "value": "comm",
+              "label": "沟通协作（团队沟通和跨部门协调）"
+            },
+            {
+              "value": "growth",
+              "label": "学习成长（技术热情和持续学习）"
+            }
+          ],
+          "children": {
+            "depth": "ih_q4",
+            "problem": "ih_q4",
+            "comm": "ih_q4",
+            "growth": "ih_q4"
+          },
+          "fallback_node_id": "ih_q4",
+          "is_leaf": false
+        },
+        "ih_q4": {
+          "node_id": "ih_q4",
+          "question_text": "期望的面试产出物是什么？",
+          "question_type": "multi_choice",
+          "info_key": "interview_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "scorecard",
+              "label": "结构化评估表（各维度打分和评语）"
+            },
+            {
+              "value": "record",
+              "label": "面试记录（问题和回答详细记录）"
+            },
+            {
+              "value": "report",
+              "label": "反馈报告（录用建议和发展建议）"
+            },
+            {
+              "value": "questions",
+              "label": "面试题库（针对该岗位的推荐题目）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "project_mgmt",
+      "root_node_id": "pm_q1",
+      "nodes": {
+        "pm_q1": {
+          "node_id": "pm_q1",
+          "question_text": "项目当前处于什么阶段？",
+          "question_type": "single_choice",
+          "info_key": "pm_phase",
+          "depth": 1,
+          "options": [
+            {
+              "value": "start",
+              "label": "启动阶段（立项、规划、资源确认）"
+            },
+            {
+              "value": "execute",
+              "label": "执行阶段（开发推进、进度跟踪）"
+            },
+            {
+              "value": "close",
+              "label": "收尾阶段（交付验收、复盘总结）"
+            }
+          ],
+          "children": {
+            "start": "pm_q2_start",
+            "execute": "pm_q2_execute",
+            "close": "pm_q2_close"
+          },
+          "fallback_node_id": "pm_q2_start",
+          "is_leaf": false
+        },
+        "pm_q2_start": {
+          "node_id": "pm_q2_start",
+          "question_text": "项目启动阶段重点是什么？",
+          "question_type": "single_choice",
+          "info_key": "pm_start_focus",
+          "depth": 2,
+          "options": [
+            {
+              "value": "goal",
+              "label": "目标定义（明确范围和成功标准）"
+            },
+            {
+              "value": "stakeholder",
+              "label": "干系人识别（关键干系人和沟通计划）"
+            },
+            {
+              "value": "resource",
+              "label": "资源规划（人力、预算和时间评估）"
+            }
+          ],
+          "children": {
+            "goal": "pm_q3",
+            "stakeholder": "pm_q3",
+            "resource": "pm_q3"
+          },
+          "fallback_node_id": "pm_q3",
+          "is_leaf": false
+        },
+        "pm_q2_execute": {
+          "node_id": "pm_q2_execute",
+          "question_text": "执行阶段核心关注点是什么？",
+          "question_type": "single_choice",
+          "info_key": "pm_execute_focus",
+          "depth": 2,
+          "options": [
+            {
+              "value": "progress",
+              "label": "进度跟踪（里程碑完成情况和偏差）"
+            },
+            {
+              "value": "quality",
+              "label": "质量控制（交付物质量把关）"
+            },
+            {
+              "value": "team",
+              "label": "团队管理（人员调配和冲突协调）"
+            }
+          ],
+          "children": {
+            "progress": "pm_q3",
+            "quality": "pm_q3",
+            "team": "pm_q3"
+          },
+          "fallback_node_id": "pm_q3",
+          "is_leaf": false
+        },
+        "pm_q2_close": {
+          "node_id": "pm_q2_close",
+          "question_text": "项目收尾需要什么？",
+          "question_type": "single_choice",
+          "info_key": "pm_close_focus",
+          "depth": 2,
+          "options": [
+            {
+              "value": "delivery",
+              "label": "交付验收（干系人确认和签收）"
+            },
+            {
+              "value": "review",
+              "label": "复盘总结（经验教训和知识归档）"
+            },
+            {
+              "value": "transition",
+              "label": "交接转移（文档移交和团队解散）"
+            }
+          ],
+          "children": {
+            "delivery": "pm_q3",
+            "review": "pm_q4",
+            "transition": "pm_q4"
+          },
+          "fallback_node_id": "pm_q3",
+          "is_leaf": false
+        },
+        "pm_q3": {
+          "node_id": "pm_q3",
+          "question_text": "项目管理工具和模板需求是什么？",
+          "question_type": "multi_choice",
+          "info_key": "pm_tools",
+          "depth": 3,
+          "options": [
+            {
+              "value": "progress",
+              "label": "进度跟踪（甘特图、里程碑路线图）"
+            },
+            {
+              "value": "risk",
+              "label": "风险管控（风险登记册、应对计划）"
+            },
+            {
+              "value": "resource",
+              "label": "资源协调（资源分配表、负载视图）"
+            },
+            {
+              "value": "comm",
+              "label": "沟通管理（周报模板、会议纪要）"
+            }
+          ],
+          "children": {
+            "progress": "pm_q4",
+            "risk": "pm_q4",
+            "resource": "pm_q4",
+            "comm": "pm_q4"
+          },
+          "fallback_node_id": "pm_q4",
+          "is_leaf": false
+        },
+        "pm_q4": {
+          "node_id": "pm_q4",
+          "question_text": "期望的交付物格式是什么？",
+          "question_type": "multi_choice",
+          "info_key": "pm_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "plan",
+              "label": "项目计划书（含WBS和时间线）"
+            },
+            {
+              "value": "roadmap",
+              "label": "里程碑路线图（关键节点时间表）"
+            },
+            {
+              "value": "register",
+              "label": "风险登记册（风险清单和应对措施）"
+            },
+            {
+              "value": "report",
+              "label": "项目周报（进展、风险和下周计划）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "ops_deployment",
+      "root_node_id": "ops_q1",
+      "nodes": {
+        "ops_q1": {
+          "node_id": "ops_q1",
+          "question_text": "部署环境类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "ops_env",
+          "depth": 1,
+          "options": [
+            {
+              "value": "cloud",
+              "label": "云环境（公有云/私有云/混合云）"
+            },
+            {
+              "value": "onprem",
+              "label": "本地部署（自建机房、物理服务器）"
+            },
+            {
+              "value": "hybrid",
+              "label": "混合环境（云端+本地结合）"
+            }
+          ],
+          "children": {
+            "cloud": "ops_q2",
+            "onprem": "ops_q2",
+            "hybrid": "ops_q2"
+          },
+          "fallback_node_id": "ops_q2",
+          "is_leaf": false
+        },
+        "ops_q2": {
+          "node_id": "ops_q2",
+          "question_text": "使用的技术和工具栈是什么？",
+          "question_type": "multi_choice",
+          "info_key": "ops_tech_stack",
+          "depth": 2,
+          "options": [
+            {
+              "value": "container",
+              "label": "容器化（Docker、容器运行时）"
+            },
+            {
+              "value": "orchestrate",
+              "label": "编排平台（Kubernetes、Swarm）"
+            },
+            {
+              "value": "monitor",
+              "label": "监控方案（Prometheus、Grafana）"
+            },
+            {
+              "value": "logging",
+              "label": "日志系统（ELK、Loki、EFK）"
+            }
+          ],
+          "children": {
+            "container": "ops_q3",
+            "orchestrate": "ops_q3",
+            "monitor": "ops_q3",
+            "logging": "ops_q3"
+          },
+          "fallback_node_id": "ops_q3",
+          "is_leaf": false
+        },
+        "ops_q3": {
+          "node_id": "ops_q3",
+          "question_text": "监控和告警需求是什么？",
+          "question_type": "multi_choice",
+          "info_key": "ops_monitor",
+          "depth": 3,
+          "options": [
+            {
+              "value": "infra",
+              "label": "基础设施监控（CPU/内存/磁盘/网络）"
+            },
+            {
+              "value": "apm",
+              "label": "应用性能监控（接口延迟/错误率）"
+            },
+            {
+              "value": "biz",
+              "label": "业务指标监控（用户量/交易量/转化率）"
+            },
+            {
+              "value": "log",
+              "label": "日志监控（异常日志/错误聚合分析）"
+            }
+          ],
+          "children": {
+            "infra": "ops_q4",
+            "apm": "ops_q4",
+            "biz": "ops_q4",
+            "log": "ops_q4"
+          },
+          "fallback_node_id": "ops_q4",
+          "is_leaf": false
+        },
+        "ops_q4": {
+          "node_id": "ops_q4",
+          "question_text": "SLA 和容灾要求是什么？",
+          "question_type": "single_choice",
+          "info_key": "ops_sla",
+          "depth": 3,
+          "options": [
+            {
+              "value": "standard",
+              "label": "标准（99.9%可用性，RTO<4小时）"
+            },
+            {
+              "value": "high",
+              "label": "高要求（99.99%可用性，RTO<1小时）"
+            },
+            {
+              "value": "critical",
+              "label": "关键业务（99.999%可用性，RTO<15分钟）"
+            }
+          ],
+          "children": {
+            "standard": "ops_q5",
+            "high": "ops_q5",
+            "critical": "ops_q5"
+          },
+          "fallback_node_id": "ops_q5",
+          "is_leaf": false
+        },
+        "ops_q5": {
+          "node_id": "ops_q5",
+          "question_text": "期望的产出物是什么？",
+          "question_type": "multi_choice",
+          "info_key": "ops_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "deploy",
+              "label": "部署方案（架构和流程文档）"
+            },
+            {
+              "value": "monitor",
+              "label": "监控配置（告警规则和仪表盘）"
+            },
+            {
+              "value": "dr",
+              "label": "容灾方案（备份策略和切换流程）"
+            },
+            {
+              "value": "runbook",
+              "label": "运维手册（故障处理和日常操作指南）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "uiux_design",
+      "root_node_id": "ux_q1",
+      "nodes": {
+        "ux_q1": {
+          "node_id": "ux_q1",
+          "question_text": "当前设计阶段是什么？",
+          "question_type": "single_choice",
+          "info_key": "ux_phase",
+          "depth": 1,
+          "options": [
+            {
+              "value": "research",
+              "label": "用户研究（理解用户需求和痛点）"
+            },
+            {
+              "value": "prototype",
+              "label": "原型设计（低保真/高保真原型制作）"
+            },
+            {
+              "value": "system",
+              "label": "设计系统（规范和组件库建设）"
+            },
+            {
+              "value": "visual",
+              "label": "视觉设计（高保真UI和视觉风格）"
+            }
+          ],
+          "children": {
+            "research": "ux_q2",
+            "prototype": "ux_q2_proto",
+            "system": "ux_q2_sys",
+            "visual": "ux_q2_visual"
+          },
+          "fallback_node_id": "ux_q2",
+          "is_leaf": false
+        },
+        "ux_q2": {
+          "node_id": "ux_q2",
+          "question_text": "目标用户群体和研究方法是什么？",
+          "question_type": "single_choice",
+          "info_key": "ux_research_method",
+          "depth": 2,
+          "options": [
+            {
+              "value": "interview",
+              "label": "用户访谈（深度了解用户需求和痛点）"
+            },
+            {
+              "value": "survey",
+              "label": "问卷调查（大规模收集用户反馈）"
+            },
+            {
+              "value": "testing",
+              "label": "可用性测试（观察用户操作问题）"
+            }
+          ],
+          "children": {
+            "interview": "ux_q3",
+            "survey": "ux_q3",
+            "testing": "ux_q3"
+          },
+          "fallback_node_id": "ux_q3",
+          "is_leaf": false
+        },
+        "ux_q2_proto": {
+          "node_id": "ux_q2_proto",
+          "question_text": "原型保真度要求是什么？",
+          "question_type": "single_choice",
+          "info_key": "ux_proto_fidelity",
+          "depth": 2,
+          "options": [
+            {
+              "value": "lowfi",
+              "label": "低保真（线框图、快速验证布局）"
+            },
+            {
+              "value": "hifi",
+              "label": "高保真（接近最终效果的视觉稿）"
+            },
+            {
+              "value": "interactive",
+              "label": "可交互原型（点击跳转的动态原型）"
+            }
+          ],
+          "children": {
+            "lowfi": "ux_q3",
+            "hifi": "ux_q3",
+            "interactive": "ux_q3"
+          },
+          "fallback_node_id": "ux_q3",
+          "is_leaf": false
+        },
+        "ux_q2_sys": {
+          "node_id": "ux_q2_sys",
+          "question_text": "设计系统建设范围是什么？",
+          "question_type": "single_choice",
+          "info_key": "ux_system_scope",
+          "depth": 2,
+          "options": [
+            {
+              "value": "component",
+              "label": "组件库（基础UI组件的规范和实现）"
+            },
+            {
+              "value": "style",
+              "label": "样式指南（色彩、字体、间距等视觉规范）"
+            },
+            {
+              "value": "pattern",
+              "label": "模式库（常见交互模式和使用规范）"
+            }
+          ],
+          "children": {
+            "component": "ux_q3",
+            "style": "ux_q3",
+            "pattern": "ux_q3"
+          },
+          "fallback_node_id": "ux_q3",
+          "is_leaf": false
+        },
+        "ux_q2_visual": {
+          "node_id": "ux_q2_visual",
+          "question_text": "视觉风格倾向是什么？",
+          "question_type": "single_choice",
+          "info_key": "ux_visual_style",
+          "depth": 2,
+          "options": [
+            {
+              "value": "minimal",
+              "label": "简约风（干净、留白多、聚焦内容）"
+            },
+            {
+              "value": "vibrant",
+              "label": "活力风（色彩丰富、动效多、年轻化）"
+            },
+            {
+              "value": "enterprise",
+              "label": "企业风（稳重、专业、B端风格）"
+            }
+          ],
+          "children": {
+            "minimal": "ux_q3",
+            "vibrant": "ux_q3",
+            "enterprise": "ux_q3"
+          },
+          "fallback_node_id": "ux_q3",
+          "is_leaf": false
+        },
+        "ux_q3": {
+          "node_id": "ux_q3",
+          "question_text": "需要哪些设计交付物？",
+          "question_type": "multi_choice",
+          "info_key": "ux_deliverables",
+          "depth": 3,
+          "options": [
+            {
+              "value": "design",
+              "label": "设计稿（多状态、多尺寸的界面设计）"
+            },
+            {
+              "value": "spec",
+              "label": "交互说明（交互逻辑和状态转换描述）"
+            },
+            {
+              "value": "doc",
+              "label": "规范文档（设计规范和组件使用说明）"
+            },
+            {
+              "value": "asset",
+              "label": "切图资源（标注图、切图文件、图标）"
+            }
+          ],
+          "children": {
+            "design": "ux_q4",
+            "spec": "ux_q4",
+            "doc": "ux_q4",
+            "asset": "ux_q4"
+          },
+          "fallback_node_id": "ux_q4",
+          "is_leaf": false
+        },
+        "ux_q4": {
+          "node_id": "ux_q4",
+          "question_text": "是否需要额外支持？",
+          "question_type": "multi_choice",
+          "info_key": "ux_extra",
+          "depth": 4,
+          "options": [
+            {
+              "value": "review",
+              "label": "设计评审（专家评审和改进建议）"
+            },
+            {
+              "value": "test",
+              "label": "用户测试（验证设计方案的可用性）"
+            },
+            {
+              "value": "dev",
+              "label": "开发支持（配合前端实现设计还原）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "test_strategy",
+      "root_node_id": "ts_q1",
+      "nodes": {
+        "ts_q1": {
+          "node_id": "ts_q1",
+          "question_text": "测试的层级范围是什么？",
+          "question_type": "single_choice",
+          "info_key": "ts_level",
+          "depth": 1,
+          "options": [
+            {
+              "value": "unit",
+              "label": "单元测试（验证函数和方法的逻辑正确性）"
+            },
+            {
+              "value": "integration",
+              "label": "集成测试（验证模块间的接口交互）"
+            },
+            {
+              "value": "e2e",
+              "label": "端到端测试（全链路业务流程验证）"
+            }
+          ],
+          "children": {
+            "unit": "ts_q2",
+            "integration": "ts_q2",
+            "e2e": "ts_q2"
+          },
+          "fallback_node_id": "ts_q2",
+          "is_leaf": false
+        },
+        "ts_q2": {
+          "node_id": "ts_q2",
+          "question_text": "被测系统的技术栈是什么？",
+          "question_type": "single_choice",
+          "info_key": "ts_tech_stack",
+          "depth": 2,
+          "options": [
+            {
+              "value": "web",
+              "label": "Web前端（浏览器端页面和交互）"
+            },
+            {
+              "value": "api",
+              "label": "后端API（REST/GraphQL接口服务）"
+            },
+            {
+              "value": "mobile",
+              "label": "移动端（iOS/Android原生或跨平台）"
+            },
+            {
+              "value": "micro",
+              "label": "微服务（分布式服务间依赖复杂）"
+            }
+          ],
+          "children": {
+            "web": "ts_q3",
+            "api": "ts_q3",
+            "mobile": "ts_q3",
+            "micro": "ts_q3"
+          },
+          "fallback_node_id": "ts_q3",
+          "is_leaf": false
+        },
+        "ts_q3": {
+          "node_id": "ts_q3",
+          "question_text": "期望的测试覆盖目标是什么？",
+          "question_type": "single_choice",
+          "info_key": "ts_coverage",
+          "depth": 3,
+          "options": [
+            {
+              "value": "basic",
+              "label": "基础覆盖（核心功能路径覆盖约60%）"
+            },
+            {
+              "value": "medium",
+              "label": "中等覆盖（主要功能覆盖约80%）"
+            },
+            {
+              "value": "full_high",
+              "label": "全面覆盖（全部功能覆盖90%+）"
+            }
+          ],
+          "children": {
+            "basic": "ts_q4",
+            "medium": "ts_q5",
+            "full_high": "ts_q5"
+          },
+          "fallback_node_id": "ts_q4",
+          "is_leaf": false
+        },
+        "ts_q4": {
+          "node_id": "ts_q4",
+          "question_text": "测试类型需求有哪些？",
+          "question_type": "multi_choice",
+          "info_key": "ts_type",
+          "depth": 3,
+          "options": [
+            {
+              "value": "func",
+              "label": "功能测试（验证功能是否符合需求）"
+            },
+            {
+              "value": "perf",
+              "label": "性能测试（响应时间和吞吐量验证）"
+            },
+            {
+              "value": "security",
+              "label": "安全测试（安全漏洞检测）"
+            },
+            {
+              "value": "regression",
+              "label": "回归测试（确保原有功能不受影响）"
+            }
+          ],
+          "children": {
+            "func": "ts_q6",
+            "perf": "ts_q6",
+            "security": "ts_q6",
+            "regression": "ts_q6"
+          },
+          "fallback_node_id": "ts_q6",
+          "is_leaf": false
+        },
+        "ts_q5": {
+          "node_id": "ts_q5",
+          "question_text": "自动化测试需求是什么？",
+          "question_type": "multi_choice",
+          "info_key": "ts_automation",
+          "depth": 4,
+          "options": [
+            {
+              "value": "ci",
+              "label": "CI集成（自动化触发和报告）"
+            },
+            {
+              "value": "report",
+              "label": "自动报告（测试结果汇总和趋势分析）"
+            },
+            {
+              "value": "alert",
+              "label": "失败通知（测试失败自动通知团队）"
+            }
+          ],
+          "children": {
+            "ci": "ts_q6",
+            "report": "ts_q6",
+            "alert": "ts_q6"
+          },
+          "fallback_node_id": "ts_q6",
+          "is_leaf": false
+        },
+        "ts_q6": {
+          "node_id": "ts_q6",
+          "question_text": "期望的输出物是什么？",
+          "question_type": "multi_choice",
+          "info_key": "ts_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "cases",
+              "label": "测试用例集（全面覆盖的场景和路径）"
+            },
+            {
+              "value": "scripts",
+              "label": "自动化脚本（可持续执行的测试代码）"
+            },
+            {
+              "value": "report",
+              "label": "测试报告（结果汇总和质量评估）"
+            },
+            {
+              "value": "assessment",
+              "label": "质量评估（上线风险和建议）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "arch_design",
+      "root_node_id": "ad_q1",
+      "nodes": {
+        "ad_q1": {
+          "node_id": "ad_q1",
+          "question_text": "需要架构设计的系统类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "ad_system_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "web_app",
+              "label": "Web应用（传统单体或前后端分离）"
+            },
+            {
+              "value": "micro_service",
+              "label": "微服务（多服务分布式系统）"
+            },
+            {
+              "value": "data_platform",
+              "label": "数据平台（大数据处理和存储系统）"
+            }
+          ],
+          "children": {
+            "web_app": "ad_q2",
+            "micro_service": "ad_q2",
+            "data_platform": "ad_q2"
+          },
+          "fallback_node_id": "ad_q2",
+          "is_leaf": false
+        },
+        "ad_q2": {
+          "node_id": "ad_q2",
+          "question_text": "系统的规模量级如何？",
+          "question_type": "single_choice",
+          "info_key": "ad_scale",
+          "depth": 2,
+          "options": [
+            {
+              "value": "small",
+              "label": "小型（<10万用户，单机可部署）"
+            },
+            {
+              "value": "medium",
+              "label": "中型（10-100万用户，需多机架构）"
+            },
+            {
+              "value": "large",
+              "label": "大型（>100万用户，需分布式架构）"
+            }
+          ],
+          "children": {
+            "small": "ad_q3",
+            "medium": "ad_q3",
+            "large": "ad_q3"
+          },
+          "fallback_node_id": "ad_q3",
+          "is_leaf": false
+        },
+        "ad_q3": {
+          "node_id": "ad_q3",
+          "question_text": "关键非功能需求有哪些？",
+          "question_type": "multi_choice",
+          "info_key": "ad_nfr",
+          "depth": 3,
+          "options": [
+            {
+              "value": "availability",
+              "label": "高可用（冗余部署、故障自动切换）"
+            },
+            {
+              "value": "performance",
+              "label": "高性能（低延迟、高吞吐量）"
+            },
+            {
+              "value": "scalability",
+              "label": "可扩展（水平扩展能力、弹性伸缩）"
+            },
+            {
+              "value": "security",
+              "label": "安全合规（数据保护、合规要求）"
+            }
+          ],
+          "children": {
+            "availability": "ad_q4",
+            "performance": "ad_q4",
+            "scalability": "ad_q4",
+            "security": "ad_q4"
+          },
+          "fallback_node_id": "ad_q4",
+          "is_leaf": false
+        },
+        "ad_q4": {
+          "node_id": "ad_q4",
+          "question_text": "技术约束条件有哪些？",
+          "question_type": "multi_choice",
+          "info_key": "ad_constraints",
+          "depth": 3,
+          "options": [
+            {
+              "value": "tech_stack",
+              "label": "技术栈限制（必须使用特定语言或框架）"
+            },
+            {
+              "value": "budget",
+              "label": "预算限制（基础设施和License成本限制）"
+            },
+            {
+              "value": "timeline",
+              "label": "时间限制（紧急交付时间要求）"
+            },
+            {
+              "value": "team",
+              "label": "团队能力（团队技术栈和规模限制）"
+            }
+          ],
+          "children": {
+            "tech_stack": "ad_q5",
+            "budget": "ad_q5",
+            "timeline": "ad_q5",
+            "team": "ad_q5"
+          },
+          "fallback_node_id": "ad_q5",
+          "is_leaf": false
+        },
+        "ad_q5": {
+          "node_id": "ad_q5",
+          "question_text": "需要哪些架构交付物？",
+          "question_type": "multi_choice",
+          "info_key": "ad_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "doc",
+              "label": "架构设计文档（整体架构和模块划分）"
+            },
+            {
+              "value": "report",
+              "label": "技术选型报告（方案对比和推荐）"
+            },
+            {
+              "value": "diagram",
+              "label": "系统架构图（组件关系和数据流向）"
+            },
+            {
+              "value": "spec",
+              "label": "接口规范（服务间接口和数据格式）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "db_optimization",
+      "root_node_id": "db_q1",
+      "nodes": {
+        "db_q1": {
+          "node_id": "db_q1",
+          "question_text": "数据库问题的类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "db_issue_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "slow",
+              "label": "慢查询（SQL执行时间长、响应慢）"
+            },
+            {
+              "value": "scale",
+              "label": "扩展性问题（数据量大、写入瓶颈）"
+            },
+            {
+              "value": "consistency",
+              "label": "数据一致性问题（脏读、数据偏差）"
+            }
+          ],
+          "children": {
+            "slow": "db_q2",
+            "scale": "db_q2",
+            "consistency": "db_q2"
+          },
+          "fallback_node_id": "db_q2",
+          "is_leaf": false
+        },
+        "db_q2": {
+          "node_id": "db_q2",
+          "question_text": "使用的数据库类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "db_type",
+          "depth": 2,
+          "options": [
+            {
+              "value": "mysql",
+              "label": "MySQL（关系型、OLTP场景）"
+            },
+            {
+              "value": "pg",
+              "label": "PostgreSQL（关系型、复杂查询场景）"
+            },
+            {
+              "value": "mongo",
+              "label": "MongoDB（文档型、灵活Schema场景）"
+            },
+            {
+              "value": "redis",
+              "label": "Redis（缓存型、高并发读场景）"
+            }
+          ],
+          "children": {
+            "mysql": "db_q3",
+            "pg": "db_q3",
+            "mongo": "db_q3",
+            "redis": "db_q3"
+          },
+          "fallback_node_id": "db_q3",
+          "is_leaf": false
+        },
+        "db_q3": {
+          "node_id": "db_q3",
+          "question_text": "当前数据量级如何？",
+          "question_type": "single_choice",
+          "info_key": "db_data_volume",
+          "depth": 3,
+          "options": [
+            {
+              "value": "small",
+              "label": "百万级（单表百万行以内）"
+            },
+            {
+              "value": "medium",
+              "label": "千万级（单表千万行级别）"
+            },
+            {
+              "value": "large",
+              "label": "亿级+（单表上亿行以上）"
+            }
+          ],
+          "children": {
+            "small": "db_q4",
+            "medium": "db_q4",
+            "large": "db_q4"
+          },
+          "fallback_node_id": "db_q4",
+          "is_leaf": false
+        },
+        "db_q4": {
+          "node_id": "db_q4",
+          "question_text": "已尝试的优化手段有哪些？",
+          "question_type": "multi_choice",
+          "info_key": "db_attempts",
+          "depth": 3,
+          "options": [
+            {
+              "value": "index",
+              "label": "索引优化（已建索引但效果不明显）"
+            },
+            {
+              "value": "query",
+              "label": "查询重写（已优化SQL写法）"
+            },
+            {
+              "value": "shard",
+              "label": "分库分表（已做一定程度拆分）"
+            },
+            {
+              "value": "cache",
+              "label": "缓存（已引入Redis等缓存层）"
+            }
+          ],
+          "children": {
+            "index": "db_q5",
+            "query": "db_q5",
+            "shard": "db_q5",
+            "cache": "db_q5"
+          },
+          "fallback_node_id": "db_q5",
+          "is_leaf": false
+        },
+        "db_q5": {
+          "node_id": "db_q5",
+          "question_text": "期望的产出物是什么？",
+          "question_type": "multi_choice",
+          "info_key": "db_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "plan",
+              "label": "优化方案（索引/查询/架构优化建议）"
+            },
+            {
+              "value": "analysis",
+              "label": "慢查询分析报告（根因分析和建议）"
+            },
+            {
+              "value": "shard_plan",
+              "label": "分片方案（分库分表设计和迁移计划）"
+            },
+            {
+              "value": "cache_design",
+              "label": "缓存设计方案（策略和更新机制）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "security_audit",
+      "root_node_id": "sa_q1",
+      "nodes": {
+        "sa_q1": {
+          "node_id": "sa_q1",
+          "question_text": "安全审计的范围是什么？",
+          "question_type": "single_choice",
+          "info_key": "sa_scope",
+          "depth": 1,
+          "options": [
+            {
+              "value": "code",
+              "label": "代码审计（源码安全漏洞分析）"
+            },
+            {
+              "value": "infra",
+              "label": "基础设施审计（网络/服务器/云配置）"
+            },
+            {
+              "value": "process",
+              "label": "流程审计（权限管理/合规流程）"
+            }
+          ],
+          "children": {
+            "code": "sa_q2",
+            "infra": "sa_q2",
+            "process": "sa_q2"
+          },
+          "fallback_node_id": "sa_q2",
+          "is_leaf": false
+        },
+        "sa_q2": {
+          "node_id": "sa_q2",
+          "question_text": "适用的合规标准是什么？",
+          "question_type": "single_choice",
+          "info_key": "sa_compliance",
+          "depth": 2,
+          "options": [
+            {
+              "value": "gb",
+              "label": "等保2.0（中国网络安全等级保护）"
+            },
+            {
+              "value": "gdpr",
+              "label": "GDPR（欧盟通用数据保护条例）"
+            },
+            {
+              "value": "iso",
+              "label": "ISO 27001（信息安全管理体系）"
+            },
+            {
+              "value": "custom",
+              "label": "企业自定义（内部安全规范）"
+            }
+          ],
+          "children": {
+            "gb": "sa_q3",
+            "gdpr": "sa_q3",
+            "iso": "sa_q3",
+            "custom": "sa_q3"
+          },
+          "fallback_node_id": "sa_q3",
+          "is_leaf": false
+        },
+        "sa_q3": {
+          "node_id": "sa_q3",
+          "question_text": "风险等级和紧迫程度如何？",
+          "question_type": "single_choice",
+          "info_key": "sa_risk_level",
+          "depth": 3,
+          "options": [
+            {
+              "value": "low",
+              "label": "低风险（例行检查，可计划安排）"
+            },
+            {
+              "value": "medium",
+              "label": "中风险（需限期整改，有潜在影响）"
+            },
+            {
+              "value": "high",
+              "label": "高风险（立即处理，可能已有漏洞被利用）"
+            }
+          ],
+          "children": {
+            "low": "sa_q4",
+            "medium": "sa_q4",
+            "high": "sa_q4"
+          },
+          "fallback_node_id": "sa_q4",
+          "is_leaf": false
+        },
+        "sa_q4": {
+          "node_id": "sa_q4",
+          "question_text": "审计方法和深度需求是什么？",
+          "question_type": "multi_choice",
+          "info_key": "sa_method",
+          "depth": 3,
+          "options": [
+            {
+              "value": "scan",
+              "label": "自动化扫描（SAST/DAST工具快速检测）"
+            },
+            {
+              "value": "pentest",
+              "label": "渗透测试（人工模拟攻击深入检测）"
+            },
+            {
+              "value": "source",
+              "label": "源码审计（逐行审查关键代码安全性）"
+            },
+            {
+              "value": "config",
+              "label": "配置审查（检查安全配置和合规基线）"
+            }
+          ],
+          "children": {
+            "scan": "sa_q5",
+            "pentest": "sa_q5",
+            "source": "sa_q5",
+            "config": "sa_q5"
+          },
+          "fallback_node_id": "sa_q5",
+          "is_leaf": false
+        },
+        "sa_q5": {
+          "node_id": "sa_q5",
+          "question_text": "期望的产出物是什么？",
+          "question_type": "multi_choice",
+          "info_key": "sa_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "report",
+              "label": "安全审计报告（发现汇总和风险评估）"
+            },
+            {
+              "value": "vuln_list",
+              "label": "漏洞清单（漏洞详情和修复建议）"
+            },
+            {
+              "value": "fix_plan",
+              "label": "整改方案（修复优先级和时间计划）"
+            },
+            {
+              "value": "baseline",
+              "label": "安全基线文档（配置标准和规范）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "perf_optimization",
+      "root_node_id": "po_q1",
+      "nodes": {
+        "po_q1": {
+          "node_id": "po_q1",
+          "question_text": "性能瓶颈主要表现在哪个层面？",
+          "question_type": "single_choice",
+          "info_key": "po_bottleneck",
+          "depth": 1,
+          "options": [
+            {
+              "value": "frontend",
+              "label": "前端性能（页面加载慢、渲染卡顿）"
+            },
+            {
+              "value": "backend",
+              "label": "后端性能（接口响应慢、CPU/内存高）"
+            },
+            {
+              "value": "database",
+              "label": "数据库性能（查询慢、连接池耗尽）"
+            },
+            {
+              "value": "network",
+              "label": "网络性能（带宽不足、延迟高）"
+            }
+          ],
+          "children": {
+            "frontend": "po_q2",
+            "backend": "po_q2",
+            "database": "po_q2",
+            "network": "po_q2"
+          },
+          "fallback_node_id": "po_q2",
+          "is_leaf": false
+        },
+        "po_q2": {
+          "node_id": "po_q2",
+          "question_text": "是否有性能基线数据？",
+          "question_type": "single_choice",
+          "info_key": "po_baseline",
+          "depth": 2,
+          "options": [
+            {
+              "value": "yes",
+              "label": "有基线数据（可对比优化前后效果）"
+            },
+            {
+              "value": "partial",
+              "label": "部分有（只监控了部分关键指标）"
+            },
+            {
+              "value": "no",
+              "label": "无基线（凭经验判断瓶颈位置）"
+            }
+          ],
+          "children": {
+            "yes": "po_q3",
+            "partial": "po_q3",
+            "no": "po_q3"
+          },
+          "fallback_node_id": "po_q3",
+          "is_leaf": false
+        },
+        "po_q3": {
+          "node_id": "po_q3",
+          "question_text": "优化目标值是什么？",
+          "question_type": "single_choice",
+          "info_key": "po_target",
+          "depth": 3,
+          "options": [
+            {
+              "value": "moderate",
+              "label": "适度提升（响应时间降低30-50%）"
+            },
+            {
+              "value": "significant",
+              "label": "显著提升（响应时间降低50-80%）"
+            },
+            {
+              "value": "drastic",
+              "label": "大幅提升（响应时间降低80%+或10倍+）"
+            }
+          ],
+          "children": {
+            "moderate": "po_q4",
+            "significant": "po_q4",
+            "drastic": "po_q4"
+          },
+          "fallback_node_id": "po_q4",
+          "is_leaf": false
+        },
+        "po_q4": {
+          "node_id": "po_q4",
+          "question_text": "可接受的优化手段有哪些？",
+          "question_type": "multi_choice",
+          "info_key": "po_methods",
+          "depth": 3,
+          "options": [
+            {
+              "value": "code",
+              "label": "代码优化（算法改进、减少不必要的计算）"
+            },
+            {
+              "value": "cache",
+              "label": "缓存引入（Redis/CDN多级缓存）"
+            },
+            {
+              "value": "concurrency",
+              "label": "并发优化（异步/并行/连接池调优）"
+            },
+            {
+              "value": "arch",
+              "label": "架构调整（拆分、扩容、读写分离）"
+            }
+          ],
+          "children": {
+            "code": "po_q5",
+            "cache": "po_q5",
+            "concurrency": "po_q5",
+            "arch": "po_q5"
+          },
+          "fallback_node_id": "po_q5",
+          "is_leaf": false
+        },
+        "po_q5": {
+          "node_id": "po_q5",
+          "question_text": "产出物需求是什么？",
+          "question_type": "multi_choice",
+          "info_key": "po_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "report",
+              "label": "性能分析报告（瓶颈定位和根因分析）"
+            },
+            {
+              "value": "plan",
+              "label": "优化方案（具体改措施和优先级）"
+            },
+            {
+              "value": "stress",
+              "label": "压测报告（优化前后的对比数据）"
+            },
+            {
+              "value": "baseline_doc",
+              "label": "性能基线文档（关键指标和告警阈值）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "team_collab",
+      "root_node_id": "tc_q1",
+      "nodes": {
+        "tc_q1": {
+          "node_id": "tc_q1",
+          "question_text": "团队协作的主要痛点是什么？",
+          "question_type": "single_choice",
+          "info_key": "tc_pain_point",
+          "depth": 1,
+          "options": [
+            {
+              "value": "process",
+              "label": "流程问题（流程不清晰、缺乏规范）"
+            },
+            {
+              "value": "comm",
+              "label": "沟通问题（信息不对称、沟通效率低）"
+            },
+            {
+              "value": "tool",
+              "label": "工具问题（缺乏合适的协作工具）"
+            },
+            {
+              "value": "culture",
+              "label": "文化问题（跨部门壁垒、目标不一致）"
+            }
+          ],
+          "children": {
+            "process": "tc_q2",
+            "comm": "tc_q2",
+            "tool": "tc_q2",
+            "culture": "tc_q2"
+          },
+          "fallback_node_id": "tc_q2",
+          "is_leaf": false
+        },
+        "tc_q2": {
+          "node_id": "tc_q2",
+          "question_text": "团队规模是多少？",
+          "question_type": "single_choice",
+          "info_key": "tc_team_size",
+          "depth": 2,
+          "options": [
+            {
+              "value": "small",
+              "label": "小型团队（<10人，沟通相对简单）"
+            },
+            {
+              "value": "medium",
+              "label": "中型团队（10-50人，需多组协作）"
+            },
+            {
+              "value": "large",
+              "label": "大型团队（>50人，跨部门协调复杂）"
+            }
+          ],
+          "children": {
+            "small": "tc_q3",
+            "medium": "tc_q3",
+            "large": "tc_q3"
+          },
+          "fallback_node_id": "tc_q3",
+          "is_leaf": false
+        },
+        "tc_q3": {
+          "node_id": "tc_q3",
+          "question_text": "团队使用的开发方法论是什么？",
+          "question_type": "single_choice",
+          "info_key": "tc_methodology",
+          "depth": 3,
+          "options": [
+            {
+              "value": "scrum",
+              "label": "Scrum（固定Sprint迭代交付）"
+            },
+            {
+              "value": "kanban",
+              "label": "看板（持续交付、限制在制品）"
+            },
+            {
+              "value": "scrumban",
+              "label": "Scrumban（Scrum+看板混合）"
+            },
+            {
+              "value": "none",
+              "label": "无固定方法（按需灵活开发）"
+            }
+          ],
+          "children": {
+            "scrum": "tc_q4",
+            "kanban": "tc_q4",
+            "scrumban": "tc_q4",
+            "none": "tc_q4"
+          },
+          "fallback_node_id": "tc_q4",
+          "is_leaf": false
+        },
+        "tc_q4": {
+          "node_id": "tc_q4",
+          "question_text": "需要改善的方向是什么？",
+          "question_type": "multi_choice",
+          "info_key": "tc_improve_area",
+          "depth": 3,
+          "options": [
+            {
+              "value": "meeting",
+              "label": "会议制度（规范各类会议频率和时长）"
+            },
+            {
+              "value": "comm_tool",
+              "label": "沟通工具（统一即时通讯和信息共享工具）"
+            },
+            {
+              "value": "doc",
+              "label": "文档规范（知识沉淀和信息同步机制）"
+            },
+            {
+              "value": "feedback",
+              "label": "反馈机制（定期反馈和持续改进文化）"
+            }
+          ],
+          "children": {
+            "meeting": "tc_q5",
+            "comm_tool": "tc_q5",
+            "doc": "tc_q5",
+            "feedback": "tc_q5"
+          },
+          "fallback_node_id": "tc_q5",
+          "is_leaf": false
+        },
+        "tc_q5": {
+          "node_id": "tc_q5",
+          "question_text": "改进优先级如何？",
+          "question_type": "single_choice",
+          "info_key": "tc_priority",
+          "depth": 4,
+          "options": [
+            {
+              "value": "urgent",
+              "label": "紧急改进（当前痛点严重影响工作效率）"
+            },
+            {
+              "value": "short_term",
+              "label": "短期优化（1-2周内可落地改进）"
+            },
+            {
+              "value": "long_term",
+              "label": "长期建设（需要持续投入和文化沉淀）"
+            }
+          ],
+          "children": {
+            "urgent": "tc_q6",
+            "short_term": "tc_q6",
+            "long_term": "tc_q6"
+          },
+          "fallback_node_id": "tc_q6",
+          "is_leaf": false
+        },
+        "tc_q6": {
+          "node_id": "tc_q6",
+          "question_text": "期望的产出物是什么？",
+          "question_type": "multi_choice",
+          "info_key": "tc_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "guidelines",
+              "label": "协作规范（流程和制度文档）"
+            },
+            {
+              "value": "workflow",
+              "label": "流程文档（各协作环节的标准操作流程）"
+            },
+            {
+              "value": "tools",
+              "label": "工具推荐（适合团队的协作工具选型）"
+            },
+            {
+              "value": "training",
+              "label": "培训材料（团队协作培训和文化建设）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    }
+  ],
+  "pain_points": [
+    {
+      "name": "需求频繁变更",
+      "description": "产品经理不断修改需求，导致开发团队反复返工和资源浪费",
+      "why_happens": "前期需求调研不充分、业务方中途产生新想法、市场环境快速变化导致优先级调整",
+      "who_feels_it": "研发团队、测试工程师、项目经理",
+      "typical_phrases": [
+        "需求又变了",
+        "这个需求很急，这周就要",
+        "改改改，说改就改"
+      ],
+      "what_not_to_do": "假设需求一旦确定就不再变更，直接按锁定需求生成完整技术方案"
+    },
+    {
+      "name": "技术债积累",
+      "description": "为了赶进度采用快捷方案，导致代码质量持续下降，后续迭代越来越慢",
+      "why_happens": "上线压力大缺乏重构时间、代码审查流于形式、团队缺乏统一编码规范",
+      "who_feels_it": "研发团队、技术负责人、新入职工程师",
+      "typical_phrases": [
+        "先上线再说，后面再优化",
+        "这段代码看不懂，不敢改",
+        "又踩坑了，又是之前的历史遗留问题"
+      ],
+      "what_not_to_do": "假设代码质量完美无瑕，不需要考虑技术债的影响"
+    },
+    {
+      "name": "跨部门协作困难",
+      "description": "产品、研发、运营、市场等部门之间信息不对称、目标不一致、沟通效率低",
+      "why_happens": "部门墙导致信息孤岛、KPI各自为政缺乏统一目标、缺乏高效的跨部门沟通机制",
+      "who_feels_it": "产品经理、项目经理、技术负责人",
+      "typical_phrases": [
+        "这不是我的KPI",
+        "他们不懂技术，没法沟通",
+        "PM又不懂，这是技术问题"
+      ],
+      "what_not_to_do": "假设各部门自动对齐目标，不需要额外的沟通协调工作"
+    },
+    {
+      "name": "数据口径不统一",
+      "description": "不同部门使用不同的数据源和计算方式，同一指标得出不同结论，互相矛盾",
+      "why_happens": "缺乏统一的数据中台和指标管理体系、埋点规范不统一、指标定义文档缺失",
+      "who_feels_it": "数据分析师、运营团队、产品经理、管理层",
+      "typical_phrases": [
+        "这个数据不对，和后台对不上",
+        "口径是什么？你怎么算的？",
+        "你们的数据和我们差好多"
+      ],
+      "what_not_to_do": "假设所有团队对数据指标的定义和理解一致，直接使用各方数据做对比分析"
+    },
+    {
+      "name": "线上事故频发",
+      "description": "上线后出现严重Bug、性能下降或服务不可用，影响用户体验和业务运转",
+      "why_happens": "测试覆盖不足缺乏边界测试、灰度发布流程不完善、监控告警缺失、回滚机制不健全",
+      "who_feels_it": "SRE/运维、研发团队、终端用户、客服团队",
+      "typical_phrases": [
+        "又挂了",
+        "紧急回滚",
+        "怎么上线前没发现这个问题",
+        "oncall电话又响了"
+      ],
+      "what_not_to_do": "假设无Bug无事故的完美上线，不制定回滚预案和监控策略"
+    },
+    {
+      "name": "人员流动导致知识断层",
+      "description": "核心成员离职导致业务知识、技术决策背景和系统认知出现断层，新人上手困难",
+      "why_happens": "文档缺失或过时、关键决策没有记录、代码注释不足、缺乏知识传承机制",
+      "who_feels_it": "技术负责人、HR、新入职员工、管理层",
+      "typical_phrases": [
+        "这人走了我们怎么办",
+        "这段逻辑为什么这么设计，没人知道",
+        "文档太老了，跟实际不一样"
+      ],
+      "what_not_to_do": "假设核心知识已经沉淀在文档中，不需要额外做知识传承和交接工作"
+    },
+    {
+      "name": "项目进度不透明",
+      "description": "项目缺乏可视化的进度跟踪机制，管理层和干系人无法及时了解项目真实状态",
+      "why_happens": "缺乏统一的项目管理工具、信息同步机制不健全、负责人隐瞒真实进度",
+      "who_feels_it": "项目经理、管理层、业务方、团队成员",
+      "typical_phrases": [
+        "项目现在到什么阶段了？",
+        "为什么总是到deadline才知道完不成",
+        "进度周报和实际进展对不上"
+      ],
+      "what_not_to_do": "假设所有团队成员都会主动汇报真实进度，并自动对齐项目计划"
+    },
+    {
+      "name": "面试官缺乏结构化评估能力",
+      "description": "面试官凭感觉和经验判断候选人，缺乏系统化的面试方法和评估标准，导致录用决策失误",
+      "why_happens": "面试官没有经过专业培训、面试问题随意发挥、缺乏统一的打分标准和评估维度",
+      "who_feels_it": "HR、技术负责人、面试官、候选人",
+      "typical_phrases": [
+        "感觉这个人不错，但说不出具体哪好",
+        "面试时聊得很好，入职后发现不合适",
+        "不同面试官对同一个候选人的评价差异很大"
+      ],
+      "what_not_to_do": "假设资深工程师天然具备面试评估能力，不需要面试培训和结构化工具"
+    }
+  ]
+}
