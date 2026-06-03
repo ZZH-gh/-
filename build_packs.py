@@ -315,6 +315,63 @@ def _check_tree_cycles(tree) -> None:
     _dfs(tree.root_node_id)
 
 
+def _generate_index(output_dir: Path) -> dict:
+    """从所有已编译的 JSON 包中生成 index.json。
+
+    Args:
+        output_dir: 编译产物输出目录（包含 *.json 文件）。
+
+    Returns:
+        生成的 index dict（同时写入 output_dir/index.json）。
+    """
+    index = {}
+    for json_path in sorted(output_dir.glob("*.json")):
+        if json_path.name == "index.json":
+            continue
+        with open(json_path, "r", encoding="utf-8") as f:
+            pack = json.load(f)
+
+        meta = pack.get("meta", {})
+        pack_id = meta.get("id", json_path.stem)
+
+        # 收集关键词：term 名 + aliases + task 名（不含 related_terms，防索引膨胀）
+        keywords = []
+        for term in pack.get("terms", []):
+            t = term.get("term", "")
+            if t:
+                keywords.append(t)
+            keywords.extend(term.get("aliases", []))
+        for task in pack.get("tasks", []):
+            t = task.get("name", "")
+            if t:
+                keywords.append(t)
+
+        keywords = sorted(set(k for k in keywords if k))
+
+        index[pack_id] = {
+            "id": pack_id,
+            "name": meta.get("name", pack_id),
+            "icon": meta.get("icon", ""),
+            "description": meta.get("description", ""),
+            "keywords": keywords,
+            "pack_file": json_path.name,
+            "stats": {
+                "term_count": len(pack.get("terms", [])),
+                "scenario_count": len(pack.get("tasks", [])),
+                "tree_count": len(pack.get("follow_up_trees", [])),
+                "role_count": len(pack.get("roles", [])),
+                "workflow_count": len(pack.get("workflows", [])),
+            },
+        }
+
+    index_path = output_dir / "index.json"
+    with open(index_path, "w", encoding="utf-8") as f:
+        json.dump(index, f, ensure_ascii=False, indent=2)
+
+    print(f"  Generated index.json with {len(index)} industry entries")
+    return index
+
+
 def main():
     """CLI entry point: compile all knowledge packs in the source directory.
 
@@ -352,7 +409,7 @@ def main():
             errors.append((yaml_file.name, str(e)))
             print(f"  FAIL {yaml_file.name}: {e}")
 
-    print(f"\n{'=' * 50}")
+    print("\n" + "=" * 50)
     print(f"Results: {len(yaml_files) - len(errors)} succeeded, "
           f"{len(errors)} failed")
 
@@ -365,6 +422,8 @@ def main():
                 print(f"    {line}")
         sys.exit(1)
 
+    # 所有包编译成功后生成 index.json
+    _generate_index(output_dir)
     print("All packs compiled successfully.")
 
 
