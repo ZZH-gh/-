@@ -30,7 +30,7 @@ class IntentClassifier:
 
         top_industry = industries[0] if industries else None
         industry_id = top_industry.industry_id if top_industry else None
-        industry_name = top_industry.name if top_industry else "通用 / 其他"
+        industry_name = top_industry.industry_name if top_industry else "通用 / 其他"
         industry_confidence = self._normalize_score(top_industry.score, len(industries)) if top_industry else 0.0
 
         # 任务匹配
@@ -53,7 +53,7 @@ class IntentClassifier:
             "task_name": task_name,
             "task_confidence": round(task_confidence, 2),
             "matched_industries": [
-                {"id": m.industry_id, "name": m.name, "score": round(self._normalize_score(m.score, len(industries)), 2)}
+                {"id": m.industry_id, "name": m.industry_name, "score": round(self._normalize_score(m.score, len(industries)), 2)}
                 for m in industries[:3]
             ],
             "matched_tasks": task_result.get("top", []),
@@ -136,13 +136,13 @@ class IntentClassifier:
     def _fallback_industry_match(self, text: str) -> list:
         """当 KnowledgeManager 匹配失败时，回退到 v3.0 knowledge.py 匹配。"""
         from collections import namedtuple
-        IndustryMatch = namedtuple("IndustryMatch", ["industry_id", "name", "score"])
+        IndustryMatch = namedtuple("IndustryMatch", ["industry_id", "industry_name", "score"])
         results = []
         lower = text.lower()
         for key, data in INDUSTRIES.items():
             keywords = data.get("keywords", [])
             score = sum(3 if kw.lower() in lower else 0 for kw in keywords)
             if score > 0:
-                results.append(IndustryMatch(industry_id=key, name=data.get("name", key), score=score))
+                results.append(IndustryMatch(industry_id=key, industry_name=data.get("name", key), score=score))
         results.sort(key=lambda x: x.score, reverse=True)
         return results

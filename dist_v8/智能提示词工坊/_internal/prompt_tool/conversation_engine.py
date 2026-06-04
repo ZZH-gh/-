@@ -47,6 +47,7 @@ class ConversationEngine:
         self._classifier = IntentClassifier()
         self._follow_up: FollowUpEngine | None = None
         self._last_analysis: dict = {}
+        self._clarify_count = 0  # 追踪澄清次数，防止无限循环
 
     def _transition(self, to_state: ConversationState):
         if to_state not in VALID_TRANSITIONS.get(self.state, set()):
@@ -68,6 +69,22 @@ class ConversationEngine:
         self._last_analysis = result
 
         if result["needs_clarification"]:
+            self._clarify_count += 1
+            # 澄清 2 次后仍不明确 → 强制接受最佳匹配，不让用户反复输入（防无限循环）
+            if self._clarify_count >= 2:
+                session_manager.update_confirmed_industry(result["industry_id"])
+                session_manager.update_confirmed_task(result["task_key"])
+                self._transition(ConversationState.CONFIRMING)
+                return {
+                    "state": self.state.value,
+                    "needs_clarification": False,
+                    "industry_id": result["industry_id"],
+                    "industry_name": result["industry_name"],
+                    "industry_confidence": result["industry_confidence"],
+                    "task_key": result["task_key"],
+                    "task_name": result["task_name"],
+                    "task_confidence": result["task_confidence"],
+                }
             self._transition(ConversationState.CLARIFYING)
             return {
                 "state": self.state.value,
@@ -217,6 +234,7 @@ class ConversationEngine:
         self.state = ConversationState.IDLE
         self._follow_up = None
         self._last_analysis = {}
+        self._clarify_count = 0
 
     # === private ===
 
