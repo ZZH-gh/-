@@ -18,6 +18,7 @@ from .knowledge import (
 from .knowledge_manager import knowledge_manager
 from .session_manager import session_manager
 from .conversation_engine import ConversationEngine, ConversationState
+from .app_controller import AppController
 
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
@@ -56,6 +57,9 @@ class PromptToolApp:
         if knowledge_manager.is_fallback_active():
             self.set_status("⚠️ 知识包加载失败，使用 v3.0 兼容模式")
 
+        # Phase 6: V4 scaffolding (chat_frame + result_frame + page switching)
+        self._setup_v4_scaffolding()
+
     def _center_window(self):
         self.root.update_idletasks()
         w, h = self.root.winfo_width(), self.root.winfo_height()
@@ -82,39 +86,39 @@ class PromptToolApp:
         self._build_status_bar()
 
     def _build_header(self):
-        h = ctk.CTkFrame(self.root, height=60, corner_radius=0,
-                         fg_color=self.colors["primary"])
-        h.grid(row=0, column=0, sticky="nsew")
-        h.grid_propagate(False)
-        h.grid_columnconfigure(0, weight=1)
+        self._v3_header = ctk.CTkFrame(self.root, height=60, corner_radius=0,
+                                        fg_color=self.colors["primary"])
+        self._v3_header.grid(row=0, column=0, sticky="nsew")
+        self._v3_header.grid_propagate(False)
+        self._v3_header.grid_columnconfigure(0, weight=1)
 
-        ctk.CTkLabel(h, text="🧠  智能提示词工坊",
+        ctk.CTkLabel(self._v3_header, text="🧠  智能提示词工坊",
                      font=ctk.CTkFont(size=22, weight="bold"),
                      text_color="white").grid(row=0, column=0, padx=25, pady=(6, 0), sticky="w")
 
-        ctk.CTkLabel(h, text="说出你的需求 → 一键生成可直接让 AI 执行的提示词",
+        ctk.CTkLabel(self._v3_header, text="说出你的需求 → 一键生成可直接让 AI 执行的提示词",
                      font=ctk.CTkFont(size=12),
                      text_color="white").grid(row=1, column=0, padx=25, pady=(0, 6), sticky="w")
 
-        ctk.CTkLabel(h, text="v3.0", font=ctk.CTkFont(size=11),
+        ctk.CTkLabel(self._v3_header, text="v3.0", font=ctk.CTkFont(size=11),
                      text_color="white").grid(row=0, column=1, padx=15, rowspan=2, sticky="e")
 
     def _build_input_area(self):
-        f = ctk.CTkFrame(self.root, corner_radius=8, fg_color=self.colors["card"])
-        f.grid(row=1, column=0, padx=12, pady=(8, 3), sticky="nsew")
-        f.grid_columnconfigure(1, weight=1)
+        self._v3_input_area = ctk.CTkFrame(self.root, corner_radius=8, fg_color=self.colors["card"])
+        self._v3_input_area.grid(row=1, column=0, padx=12, pady=(8, 3), sticky="nsew")
+        self._v3_input_area.grid_columnconfigure(1, weight=1)
 
-        ctk.CTkLabel(f, text="📝 描述你的需求",
+        ctk.CTkLabel(self._v3_input_area, text="📝 描述你的需求",
                      font=ctk.CTkFont(size=14, weight="bold"),
                      text_color=self.colors["text"]
                      ).grid(row=0, column=0, padx=12, pady=(8, 2), sticky="w")
 
-        self.char_label = ctk.CTkLabel(f, text="0 字", font=ctk.CTkFont(size=11),
+        self.char_label = ctk.CTkLabel(self._v3_input_area, text="0 字", font=ctk.CTkFont(size=11),
                                        text_color=self.colors["text_light"])
         self.char_label.grid(row=0, column=2, padx=12, pady=(8, 2), sticky="e")
 
         self.input_text = ctk.CTkTextbox(
-            f, height=70, font=ctk.CTkFont(size=13),
+            self._v3_input_area, height=70, font=ctk.CTkFont(size=13),
             wrap="word", fg_color="white", text_color=self.colors["text"],
             border_width=1, border_color=self.colors["border"], corner_radius=6,
         )
@@ -125,7 +129,7 @@ class PromptToolApp:
         self.input_text.bind("<FocusOut>", lambda _: self._on_focus_out())
         self.input_text.bind("<KeyRelease>", self._on_input_change)
 
-        bar = ctk.CTkFrame(f, fg_color="transparent", height=36)
+        bar = ctk.CTkFrame(self._v3_input_area, fg_color="transparent", height=36)
         bar.grid(row=2, column=0, columnspan=3, padx=12, pady=(0, 8), sticky="ew")
         bar.grid_columnconfigure(2, weight=1)
         bar.grid_propagate(False)
@@ -184,13 +188,13 @@ class PromptToolApp:
 
     def _build_strategies_area(self):
         """三大方案区域：3个策略标签 + 1个展示区"""
-        f = ctk.CTkFrame(self.root, corner_radius=8, fg_color=self.colors["card"])
-        f.grid(row=3, column=0, padx=12, pady=3, sticky="nsew")
-        f.grid_columnconfigure(0, weight=1)
-        f.grid_rowconfigure(2, weight=1)
+        self._v3_strategies_area = ctk.CTkFrame(self.root, corner_radius=8, fg_color=self.colors["card"])
+        self._v3_strategies_area.grid(row=3, column=0, padx=12, pady=3, sticky="nsew")
+        self._v3_strategies_area.grid_columnconfigure(0, weight=1)
+        self._v3_strategies_area.grid_rowconfigure(2, weight=1)
 
         # 策略标签
-        tab_h = ctk.CTkFrame(f, fg_color="transparent", height=42)
+        tab_h = ctk.CTkFrame(self._v3_strategies_area, fg_color="transparent", height=42)
         tab_h.grid(row=0, column=0, padx=12, pady=(8, 0), sticky="ew")
         tab_h.grid_columnconfigure((0, 1, 2), weight=1)
 
@@ -214,7 +218,7 @@ class PromptToolApp:
             self.strategy_btns[key] = btn
 
         # 操作栏
-        act = ctk.CTkFrame(f, fg_color="transparent", height=32)
+        act = ctk.CTkFrame(self._v3_strategies_area, fg_color="transparent", height=32)
         act.grid(row=1, column=0, padx=12, pady=(6, 0), sticky="ew")
         act.grid_columnconfigure(0, weight=1)
         act.grid_propagate(False)
@@ -239,7 +243,7 @@ class PromptToolApp:
         self.export_btn.grid(row=0, column=2, sticky="e")
 
         # 提示词展示框
-        df = ctk.CTkFrame(f, fg_color="white", corner_radius=6,
+        df = ctk.CTkFrame(self._v3_strategies_area, fg_color="white", corner_radius=6,
                           border_width=1, border_color=self.colors["border"])
         df.grid(row=2, column=0, padx=12, pady=(6, 12), sticky="nsew")
         df.grid_columnconfigure(0, weight=1)
@@ -254,12 +258,12 @@ class PromptToolApp:
         self._set_placeholder()
 
     def _build_status_bar(self):
-        bar = ctk.CTkFrame(self.root, height=26, corner_radius=0, fg_color="#E8ECF0")
-        bar.grid(row=4, column=0, sticky="nsew")
-        bar.grid_propagate(False)
-        bar.grid_columnconfigure(0, weight=1)
+        self._v3_status_bar = ctk.CTkFrame(self.root, height=26, corner_radius=0, fg_color="#E8ECF0")
+        self._v3_status_bar.grid(row=4, column=0, sticky="nsew")
+        self._v3_status_bar.grid_propagate(False)
+        self._v3_status_bar.grid_columnconfigure(0, weight=1)
 
-        self.status = ctk.CTkLabel(bar, text="💡 输入需求 → 点击「生成提示词」",
+        self.status = ctk.CTkLabel(self._v3_status_bar, text="💡 输入需求 → 点击「生成提示词」",
                                    font=ctk.CTkFont(size=11),
                                    text_color=self.colors["text_light"])
         self.status.grid(row=0, column=0, padx=15, sticky="w")
@@ -501,6 +505,69 @@ class PromptToolApp:
         c = c.lstrip("#")
         r, g, b = int(c[:2], 16), int(c[2:4], 16), int(c[4:6], 16)
         return f"#{int(r*(1-a)):02x}{int(g*(1-a)):02x}{int(b*(1-a)):02x}"
+
+    # ================================================================
+    # Phase 6: V4 Frame Scaffolding (Task 1)
+    # ================================================================
+
+    def _setup_v4_scaffolding(self):
+        """创建 v4 容器帧（chat_frame + result_frame），默认隐藏"""
+        self.v4_container = ctk.CTkFrame(self.root, fg_color=self.colors["body"])
+        self.v4_container.grid(row=0, column=0, rowspan=5, sticky="nsew")
+        self.v4_container.grid_remove()  # 默认隐藏，v3 优先显示
+        self.v4_container.grid_columnconfigure(0, weight=1)
+        self.v4_container.grid_rowconfigure(0, weight=1)
+
+        # Chat frame（对话界面）
+        self.chat_frame = ctk.CTkFrame(self.v4_container, fg_color=self.colors["body"])
+        self.chat_frame.grid(row=0, column=0, sticky="nsew")
+        self.chat_frame.grid_remove()  # 初始隐藏
+        self.chat_frame.grid_columnconfigure(0, weight=1)
+        self.chat_frame.grid_rowconfigure(0, weight=0)  # header
+        self.chat_frame.grid_rowconfigure(1, weight=1)  # chat scrollable area
+        self.chat_frame.grid_rowconfigure(2, weight=0)  # input bar
+
+        # Result frame（结果界面）
+        self.result_frame = ctk.CTkFrame(self.v4_container, fg_color=self.colors["body"])
+        self.result_frame.grid(row=0, column=0, sticky="nsew")
+        self.result_frame.grid_remove()  # 初始隐藏
+        self.result_frame.grid_columnconfigure(0, weight=1)
+        self.result_frame.grid_rowconfigure(1, weight=1)
+
+    def _switch_to_v4_page(self, page_name: str):
+        """切换到 v4 的指定子页面
+
+        Args:
+            page_name: "chat" 或 "results"
+        """
+        # 隐藏 v3 所有直接子控件
+        self._v3_header.grid_remove()
+        self._v3_input_area.grid_remove()
+        self.info_bar.grid_remove()
+        self._v3_strategies_area.grid_remove()
+        self._v3_status_bar.grid_remove()
+
+        # 显示 v4 容器
+        self.v4_container.grid()
+
+        # 在 chat_frame 和 result_frame 间切换
+        if page_name == "chat":
+            self.result_frame.grid_remove()
+            self.chat_frame.grid()
+        elif page_name == "results":
+            self.chat_frame.grid_remove()
+            self.result_frame.grid()
+
+    def _switch_to_v3(self):
+        """切回 v3 视图"""
+        self.v4_container.grid_remove()
+
+        # 恢复 v3 控件
+        self._v3_header.grid(row=0, column=0, sticky="nsew")
+        self._v3_input_area.grid(row=1, column=0, padx=12, pady=(8, 3), sticky="nsew")
+        self.info_bar.grid(row=2, column=0, padx=12, pady=3, sticky="ew")
+        self._v3_strategies_area.grid(row=3, column=0, padx=12, pady=3, sticky="nsew")
+        self._v3_status_bar.grid(row=4, column=0, sticky="nsew")
 
     def run(self):
         self.root.mainloop()
