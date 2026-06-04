@@ -59,6 +59,8 @@ class PromptToolApp:
 
         # Phase 6: V4 scaffolding (chat_frame + result_frame + page switching)
         self._setup_v4_scaffolding()
+        self._build_v4_chat_page()
+        self._init_v4_controller()
 
     def _center_window(self):
         self.root.update_idletasks()
@@ -568,6 +570,270 @@ class PromptToolApp:
         self.info_bar.grid(row=2, column=0, padx=12, pady=3, sticky="ew")
         self._v3_strategies_area.grid(row=3, column=0, padx=12, pady=3, sticky="nsew")
         self._v3_status_bar.grid(row=4, column=0, sticky="nsew")
+
+    # ================================================================
+    # Phase 6: V4 Chat Page — 气泡流 + 输入栏 + 逃生门 (Task 2)
+    # ================================================================
+
+    def _build_v4_chat_page(self):
+        """构建对话页面：header + 滚动气泡区域 + 底部输入栏"""
+        # --- Header (row 0) ---
+        h = ctk.CTkFrame(self.chat_frame, height=60, corner_radius=0,
+                         fg_color=self.colors["primary"])
+        h.grid(row=0, column=0, sticky="nsew")
+        h.grid_propagate(False)
+        h.grid_columnconfigure(0, weight=1)
+
+        ctk.CTkLabel(h, text="🧠 智能提示词工坊 v4.0",
+                     font=ctk.CTkFont(size=18, weight="bold"),
+                     text_color="white").grid(row=0, column=0, padx=20, sticky="w")
+
+        # Knowledge pack button (placeholder — enabled in Plan 06-03)
+        self._v4_kb_btn = ctk.CTkButton(
+            h, text="📚 知识包", width=80, height=24,
+            font=ctk.CTkFont(size=11),
+            fg_color="transparent", text_color="white",
+            border_color="white", border_width=1,
+            state="disabled",
+        )
+        self._v4_kb_btn.grid(row=0, column=1, padx=15, sticky="e")
+
+        # --- Chat scrollable area (row 1) ---
+        self.chat_scrollable = ctk.CTkScrollableFrame(
+            self.chat_frame, fg_color=self.colors["body"]
+        )
+        self.chat_scrollable.grid(row=1, column=0, sticky="nsew")
+        self.chat_scrollable.grid_columnconfigure(0, weight=1)
+
+        self._chat_row_count = 0
+        self._messages = []
+
+        self._add_welcome_message()
+
+        # --- Input bar (row 2) ---
+        self._build_v4_input_bar()
+
+    def _build_v4_input_bar(self):
+        """底部输入栏：文本输入框 + 发送按钮 + 逃生门"""
+        bar = ctk.CTkFrame(self.chat_frame, fg_color=self.colors["card"],
+                           height=60, corner_radius=0)
+        bar.grid(row=2, column=0, sticky="ew")
+        bar.grid_propagate(False)
+        bar.grid_columnconfigure(0, weight=1)
+
+        # Input textbox
+        self.v4_input = ctk.CTkTextbox(
+            bar, height=36, font=ctk.CTkFont(size=13),
+            wrap="word", fg_color="white",
+            border_width=1, border_color=self.colors["border"],
+            corner_radius=6,
+        )
+        self.v4_input.grid(row=0, column=0, padx=(12, 4), pady=10, sticky="ew")
+
+        # Send button
+        self.send_btn = ctk.CTkButton(
+            bar, text="▶", width=36, height=36,
+            fg_color=self.colors["primary"],
+            command=self._on_v4_send,
+        )
+        self.send_btn.grid(row=0, column=1, padx=2, pady=10)
+
+        # Escape door (D-09): 🎯 立即生成
+        self.escape_btn = ctk.CTkButton(
+            bar, text="🎯 立即生成", height=36,
+            font=ctk.CTkFont(size=12, weight="bold"),
+            fg_color="#E67E22", hover_color="#D35400",
+            command=self._on_v4_escape,
+        )
+        self.escape_btn.grid(row=0, column=2, padx=(4, 12), pady=10)
+
+    # ================================================================
+    # AppController 集成
+    # ================================================================
+
+    def _init_v4_controller(self):
+        """创建 AppController，用 root.after 包装回调确保线程安全"""
+        self._v4_controller = AppController(
+            on_state_change=lambda d: self.root.after(
+                0, lambda: self._v4_on_state_change(d)),
+            on_question=lambda d: self.root.after(
+                0, lambda: self._v4_on_question(d)),
+            on_results=lambda d: self.root.after(
+                0, lambda: self._v4_on_results(d)),
+            on_error=lambda d: self.root.after(
+                0, lambda: self._v4_on_error(d)),
+        )
+        self._v4_is_generating = False
+
+    # ================================================================
+    # 消息气泡渲染
+    # ================================================================
+
+    def _add_user_message(self, text: str):
+        """用户消息气泡：右对齐 (sticky=e)，浅蓝底 (D-06)"""
+        bubble = ctk.CTkFrame(
+            self.chat_scrollable,
+            fg_color="#D4E6F1",
+            corner_radius=10,
+        )
+        msg = ctk.CTkLabel(
+            bubble, text=text,
+            wraplength=350,
+            justify="left",
+            font=ctk.CTkFont(size=13),
+            text_color="#2C3E50",
+        )
+        msg.pack(padx=12, pady=8)
+
+        bubble.grid(row=self._chat_row_count, column=0,
+                    sticky="e", padx=(60, 10), pady=4)
+        self._chat_row_count += 1
+        self._messages.append({"role": "user", "content": text, "msg_type": "text"})
+        self.root.after(50, self._scroll_chat_to_bottom)
+
+    def _add_system_message(self, text: str):
+        """系统消息气泡：左对齐 (sticky=w)，白底 (D-06)"""
+        bubble = ctk.CTkFrame(
+            self.chat_scrollable,
+            fg_color="#FFFFFF",
+            corner_radius=10,
+        )
+        msg = ctk.CTkLabel(
+            bubble, text=text,
+            wraplength=450,
+            justify="left",
+            font=ctk.CTkFont(size=13),
+            text_color="#2C3E50",
+        )
+        msg.pack(padx=12, pady=8)
+
+        bubble.grid(row=self._chat_row_count, column=0,
+                    sticky="w", padx=(10, 60), pady=4)
+        self._chat_row_count += 1
+        self._messages.append({"role": "system", "content": text, "msg_type": "text"})
+        self.root.after(50, self._scroll_chat_to_bottom)
+
+    def _add_welcome_message(self):
+        """显示初始欢迎消息"""
+        welcome = (
+            "欢迎使用智能提示词工坊 v4.0\n\n"
+            "输入您的需求，我会引导您一步步完善提示词，"
+            "帮您生成可直接扔给 AI 执行的专业提示词。\n\n"
+            "💡 提示：描述越具体，效果越好！"
+        )
+        self._add_system_message(welcome)
+
+    def _scroll_chat_to_bottom(self):
+        """自动滚动到对话底部"""
+        try:
+            self.chat_scrollable._parent_canvas.yview_moveto(1.0)
+        except Exception:
+            pass
+
+    # ================================================================
+    # 事件处理
+    # ================================================================
+
+    def _on_v4_send(self):
+        """发送按钮处理：添加用户气泡 → 调用 controller.process_input"""
+        text = self.v4_input.get("1.0", "end-1c").strip()
+        if not text or self._v4_is_generating:
+            return
+
+        self._add_user_message(text)
+        self.v4_input.delete("1.0", "end")
+
+        self._v4_set_generating(True)
+
+        # process_input 内部根据 engine.state 自动路由
+        self._v4_controller.process_input(text)
+
+    def _on_v4_escape(self):
+        """逃生门 (D-10)：跳过追问直接生成"""
+        if self._v4_is_generating:
+            return
+
+        self._add_user_message("🎯 立即生成")
+        self._v4_set_generating(True)
+        self._v4_controller.skip_and_generate()
+
+    def _v4_set_generating(self, generating: bool):
+        """统一设置生成状态和按钮外观"""
+        self._v4_is_generating = generating
+        if generating:
+            self.send_btn.configure(state="disabled", text="⏳")
+            self.escape_btn.configure(state="disabled")
+        else:
+            self.send_btn.configure(state="normal", text="▶")
+            self.escape_btn.configure(state="normal")
+
+    def _v4_on_state_change(self, data: dict):
+        """引擎状态变更回调"""
+        self.set_status(f"📋 状态：{data.get('state', '')}")
+
+    def _v4_on_question(self, data: dict):
+        """引擎发出追问/澄清回调"""
+        question = data.get("question", {})
+        question_text = question.get("question_text", data.get("message", ""))
+        q_num = question.get("question_number", data.get("question_number", 0))
+        max_q = question.get("max_questions", data.get("max_questions", 0))
+
+        if q_num > 0:
+            display_text = f"[{q_num}/{max_q}] {question_text}"
+        else:
+            display_text = question_text
+
+        self._add_system_message(display_text)
+
+        # 如果有可选项提示，以灰色小字显示
+        options = question.get("options", [])
+        if options:
+            hints = "💡 可选：" + " / ".join(o.get("label", o.get("value", ""))
+                                              for o in options)
+            hint_label = ctk.CTkLabel(
+                self.chat_scrollable,
+                text=hints,
+                font=ctk.CTkFont(size=11),
+                text_color=self.colors["text_light"],
+            )
+            hint_label.grid(row=self._chat_row_count, column=0,
+                            sticky="w", padx=(20, 60), pady=(0, 4))
+            self._chat_row_count += 1
+
+        self._v4_set_generating(False)
+        self.set_status("💬 请回答追问或点击「立即生成」跳过")
+
+    def _v4_on_results(self, data: dict):
+        """生成完成回调：保存结果 → 填充三卡 → 切换到结果页"""
+        self.generated_prompts = data.get("prompts", {})
+        self._populate_result_cards()
+        self._switch_to_v4_page("results")
+        self._v4_set_generating(False)
+        self.set_status("✅ 已生成 3 个提示词方案")
+
+    def _v4_on_error(self, data: dict):
+        """错误回调"""
+        self._v4_set_generating(False)
+        self.set_status(f"❌ 出错：{data.get('error', '未知错误')}")
+        from tkinter import messagebox
+        messagebox.showerror("错误", f"生成出错：\n{data.get('error', '未知错误')}")
+
+    def _on_v4_new_chat(self):
+        """新对话 (D-05)：重置引擎 + 清空消息"""
+        self._v4_controller.reset()
+        for child in self.chat_scrollable.winfo_children():
+            child.destroy()
+        self._chat_row_count = 0
+        self._messages = []
+        self._add_welcome_message()
+        self._switch_to_v4_page("chat")
+        self._v4_set_generating(False)
+        self.set_status("💡 输入需求 → 开始新对话")
+
+    def _on_v4_back_to_chat(self):
+        """返回对话 (D-04)：切回 chat 页，保留历史"""
+        self._switch_to_v4_page("chat")
+        self.set_status("💬 返回对话，可继续修改或补充信息")
 
     def run(self):
         self.root.mainloop()
