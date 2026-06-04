@@ -35,7 +35,7 @@ REM 步骤 2: Gzip 压缩知识包 (PKG-02)
 REM ============================================
 echo.
 echo 📦 压缩知识包...
-python -c "import gzip,json,os; src='prompt_tool/knowledge_packs_compiled'; [gzip.open(os.path.join(src,f).replace('.json','.json.gz'),'wb').write(open(os.path.join(src,f),'rb').read()) for f in os.listdir(src) if f.endswith('.json') and not f.endswith('.gz')]; print('✅ 压缩完成')"
+python compress_packs.py
 echo ✅ 知识包压缩完成
 
 REM ============================================
@@ -76,8 +76,7 @@ pyinstaller ^
     --hidden-import "customtkinter" ^
     --hidden-import "PIL" ^
     --hidden-import "PIL._tkinter_finder" ^
-    --hidden-import "yaml" ^
-    --hidden-import "pydantic" ^
+    -y ^
     run.py
 
 if %errorlevel% neq 0 (

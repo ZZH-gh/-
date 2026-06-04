@@ -585,22 +585,11 @@ No assumptions flagged. All claims in this research are verified against:
 - Verified customtkinter 5.2.2 API via pip registry + WebFetch documentation
 - Community-verified patterns for CTkScrollableFrame auto-scroll and frame switching
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Card height synchronization strategy**
-   - What we know: Three CTkTextboxes in a grid with `sticky="nsew"` and `grid_rowconfigure(1, weight=1)` will expand to fill parent height equally if placed in the same row with `uniform` column weights.
-   - What's unclear: Whether `uniform` column weights in customtkinter's grid produce equal-height rows. If not, manual height syncing via `after_idle` may be needed.
-   - Recommendation: Start with uniform grid columns and test. If textboxes are same height automatically, done. If not, add a post-layout sync via `textbox.configure(height=max_height)` after all three are populated.
-
-2. **Auto-height for CTkTextbox in result cards**
-   - What we know: CTkTextbox does not natively auto-resize height. Using `_textbox.count()` is a private API workaround.
-   - What's unclear: Whether fixed-height scrollable textboxes (where all three share the parent's available height) are acceptable, or whether each card should show its full content without scrolling.
-   - Recommendation: Use fixed-height scrollable textboxes (same as v3's display textbox). This is simpler, more robust, and matches user expectations (scrolling inside cards for long prompts). Auto-height is LOW priority.
-
-3. **QA-03 compliance statement approach**
-   - What we know: Finance and manufacturing are flagged as sensitive industries. The compliance statement should appear in generated prompts.
-   - What's unclear: Should the statement be (a) injected by PromptGeneratorV2 during generation, (b) appended by the UI after generation, or (c) displayed as a banner/notice in the results view separately from the prompt content?
-   - Recommendation: Option (c) — display as a UI banner between the cards and the copy buttons, or as a notice within each card. This keeps concerns separated (UI handles compliance, generator handles content). This is delegated to the planner by CONTEXT.md (Claude's Discretion).
+1. **Card height synchronization strategy** — RESOLVED: Use uniform grid columns with equal-height CTkTextboxes. If not auto-equal, add post-layout sync via `textbox.configure(height=max_height)`.
+2. **Auto-height for CTkTextbox in result cards** — RESOLVED: Use fixed-height scrollable textboxes (same as v3 display). No auto-height needed.
+3. **QA-03 compliance statement approach** — RESOLVED: Option (c) — UI-level banner display in results view. Not injected into prompt content by generator.
 
 ## Environment Availability
 

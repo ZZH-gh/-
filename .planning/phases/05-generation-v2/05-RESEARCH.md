@@ -456,7 +456,7 @@ def _inject_output_structure(self) -> str:
 | A3 | `get_doc_template(task_type)` returns a dict with `sections` list | Injection pattern | Present in internet_it.json; confirmed in KNOW-01 schema |
 | A4 | pain_point entries have `what_not_to_do`, `typical_phrases`, `name` fields | Anti-pattern filter | Verified in internet_it.json pain_points section |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **How should `generate_complete()` return results to app.py?**
    - What we know: D-03 says app.py uses ConversationEngine.generate_complete() which calls PromptGeneratorV2.
