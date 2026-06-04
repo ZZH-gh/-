@@ -191,9 +191,25 @@ class ConversationEngine:
         }
 
     def generate_complete(self) -> dict:
-        """生成完成，回到完成状态。"""
+        """Orchestrate generation: build context -> call PromptGeneratorV2 -> return result."""
+        self._transition(ConversationState.GENERATING)
+
+        # Build generation context from current session
+        from .generator import PromptGeneratorV2
+
+        session = session_manager.get_active_session()
+        context = build_generation_context(session) if session else {}
+
+        # Instantiate generator with analysis result + context
+        gen = PromptGeneratorV2(self._last_analysis, context)
+        prompts = gen.generate_all()
+
         self._transition(ConversationState.COMPLETE)
-        return {"state": self.state.value, "action": "display_results"}
+        return {
+            "state": self.state.value,
+            "action": "display_results",
+            "prompts": prompts,
+        }
 
     def reset(self):
         """重置引擎到 IDLE。"""

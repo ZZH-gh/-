@@ -303,16 +303,11 @@ class PromptToolApp:
             engine.handle_confirmation(True)
             self._engine = engine
 
-            # Skip follow-up, generate with v4.0 context
-            from .generator_v2 import generate_prompts_v2
-            from .context_builder import build_generation_context
+            # generate_complete() now internally builds context + calls PromptGeneratorV2 (D-03)
+            gen_result = engine.generate_complete()
 
-            session = session_manager.get_active_session()
-            context = build_generation_context(session) if session else {}
-
-            self.analysis_result = self.engine.analyze(content, context.get("industry_name"))
-            self.generated_prompts = generate_prompts_v2(self.analysis_result, context)
-            engine.generate_complete()
+            self.analysis_result = engine._last_analysis
+            self.generated_prompts = gen_result.get("prompts", {})
             self.root.after(0, self._on_done)
         except Exception as e:
             self.root.after(0, lambda: self._on_error(str(e)))
