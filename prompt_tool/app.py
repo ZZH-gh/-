@@ -1017,14 +1017,18 @@ class PromptToolApp:
     # ================================================================
 
     def _build_v4_result_page(self):
-        """构建结果页面：header + 三张策略卡横向对比 (D-03)"""
-        # Ensure result_frame has proper row config
+        """构建结果页面：header + 合规横幅 + 三卡横向对比 + 优化面板 (D-03, D-11~D-13)"""
+        # Grid layout: row0=header, row1=compliance_banner (Task 3), row2=cards+panel
         self.result_frame.grid_rowconfigure(0, weight=0)
+        self.result_frame.grid_rowconfigure(1, weight=0)
+        self.result_frame.grid_rowconfigure(2, weight=1)
+        self.result_frame.grid_columnconfigure(0, weight=1)   # cards_area
+        self.result_frame.grid_columnconfigure(1, weight=0)   # opt_panel (collapsible)
 
         # --- Header (row 0) ---
         h = ctk.CTkFrame(self.result_frame, height=60, corner_radius=0,
                          fg_color=self.colors["primary"])
-        h.grid(row=0, column=0, sticky="nsew")
+        h.grid(row=0, column=0, columnspan=2, sticky="nsew")
         h.grid_propagate(False)
         h.grid_columnconfigure(0, weight=1)
 
@@ -1036,23 +1040,61 @@ class PromptToolApp:
         btn_frame = ctk.CTkFrame(h, fg_color="transparent")
         btn_frame.grid(row=0, column=1, padx=15, sticky="e")
 
+        # Optimization panel toggle button (D-13)
+        self.opt_toggle_btn = ctk.CTkButton(
+            btn_frame, text="⚙️ 收起面板",
+            font=ctk.CTkFont(size=12),
+            fg_color="transparent", text_color="white",
+            border_color="white", border_width=1,
+            command=self._toggle_optimization_panel,
+        )
+        self.opt_toggle_btn.pack(side="left", padx=(0, 8))
+
+        # Knowledge pack button (placeholder — wired in Task 3)
+        self._v4_result_kb_btn = ctk.CTkButton(
+            btn_frame, text="📚 知识包", width=80, height=28,
+            font=ctk.CTkFont(size=11),
+            fg_color="transparent", text_color="white",
+            border_color="white", border_width=1,
+            # command will be set in Task 3
+        )
+        self._v4_result_kb_btn.pack(side="left", padx=(0, 8))
+
         ctk.CTkButton(btn_frame, text="← 返回对话",
                       font=ctk.CTkFont(size=12),
                       fg_color="transparent", text_color="white",
                       border_color="white", border_width=1,
-                      command=self._on_v4_back_to_chat
+                      command=self._on_v4_back_to_chat,
                       ).pack(side="left", padx=(0, 8))
 
         ctk.CTkButton(btn_frame, text="🔄 新对话",
                       font=ctk.CTkFont(size=12),
                       fg_color="#1A3F6D", text_color="white",
-                      command=self._on_v4_new_chat
+                      command=self._on_v4_new_chat,
                       ).pack(side="left")
 
-        # --- Cards area (row 1) ---
+        # Compliance banner (row 1) — built by Task 3, hidden by default
+        self.compliance_banner = ctk.CTkFrame(
+            self.result_frame, fg_color="#FFF3CD", corner_radius=6,
+            border_width=1, border_color="#FFC107"
+        )
+        self.compliance_banner.grid(row=1, column=0, columnspan=2,
+                                    padx=12, pady=(4, 0), sticky="ew")
+        self.compliance_banner.grid_remove()  # default hidden
+
+        ctk.CTkLabel(self.compliance_banner, text="⚖️",
+                     font=ctk.CTkFont(size=16)).pack(side="left", padx=(12, 6), pady=6)
+        self.compliance_label = ctk.CTkLabel(
+            self.compliance_banner, text="",
+            font=ctk.CTkFont(size=12), text_color="#856404",
+            wraplength=700, justify="left",
+        )
+        self.compliance_label.pack(side="left", padx=(0, 12), pady=6)
+
+        # --- Cards area (row 2, column 0) ---
         self.cards_area = ctk.CTkFrame(self.result_frame,
                                        fg_color=self.colors["body"])
-        self.cards_area.grid(row=1, column=0, sticky="nsew", padx=12, pady=12)
+        self.cards_area.grid(row=2, column=0, sticky="nsew", padx=12, pady=12)
         self.cards_area.grid_columnconfigure((0, 1, 2), weight=1, uniform="card_col")
         self.cards_area.grid_rowconfigure(0, weight=1)
 
@@ -1084,7 +1126,7 @@ class PromptToolApp:
             ctk.CTkLabel(title_frame, text=tag_text,
                          font=ctk.CTkFont(size=10),
                          text_color="white", fg_color=title_color,
-                         corner_radius=4
+                         corner_radius=4,
                          ).pack(side="right", padx=(8, 0))
 
             # Textbox (read-only, row 1, weight=1)
@@ -1112,8 +1154,203 @@ class PromptToolApp:
                 "copy_btn": copy_btn,
             }
 
+        # --- Optimization panel (row 2, column 1) — built after cards ---
+        self._panel_visible = True
+        self._opt_constraint_vars = []
+        self._build_optimization_panel()
+
+    def _build_optimization_panel(self):
+        """构建右侧优化侧栏面板 (D-11/D-12/D-13)
+
+        包含：追加要求输入框、换风格下拉、加限制复选框、重新生成按钮
+        """
+        opt_panel = ctk.CTkFrame(
+            self.result_frame, fg_color="white", corner_radius=8,
+            border_width=1, border_color=self.colors["border"],
+            width=280,
+        )
+        opt_panel.grid(row=2, column=1, padx=(6, 12), pady=6, sticky="nsew")
+        opt_panel.grid_propagate(False)
+        # Prevent opt_panel from collapsing to zero height
+        opt_panel.grid_rowconfigure(4, weight=1)
+
+        # A. Title
+        ctk.CTkLabel(
+            opt_panel, text="⚙️ 优化提示词",
+            font=ctk.CTkFont(size=14, weight="bold"),
+            text_color=self.colors["text"],
+        ).grid(row=0, column=0, padx=16, pady=(14, 8), sticky="w")
+
+        # B. 追加要求
+        ctk.CTkLabel(
+            opt_panel, text="📝 追加要求",
+            font=ctk.CTkFont(size=12, weight="bold"),
+            text_color=self.colors["text"],
+        ).grid(row=1, column=0, padx=16, pady=(4, 2), sticky="w")
+
+        self.refine_input = ctk.CTkTextbox(
+            opt_panel, height=80, wrap="word",
+            font=ctk.CTkFont(size=12),
+            fg_color="#F8F9FA",
+        )
+        self.refine_input.grid(row=2, column=0, padx=16, pady=(0, 8), sticky="ew")
+
+        # C. 换风格
+        ctk.CTkLabel(
+            opt_panel, text="🎨 换风格",
+            font=ctk.CTkFont(size=12, weight="bold"),
+            text_color=self.colors["text"],
+        ).grid(row=3, column=0, padx=16, pady=(4, 2), sticky="w")
+
+        self.style_combo = ctk.CTkComboBox(
+            opt_panel,
+            values=["保持当前风格", "更简洁", "更详细", "更专业", "更通俗"],
+            state="readonly",
+            font=ctk.CTkFont(size=12),
+        )
+        self.style_combo.set("保持当前风格")
+        self.style_combo.grid(row=4, column=0, padx=16, pady=(0, 8), sticky="ew")
+
+        # D. 加限制
+        ctk.CTkLabel(
+            opt_panel, text="🔒 加限制",
+            font=ctk.CTkFont(size=12, weight="bold"),
+            text_color=self.colors["text"],
+        ).grid(row=5, column=0, padx=16, pady=(4, 2), sticky="w")
+
+        constraint_frame = ctk.CTkFrame(opt_panel, fg_color="transparent")
+        constraint_frame.grid(row=6, column=0, padx=16, pady=(0, 8), sticky="ew")
+
+        # Store (checkbox, var) tuples
+        self._opt_constraint_vars = []
+        constraint_labels = [
+            "限制字数（≤500字）",
+            "包含示例/案例",
+            "纯文本（无表格/代码块）",
+        ]
+        for label in constraint_labels:
+            var = tk.BooleanVar(value=False)
+            cb = ctk.CTkCheckBox(
+                constraint_frame,
+                text=label,
+                variable=var,
+                font=ctk.CTkFont(size=12),
+                text_color=self.colors["text"],
+            )
+            cb.pack(anchor="w", pady=2)
+            self._opt_constraint_vars.append((cb, var))
+
+        # E. Spacer to push button to bottom
+        opt_panel.grid_rowconfigure(7, weight=1)
+
+        # F. 重新生成按钮
+        self.opt_regenerate_btn = ctk.CTkButton(
+            opt_panel, text="🔄 重新生成",
+            font=ctk.CTkFont(size=13, weight="bold"),
+            fg_color=self.colors["primary"],
+            height=36,
+            command=self._on_opt_regenerate,
+        )
+        self.opt_regenerate_btn.grid(
+            row=8, column=0, padx=16, pady=(8, 14), sticky="ew"
+        )
+
+        self.opt_panel = opt_panel
+
+    def _toggle_optimization_panel(self):
+        """收起/展开优化面板 (D-13)"""
+        if self._panel_visible:
+            # Collapse: remove panel, let cards fill space
+            self.opt_panel.grid_remove()
+            self.result_frame.grid_columnconfigure(1, weight=0, minsize=0)
+            self.opt_toggle_btn.configure(text="◀ 展开面板")
+            self._panel_visible = False
+        else:
+            # Expand: restore panel
+            self.opt_panel.grid()
+            self.result_frame.grid_columnconfigure(1, weight=0, minsize=280)
+            self.opt_toggle_btn.configure(text="⚙️ 收起面板")
+            self._panel_visible = True
+
+    def _on_opt_regenerate(self):
+        """优化面板重新生成按钮处理 (D-12)
+
+        收集参数 → 后台线程调用 refine_prompts → UI 线程更新三卡
+        """
+        if self._v4_is_generating:
+            return
+
+        # Collect parameters
+        additional = self.refine_input.get("1.0", "end-1c").strip()
+        style = self.style_combo.get()
+        constraints = [
+            cb.cget("text") for cb, var in self._opt_constraint_vars if var.get()
+        ]
+
+        # Disable button with loading state
+        self.opt_regenerate_btn.configure(
+            state="disabled", text="⏳ 优化中..."
+        )
+        self._v4_is_generating = True
+
+        def _do_refine():
+            try:
+                prompts = self._v4_controller.refine_prompts(
+                    additional_reqs=additional,
+                    style=style if style != "保持当前风格" else None,
+                    constraints=constraints,
+                )
+                self.root.after(0, lambda: self._v4_on_refined(prompts))
+            except Exception as e:
+                self.root.after(0, lambda: self._v4_on_error({"error": str(e)}))
+
+        thread = threading.Thread(target=_do_refine, daemon=True)
+        thread.start()
+
+    def _v4_on_refined(self, prompts: dict):
+        """优化重新生成完成回调：更新三卡 + 合规横幅"""
+        self.generated_prompts = prompts
+        self._populate_result_cards()
+        self._update_compliance_banner()
+        self._v4_set_generating(False)
+        self.opt_regenerate_btn.configure(
+            state="normal", text="🔄 重新生成"
+        )
+        self.set_status("✅ 优化完成，已重新生成 3 个提示词方案")
+
+    def _update_compliance_banner(self):
+        """根据当前结果的行业更新合规横幅显隐 (QA-03)"""
+        try:
+            if hasattr(self, '_v4_controller') and self._v4_controller is not None:
+                industry_id = self._v4_controller._engine._last_analysis.get("industry_id", "")
+            else:
+                industry_id = ""
+        except Exception:
+            industry_id = ""
+
+        # Also check generated prompts for compliance keywords (backward compat)
+        has_compliance_text = False
+        if self.generated_prompts:
+            sample = next(iter(self.generated_prompts.values()), "")
+            has_compliance_text = "合规声明" in sample or "不构成投资建议" in sample
+
+        banner_texts = {
+            "finance": "金融行业内容 — 本提示词仅供专业参考，不构成投资建议。涉及金融建议请以持牌机构正式意见为准。",
+            "manufacturing": "制造行业内容 — 本提示词仅供技术参考。涉及安全规范请以国家/行业标准为最终依据。",
+        }
+
+        if industry_id in banner_texts or has_compliance_text:
+            text = banner_texts.get(industry_id, "")
+            if text:
+                self.compliance_label.configure(text=text)
+                self.compliance_banner.grid()
+            else:
+                self.compliance_banner.grid_remove()
+        else:
+            self.compliance_banner.grid_remove()
+
     def _populate_result_cards(self):
-        """填充三张策略卡的内容"""
+        """填充三张策略卡的内容，同时更新合规横幅"""
         if not self.generated_prompts:
             return
         for sk, info in self._result_cards.items():
@@ -1123,6 +1360,9 @@ class PromptToolApp:
             textbox.delete("1.0", "end")
             textbox.insert("1.0", prompt)
             textbox.configure(state="disabled")
+
+        # Update compliance banner based on generated content
+        self._update_compliance_banner()
 
     def _on_v4_copy_card(self, strategy_key: str):
         """复制单张策略卡内容到剪贴板 (D-03)"""

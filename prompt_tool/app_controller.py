@@ -16,6 +16,7 @@ AppController — UI 事件与 ConversationEngine 的中介编排器
 import threading
 
 from .conversation_engine import ConversationEngine, ConversationState
+from .session_manager import session_manager
 
 
 class AppController:
@@ -89,6 +90,48 @@ class AppController:
         """
         result = self._engine.generate_complete()
         return result
+
+    def refine_prompts(self, additional_reqs="", style=None, constraints=None) -> dict:
+        """根据优化参数重新生成提示词（D-12）
+
+        Args:
+            additional_reqs: 追加的文本要求
+            style: 风格偏好（"保持当前风格" 或 None 视为无变更）
+            constraints: 限制条件列表
+
+        Returns:
+            PromptGeneratorV2.generate_all() 的完整 dict:
+            {"direct": ..., "roleplay": ..., "detailed": ...}
+        """
+        from .generator import PromptGeneratorV2
+        from .context_builder import build_generation_context
+
+        constraints = constraints or []
+        session = session_manager.get_active_session()
+
+        # 记录优化输入到会话
+        if additional_reqs:
+            session_manager.add_turn("user", f"追加要求：{additional_reqs}", "answer")
+        if style and style != "保持当前风格":
+            session_manager.add_turn("user", f"风格偏好：{style}", "answer")
+        if constraints:
+            session_manager.add_turn("user", f"限制条件：{'、'.join(constraints)}", "answer")
+
+        # 重建上下文并重新生成
+        context = build_generation_context(session) if session else {}
+
+        # 将优化参数融入上下文
+        if additional_reqs:
+            context["conversation_summary"] = (
+                context.get("conversation_summary", "") + f"\n追加要求：{additional_reqs}"
+            )
+        if style and style != "保持当前风格":
+            context.setdefault("confirmed_info", {})["tone"] = style
+        if constraints:
+            context.setdefault("confirmed_info", {})["constraints"] = constraints
+
+        gen = PromptGeneratorV2(self._engine._last_analysis, context)
+        return gen.generate_all()
 
     def reset(self) -> None:
         """重置引擎和生成状态"""
