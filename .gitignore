@@ -1,0 +1,5 @@
+dist_new/
+dist_final/
+tmpbuild/
+*.spec
+*.pyc
