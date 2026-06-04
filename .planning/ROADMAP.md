@@ -188,11 +188,19 @@ Plans:
   4. 制造业行业知识包完成（术语60+、场景10+、追问树2+）
   5. 每个包通过 QA-01 深度检查清单
 
-**Plans**: [To be planned]
+**Plans**: 5 plans
 
 Plans:
+**Wave 1** *(parallel — D-01: 4 packs simultaneously)*
 
-- (Planned in Phase 7)
+- [ ] 07-01-PLAN.md — 销售/零售行业知识包 (02-sales-retail.yaml, KNOW-05)
+- [ ] 07-02-PLAN.md — 教育行业知识包 (03-education.yaml, KNOW-06)
+- [ ] 07-03-PLAN.md — 金融行业知识包 (04-finance.yaml, KNOW-07)
+- [ ] 07-04-PLAN.md — 制造业知识包 (05-manufacturing.yaml, KNOW-08)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 07-05-PLAN.md — 旧桩文件清理 + build_packs.py全量编译 + test_schema.py + 内容计数门 (KNOW-05~08)
 
 ### Phase 8: Packaging
 
@@ -223,10 +231,10 @@ Plans:
 | 4. Conversation Core | 1/3 | Complete    | 2026-06-03 |
 | 5. Generation v2 | 3/3 | Complete    | 2026-06-04 |
 | 6. UI | 3/3 | Complete    | 2026-06-04 |
-| 7. Scale | 0/0 | Not started | - |
+| 7. Scale | 0/5 | Planned     | - |
 | 8. Packaging | 0/0 | Not started | - |
 
 ---
 
 *Roadmap created: 2026-06-03*
-*Last updated: 2026-06-04 — Phase 6 plans created*
+*Last updated: 2026-06-04 — Phase 7 plans created*
