@@ -122,12 +122,70 @@ def sample_pack_json() -> dict:
                 "follow_up_tree": "code_generation",
             },
         ],
-        "roles": [],
+        "roles": [
+            {
+                "name": "产品经理",
+                "common_tasks": ["PRD撰写", "需求分析"],
+                "responsibilities": ["定义产品需求", "管理产品backlog", "协调跨团队沟通"],
+                "kpis": [
+                    {"name": "PRD完整度", "description": "需求文档覆盖核心功能与异常场景", "benchmark": "90%"},
+                    {"name": "迭代效率", "description": "版本交付周期", "benchmark": "2周"},
+                    {"name": "需求变更率", "description": "开发阶段的需求变更次数", "benchmark": "<3次/版本"},
+                ],
+                "pain_points": ["需求频繁变更", "跨团队沟通成本高"],
+            },
+            {
+                "name": "技术架构师",
+                "common_tasks": ["代码生成", "技术方案设计"],
+                "responsibilities": ["系统架构设计", "技术选型", "代码评审"],
+                "kpis": [
+                    {"name": "系统可用性", "description": "服务正常运行时间", "benchmark": "99.9%"},
+                ],
+                "pain_points": ["技术债积累", "性能瓶颈"],
+            },
+        ],
         "workflows": [],
-        "docs": [],
+        "docs": [
+            {
+                "name": "PRD模板",
+                "task_type": "PRD撰写",
+                "sections": [
+                    {"title": "背景与目标", "prompt_hint": "项目背景和业务目标"},
+                    {"title": "功能范围", "prompt_hint": "核心功能列表与优先级"},
+                    {"title": "非功能需求", "prompt_hint": "性能、安全、兼容性要求"},
+                    {"title": "验收标准", "prompt_hint": "可量化的验收条件"},
+                ],
+                "tone": "专业、严谨",
+                "common_mistakes": ["需求过于模糊", "缺少验收标准"],
+            },
+        ],
         "follow_up_trees": [],
-        "pain_points": [],
+        "pain_points": [
+            {
+                "name": "需求不明确",
+                "description": "用户说不清楚自己要什么，导致反复修改",
+                "why_happens": "用户缺乏领域专业知识",
+                "who_feels_it": "产品经理、开发团队",
+                "typical_phrases": ["需求不会变了", "就这些需求", "随便做做"],
+                "what_not_to_do": "不要在需求不明确时直接开始编码",
+            },
+            {
+                "name": "过度承诺",
+                "description": "为了争取项目而承诺不切实际的交付时间",
+                "why_happens": "竞争压力、销售导向",
+                "who_feels_it": "开发团队",
+                "typical_phrases": ["一周搞定", "很简单的", "和XX一样就行"],
+                "what_not_to_do": "不要承诺无法在合理时间内完成的功能范围",
+            },
+        ],
     }
+
+
+@pytest.fixture
+def fully_loaded_pack(sample_pack_json):
+    """Return a KnowledgePack instance with all fields (roles, docs, pain_points) populated."""
+    from prompt_tool.knowledge_pack import KnowledgePack
+    return KnowledgePack(sample_pack_json)
 
 
 @pytest.fixture

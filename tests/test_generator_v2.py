@@ -72,6 +72,40 @@ class TestGeneratorV2:
         result = generate_prompts_v2(self.ANALYSIS, self.CONTEXT)
         assert "direct" in result
 
+    # ---- GEN-02: 4-Level injection point tests (with KnowledgePack data) ----
+
+    def test_role_depth_injection_contains_kpis(self, fully_loaded_pack):
+        """Detailed output contains KPI-related content from pack roles."""
+        gen = PromptGeneratorV2(self.ANALYSIS, self.CONTEXT)
+        gen._pack = fully_loaded_pack
+        gen._task_knowledge = gen._select_task_knowledge()
+        result = gen.generate_all()
+        assert "完整度" in result["detailed"] or "KPI" in result["detailed"] or "迭代效率" in result["detailed"]
+
+    def test_output_structure_injection_has_sections(self, fully_loaded_pack):
+        """Detailed output contains doc template section titles."""
+        gen = PromptGeneratorV2(self.ANALYSIS, self.CONTEXT)
+        gen._pack = fully_loaded_pack
+        gen._task_knowledge = gen._select_task_knowledge()
+        result = gen.generate_all()
+        assert "背景与目标" in result["detailed"] or "功能范围" in result["detailed"]
+
+    def test_anti_pattern_injection_has_warnings(self, fully_loaded_pack):
+        """Detailed output contains pain point warnings (inject 4)."""
+        gen = PromptGeneratorV2(self.ANALYSIS, self.CONTEXT)
+        gen._pack = fully_loaded_pack
+        gen._task_knowledge = gen._select_task_knowledge()
+        result = gen.generate_all()
+        assert "避免以下陷阱" in result["detailed"] or "注意事项" in result["detailed"]
+
+    def test_quality_injection_in_direct(self, fully_loaded_pack):
+        """Direct output contains quality standards content."""
+        gen = PromptGeneratorV2(self.ANALYSIS, self.CONTEXT)
+        gen._pack = fully_loaded_pack
+        gen._task_knowledge = gen._select_task_knowledge()
+        result = gen.generate_all()
+        assert "可操作" in result["direct"] or "行业实际工作标准" in result["direct"]
+
 
 class TestAntiPatternFilter:
     """GEN-04 反模式过滤测试"""
@@ -109,3 +143,35 @@ class TestAntiPatternFilter:
         text = "作为行业顶尖专家，这是公认的最佳方案。"
         filtered = gen._filter(text)
         assert len(filtered) < len(text)
+
+    # ---- GEN-04: Pain point driven filter tests (D-15, D-18) ----
+
+    def test_anti_pattern_filter_uses_pain_points(self, fully_loaded_pack):
+        """_build_anti_pattern_rules() includes pain_point rules from pack data."""
+        gen = PromptGeneratorV2(TestGeneratorV2.ANALYSIS, TestGeneratorV2.CONTEXT)
+        gen._pack = fully_loaded_pack
+        gen._anti_pattern_rules = None
+        rules = gen._build_anti_pattern_rules()
+        pain_rules = [r for r in rules if r["type"] == "pain_point"]
+        assert len(pain_rules) >= 1, f"Expected pain_point rules, got: {[r['type'] for r in rules]}"
+        # Verify trigger_phrases from fixture data
+        phrase_found = any(
+            "需求不会变了" in r.get("trigger_phrases", []) or "就这些需求" in r.get("trigger_phrases", [])
+            for r in pain_rules
+        )
+        assert phrase_found, "Pain point rules should contain fixture trigger_phrases"
+
+    def test_anti_pattern_filter_handles_pain_point_phrase(self, fully_loaded_pack):
+        """_filter() replaces a typical_phrase from pack with a warning."""
+        gen = PromptGeneratorV2(TestGeneratorV2.ANALYSIS, TestGeneratorV2.CONTEXT)
+        gen._pack = fully_loaded_pack
+        gen._anti_pattern_rules = None
+        text = "项目经理说需求不会变了，让我们开始开发。"
+        filtered = gen._filter(text)
+        assert "需求不会变了" not in filtered
+        assert "注意" in filtered
+
+    def test_pack_has_no_hardcoded_ANTI_PATTERNS(self):
+        """generator.py should NOT have a module-level ANTI_PATTERNS constant."""
+        import prompt_tool.generator as gen_mod
+        assert not hasattr(gen_mod, "ANTI_PATTERNS"), "ANTI_PATTERNS constant should not exist in generator.py"
