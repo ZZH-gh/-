@@ -175,3 +175,85 @@ class TestAntiPatternFilter:
         """generator.py should NOT have a module-level ANTI_PATTERNS constant."""
         import prompt_tool.generator as gen_mod
         assert not hasattr(gen_mod, "ANTI_PATTERNS"), "ANTI_PATTERNS constant should not exist in generator.py"
+
+
+class TestComplianceDisclaimer:
+    """QA-03: 金融/制造行业提示词包含合规声明"""
+
+    ANALYSIS_FINANCE = {
+        "industry_key": "金融",
+        "industry_name": "金融",
+        "task_name": "投资分析报告",
+        "original_input": "帮我分析投资组合",
+    }
+    ANALYSIS_MANUFACTURING = {
+        "industry_key": "制造",
+        "industry_name": "制造",
+        "task_name": "工艺流程优化",
+        "original_input": "帮我优化生产线工艺流程",
+    }
+    ANALYSIS_INTERNET = {
+        "industry_key": "internet_it",
+        "industry_name": "互联网 / IT",
+        "task_name": "PRD撰写",
+        "original_input": "帮我写一个电商PRD",
+    }
+
+    CONTEXT_FINANCE = {
+        "industry_id": "finance",
+        "industry_name": "金融",
+        "task_type": "投资分析报告",
+        "confirmed_info": {},
+        "conversation_summary": "",
+    }
+    CONTEXT_MANUFACTURING = {
+        "industry_id": "manufacturing",
+        "industry_name": "制造",
+        "task_type": "工艺流程优化",
+        "confirmed_info": {},
+        "conversation_summary": "",
+    }
+    CONTEXT_INTERNET = {
+        "industry_id": "internet_it",
+        "industry_name": "互联网 / IT",
+        "task_type": "PRD撰写",
+        "confirmed_info": {},
+        "conversation_summary": "",
+    }
+
+    def _make_gen(self, analysis, context):
+        gen = PromptGeneratorV2(analysis, context)
+        gen._task_knowledge = {}
+        gen._anti_pattern_rules = []
+        return gen
+
+    def test_finance_prompts_contain_compliance(self):
+        """industry_id='finance' 时，所有三个策略包含合规关键字"""
+        gen = self._make_gen(self.ANALYSIS_FINANCE, self.CONTEXT_FINANCE)
+        result = gen.generate_all()
+        for strategy_name, text in result.items():
+            assert any(kw in text for kw in ["合规声明", "风险提示", "不构成"]), \
+                f"Finance {strategy_name} missing compliance keywords"
+
+    def test_manufacturing_prompts_contain_compliance(self):
+        """industry_id='manufacturing' 时，所有三个策略包含合规关键字"""
+        gen = self._make_gen(self.ANALYSIS_MANUFACTURING, self.CONTEXT_MANUFACTURING)
+        result = gen.generate_all()
+        for strategy_name, text in result.items():
+            assert any(kw in text for kw in ["合规", "安全规范", "国标"]), \
+                f"Manufacturing {strategy_name} missing compliance keywords"
+
+    def test_non_sensitive_industry_no_crash(self):
+        """industry_id='internet_it' 时，generate_all() 正常返回不崩溃"""
+        gen = self._make_gen(self.ANALYSIS_INTERNET, self.CONTEXT_INTERNET)
+        result = gen.generate_all()
+        assert "direct" in result
+        assert "roleplay" in result
+        assert "detailed" in result
+
+    def test_compliance_contains_disclaimer_phrases(self):
+        """合规声明内容包含免责条款文字"""
+        gen = self._make_gen(self.ANALYSIS_FINANCE, self.CONTEXT_FINANCE)
+        result = gen.generate_all()
+        combined = result["direct"] + result["roleplay"] + result["detailed"]
+        assert "不构成投资建议" in combined or "以国家/行业标准为最终依据" in combined
