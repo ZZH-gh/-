@@ -603,13 +603,74 @@ class PromptGeneratorV2:
 
         return "".join(parts)
 
+    # ================================================================
+    # 合规声明（QA-03: 金融/制造行业追加合规声明）
+    # ================================================================
+
+    COMPLIANCE_DISCLAIMERS = {
+        "finance": (
+            "\n\n---\n**⚖️ 合规声明：** 本提示词仅供专业人士参考。"
+            "涉及金融建议、投资分析或财务规划的内容，请以持牌金融机构的正式意见为准。\n"
+            "- 输出内容不构成投资建议\n"
+            "- 涉及具体金融产品或策略时请标注风险等级\n"
+            "- 遵守相关金融监管法规要求"
+        ),
+        "manufacturing": (
+            "\n\n---\n**⚖️ 合规声明：** 本提示词仅供技术参考。"
+            "涉及制造工艺、安全规范或质量控制的内容，请以国家/行业标准为最终依据。\n"
+            "- 涉及安全操作时请注明安全规程编号\n"
+            "- 产品规格请参考对应国标/行标\n"
+            "- 遵守安全生产相关法律法规"
+        ),
+    }
+
+    # v3.0 中文行业 key → 合规声明映射（与 English ID 共享）
+    _COMPLIANCE_KEY_MAP = {
+        "金融": "finance",
+        "制造": "manufacturing",
+    }
+
+    def _compliance_disclaimer(self) -> str | None:
+        """返回当前行业的合规声明文本，非敏感行业返回 None。
+
+        同时检查 self.industry_id（规范化 ID）和 self.r.get("industry_key"）（v3.0 中文 key）。
+        """
+        # 从 self.industry_id 直接匹配（finance/manufacturing）
+        industry_key = self.industry_id
+        if industry_key in self.COMPLIANCE_DISCLAIMERS:
+            return self.COMPLIANCE_DISCLAIMERS[industry_key]
+
+        # 从 v3.0 中文 industry_key 映射（金融/制造）
+        if industry_key and industry_key in self._COMPLIANCE_KEY_MAP:
+            mapped = self._COMPLIANCE_KEY_MAP[industry_key]
+            return self.COMPLIANCE_DISCLAIMERS.get(mapped)
+
+        # 从 analysis_result 的 industry_key 检查（兼容 generate_prompts 路径）
+        result_key = self.r.get("industry_key", "")
+        if result_key in self._COMPLIANCE_KEY_MAP:
+            mapped = self._COMPLIANCE_KEY_MAP[result_key]
+            return self.COMPLIANCE_DISCLAIMERS.get(mapped)
+
+        if result_key in self.COMPLIANCE_DISCLAIMERS:
+            return self.COMPLIANCE_DISCLAIMERS[result_key]
+
+        return None
+
     def generate_all(self) -> dict:
         """Generate all 3 strategy variants, each filtered through anti-pattern filter."""
-        return {
+        result = {
             "direct": self._filter(self._direct()),
             "roleplay": self._filter(self._roleplay()),
             "detailed": self._filter(self._detailed()),
         }
+
+        # QA-03: Append compliance disclaimer for sensitive industries
+        disclaimer = self._compliance_disclaimer()
+        if disclaimer:
+            for sk in result:
+                result[sk] = result[sk] + disclaimer
+
+        return result
 
     # ================================================================
     # 辅助方法（从 v3.0 PromptGenerator 移植 + 适配）
