@@ -11,7 +11,7 @@
 - [x] **Phase 3: Context Layer** — 会话状态管理与上下文构建 (completed 2026-06-03)
 - [x] **Phase 4: Conversation Core** — 状态机引擎 + 意图分类器 + 追问树遍历器 (completed 2026-06-03)
 - [x] **Phase 5: Generation v2** — 意图驱动合成 + 4 级知识注入 (completed 2026-06-04)
-- [ ] **Phase 6: UI** — 对话式交互界面 + AppController
+- [x] **Phase 6: UI** — 对话式交互界面 + AppController (completed 2026-06-04)
 - [ ] **Phase 7: Scale** — 剩余 4 个核心行业知识包
 - [ ] **Phase 8: Packaging** — PyInstaller --onedir 打包 + 中文兼容测试
 
@@ -162,15 +162,15 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 06-01-PLAN.md — 对话界面核心：气泡流+输入栏+逃生门+三卡结果+帧切换 (UI-01, UI-02)
+- [x] 06-01-PLAN.md — 对话界面核心：气泡流+输入栏+逃生门+三卡结果+帧切换 (UI-01, UI-02)
 
 **Wave 2** *(blocked on Wave 1 completion — file overlap on app.py + app_controller.py)*
 
-- [ ] 06-02-PLAN.md — 多消息类型交互（单选/多选/确认）+导航完善+状态栏持久化 (UI-01)
+- [x] 06-02-PLAN.md — 多消息类型交互（单选/多选/确认）+导航完善+状态栏持久化 (UI-01)
 
 **Wave 3** *(blocked on Wave 2 completion — file overlap on app.py + app_controller.py)*
 
-- [ ] 06-03-PLAN.md — 优化侧栏面板+知识包可见性+合规声明 (UI-03, UI-04, QA-03)
+- [x] 06-03-PLAN.md — 优化侧栏面板+知识包可见性+合规声明 (UI-03, UI-04, QA-03)
 
 **UI hint**: yes
 
@@ -222,7 +222,7 @@ Plans:
 | 3. Context Layer | 1/1 | Complete    | 2026-06-03 |
 | 4. Conversation Core | 1/3 | Complete    | 2026-06-03 |
 | 5. Generation v2 | 3/3 | Complete    | 2026-06-04 |
-| 6. UI | 0/3 | Not started | - |
+| 6. UI | 3/3 | Complete    | 2026-06-04 |
 | 7. Scale | 0/0 | Not started | - |
 | 8. Packaging | 0/0 | Not started | - |
 
