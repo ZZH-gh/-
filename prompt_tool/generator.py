@@ -291,6 +291,9 @@ class PromptGeneratorV2:
         # Select task-relevant knowledge (cached, shared across 3 strategies)
         self._task_knowledge = self._select_task_knowledge()
 
+        # Anti-pattern rules cache (built lazily by _filter)
+        self._anti_pattern_rules = None
+
     # ================================================================
     # 知识选择（D-12：任务相关核心知识，不全量注入）
     # ================================================================
@@ -453,6 +456,63 @@ class PromptGeneratorV2:
         return "\n".join(p for p in parts if p)
 
     # ================================================================
+    # 反模式过滤（GEN-04, D-15~D-18）
+    # ================================================================
+
+    def _build_anti_pattern_rules(self) -> list:
+        """Build filter rules from knowledge pack pain points + regex supplements.
+
+        PRIMARY layer (D-15, D-18): pain point typical_phrases from KnowledgePack.
+        SECONDARY layer (D-16): regex patterns for false authority + stereotypes.
+        """
+        rules = []
+
+        # PRIMARY: Pain point driven (D-15)
+        if self._pack:
+            for pp in self._pack.get_pain_points():
+                typical_phrases = pp.get("typical_phrases", [])
+                if typical_phrases:
+                    rules.append({
+                        "type": "pain_point",
+                        "trigger_phrases": typical_phrases,
+                        "description": pp.get("name", ""),
+                        "replacement": f"[注意：避免{pp.get('name', '')}]",
+                    })
+
+        # SECONDARY: Regex supplements for false authority + stereotypes (D-16)
+        rules.extend([
+            {"type": "authority", "pattern": r"作为.*[资深|首席|全球].*专家", "replacement": ""},
+            {"type": "authority", "pattern": r"行业(领先|标杆|顶尖|公认)", "replacement": ""},
+            {"type": "authority", "pattern": r"业界(公认|领先|一流)", "replacement": ""},
+            {"type": "authority", "pattern": r"国际(标准|一流|顶尖)", "replacement": ""},
+            {"type": "stereotype", "pattern": r"毫无疑问.*(?:正确|有效|最佳)", "replacement": ""},
+            {"type": "stereotype", "pattern": r"所有.*?(?:企业|公司|产品|行业).*?都(?:必须|应该|需要)", "replacement": ""},
+            {"type": "stereotype", "pattern": r"唯一(?:正确|有效|可行).*?(?:方案|方法|方式)", "replacement": ""},
+            {"type": "stereotype", "pattern": r"公认.*?(?:正确|做法|标准)", "replacement": ""},
+        ])
+        return rules
+
+    def _filter(self, text: str) -> str:
+        """GEN-04: Pain point driven + regex supplement anti-pattern filter (D-17).
+
+        Applies all rules from _build_anti_pattern_rules():
+        1. Pain point phrase triggers -> replace with warning notes
+        2. Authority/stereotype regex patterns -> remove or replace violations
+        """
+        if self._anti_pattern_rules is None:
+            self._anti_pattern_rules = self._build_anti_pattern_rules()
+
+        for rule in self._anti_pattern_rules:
+            if rule["type"] == "pain_point":
+                for phrase in rule.get("trigger_phrases", []):
+                    if phrase in text:
+                        text = text.replace(phrase, rule["replacement"])
+            else:
+                text = re.sub(rule["pattern"], rule.get("replacement", ""), text)
+
+        return text.strip()
+
+    # ================================================================
     # 策略实现（Plan 02: 差异化注入深度）
     # ================================================================
 
@@ -544,11 +604,11 @@ class PromptGeneratorV2:
         return "".join(parts)
 
     def generate_all(self) -> dict:
-        """Generate all 3 strategy variants."""
+        """Generate all 3 strategy variants, each filtered through anti-pattern filter."""
         return {
-            "direct": self._direct(),
-            "roleplay": self._roleplay(),
-            "detailed": self._detailed(),
+            "direct": self._filter(self._direct()),
+            "roleplay": self._filter(self._roleplay()),
+            "detailed": self._filter(self._detailed()),
         }
 
     # ================================================================
