@@ -11,6 +11,7 @@ Knowledge Manager — 运行时知识包加载器和行业匹配器
   - 编译产物缺失时静默 fallback 到 v3.0 knowledge.py
 """
 
+import gzip
 import json
 import sys
 from collections import OrderedDict
@@ -131,12 +132,18 @@ class KnowledgeManager:
         """Load JSON from disk. Fallback to knowledge.py on failure."""
         from .knowledge_pack import KnowledgePack
 
+        # PKG-02: Try gzip-compressed .json.gz first, fall back to .json
+        pack_path_gz = self._compiled_dir / f"{industry_id}.json.gz"
         pack_path = self._compiled_dir / f"{industry_id}.json"
         try:
-            with open(pack_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
+            if pack_path_gz.exists():
+                with gzip.open(pack_path_gz, "rt", encoding="utf-8") as f:
+                    data = json.load(f)
+            else:
+                with open(pack_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
             return KnowledgePack(data)
-        except (FileNotFoundError, json.JSONDecodeError):
+        except (FileNotFoundError, json.JSONDecodeError, gzip.BadGzipFile):
             self._fallback_active = True
             return self._build_fallback_pack(industry_id)
 
