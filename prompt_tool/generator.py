@@ -296,32 +296,68 @@ class PromptGeneratorV2:
     # ================================================================
 
     def _select_task_knowledge(self) -> dict:
-        """Select task-relevant slice of knowledge pack (D-12)."""
+        """Select task-relevant slice of knowledge pack (D-12).
+
+        Robust fallback chain: exact match -> fuzzy match -> first/default.
+        """
         if self._pack is None:
             return {}
 
+        # ---- 1. Task matching (D-12) with fuzzy fallback ----
         task = self._pack.get_task(self.task_name) if self.task_name else None
-        # Use get_doc_templates by task_type (not get_doc_template by doc name)
+        if task is None and self.task_name:
+            all_tasks = self._pack.get_tasks()
+            task = next(
+                (t for t in all_tasks
+                 if self.task_name in t.get("name", "")
+                 or t.get("name", "") in self.task_name),
+                None
+            )
+            if task is None and all_tasks:
+                task = all_tasks[0]
+
+        # ---- 2. Doc template matching (D-09) with fallback ----
         docs_for_task = self._pack.get_doc_templates(self.task_name) if self.task_name else []
         doc_template = docs_for_task[0] if docs_for_task else None
-        roles = self._pack.get_roles()
-        pain_points = self._pack.get_pain_points()
-
-        # Role matching: find role whose common_tasks contains this task (D-07)
-        task_role = None
-        if roles and self.task_name:
-            task_role = next(
-                (r for r in roles if self.task_name in r.get("common_tasks", [])),
-                roles[0] if roles else None
+        if doc_template is None and self.task_name:
+            all_docs = self._pack.get_doc_templates()
+            doc_template = next(
+                (d for d in all_docs if d.get("task_type") == self.task_name),
+                None
             )
 
-        # Terms (D-13): filter by task keywords, fallback to first 10
+        # ---- 3. Role matching (D-07): exact -> substring -> default ----
+        roles = self._pack.get_roles()
+        pain_points = self._pack.get_pain_points()
+        task_role = None
+        if roles and self.task_name:
+            common_tasks_list = [r for r in roles if self.task_name in r.get("common_tasks", [])]
+            task_role = common_tasks_list[0] if common_tasks_list else None
+            if task_role is None:
+                task_role = next(
+                    (r for r in roles if any(
+                        self.task_name in ct or ct in self.task_name
+                        for ct in r.get("common_tasks", [])
+                    )),
+                    None
+                )
+            if task_role is None:
+                task_role = roles[0]
+
+        # ---- 4. Terms filtering (D-13): keywords -> category -> fallback ----
         all_terms = self._pack.get_terms()
         task_terms = []
         if task:
             task_kws = task.get("keywords", [])
             if task_kws:
                 task_terms = [t for t in all_terms if t.get("term") in task_kws][:15]
+        if not task_terms:
+            task_cats = task.get("related_categories", []) if task else []
+            if task_cats:
+                for cat in task_cats:
+                    cat_terms = [t for t in all_terms if t.get("category") == cat]
+                    task_terms.extend(cat_terms)
+                task_terms = task_terms[:15]
         if not task_terms:
             task_terms = all_terms[:10]
 
