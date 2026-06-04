@@ -417,20 +417,95 @@ class PromptGeneratorV2:
         return "\n".join(p for p in parts if p)
 
     # ================================================================
-    # 策略模板（Plan 02 将区分化实现）
+    # 策略实现（Plan 02: 差异化注入深度）
     # ================================================================
 
     def _direct(self) -> str:
-        """Strategy 1: Direct — task + requirements."""
-        return self._task_line() + "\n\n要求：\n" + self._bullets()
+        """Strategy 1: Direct — minimal injection (1 point: quality standards)."""
+        parts = [self._task_line()]
+
+        # Conversation context note (only if summary is non-empty)
+        if self.summary.strip():
+            parts.append(f"\n## 背景\n{self.summary}")
+
+        parts.append(f"\n## 要求\n{self._bullets()}")
+
+        # Injection: quality standards only, concise (no heading, 1-2 lines)
+        qs = self._inject_quality_standards()
+        qs_lines = [l for l in qs.split('\n') if l and not l.startswith('##')]
+        if qs_lines:
+            parts.append("\n" + "\n".join(qs_lines[:2]))
+
+        parts.append(f"\n{self._format_line()}")
+        parts.append(f"\n{self._tone_hint()}")
+
+        return "".join(parts)
 
     def _roleplay(self) -> str:
-        """Strategy 2: Roleplay — role preamble + task."""
-        return "你是一位" + self._get_role() + "。\n\n任务：" + self._task_line()
+        """Strategy 2: Roleplay — role depth + task + quality (2 injection points)."""
+        parts = []
+
+        # Role preamble with depth (from _inject_role_depth)
+        role_depth = self._inject_role_depth()
+        if role_depth:
+            parts.append(role_depth)
+        else:
+            # Fallback: role name + generic role context
+            role_name = self._get_role()
+            parts.append(f"你是一位{role_name}。请从{role_name}的专业角度出发，结合行业经验完成以下任务。")
+
+        parts.append(f"\n## 任务\n{self._task_line()}")
+        parts.append(f"\n## 要求\n{self._bullets()}")
+
+        # Injection: quality standards (with full heading)
+        qs = self._inject_quality_standards()
+        if qs:
+            parts.append(f"\n{qs}")
+
+        parts.append(f"\n{self._format_line()}")
+        parts.append(f"\n{self._tone_hint()}")
+
+        return "".join(parts)
 
     def _detailed(self) -> str:
-        """Strategy 3: Detailed — full knowledge injection."""
-        return self._task_line() + "\n\n" + self._inject_all() + "\n\n" + self._bullets()
+        """Strategy 3: Detailed — full knowledge injection (all 4 points)."""
+        parts = [f"你是一位{self._get_role()}。"]
+
+        parts.append(f"\n## 背景\n{self._bg()}")
+
+        # Conversation context (if available)
+        if self.summary.strip():
+            parts.append(f"\n## 对话上下文\n{self.summary}")
+
+        parts.append(f"\n## 任务\n{self._task_line()}")
+
+        # All 4 injection points (D-06 order)
+        parts.append(f"\n{self._inject_all()}")
+
+        # Requirements: use _spec_req first if available
+        spec = self._spec_req()
+        if spec:
+            parts.append(f"\n## 要求\n{spec}")
+        else:
+            parts.append(f"\n## 要求\n{self._bullets()}")
+
+        parts.append(f"\n## 输出格式\n{self._format_line()}")
+
+        # Warnings with extra tips
+        extra = random.choice([
+            "确保内容具有实操性，避免空泛理论",
+            "合理组织内容结构，确保逻辑清晰",
+            "如信息不足，基于行业常识合理补充",
+            "输出内容对专业人士有实际参考价值",
+        ])
+        parts.append(
+            f"\n## 注意事项\n{self._tone_hint()}"
+            f"\n- 直接输出结果，不需要额外解释"
+            f"\n- 内容要贴合{self.industry_name}领域的实际情况"
+            f"\n- {extra}"
+        )
+
+        return "".join(parts)
 
     def generate_all(self) -> dict:
         """Generate all 3 strategy variants."""
