@@ -80,7 +80,8 @@ class PromptToolApp:
         self.root.grid_rowconfigure(1, weight=0)  # 输入区
         self.root.grid_rowconfigure(2, weight=0)  # 分析信息条
         self.root.grid_rowconfigure(3, weight=1)  # 三大方案
-        self.root.grid_rowconfigure(4, weight=0)  # 状态栏
+        self.root.grid_rowconfigure(4, weight=0)  # （保留——v3 策略区域底边）
+        self.root.grid_rowconfigure(5, weight=0)  # 状态栏（v3/v4 共用）
 
         self._build_header()
         self._build_input_area()
@@ -262,7 +263,7 @@ class PromptToolApp:
 
     def _build_status_bar(self):
         self._v3_status_bar = ctk.CTkFrame(self.root, height=26, corner_radius=0, fg_color="#E8ECF0")
-        self._v3_status_bar.grid(row=4, column=0, sticky="nsew")
+        self._v3_status_bar.grid(row=5, column=0, sticky="nsew")
         self._v3_status_bar.grid_propagate(False)
         self._v3_status_bar.grid_columnconfigure(0, weight=1)
 
@@ -543,12 +544,11 @@ class PromptToolApp:
         Args:
             page_name: "chat" 或 "results"
         """
-        # 隐藏 v3 所有直接子控件
+        # 隐藏 v3 所有直接子控件（状态栏除外——跨页面持久化）
         self._v3_header.grid_remove()
         self._v3_input_area.grid_remove()
         self.info_bar.grid_remove()
         self._v3_strategies_area.grid_remove()
-        self._v3_status_bar.grid_remove()
 
         # 显示 v4 容器
         self.v4_container.grid()
@@ -562,15 +562,17 @@ class PromptToolApp:
             self.result_frame.grid()
 
     def _switch_to_v3(self):
-        """切回 v3 视图"""
+        """切回 v3 视图
+
+        状态栏保持在 row=5 不变，无需重新 grid。
+        """
         self.v4_container.grid_remove()
 
-        # 恢复 v3 控件
+        # 恢复 v3 控件（状态栏从未隐藏，无需恢复）
         self._v3_header.grid(row=0, column=0, sticky="nsew")
         self._v3_input_area.grid(row=1, column=0, padx=12, pady=(8, 3), sticky="nsew")
         self.info_bar.grid(row=2, column=0, padx=12, pady=3, sticky="ew")
         self._v3_strategies_area.grid(row=3, column=0, padx=12, pady=3, sticky="nsew")
-        self._v3_status_bar.grid(row=4, column=0, sticky="nsew")
 
     # ================================================================
     # Phase 6: V4 Chat Page — 气泡流 + 输入栏 + 逃生门 (Task 2)
@@ -727,8 +729,13 @@ class PromptToolApp:
         self._add_system_message(welcome)
 
     def _scroll_chat_to_bottom(self):
-        """自动滚动到对话底部"""
+        """自动滚动到对话底部
+
+        增强版：先完成布局计算再滚动，捕获异常做降级处理。
+        但不要递归重试（RESEARCH.md Pitfall 1 — 静默降级即可）。
+        """
         try:
+            self.chat_scrollable.update_idletasks()
             self.chat_scrollable._parent_canvas.yview_moveto(1.0)
         except Exception:
             pass
@@ -982,16 +989,23 @@ class PromptToolApp:
         messagebox.showerror("错误", f"生成出错：\n{data.get('error', '未知错误')}")
 
     def _on_v4_new_chat(self):
-        """新对话 (D-05)：重置引擎 + 清空消息"""
+        """新对话 (D-05)：重置引擎 + 清空消息 + 新会话隔离"""
         self._v4_controller.reset()
+        session_manager.new_session()
+
         for child in self.chat_scrollable.winfo_children():
             child.destroy()
         self._chat_row_count = 0
         self._messages = []
         self._add_welcome_message()
+
+        self.v4_input.delete("1.0", "end")
+        self.generated_prompts = None
+
+        self._cleanup_options_frame()
         self._switch_to_v4_page("chat")
         self._v4_set_generating(False)
-        self.set_status("💡 输入需求 → 开始新对话")
+        self.set_status("🔄 新对话已开始，请输入你的需求")
 
     def _on_v4_back_to_chat(self):
         """返回对话 (D-04)：切回 chat 页，保留历史"""
