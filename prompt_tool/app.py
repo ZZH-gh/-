@@ -60,6 +60,7 @@ class PromptToolApp:
         # Phase 6: V4 scaffolding (chat_frame + result_frame + page switching)
         self._setup_v4_scaffolding()
         self._build_v4_chat_page()
+        self._build_v4_result_page()
         self._init_v4_controller()
 
     def _center_window(self):
@@ -834,6 +835,136 @@ class PromptToolApp:
         """返回对话 (D-04)：切回 chat 页，保留历史"""
         self._switch_to_v4_page("chat")
         self.set_status("💬 返回对话，可继续修改或补充信息")
+
+    # ================================================================
+    # Phase 6: V4 Result Page — 三卡横向对比 (Task 3)
+    # ================================================================
+
+    def _build_v4_result_page(self):
+        """构建结果页面：header + 三张策略卡横向对比 (D-03)"""
+        # Ensure result_frame has proper row config
+        self.result_frame.grid_rowconfigure(0, weight=0)
+
+        # --- Header (row 0) ---
+        h = ctk.CTkFrame(self.result_frame, height=60, corner_radius=0,
+                         fg_color=self.colors["primary"])
+        h.grid(row=0, column=0, sticky="nsew")
+        h.grid_propagate(False)
+        h.grid_columnconfigure(0, weight=1)
+
+        ctk.CTkLabel(h, text="🧠 智能提示词工坊 v4.0",
+                     font=ctk.CTkFont(size=18, weight="bold"),
+                     text_color="white").grid(row=0, column=0, padx=20, sticky="w")
+
+        # Right button area
+        btn_frame = ctk.CTkFrame(h, fg_color="transparent")
+        btn_frame.grid(row=0, column=1, padx=15, sticky="e")
+
+        ctk.CTkButton(btn_frame, text="← 返回对话",
+                      font=ctk.CTkFont(size=12),
+                      fg_color="transparent", text_color="white",
+                      border_color="white", border_width=1,
+                      command=self._on_v4_back_to_chat
+                      ).pack(side="left", padx=(0, 8))
+
+        ctk.CTkButton(btn_frame, text="🔄 新对话",
+                      font=ctk.CTkFont(size=12),
+                      fg_color="#1A3F6D", text_color="white",
+                      command=self._on_v4_new_chat
+                      ).pack(side="left")
+
+        # --- Cards area (row 1) ---
+        self.cards_area = ctk.CTkFrame(self.result_frame,
+                                       fg_color=self.colors["body"])
+        self.cards_area.grid(row=1, column=0, sticky="nsew", padx=12, pady=12)
+        self.cards_area.grid_columnconfigure((0, 1, 2), weight=1, uniform="card_col")
+        self.cards_area.grid_rowconfigure(0, weight=1)
+
+        # Build three strategy cards
+        self._result_cards = {}
+        strategies_order = ["direct", "roleplay", "detailed"]
+
+        for col, sk in enumerate(strategies_order):
+            card = ctk.CTkFrame(self.cards_area, fg_color="white",
+                                corner_radius=8, border_width=1,
+                                border_color="#DEE2E6")
+            card.grid(row=0, column=col, padx=6, pady=6, sticky="nsew")
+            card.grid_columnconfigure(0, weight=1)
+            card.grid_rowconfigure(1, weight=1)
+
+            # Title row
+            title_text = STRATEGIES[sk]["name"]
+            title_color = STRATEGIES[sk]["color"]
+            tag_text = STRATEGIES[sk]["tag"]
+
+            title_frame = ctk.CTkFrame(card, fg_color="transparent")
+            title_frame.grid(row=0, column=0, padx=12, pady=(8, 0), sticky="ew")
+
+            ctk.CTkLabel(title_frame, text=title_text,
+                         font=ctk.CTkFont(size=14, weight="bold"),
+                         text_color=self.colors["text"]
+                         ).pack(side="left")
+
+            ctk.CTkLabel(title_frame, text=tag_text,
+                         font=ctk.CTkFont(size=10),
+                         text_color="white", fg_color=title_color,
+                         corner_radius=4
+                         ).pack(side="right", padx=(8, 0))
+
+            # Textbox (read-only, row 1, weight=1)
+            textbox = ctk.CTkTextbox(
+                card, wrap="word",
+                font=ctk.CTkFont(size=12, family="Microsoft YaHei"),
+                fg_color="white", border_width=0, corner_radius=4,
+                state="disabled",
+            )
+            textbox.grid(row=1, column=0, padx=12, pady=8, sticky="nsew")
+
+            # Copy button (row 2)
+            copy_btn = ctk.CTkButton(
+                card, text="📋 复制",
+                font=ctk.CTkFont(size=11),
+                fg_color=self.colors["success"], hover_color="#1E8449",
+                height=28,
+                command=lambda k=sk: self._on_v4_copy_card(k),
+            )
+            copy_btn.grid(row=2, column=0, padx=12, pady=(0, 8), sticky="ew")
+
+            self._result_cards[sk] = {
+                "card": card,
+                "textbox": textbox,
+                "copy_btn": copy_btn,
+            }
+
+    def _populate_result_cards(self):
+        """填充三张策略卡的内容"""
+        if not self.generated_prompts:
+            return
+        for sk, info in self._result_cards.items():
+            prompt = self.generated_prompts.get(sk, "暂未生成")
+            textbox = info["textbox"]
+            textbox.configure(state="normal")
+            textbox.delete("1.0", "end")
+            textbox.insert("1.0", prompt)
+            textbox.configure(state="disabled")
+
+    def _on_v4_copy_card(self, strategy_key: str):
+        """复制单张策略卡内容到剪贴板 (D-03)"""
+        prompt = self.generated_prompts.get(strategy_key, "")
+        if not prompt:
+            return
+
+        self.root.clipboard_clear()
+        self.root.clipboard_append(prompt)
+
+        # Button feedback animation
+        copy_btn = self._result_cards[strategy_key]["copy_btn"]
+        copy_btn.configure(text="✅ 已复制", fg_color=self.colors["secondary"])
+        self.root.after(2000, lambda: copy_btn.configure(
+            text="📋 复制", fg_color=self.colors["success"]))
+
+        sn = STRATEGIES[strategy_key]["name"]
+        self.set_status(f"✅ 已复制：{sn}")
 
     def run(self):
         self.root.mainloop()
