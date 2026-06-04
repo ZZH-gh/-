@@ -665,6 +665,8 @@ class PromptToolApp:
                 0, lambda: self._v4_on_error(d)),
         )
         self._v4_is_generating = False
+        self._active_options_frame: ctk.CTkFrame | None = None
+        self._multi_choice_vars: dict[str, tk.BooleanVar] = {}
 
     # ================================================================
     # 消息气泡渲染
@@ -732,6 +734,164 @@ class PromptToolApp:
             pass
 
     # ================================================================
+    # 交互控件（single_choice / multi_choice / confirm）
+    # ================================================================
+
+    def _cleanup_options_frame(self):
+        """销毁当前选项 frame 并重置状态"""
+        if self._active_options_frame is not None:
+            try:
+                self._active_options_frame.destroy()
+            except Exception:
+                pass
+            self._active_options_frame = None
+        self._multi_choice_vars = {}
+
+    def _add_single_choice_options(self, options: list):
+        """单选按钮组：每个选项一个可点击按钮 (D-08)"""
+        self._cleanup_options_frame()
+
+        choice_frame = ctk.CTkFrame(
+            self.chat_scrollable,
+            fg_color="transparent",
+        )
+
+        for i, opt in enumerate(options):
+            label = opt.get("label", opt.get("value", "选项"))
+            btn = ctk.CTkButton(
+                choice_frame,
+                text=label,
+                font=ctk.CTkFont(size=12),
+                fg_color="#F0F4F8",
+                text_color=self.colors["text"],
+                hover_color="#D4E6F1",
+                border_width=1,
+                border_color=self.colors["border"],
+                height=30,
+                corner_radius=6,
+                command=lambda v=opt.get("value"): self._on_option_selected(v),
+            )
+            btn.grid(row=0, column=i, padx=4, pady=(0, 8), sticky="w")
+
+        choice_frame.grid(row=self._chat_row_count, column=0,
+                          sticky="w", padx=(10, 60), pady=(0, 4))
+        self._chat_row_count += 1
+        self._active_options_frame = choice_frame
+
+    def _on_option_selected(self, value: str):
+        """单选按钮点击：提交选项值"""
+        self._add_user_message(f"选择：{value}")
+        self._cleanup_options_frame()
+
+        self.send_btn.configure(state="disabled", text="⏳")
+        self._v4_is_generating = True
+        self._v4_controller.process_answer(value)
+
+    def _add_multi_choice_options(self, options: list):
+        """多选复选框组：每个选项一个复选框 + 确认按钮 (D-08)"""
+        self._cleanup_options_frame()
+
+        choice_frame = ctk.CTkFrame(
+            self.chat_scrollable,
+            fg_color="transparent",
+        )
+
+        self._multi_choice_vars = {}
+        for i, opt in enumerate(options):
+            label = opt.get("label", opt.get("value", "选项"))
+            var = tk.BooleanVar(value=False)
+            cb = ctk.CTkCheckBox(
+                choice_frame,
+                text=label,
+                variable=var,
+                font=ctk.CTkFont(size=12),
+                text_color=self.colors["text"],
+            )
+            cb.grid(row=i, column=0, padx=(0, 8), pady=2, sticky="w")
+            self._multi_choice_vars[opt.get("value")] = var
+
+        confirm_btn = ctk.CTkButton(
+            choice_frame,
+            text="✓ 确认选择",
+            font=ctk.CTkFont(size=11, weight="bold"),
+            fg_color=self.colors["primary"],
+            height=26,
+            command=self._on_multi_choice_confirm,
+        )
+        confirm_btn.grid(row=len(options), column=0, pady=(6, 0), sticky="w")
+
+        choice_frame.grid(row=self._chat_row_count, column=0,
+                          sticky="w", padx=(10, 60), pady=(0, 4))
+        self._chat_row_count += 1
+        self._active_options_frame = choice_frame
+
+    def _on_multi_choice_confirm(self):
+        """多选确认按钮：收集选中项并提交"""
+        selected = [v for v, var in self._multi_choice_vars.items() if var.get()]
+        if selected:
+            display_text = "选择了：" + "、".join(selected)
+            answer_text = ", ".join(selected)
+        else:
+            display_text = "未选择任何选项"
+            answer_text = "未选择"
+
+        self._add_user_message(display_text)
+        self._cleanup_options_frame()
+
+        self.send_btn.configure(state="disabled", text="⏳")
+        self._v4_is_generating = True
+        self._v4_controller.process_answer(answer_text)
+
+    def _add_confirm_buttons(self, question_text: str):
+        """确认提示：✓ 确认 和 ✗ 需要修改 两个按钮 (D-08)"""
+        self._cleanup_options_frame()
+
+        confirm_frame = ctk.CTkFrame(
+            self.chat_scrollable,
+            fg_color="transparent",
+        )
+
+        btn_confirm = ctk.CTkButton(
+            confirm_frame,
+            text="✓ 确认",
+            fg_color=self.colors["success"],
+            font=ctk.CTkFont(size=12),
+            height=30,
+            command=lambda: self._on_confirm_response(True, confirm_frame),
+        )
+        btn_confirm.grid(row=0, column=0, padx=(0, 4), pady=(0, 8))
+
+        btn_modify = ctk.CTkButton(
+            confirm_frame,
+            text="✗ 需要修改",
+            fg_color="#E74C3C",
+            font=ctk.CTkFont(size=12),
+            height=30,
+            command=lambda: self._on_confirm_response(False, confirm_frame),
+        )
+        btn_modify.grid(row=0, column=1, padx=(4, 0), pady=(0, 8))
+
+        confirm_frame.grid(row=self._chat_row_count, column=0,
+                           sticky="w", padx=(10, 60), pady=(0, 4))
+        self._chat_row_count += 1
+        self._active_options_frame = confirm_frame
+
+    def _on_confirm_response(self, confirmed: bool, frame):
+        """确认/修改按钮点击处理"""
+        if confirmed:
+            self._add_user_message("确认")
+            answer = "是"
+        else:
+            self._add_user_message("需要修改")
+            answer = "需要修改"
+
+        self._cleanup_options_frame()
+
+        self.send_btn.configure(state="disabled", text="⏳")
+        self._v4_is_generating = True
+        self._v4_controller.process_answer(answer)
+
+    # ================================================================
     # 事件处理
     # ================================================================
 
@@ -759,11 +919,14 @@ class PromptToolApp:
         self._v4_controller.skip_and_generate()
 
     def _v4_set_generating(self, generating: bool):
-        """统一设置生成状态和按钮外观"""
+        """统一设置生成状态和按钮外观
+
+        逃生门按钮始终保持可用（D-09）—— 用户可在任何交互类型中点击。
+        _v4_is_generating 标志防止重复提交，不依赖按钮 disable 状态。
+        """
         self._v4_is_generating = generating
         if generating:
             self.send_btn.configure(state="disabled", text="⏳")
-            self.escape_btn.configure(state="disabled")
         else:
             self.send_btn.configure(state="normal", text="▶")
             self.escape_btn.configure(state="normal")
@@ -773,7 +936,7 @@ class PromptToolApp:
         self.set_status(f"📋 状态：{data.get('state', '')}")
 
     def _v4_on_question(self, data: dict):
-        """引擎发出追问/澄清回调"""
+        """引擎发出追问/澄清回调 (D-08: 支持四种消息类型)"""
         question = data.get("question", {})
         question_text = question.get("question_text", data.get("message", ""))
         q_num = question.get("question_number", data.get("question_number", 0))
@@ -786,20 +949,19 @@ class PromptToolApp:
 
         self._add_system_message(display_text)
 
-        # 如果有可选项提示，以灰色小字显示
+        # 根据 question_type 渲染交互控件 (D-08)
+        q_type = question.get("question_type", "text_input")
         options = question.get("options", [])
-        if options:
-            hints = "💡 可选：" + " / ".join(o.get("label", o.get("value", ""))
-                                              for o in options)
-            hint_label = ctk.CTkLabel(
-                self.chat_scrollable,
-                text=hints,
-                font=ctk.CTkFont(size=11),
-                text_color=self.colors["text_light"],
-            )
-            hint_label.grid(row=self._chat_row_count, column=0,
-                            sticky="w", padx=(20, 60), pady=(0, 4))
-            self._chat_row_count += 1
+
+        if q_type == "single_choice" and options:
+            self._add_single_choice_options(options)
+        elif q_type == "multi_choice" and options:
+            self._add_multi_choice_options(options)
+        elif q_type == "confirm":
+            self._add_confirm_buttons(question_text)
+        else:
+            # text_input — 用户在底部输入框自由回答，无需额外控件
+            pass
 
         self._v4_set_generating(False)
         self.set_status("💬 请回答追问或点击「立即生成」跳过")

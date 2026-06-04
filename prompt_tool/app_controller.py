@@ -95,6 +95,19 @@ class AppController:
         self._engine.reset()
         self._is_generating = False
 
+    def process_answer(self, answer: str) -> None:
+        """提交追问/确认的回答（由选项按钮回调调用）
+
+        与 process_input 不同，此方法直接走 _do_answer 路径，
+        跳过 _is_generating 之外的 state 检查——调用方（选项按钮）
+        已确认当前可提交。
+        """
+        if self._is_generating:
+            return
+        self._is_generating = True
+        threading.Thread(target=self._do_answer,
+                         args=(answer,), daemon=True).start()
+
     # ================================================================
     # 内部后台方法（在 daemon 线程中运行）
     # ================================================================
