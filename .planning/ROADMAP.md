@@ -13,7 +13,7 @@
 - [x] **Phase 5: Generation v2** — 意图驱动合成 + 4 级知识注入 (completed 2026-06-04)
 - [x] **Phase 6: UI** — 对话式交互界面 + AppController (completed 2026-06-04)
 - [x] **Phase 7: Scale** — 剩余 4 个核心行业知识包 (completed 2026-06-04)
-- [ ] **Phase 8: Packaging** — PyInstaller --onedir 打包 + 中文兼容测试
+- [x] **Phase 8: Packaging** — PyInstaller --onedir 打包 + 中文兼容测试 (completed 2026-06-04)
 
 ## Phase Details
 
@@ -232,7 +232,7 @@ Plans:
 | 5. Generation v2 | 3/3 | Complete    | 2026-06-04 |
 | 6. UI | 3/3 | Complete    | 2026-06-04 |
 | 7. Scale | 5/5 | Complete    | 2026-06-04 |
-| 8. Packaging | 0/0 | Not started | - |
+| 8. Packaging | 1/1 | Complete    | 2026-06-04 |
 
 ---
 
