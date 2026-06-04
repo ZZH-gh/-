@@ -12,7 +12,7 @@
 - [x] **Phase 4: Conversation Core** — 状态机引擎 + 意图分类器 + 追问树遍历器 (completed 2026-06-03)
 - [x] **Phase 5: Generation v2** — 意图驱动合成 + 4 级知识注入 (completed 2026-06-04)
 - [x] **Phase 6: UI** — 对话式交互界面 + AppController (completed 2026-06-04)
-- [ ] **Phase 7: Scale** — 剩余 4 个核心行业知识包
+- [x] **Phase 7: Scale** — 剩余 4 个核心行业知识包 (completed 2026-06-04)
 - [ ] **Phase 8: Packaging** — PyInstaller --onedir 打包 + 中文兼容测试
 
 ## Phase Details
@@ -193,14 +193,14 @@ Plans:
 Plans:
 **Wave 1** *(parallel — D-01: 4 packs simultaneously)*
 
-- [ ] 07-01-PLAN.md — 销售/零售行业知识包 (02-sales-retail.yaml, KNOW-05)
-- [ ] 07-02-PLAN.md — 教育行业知识包 (03-education.yaml, KNOW-06)
-- [ ] 07-03-PLAN.md — 金融行业知识包 (04-finance.yaml, KNOW-07)
-- [ ] 07-04-PLAN.md — 制造业知识包 (05-manufacturing.yaml, KNOW-08)
+- [x] 07-01-PLAN.md — 销售/零售行业知识包 (02-sales-retail.yaml, KNOW-05)
+- [x] 07-02-PLAN.md — 教育行业知识包 (03-education.yaml, KNOW-06)
+- [x] 07-03-PLAN.md — 金融行业知识包 (04-finance.yaml, KNOW-07)
+- [x] 07-04-PLAN.md — 制造业知识包 (05-manufacturing.yaml, KNOW-08)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 07-05-PLAN.md — 旧桩文件清理 + build_packs.py全量编译 + test_schema.py + 内容计数门 (KNOW-05~08)
+- [x] 07-05-PLAN.md — 旧桩文件清理 + build_packs.py全量编译 + test_schema.py + 内容计数门 (KNOW-05~08)
 
 ### Phase 8: Packaging
 
@@ -231,7 +231,7 @@ Plans:
 | 4. Conversation Core | 1/3 | Complete    | 2026-06-03 |
 | 5. Generation v2 | 3/3 | Complete    | 2026-06-04 |
 | 6. UI | 3/3 | Complete    | 2026-06-04 |
-| 7. Scale | 0/5 | Planned     | - |
+| 7. Scale | 5/5 | Complete    | 2026-06-04 |
 | 8. Packaging | 0/0 | Not started | - |
 
 ---
