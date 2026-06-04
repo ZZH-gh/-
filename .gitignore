@@ -1,5 +1,14 @@
-dist_new/
-dist_final/
-tmpbuild/
+# Build artifacts
+dist/
+dist_*/
+tmpbuild*/
+build/
 *.spec
+
+# Python cache
+__pycache__/
 *.pyc
+*.pyo
+
+# Temp files
+_finance_fix.json
