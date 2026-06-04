@@ -4,157 +4,1893 @@
     "name": "制造业",
     "version": "1.0.0",
     "schema_version": "1.0",
-    "description": "制造业",
-    "last_updated": "2026-06-03",
+    "description": "制造业行业知识包，覆盖生产管理、质量管控、供应链管理、设备维护四大核心领域， 包含精益生产、仓储物流和工业4.0自动化内容。适用于生产主管、质量工程师、 供应链经理、设备维护工程师、工艺工程师、仓库/物流主管等角色，覆盖从车间 现场管理到供应链协同的完整制造价值链。\n",
+    "last_updated": "2026-06-04",
     "icon": "⚙️"
   },
   "terms": [
     {
-      "term": "良品率",
-      "category": "指标",
-      "definition": "合格品比例",
-      "aliases": [],
-      "usage_context": "",
-      "related_terms": []
+      "term": "OEE",
+      "category": "生产管理",
+      "definition": "设备综合效率（Overall Equipment Effectiveness），衡量设备利用率的综合性指标，由可用率（Availability）× 性能率（Performance）× 良品率（Quality）三要素相乘得出。",
+      "aliases": [
+        "设备综合效率",
+        "Overall Equipment Effectiveness",
+        "设备OEE"
+      ],
+      "usage_context": "生产主管和精益工程师用于评估设备运行效率，识别六大损失（故障、换模、停机、降速、不良、启动损失）",
+      "related_terms": [
+        "TPM",
+        "MTBF",
+        "产能利用率"
+      ]
+    },
+    {
+      "term": "节拍",
+      "category": "生产管理",
+      "definition": "Takt Time，根据客户需求速度确定的生产节奏时间，等于可用生产时间除以客户需求量，是整个生产线同步运作的基准节拍。",
+      "aliases": [
+        "Takt Time",
+        "生产节拍",
+        "客户节拍"
+      ],
+      "usage_context": "生产计划员和精益工程师在产线平衡时使用，用于确定生产线速度和各工位作业时间分配",
+      "related_terms": [
+        "生产周期",
+        "瓶颈工序",
+        "单件流"
+      ]
     },
     {
       "term": "产能",
-      "category": "指标",
-      "definition": "生产能力",
-      "aliases": [],
-      "usage_context": "",
-      "related_terms": []
+      "category": "生产管理",
+      "definition": "在一定时期内，在给定的资源条件下（设备、人力、物料），生产系统所能产出的最大产品数量或产值。",
+      "aliases": [
+        "生产能力",
+        "Production Capacity",
+        "产出能力"
+      ],
+      "usage_context": "生产主管和计划员在排产和接单决策时评估，决定是否接受新订单或需要扩产投资",
+      "related_terms": [
+        "产能利用率",
+        "排产",
+        "瓶颈工序"
+      ]
     },
     {
-      "term": "供应链",
-      "category": "流程",
-      "definition": "原材料到成品",
-      "aliases": [],
-      "usage_context": "",
-      "related_terms": []
+      "term": "排产",
+      "category": "生产管理",
+      "definition": "生产排程计划的简称，根据订单交期、物料齐套情况、设备能力和人力配置，确定各工单在各工序上的具体生产时间顺序。",
+      "aliases": [
+        "生产排程",
+        "Production Scheduling",
+        "排程"
+      ],
+      "usage_context": "生产计划员每日进行排产，平衡交期承诺与产能限制，处理插单和紧急订单的优先级调整",
+      "related_terms": [
+        "工单",
+        "产能",
+        "瓶颈工序"
+      ]
+    },
+    {
+      "term": "工单",
+      "category": "生产管理",
+      "definition": "生产工单（Work Order），下达给车间执行的具体生产任务指令，包含产品型号、数量、交期、工艺路线和物料清单等执行信息。",
+      "aliases": [
+        "生产工单",
+        "Work Order",
+        "制造工单"
+      ],
+      "usage_context": "生产计划员下达工单后，车间主管按工单安排生产，完工后汇报工时和产量用于成本核算",
+      "related_terms": [
+        "排产",
+        "在制品",
+        "标准工时"
+      ]
+    },
+    {
+      "term": "在制品",
+      "category": "生产管理",
+      "definition": "WIP（Work In Process），处于生产过程各工序之间、尚未完成最终检验入库的半成品和正在加工中的物料总量。",
+      "aliases": [
+        "WIP",
+        "在制品库存",
+        "在制"
+      ],
+      "usage_context": "生产主管和精益工程师监控在制品水平，过高占用资金和空间，过低可能导致缺料停线",
+      "related_terms": [
+        "精益生产",
+        "单件流",
+        "看板管理"
+      ]
+    },
+    {
+      "term": "交货期",
+      "category": "生产管理",
+      "definition": "Lead Time，从订单下达到产品交付完成的全部时间，包含订单处理、物料采购、生产制造、检验和运输等各个环节的耗时总和。",
+      "aliases": [
+        "Lead Time",
+        "交付周期",
+        "前置时间"
+      ],
+      "usage_context": "供应链经理和销售团队评估交期承诺，缩短交货期是提升客户满意度和竞争力的关键",
+      "related_terms": [
+        "排产",
+        "生产周期",
+        "JIT"
+      ]
+    },
+    {
+      "term": "瓶颈工序",
+      "category": "生产管理",
+      "definition": "生产线中产能最低、限制整体产出的关键工序或工位，其产能决定了整个生产系统的最大输出能力。",
+      "aliases": [
+        "Bottleneck",
+        "瓶颈",
+        "制约工序"
+      ],
+      "usage_context": "生产主管和工业工程师在产能提升时识别瓶颈，通过优化瓶颈工序效率来提升整线产能",
+      "related_terms": [
+        "产能",
+        "节拍",
+        "生产周期"
+      ]
+    },
+    {
+      "term": "生产周期",
+      "category": "生产管理",
+      "definition": "Cycle Time，产品从一个工序或工位开始到完成所需的时间，包括加工时间、等待时间和搬运时间的总和。",
+      "aliases": [
+        "Cycle Time",
+        "加工周期",
+        "工序周期"
+      ],
+      "usage_context": "工业工程师测算各工序周期时间，用于产线平衡分析和标准工时制定",
+      "related_terms": [
+        "节拍",
+        "瓶颈工序",
+        "标准工时"
+      ]
+    },
+    {
+      "term": "标准工时",
+      "category": "生产管理",
+      "definition": "Standard Time，在标准作业方法和正常劳动条件下，完成一个合格产品所需的标准工作时间，是制定生产计划和核算人工成本的基础依据。",
+      "aliases": [
+        "Standard Time",
+        "标准时间",
+        "ST"
+      ],
+      "usage_context": "工业工程师通过时间研究和预定时间标准（PTS）方法测定各工序标准工时，用于产能计算、人工成本核算和生产排程",
+      "related_terms": [
+        "生产周期",
+        "排产",
+        "产能"
+      ]
+    },
+    {
+      "term": "BOM",
+      "category": "生产管理",
+      "definition": "物料清单（Bill of Materials），描述产品所需全部原材料、零部件、组件及其数量和层级关系的结构化技术文件，是MRP运算和成本核算的核心数据来源。",
+      "aliases": [
+        "物料清单",
+        "Bill of Materials",
+        "BOM表"
+      ],
+      "usage_context": "生产计划员通过BOM进行物料需求运算（MRP），财务通过BOM核算标准成本，采购根据BOM编制采购计划",
+      "related_terms": [
+        "排产",
+        "采购计划",
+        "生产成本分析"
+      ]
+    },
+    {
+      "term": "产能利用率",
+      "category": "生产管理",
+      "definition": "实际产出与最大可能产出的比率，反映产能的利用程度，是衡量生产资源利用效率的关键运营指标。",
+      "aliases": [
+        "Capacity Utilization",
+        "产能利用率",
+        "设备利用率"
+      ],
+      "usage_context": "生产主管和管理层评估工厂运营效率，产能利用率过低表示资源闲置，过高可能意味着过度排产和交货风险",
+      "related_terms": [
+        "OEE",
+        "产能",
+        "排产"
+      ]
+    },
+    {
+      "term": "SPC",
+      "category": "质量管理",
+      "definition": "统计过程控制（Statistical Process Control），运用控制图等统计工具对生产过程进行实时监控，区分正常波动和异常波动，预防不良品产生的质量管理方法。",
+      "aliases": [
+        "统计过程控制",
+        "Statistical Process Control",
+        "统计制程管制"
+      ],
+      "usage_context": "质量工程师在生产过程中使用控制图监控关键质量特性，发现异常趋势及时调整工艺参数",
+      "related_terms": [
+        "CPK",
+        "控制图",
+        "PDCA"
+      ]
+    },
+    {
+      "term": "六西格玛",
+      "category": "质量管理",
+      "definition": "Six Sigma，以DMAIC（定义-测量-分析-改进-控制）为核心流程的质量管理方法论，追求每百万次操作中只有3.4次缺陷的极低缺陷率水平。",
+      "aliases": [
+        "Six Sigma",
+        "6σ",
+        "六标准差"
+      ],
+      "usage_context": "质量工程师和精益六西格玛黑带在流程改进项目中应用DMAIC方法论，系统解决复杂质量问题",
+      "related_terms": [
+        "SPC",
+        "CPK",
+        "FMEA",
+        "PDCA"
+      ]
+    },
+    {
+      "term": "CPK",
+      "category": "质量管理",
+      "definition": "过程能力指数（Process Capability Index），衡量生产过程在规格界限内稳定产出的能力，CPK≥1.33表示过程能力良好，≥1.67表示过程能力优秀。",
+      "aliases": [
+        "过程能力指数",
+        "Process Capability Index",
+        "制程能力指数"
+      ],
+      "usage_context": "质量工程师在新产品试产和过程验证时评估工序能力，CPK不足时需调整工艺参数或改进设备",
+      "related_terms": [
+        "SPC",
+        "六西格玛",
+        "公差分析"
+      ]
+    },
+    {
+      "term": "FMEA",
+      "category": "质量管理",
+      "definition": "失效模式与影响分析（Failure Mode and Effects Analysis），在产品设计或过程开发阶段系统识别潜在失效模式、评估风险优先级（RPN）并制定预防措施的预防性质量工具。",
+      "aliases": [
+        "失效模式分析",
+        "Failure Mode and Effects Analysis",
+        "FMEA分析"
+      ],
+      "usage_context": "设计工程师和质量工程师在新产品导入或过程变更时进行FMEA分析，降低设计和制造风险",
+      "related_terms": [
+        "8D报告",
+        "六西格玛",
+        "质量管控流程"
+      ]
+    },
+    {
+      "term": "8D报告",
+      "category": "质量管理",
+      "definition": "8D问题解决法（8 Disciplines），系统性的质量问题和客户投诉解决方法论，包含问题描述、临时措施、根因分析、纠正措施、预防措施等八个标准步骤。",
+      "aliases": [
+        "8D报告",
+        "8D问题解决",
+        "Eight Disciplines"
+      ],
+      "usage_context": "质量工程师在客户投诉或内部重大质量问题时使用8D方法论，组织跨部门团队进行系统性根因分析和改善",
+      "related_terms": [
+        "FMEA",
+        "PDCA",
+        "因果图"
+      ]
+    },
+    {
+      "term": "PDCA",
+      "category": "质量管理",
+      "definition": "计划-执行-检查-处理循环（Plan-Do-Check-Act），持续改进的基本工作方法，通过不断循环推动质量管理和流程优化。",
+      "aliases": [
+        "PDCA循环",
+        "戴明环",
+        "Plan-Do-Check-Act"
+      ],
+      "usage_context": "各层级管理者在日常管理和改善活动中应用PDCA，从现场改善到管理流程优化均可使用",
+      "related_terms": [
+        "六西格玛",
+        "持续改善",
+        "8D报告"
+      ]
+    },
+    {
+      "term": "因果图",
+      "category": "质量管理",
+      "definition": "鱼骨图（Fishbone Diagram）或石川图，通过人、机、料、法、环、测六个维度系统梳理问题潜在原因的质量分析工具，适用于根因分析阶段。",
+      "aliases": [
+        "鱼骨图",
+        "Fishbone Diagram",
+        "石川图",
+        "特性要因图"
+      ],
+      "usage_context": "质量工程师在问题分析阶段召集跨部门团队进行头脑风暴，系统梳理可能的原因并确定根因",
+      "related_terms": [
+        "8D报告",
+        "柏拉图",
+        "FMEA"
+      ]
+    },
+    {
+      "term": "柏拉图",
+      "category": "质量管理",
+      "definition": "Pareto Chart，按缺陷类型或问题原因的发生频次从高到低排列的柱状图，体现了80%的问题由20%的原因引起的帕累托原则。",
+      "aliases": [
+        "Pareto Chart",
+        "帕累托图",
+        "排列图"
+      ],
+      "usage_context": "质量工程师在数据分析时识别主要缺陷类型，聚焦资源解决频率最高的少数关键问题",
+      "related_terms": [
+        "SPC",
+        "因果图",
+        "质量分析报告"
+      ]
+    },
+    {
+      "term": "直通率",
+      "category": "质量管理",
+      "definition": "FPY（First Pass Yield），产品不经返工、一次通过全部工序即达到质量标准的比率，是衡量生产质量和过程稳定性的核心指标。",
+      "aliases": [
+        "FPY",
+        "First Pass Yield",
+        "一次良率"
+      ],
+      "usage_context": "生产主管和质量工程师监控产线质量水平，直通率低意味着大量返工和浪费，需要工艺改进",
+      "related_terms": [
+        "不良率",
+        "CPK",
+        "精益生产"
+      ]
+    },
+    {
+      "term": "控制图",
+      "category": "质量管理",
+      "definition": "Control Chart，在SPC中用于区分过程正常波动和异常波动的统计图表，包含中心线（CL）、上控制限（UCL）和下控制限（LCL），通过点的分布趋势判断过程是否受控。",
+      "aliases": [
+        "Control Chart",
+        "管制图",
+        "SPC控制图"
+      ],
+      "usage_context": "质量工程师在现场部署控制图监控关键质量特性，发现出界点或异常趋势时触发预警和干预",
+      "related_terms": [
+        "SPC",
+        "CPK",
+        "PDCA"
+      ]
+    },
+    {
+      "term": "质量追溯",
+      "category": "质量管理",
+      "definition": "通过批次号、序列号或生产记录，从原材料到成品全过程追踪产品生产历史和检验数据的质量管理能力，是实现质量可追溯性和召回的必需手段。",
+      "aliases": [
+        "追溯",
+        "可追溯性",
+        "Traceability"
+      ],
+      "usage_context": "质量工程师在发生质量问题时通过追溯系统快速定位问题批次、范围和相关工序，缩小召回和返工范围",
+      "related_terms": [
+        "质量分析报告",
+        "FMEA",
+        "8D报告"
+      ]
+    },
+    {
+      "term": "不良率",
+      "category": "质量管理",
+      "definition": "Defect Rate，不合格品数量占检验总数量的百分比，是衡量产品质量水平的基本指标，按严重程度分为致命缺陷、严重缺陷和轻微缺陷。",
+      "aliases": [
+        "Defect Rate",
+        "不合格率",
+        "缺陷率"
+      ],
+      "usage_context": "质量工程师日常统计各工序不良率，异常升高时触发问题分析和改善行动",
+      "related_terms": [
+        "直通率",
+        "CPK",
+        "SPC"
+      ]
+    },
+    {
+      "term": "JIT",
+      "category": "供应链管理",
+      "definition": "准时制生产（Just In Time），在需要的时间按需要的数量生产或配送所需物料，追求零库存和消除浪费的生产管理理念，由丰田生产体系发展而来。",
+      "aliases": [
+        "准时制",
+        "Just In Time",
+        "准时化生产"
+      ],
+      "usage_context": "供应链经理和生产主管推行拉动生产体系，降低库存成本，但要求供应链高度协同和稳定",
+      "related_terms": [
+        "看板管理",
+        "拉动生产",
+        "VMI"
+      ]
+    },
+    {
+      "term": "VMI",
+      "category": "供应链管理",
+      "definition": "供应商管理库存（Vendor Managed Inventory），由供应商根据制造商的生产计划和消耗数据主动管理和补货的库存管理模式，降低双方的库存持有成本。",
+      "aliases": [
+        "供应商管理库存",
+        "Vendor Managed Inventory",
+        "VMI模式"
+      ],
+      "usage_context": "供应链经理与核心供应商建立VMI合作关系，供应商驻厂或远程监控库存水平并自动补货",
+      "related_terms": [
+        "JIT",
+        "仓储管理",
+        "WMS"
+      ]
+    },
+    {
+      "term": "MOQ",
+      "category": "供应链管理",
+      "definition": "最小订单量（Minimum Order Quantity），供应商能够接受的最小单次采购数量，通常基于换线成本和批次经济性设定。",
+      "aliases": [
+        "最小订单量",
+        "Minimum Order Quantity",
+        "最小起订量"
+      ],
+      "usage_context": "采购专员在下单时需满足供应商的MOQ要求，低于MOQ会导致供应商拒绝接单或加收小批量费用",
+      "related_terms": [
+        "采购计划",
+        "物流成本",
+        "供应商评估"
+      ]
+    },
+    {
+      "term": "供应链风险",
+      "category": "供应链管理",
+      "definition": "Supply Chain Risk，影响供应链正常运行的各种潜在威胁，包括供应商倒闭、物流中断、原材料价格波动、地缘政治和自然灾害等外部不可控因素。",
+      "aliases": [
+        "Supply Chain Risk",
+        "供应链风险",
+        "供应风险"
+      ],
+      "usage_context": "供应链经理定期评估风险并制定应对策略，建立备选供应商和安全库存以降低供应中断风险",
+      "related_terms": [
+        "供应商评估",
+        "JIT",
+        "交货准时率"
+      ]
+    },
+    {
+      "term": "供应商评估",
+      "category": "供应链管理",
+      "definition": "对供应商的质量体系、交付能力、价格水平、技术实力和服务配合度进行系统性评价和打分的供应商管理过程，通常采用季度或年度评审方式。",
+      "aliases": [
+        "Supplier Evaluation",
+        "供应商评审",
+        "供应商考核"
+      ],
+      "usage_context": "供应链经理和采购团队定期对供应商进行绩效评估，根据评分结果决定订单分配比例和淘汰替换",
+      "related_terms": [
+        "交货准时率",
+        "来料质量",
+        "采购计划"
+      ]
+    },
+    {
+      "term": "采购计划",
+      "category": "供应链管理",
+      "definition": "根据生产计划、库存水平和物料需求计划（MRP）制定的周期性采购方案，明确采购物料种类、数量、交期和预算安排。",
+      "aliases": [
+        "Procurement Plan",
+        "采购计划",
+        "采购预算"
+      ],
+      "usage_context": "采购专员根据生产排产和物料需求计划制定采购计划，确保物料在需要时间到货且不产生过剩库存",
+      "related_terms": [
+        "MOQ",
+        "VMI",
+        "供应链风险"
+      ]
+    },
+    {
+      "term": "物流成本",
+      "category": "供应链管理",
+      "definition": "产品从原材料采购到成品交付全过程中产生的运输、仓储、装卸、包装、配送和管理费用的总和，通常占产品成本的5%-15%。",
+      "aliases": [
+        "Logistics Cost",
+        "物流费用",
+        "运输成本"
+      ],
+      "usage_context": "供应链经理和财务人员分析物流成本构成，通过路线优化、整合运输和仓库布局降低成本",
+      "related_terms": [
+        "仓储管理",
+        "JIT",
+        "采购计划"
+      ]
+    },
+    {
+      "term": "交货准时率",
+      "category": "供应链管理",
+      "definition": "On-Time Delivery Rate，按约定时间或时间窗交付的订单数量占总交付订单数量的百分比，是衡量供应商交付表现的核心KPI。",
+      "aliases": [
+        "On-Time Delivery",
+        "OTD",
+        "准时交付率"
+      ],
+      "usage_context": "供应链经理考核供应商交付绩效，交货准时率低于目标时需要与供应商沟通改善或寻找替代供应商",
+      "related_terms": [
+        "供应商评估",
+        "供应链风险",
+        "MOQ"
+      ]
+    },
+    {
+      "term": "ERP",
+      "category": "设备维护",
+      "definition": "平均无故障时间（Mean Time Between Failures），可修复设备在两次相邻故障之间的平均工作时间，衡量设备可靠性的核心指标。",
+      "aliases": [
+        "平均无故障时间",
+        "Mean Time Between Failures",
+        "MTBF指标"
+      ],
+      "usage_context": "设备维护工程师评估设备可靠性，MTBF越高说明设备越稳定，用于制定预防性维护计划和备件策略",
+      "related_terms": [
+        "MTTR",
+        "设备综合效率",
+        "TPM"
+      ]
+    },
+    {
+      "term": "MTTR",
+      "category": "设备维护",
+      "definition": "平均修复时间（Mean Time To Repair），从设备故障发生到恢复正常运行所需的平均时间，包含故障诊断、维修和测试恢复的全过程。",
+      "aliases": [
+        "平均修复时间",
+        "Mean Time To Repair",
+        "维修响应时间"
+      ],
+      "usage_context": "设备维护工程师评估维修效率，MTTR越短说明维修响应和故障处理能力越强",
+      "related_terms": [
+        "MTBF",
+        "TPM",
+        "预防性维护"
+      ]
+    },
+    {
+      "term": "TPM",
+      "category": "设备维护",
+      "definition": "全员生产维护（Total Productive Maintenance），通过操作工自主维护、计划维护、改善维护相结合的全员参与设备管理体系，追求设备零故障和零停机。",
+      "aliases": [
+        "全员生产维护",
+        "Total Productive Maintenance",
+        "TPM管理"
+      ],
+      "usage_context": "设备维护部门推行TPM体系，培训操作工进行日常点检和简单维护，专业维护团队负责计划维护和故障处理",
+      "related_terms": [
+        "MTBF",
+        "MTTR",
+        "预防性维护",
+        "5S现场管理"
+      ]
+    },
+    {
+      "term": "预防性维护",
+      "category": "设备维护",
+      "definition": "Preventive Maintenance，按照预设的时间周期或使用次数对设备进行定期检查、保养和零件更换的维护策略，目的是在故障发生前预防问题。",
+      "aliases": [
+        "Preventive Maintenance",
+        "计划维护",
+        "定期保养"
+      ],
+      "usage_context": "设备维护工程师制定年度/月度保养计划，按计划执行设备润滑、清洁、校准和易损件更换",
+      "related_terms": [
+        "TPM",
+        "预测性维护",
+        "MTBF"
+      ]
+    },
+    {
+      "term": "预测性维护",
+      "category": "设备维护",
+      "definition": "Predictive Maintenance，通过振动分析、油液分析、热成像等状态监测技术实时评估设备健康状态，在故障即将发生前安排维护的先进维护策略。",
+      "aliases": [
+        "Predictive Maintenance",
+        "状态监测维护",
+        "预知维护"
+      ],
+      "usage_context": "设备维护工程师利用传感器和数据采集系统监控关键设备参数，预测剩余使用寿命并智能安排维护时间",
+      "related_terms": [
+        "预防性维护",
+        "IIoT",
+        "数字孪生"
+      ]
+    },
+    {
+      "term": "故障率",
+      "category": "设备维护",
+      "definition": "Failure Rate，设备在单位时间内发生故障的次数或概率，通常用浴盆曲线描述设备全生命周期的故障率变化趋势，包括早期故障期、偶然故障期和耗损故障期。",
+      "aliases": [
+        "Failure Rate",
+        "故障频率",
+        "失效率"
+      ],
+      "usage_context": "设备维护工程师统计分析历史故障数据，识别高故障率设备并制定针对性的维护或更新计划",
+      "related_terms": [
+        "MTBF",
+        "MTTR",
+        "预测性维护"
+      ]
+    },
+    {
+      "term": "备件管理",
+      "category": "设备维护",
+      "definition": "Spare Parts Management，对设备维修用各类备品备件的采购、入库、存储、领用和报废进行全流程管理的活动，平衡备件可用性和库存成本。",
+      "aliases": [
+        "Spare Parts Management",
+        "备件库存管理",
+        "备品备件管理"
+      ],
+      "usage_context": "设备维护主管管理备件库存，关键备件设置安全库存水平，避免因备件缺失导致停机时间延长",
+      "related_terms": [
+        "MTTR",
+        "TPM",
+        "预防性维护"
+      ]
+    },
+    {
+      "term": "设备综合效率",
+      "category": "设备维护",
+      "definition": "衡量设备利用水平的综合指标，综合考虑设备的时间利用率（可用率）、速度效率（性能率）和质量效率（良品率），与OEE同义关联。",
+      "aliases": [
+        "OEE",
+        "Overall Equipment Effectiveness",
+        "设备综合效能"
+      ],
+      "usage_context": "生产主管和维护团队共同监控设备的综合效率，识别停机、降速和不良损失并制定改善措施",
+      "related_terms": [
+        "MTBF",
+        "产能利用率",
+        "TPM"
+      ]
+    },
+    {
+      "term": "精益生产",
+      "category": "精益生产",
+      "definition": "Lean Manufacturing，源于丰田生产系统的管理哲学和方法体系，核心是通过消除一切不增值的活动（浪费）来提升效率、降低成本和提高质量。",
+      "aliases": [
+        "Lean Manufacturing",
+        "精益制造",
+        "丰田生产系统"
+      ],
+      "usage_context": "精益工程师和生产主管推动精益转型，识别和消除七大浪费，建立持续改善的文化和机制",
+      "related_terms": [
+        "持续改善",
+        "看板管理",
+        "价值流图",
+        "5S现场管理"
+      ]
+    },
+    {
+      "term": "看板管理",
+      "category": "精益生产",
+      "definition": "Kanban，使用看板卡片或电子信号作为生产和物料搬运指令的拉动式现场管理方法，通过限制在制品的数量实现拉动生产和可视化控制。",
+      "aliases": [
+        "Kanban",
+        "看板",
+        "看板方式"
+      ],
+      "usage_context": "生产主管和精益工程师在车间实施看板管理，后工序通过看板向前工序发出生产或取货指令",
+      "related_terms": [
+        "拉动生产",
+        "JIT",
+        "在制品"
+      ]
+    },
+    {
+      "term": "5S现场管理",
+      "category": "精益生产",
+      "definition": "整理（Seiri）、整顿（Seiton）、清扫（Seiso）、清洁（Seiketsu）、素养（Shitsuke）五个步骤组成的现场管理方法，是精益生产的基础和所有改善活动的前提。",
+      "aliases": [
+        "5S",
+        "5S管理",
+        "5S现场"
+      ],
+      "usage_context": "车间主管每日推行5S管理，通过定点摄影和红牌作战等工具维持现场秩序、安全和效率",
+      "related_terms": [
+        "TPM",
+        "精益生产",
+        "标准化作业"
+      ]
+    },
+    {
+      "term": "价值流图",
+      "category": "精益生产",
+      "definition": "VSM（Value Stream Mapping），用图形化方式展示产品从原材料到交付客户的全流程，包括物料流和信息流，识别增值活动和非增值浪费的工具。",
+      "aliases": [
+        "VSM",
+        "Value Stream Mapping",
+        "价值流分析"
+      ],
+      "usage_context": "精益工程师在改善项目初期绘制现状价值流图，分析增值比（通常<5%），设计未来状态图确定改善方向",
+      "related_terms": [
+        "精益生产",
+        "持续改善",
+        "单件流"
+      ]
+    },
+    {
+      "term": "持续改善",
+      "category": "精益生产",
+      "definition": "Kaizen，全体成员持续不断地进行小幅度、低成本的改进活动，追求在质量、成本、交付和安全等各方面渐进式优化的管理理念。",
+      "aliases": [
+        "Kaizen",
+        "改善",
+        "持续改进"
+      ],
+      "usage_context": "各层级员工在日常工作中发现改善机会并落实改善提案，管理层创造支持改善的文化和激励机制",
+      "related_terms": [
+        "精益生产",
+        "PDCA",
+        "六西格玛"
+      ]
+    },
+    {
+      "term": "标准化作业",
+      "category": "精益生产",
+      "definition": "Standardized Work，将作业方法、操作顺序、节拍时间、标准在制品和检查要点等要素文件化和标准化的过程，是持续改善的基准和基础。",
+      "aliases": [
+        "Standardized Work",
+        "标准作业",
+        "作业标准"
+      ],
+      "usage_context": "工艺工程师和生产主管共同制定标准化作业指导书（SOP），培训和考核操作工按标准执行",
+      "related_terms": [
+        "标准作业指导书",
+        "精益生产",
+        "5S现场管理"
+      ]
+    },
+    {
+      "term": "拉动生产",
+      "category": "精益生产",
+      "definition": "Pull Production，根据客户实际需求触发生产活动的方式，后工序只在需要时向前工序要货，前工序只生产后工序需要的数量，避免过量生产。",
+      "aliases": [
+        "Pull System",
+        "拉动式生产",
+        "后补充生产"
+      ],
+      "usage_context": "精益工程师在设计生产线时从推式转为拉式，降低在制品库存并缩短交货期",
+      "related_terms": [
+        "看板管理",
+        "JIT",
+        "单件流"
+      ]
+    },
+    {
+      "term": "单件流",
+      "category": "精益生产",
+      "definition": "One-Piece Flow，每次只生产和移动一个产品，产品在各工序间连续流动不停滞的生产方式，最大程度减少在制品和缩短生产周期。",
+      "aliases": [
+        "One-Piece Flow",
+        "单件流生产",
+        "连续流"
+      ],
+      "usage_context": "精益工程师在产线布局设计时追求单件流，通过U型线布置和多能工培训实现小批量快速流动",
+      "related_terms": [
+        "精益生产",
+        "拉动生产",
+        "节拍"
+      ]
+    },
+    {
+      "term": "仓储管理",
+      "category": "仓储物流",
+      "definition": "Warehouse Management，对仓库内物料的收货、入库、存储、拣货、出库和盘点等作业进行计划、组织和控制的管理活动，确保物料准确高效流转。",
+      "aliases": [
+        "Warehouse Management",
+        "仓库管理",
+        "库房管理"
+      ],
+      "usage_context": "仓库主管日常管理收发货作业和库存数据准确性，优化仓库布局和拣货路线提升效率",
+      "related_terms": [
+        "WMS",
+        "库位管理",
+        "循环盘点"
+      ]
+    },
+    {
+      "term": "库位管理",
+      "category": "仓储物流",
+      "definition": "Location Management，对仓库内存储位置进行编码、规划和分配的管理方法，通过明确的库位标识系统实现物料的快速定位和准确存取。",
+      "aliases": [
+        "Location Management",
+        "库位管理",
+        "货位管理"
+      ],
+      "usage_context": "仓库管理员在WMS系统中维护库位信息，收货时绑定库位信息，拣货时按系统指引到达指定库位",
+      "related_terms": [
+        "仓储管理",
+        "WMS",
+        "拣货效率"
+      ]
+    },
+    {
+      "term": "FIFO",
+      "category": "仓储物流",
+      "definition": "先进先出（First In First Out），按照物料入库的先后顺序安排出库的库存管理原则，确保先入库的物料先被使用或发运，防止物料过期变质。",
+      "aliases": [
+        "先进先出",
+        "First In First Out",
+        "先入先出"
+      ],
+      "usage_context": "仓库管理员在物料存储和出库时严格执行FIFO原则，特别是对有保质期要求的物料如电子元器件和化工原料",
+      "related_terms": [
+        "仓储管理",
+        "循环盘点",
+        "WMS"
+      ]
+    },
+    {
+      "term": "WMS",
+      "category": "仓储物流",
+      "definition": "仓库管理系统（Warehouse Management System），支持仓库作业全流程信息化管理的软件系统，涵盖收货、上架、拣货、包装、发运和盘点等功能。",
+      "aliases": [
+        "Warehouse Management System",
+        "仓库管理系统",
+        "仓储系统"
+      ],
+      "usage_context": "仓库管理员和物流主管使用WMS管理日常作业，系统指导员工操作并实时更新库存数据",
+      "related_terms": [
+        "仓储管理",
+        "MES",
+        "ERP"
+      ]
+    },
+    {
+      "term": "拣货效率",
+      "category": "仓储物流",
+      "definition": "Picking Efficiency，衡量仓库拣货作业效率的指标，通常用每小时拣货行数或件数表示，受仓库布局、库位规划和拣货策略（摘果式/播种式）影响。",
+      "aliases": [
+        "Picking Efficiency",
+        "拣货效率",
+        "拣货速度"
+      ],
+      "usage_context": "仓库主管通过分析拣货效率数据优化库位布局和拣货路线，引入电子标签或语音拣货等辅助技术提升效率",
+      "related_terms": [
+        "仓储管理",
+        "库位管理",
+        "WMS"
+      ]
+    },
+    {
+      "term": "循环盘点",
+      "category": "仓储物流",
+      "definition": "Cycle Counting，按照设定的频率和规则，每日或每周对部分物料进行轮换盘点的方法，替代传统年度大盘点，持续维护库存准确率。",
+      "aliases": [
+        "Cycle Counting",
+        "循环盘点",
+        "动态盘点"
+      ],
+      "usage_context": "仓库管理员按ABC分类设定盘点频率，A类物料每月盘点一次，C类每季度一次，发现差异及时调整",
+      "related_terms": [
+        "仓储管理",
+        "库存准确率",
+        "WMS"
+      ]
+    },
+    {
+      "term": "MES",
+      "category": "工业4.0",
+      "definition": "制造执行系统（Manufacturing Execution System），位于ERP和车间自动化系统之间的信息系统，实时管理生产过程、追溯、质量、设备和人员绩效的车间级管理平台。",
+      "aliases": [
+        "制造执行系统",
+        "Manufacturing Execution System",
+        "MES系统"
+      ],
+      "usage_context": "生产主管通过MES系统实时追踪工单进度、设备状态和质量数据，实现生产过程数字化管理",
+      "related_terms": [
+        "ERP",
+        "SCADA",
+        "数字孪生"
+      ]
+    },
+    {
+      "term": "SCADA",
+      "category": "工业4.0",
+      "definition": "数据采集与监视控制系统（Supervisory Control and Data Acquisition），对工业现场设备进行远程监控、数据采集和过程控制的自动化控制系统，广泛应用于流程工业。",
+      "aliases": [
+        "数据采集监控系统",
+        "Supervisory Control and Data Acquisition",
+        "SCADA系统"
+      ],
+      "usage_context": "自动化工程师通过SCADA系统远程监控生产线设备运行参数，发现异常立即预警和远程干预",
+      "related_terms": [
+        "MES",
+        "IIoT",
+        "数字孪生"
+      ]
+    },
+    {
+      "term": "数字孪生",
+      "category": "工业4.0",
+      "definition": "Digital Twin，利用物理模型、传感器数据和仿真技术，在数字空间中创建物理设备的虚拟镜像，实现实时映射、仿真分析和预测性优化的数字化技术。",
+      "aliases": [
+        "Digital Twin",
+        "数字双胞胎",
+        "数字化映射"
+      ],
+      "usage_context": "工业工程师和IT团队建设数字孪生平台，通过虚拟仿真验证工艺变更效果，优化产线布局和设备参数",
+      "related_terms": [
+        "IIoT",
+        "MES",
+        "预测性维护"
+      ]
+    },
+    {
+      "term": "IIoT",
+      "category": "工业4.0",
+      "definition": "工业物联网（Industrial Internet of Things），将工业设备、传感器和控制器通过网络互联，实现数据采集、远程监控和智能分析的工业数字化基础设施。",
+      "aliases": [
+        "工业物联网",
+        "Industrial IoT",
+        "工业互联网"
+      ],
+      "usage_context": "自动化团队部署IIoT传感器网络采集设备振动、温度等数据，为预测性维护和数字孪生提供数据支撑",
+      "related_terms": [
+        "SCADA",
+        "数字孪生",
+        "MES"
+      ]
+    },
+    {
+      "term": "AGV",
+      "category": "工业4.0",
+      "definition": "自动导引车（Automated Guided Vehicle），在工厂内按预设路径自动行驶的物料搬运车辆，通过磁条、激光或视觉导航实现物料在工序间的自动流转。",
+      "aliases": [
+        "自动导引车",
+        "Automated Guided Vehicle",
+        "AGV小车"
+      ],
+      "usage_context": "物流工程师部署AGV实现物料自动配送，替代人工叉车搬运，提升物流效率并降低人力成本",
+      "related_terms": [
+        "柔性制造",
+        "仓储管理",
+        "自动化"
+      ]
+    },
+    {
+      "term": "柔性制造",
+      "category": "工业4.0",
+      "definition": "Flexible Manufacturing，生产系统能够在短时间内快速切换产品品种和产量的能力，通过数控设备、柔性夹具和模块化产线实现多品种小批量高效生产。",
+      "aliases": [
+        "柔性制造",
+        "Flexible Manufacturing",
+        "柔性生产"
+      ],
+      "usage_context": "工业工程师在设计产线时考虑柔性制造能力，通过快速换模（SMED）和模块化产线布局实现多品种共线生产",
+      "related_terms": [
+        "AGV",
+        "精益生产",
+        "单件流"
+      ]
     }
   ],
   "tasks": [
     {
-      "name": "生产计划",
-      "description": "制定生产排期",
-      "typical_output": "生产计划",
-      "complexity": "medium",
-      "frequency": "medium",
-      "follow_up_tree": "生产计划"
+      "name": "生产排程计划",
+      "description": "根据订单交期、物料齐套、设备能力和人力配置制定生产排程计划。 需要平衡紧急插单与原有排产秩序，优化产能利用，确保交付承诺。 涉及MRP运算、产能负荷分析、工序排程和进度跟踪。\n",
+      "typical_output": "生产排程表（日/周/月排程计划）、产能负荷分析图、工单释放计划、 物料需求计划（MRP）、排程甘特图、紧急订单调整方案\n",
+      "complexity": "high",
+      "frequency": "very_high",
+      "follow_up_tree": "production_scheduling"
     },
     {
-      "name": "质量报告",
-      "description": "编制质量分析",
-      "typical_output": "质量报告",
+      "name": "质量分析报告",
+      "description": "对生产过程中的质量数据进行分析，识别主要缺陷类型和趋势， 运用SPC、柏拉图、因果图等工具进行根本原因分析，提出改善 措施并验证改善效果。\n",
+      "typical_output": "质量分析报告、柏拉图/鱼骨图分析、SPC控制图、缺陷类型分布、 异常分析记录、改善行动计划（含8D或PDCA）和效果验证数据\n",
+      "complexity": "medium",
+      "frequency": "high",
+      "follow_up_tree": "quality_analysis_report"
+    },
+    {
+      "name": "供应链风险评估",
+      "description": "系统评估供应链各环节的潜在风险，包括供应商依赖风险、 物流中断风险、原材料价格波动和地缘政治因素。需识别关键 风险点，评估影响程度和发生概率，制定风险应对和缓解策略。\n",
+      "typical_output": "供应链风险评估报告、风险热力图、风险登记册（含影响/概率/ 应对措施）、关键供应商清单和风险评估矩阵、业务连续性计划\n",
+      "complexity": "high",
+      "frequency": "medium",
+      "follow_up_tree": "supply_chain_risk_assess"
+    },
+    {
+      "name": "设备维护计划",
+      "description": "制定设备维护保养计划，包含预防性维护策略、预测性维护方案、 备件管理计划和应急响应预案。需平衡设备可靠性和维护成本， 降低非计划停机时间和维护费用。\n",
+      "typical_output": "设备维护计划书、年度保养日历、设备点检标准书、备件库存 清单和安全库存设定、预测性维护传感器部署方案、MTBF/MTTR 分析报告\n",
+      "complexity": "medium",
+      "frequency": "high",
+      "follow_up_tree": "equipment_maintenance_plan"
+    },
+    {
+      "name": "产能评估报告",
+      "description": "对当前生产系统的产能进行全面评估，基于设备产能、人力配置 和工艺路线进行负荷分析，识别瓶颈工序和产能缺口。为订单 接单决策、扩产投资和产能调配提供数据支撑。\n",
+      "typical_output": "产能评估报告、各工序产能负荷分析表、瓶颈工序识别与分析、 产能提升方案、投资回报分析、接单能力评估建议\n",
       "complexity": "medium",
       "frequency": "medium",
-      "follow_up_tree": "质量报告"
+      "follow_up_tree": "capacity_assessment_report"
+    },
+    {
+      "name": "精益改善方案",
+      "description": "运用精益生产工具和方法，针对生产现场或管理流程中的浪费 问题制定改善方案。涵盖价值流分析、5S推行、看板拉动、 SMED快速换模、产线平衡等精益工具的应用规划。\n",
+      "typical_output": "精益改善方案书、现状价值流图与未来状态图、改善项目立项表、 改善Kaizen活动记录、预期效益分析（效率/质量/成本）、 改善成果标准化文件\n",
+      "complexity": "high",
+      "frequency": "medium",
+      "follow_up_tree": "lean_improvement_plan"
+    },
+    {
+      "name": "供应商评估报告",
+      "description": "对供应商的质量体系、交付表现、价格竞争力和配合度进行 系统性绩效评估，输出量化评分和分级结果。结合供应商审核 发现，提出改善要求和供应商发展计划。\n",
+      "typical_output": "供应商评估报告（含评分矩阵）、供应商分级结果（A/B/C/D级）、 供应商审核发现清单、供应商绩效雷达图、改善要求函和 供应商发展计划\n",
+      "complexity": "medium",
+      "frequency": "medium",
+      "follow_up_tree": "supplier_evaluation_report"
+    },
+    {
+      "name": "生产成本分析",
+      "description": "对产品制造成本进行全面分析，包括直接材料成本、直接人工 成本和制造费用的核算与分摊。识别成本驱动因素，对比标准 成本与实际成本的差异，提出成本降低方案。\n",
+      "typical_output": "生产成本分析报告、标准成本与实际成本差异分析表、产品/ 工序级成本明细、成本降低机会清单、投资回报分析、成本 对标分析\n",
+      "complexity": "medium",
+      "frequency": "high",
+      "follow_up_tree": "production_cost_analysis"
+    },
+    {
+      "name": "标准作业指导书",
+      "description": "编制用于指导操作工规范化作业的标准作业指导书（SOP）， 包含操作步骤、工艺参数、质量标准、安全注意事项和异常 处理。确保不同操作工按统一标准执行，稳定产品质量。\n",
+      "typical_output": "标准作业指导书（SOP）、工序操作要领书、作业分解表、 关键工艺参数卡、安全操作规范、目视化作业标准看板\n",
+      "complexity": "low",
+      "frequency": "high",
+      "follow_up_tree": "standard_work_instruction"
+    },
+    {
+      "name": "工艺改进方案",
+      "description": "针对现有生产工艺中的质量瓶颈、效率低下或成本过高问题， 提出系统性的工艺改进方案。包括工艺流程优化、参数调整、 新工装引入和自动化改造等方向的技术方案和可行性分析。\n",
+      "typical_output": "工艺改进方案书、工艺流程对比分析、DOE试验设计方案、 工艺参数优化建议、新工装/自动化方案及ROI分析、工艺 验证报告\n",
+      "complexity": "high",
+      "frequency": "medium",
+      "follow_up_tree": "process_improvement_plan"
+    },
+    {
+      "name": "新产品导入方案",
+      "description": "新产品的从研发到量产的导入方案，包含制造可行性评估、 工艺设计、工装夹具准备、试产计划和爬坡量产规划。 确保新产品在质量、成本、交付方面满足量产要求。\n",
+      "typical_output": "新产品导入方案书、制造可行性评估报告、工艺流程设计和 控制计划（CP）、FMEA分析报告、试产计划、量产爬坡计划、 PPAP文件包\n",
+      "complexity": "high",
+      "frequency": "low",
+      "follow_up_tree": "new_product_introduction"
     }
   ],
   "roles": [
     {
       "name": "生产主管",
-      "kpis": [],
+      "kpis": [
+        {
+          "name": "产量达成率",
+          "description": "月度实际产量与计划产量的比率",
+          "benchmark": "> 95%"
+        },
+        {
+          "name": "计划完成率",
+          "description": "按期完成的生产工单数量占总工单数量的比例",
+          "benchmark": "> 90%"
+        },
+        {
+          "name": "停工时间",
+          "description": "因设备故障、缺料或质量问题导致的月度停工总时长",
+          "benchmark": "< 8小时/月"
+        }
+      ],
       "pain_points": [
-        "效率不足"
+        "急单插单打乱排产计划，频繁调整产线安排",
+        "设备突发故障导致停线，维修响应不及时",
+        "物料缺料或来料质量异常影响生产连续性",
+        "新员工技能不足导致良率低和效率损失"
       ],
       "common_tasks": [
-        "生产计划"
+        "生产排程计划",
+        "产能评估报告",
+        "精益改善方案",
+        "标准作业指导书"
       ],
-      "responsibilities": []
+      "responsibilities": [
+        "制定和调整生产排程计划，确保按时交付",
+        "监控生产进度、产能利用率和质量指标",
+        "协调物料、设备和人力资源保障生产顺利进行",
+        "推动车间5S管理和安全生产规范执行",
+        "培养多能工，提升产线柔性调度能力"
+      ]
     },
     {
       "name": "质量工程师",
-      "kpis": [],
+      "kpis": [
+        {
+          "name": "不良率",
+          "description": "月度生产产品中不合格品占比",
+          "benchmark": "< 1%"
+        },
+        {
+          "name": "CPK达标率",
+          "description": "关键工序过程能力指数达到1.33以上的比例",
+          "benchmark": "> 85%"
+        },
+        {
+          "name": "客诉次数",
+          "description": "月度收到的客户质量投诉数量",
+          "benchmark": "< 2次/月"
+        }
+      ],
       "pain_points": [
-        "效率不足"
+        "来料质量波动大，IQC抽检难以覆盖所有风险",
+        "质量问题追溯困难，缺乏完整的过程质量数据",
+        "生产部门只重视产量忽视质量，改善推动阻力大",
+        "客户投诉要求改进周期短，压力大"
       ],
       "common_tasks": [
-        "生产计划"
+        "质量分析报告",
+        "供应商评估报告",
+        "工艺改进方案",
+        "新产品导入方案"
       ],
-      "responsibilities": []
+      "responsibilities": [
+        "建立和维护质量管理体系（ISO 9001/IATF 16949等）",
+        "监控过程质量指标，异常时启动快速响应和根因分析",
+        "主导8D问题解决和客户投诉处理",
+        "推动SPC应用和持续改善项目",
+        "参与供应商质量审核和新产品导入质量策划"
+      ]
+    },
+    {
+      "name": "供应链经理",
+      "kpis": [
+        {
+          "name": "交货准时率",
+          "description": "供应商按约定时间交付的订单比例",
+          "benchmark": "> 95%"
+        },
+        {
+          "name": "库存周转率",
+          "description": "年度物料消耗金额与平均库存金额的比率",
+          "benchmark": "> 12次/年"
+        },
+        {
+          "name": "采购成本控制率",
+          "description": "年度采购成本降低幅度占采购总额的百分比",
+          "benchmark": "> 3%"
+        }
+      ],
+      "pain_points": [
+        "原材料价格波动大，成本控制压力大",
+        "关键供应商交付不稳定影响生产计划",
+        "供应链断供风险（单一供应商依赖、地缘政治影响）",
+        "各部门需求预测不准导致采购计划频繁变更"
+      ],
+      "common_tasks": [
+        "供应链风险评估",
+        "供应商评估报告",
+        "生产成本分析",
+        "生产排程计划"
+      ],
+      "responsibilities": [
+        "制定供应链策略和供应商管理体系",
+        "管理和优化供应商绩效，推动供应商持续改善",
+        "监控供应链风险并制定业务连续性计划",
+        "优化库存水平，在保障供应的前提下降低库存成本",
+        "协同销售、生产和采购部门进行需求预测和计划对齐"
+      ]
+    },
+    {
+      "name": "设备维护工程师",
+      "kpis": [
+        {
+          "name": "MTBF",
+          "description": "关键设备平均无故障运行时间",
+          "benchmark": "> 500小时"
+        },
+        {
+          "name": "MTTR",
+          "description": "设备故障从发生到恢复的平均时间",
+          "benchmark": "< 2小时"
+        },
+        {
+          "name": "计划维护完成率",
+          "description": "按期完成的预防性维护任务占总计划维护任务的比例",
+          "benchmark": "> 95%"
+        }
+      ],
+      "pain_points": [
+        "突发设备故障导致非计划停机，影响交付",
+        "关键备件库存不足导致维修等待时间长",
+        "缺乏预测性维护手段，设备状态不可控",
+        "操作工日常保养不到位，加速设备老化"
+      ],
+      "common_tasks": [
+        "设备维护计划",
+        "精益改善方案（TPM相关）",
+        "产能评估报告"
+      ],
+      "responsibilities": [
+        "制定设备维护策略和保养计划",
+        "执行设备故障诊断、维修和根因分析",
+        "建立备件管理体系，关键备件确保安全库存",
+        "推行TPM全员生产维护，培训操作工自主维护技能",
+        "基于设备数据分析推动预测性维护能力建设"
+      ]
+    },
+    {
+      "name": "工艺工程师",
+      "kpis": [
+        {
+          "name": "良率提升率",
+          "description": "年度产品直通率（FPY）提升幅度",
+          "benchmark": "> 3%/年"
+        },
+        {
+          "name": "工艺稳定性CPK",
+          "description": "关键工序的过程能力指数",
+          "benchmark": "> 1.33"
+        },
+        {
+          "name": "工艺文件完整率",
+          "description": "已发布的标准化工艺文件覆盖全部工序的比例",
+          "benchmark": "> 100%（全部覆盖）"
+        }
+      ],
+      "pain_points": [
+        "产品设计变更频繁导致工艺文件跟不上",
+        "多产线同产品工艺参数不一致导致质量差异",
+        "新工艺验证周期长，影响新产品导入进度",
+        "生产现场不按工艺文件执行，凭经验操作"
+      ],
+      "common_tasks": [
+        "工艺改进方案",
+        "标准作业指导书",
+        "新产品导入方案",
+        "质量分析报告"
+      ],
+      "responsibilities": [
+        "设计和优化生产工艺流程和参数",
+        "编制和维护标准化作业文件（SOP、控制计划等）",
+        "主导工艺验证和过程确认（PV/PPAP）",
+        "解决生产过程中的工艺技术问题",
+        "推动自动化改造和智能制造技术应用"
+      ]
+    },
+    {
+      "name": "仓库/物流主管",
+      "kpis": [
+        {
+          "name": "库存准确率",
+          "description": "系统库存与实物库存一致的物料种类占比",
+          "benchmark": "> 99%"
+        },
+        {
+          "name": "发货及时率",
+          "description": "按客户要求时间准确发货的订单比例",
+          "benchmark": "> 98%"
+        },
+        {
+          "name": "仓储成本",
+          "description": "单位产品的仓储和物流成本金额",
+          "benchmark": "低于行业平均水平"
+        }
+      ],
+      "pain_points": [
+        "仓库空间不足，物料堆放混乱找货困难",
+        "L/T长物料和JIT物料并存管理复杂",
+        "拣货差错率高导致生产线停线或客户投诉",
+        "ERP和WMS系统数据不同步，库存不准"
+      ],
+      "common_tasks": [
+        "供应链风险评估",
+        "精益改善方案（仓储改善方向）",
+        "生产成本分析（物流成本部分）"
+      ],
+      "responsibilities": [
+        "管理仓库日常收、发、存作业的准确性和效率",
+        "优化仓库布局和库位规划，提升空间利用率",
+        "建立和完善WMS系统操作规范和流程标准",
+        "推行循环盘点和FIFO管理，确保库存数据准确",
+        "协调物流资源，确保成品按时发运和物料及时到货"
+      ]
     }
   ],
   "workflows": [
     {
-      "name": "制造业核心流程",
-      "category": "",
+      "name": "质量管控流程",
+      "category": "质量管理",
       "steps": [
         {
           "step": 1,
-          "name": "需求分析",
-          "owner": "",
+          "name": "来料检验",
+          "owner": "IQC质检员",
           "deliverables": [
-            "分析"
+            "来料检验报告",
+            "来料合格/不合格标识"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "过程检验",
+          "owner": "IPQC质检员",
+          "deliverables": [
+            "过程巡检记录",
+            "SPC控制图"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "成品检验",
+          "owner": "OQC质检员",
+          "deliverables": [
+            "成品检验报告",
+            "出厂检验合格证"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "不合格处理",
+          "owner": "质量工程师",
+          "deliverables": [
+            "不合格品处理单",
+            "8D改善报告"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "纠正预防",
+          "owner": "质量工程师",
+          "deliverables": [
+            "改善行动计划",
+            "效果验证记录"
           ]
         }
       ],
       "decision_points": [
         {
-          "point": "是否推进",
-          "yes": "推进",
-          "no": "暂停"
+          "point": "来料检验是否合格？",
+          "yes": "",
+          "no": ""
+        },
+        {
+          "point": "不合格根因是否已根除？",
+          "yes": "",
+          "no": ""
         }
       ],
       "failure_modes": [
         {
-          "name": "沟通不畅",
-          "impact": "需求错位",
-          "prevention": ""
+          "name": "来料抽检漏检",
+          "impact": "批量不良品流入产线，导致停线和返工，浪费材料和工时",
+          "prevention": "提升抽检比例，对关键物料实施全检或免检AQL加严"
+        },
+        {
+          "name": "过程检验频次不足",
+          "impact": "不良品大量产生后才被发现，导致批量报废",
+          "prevention": "基于CPK动态调整检验频次，SPC异常预警时加严检验"
+        }
+      ]
+    },
+    {
+      "name": "生产排程与执行流程",
+      "category": "生产管理",
+      "steps": [
+        {
+          "step": 1,
+          "name": "订单接收与评审",
+          "owner": "销售/生产计划员",
+          "deliverables": [
+            "订单评审记录",
+            "交期承诺"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "MRP物料需求运算",
+          "owner": "生产计划员",
+          "deliverables": [
+            "物料需求计划",
+            "采购建议"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "产能负荷分析",
+          "owner": "生产计划员",
+          "deliverables": [
+            "产能负荷分析表",
+            "瓶颈识别"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "排产排程",
+          "owner": "生产计划员",
+          "deliverables": [
+            "日排程计划表",
+            "工单释放清单"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "物料配送到线边",
+          "owner": "仓库/物流",
+          "deliverables": [
+            "物料配送清单",
+            "线边物料齐套确认"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "产线生产执行",
+          "owner": "生产主管/班组长",
+          "deliverables": [
+            "生产日报",
+            "在制品流转记录"
+          ]
+        },
+        {
+          "step": 7,
+          "name": "成品检验入库",
+          "owner": "OQC质检员/仓库",
+          "deliverables": [
+            "成品检验报告",
+            "入库单"
+          ]
+        },
+        {
+          "step": 8,
+          "name": "发货交付",
+          "owner": "仓库/物流",
+          "deliverables": [
+            "发货清单",
+            "客户签收确认"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "物料是否齐套？",
+          "yes": "",
+          "no": ""
+        },
+        {
+          "point": "成品检验是否合格？",
+          "yes": "",
+          "no": ""
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "物料缺料导致停线",
+          "impact": "生产线等待物料闲置，浪费产能并影响交期",
+          "prevention": "建立物料齐套检查机制，长交期物料设安全库存预警"
+        },
+        {
+          "name": "急单插单打乱排程",
+          "impact": "原有排产计划被频繁打乱，效率降低并影响其他订单交付",
+          "prevention": "设定插单规则（预留X%产能缓冲），插单需管理层审批"
+        }
+      ]
+    },
+    {
+      "name": "设备维护管理流程",
+      "category": "设备管理",
+      "steps": [
+        {
+          "step": 1,
+          "name": "维护计划制定",
+          "owner": "设备维护工程师",
+          "deliverables": [
+            "年度/月度保养计划",
+            "设备维护标准书"
+          ]
+        },
+        {
+          "step": 2,
+          "name": "预防性维护执行",
+          "owner": "维护技术员",
+          "deliverables": [
+            "保养记录",
+            "点检表"
+          ]
+        },
+        {
+          "step": 3,
+          "name": "状态监测",
+          "owner": "设备维护工程师",
+          "deliverables": [
+            "设备状态监测报告",
+            "振动/温度/油液分析数据"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "故障响应",
+          "owner": "维护技术员",
+          "deliverables": [
+            "故障维修记录",
+            "停机时间统计"
+          ]
+        },
+        {
+          "step": 5,
+          "name": "根因分析",
+          "owner": "设备维护工程师",
+          "deliverables": [
+            "根因分析报告",
+            "RCA分析表"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "改善与标准化",
+          "owner": "设备维护工程师",
+          "deliverables": [
+            "设备改善方案",
+            "更新维护标准书"
+          ]
+        }
+      ],
+      "decision_points": [
+        {
+          "point": "状态监测数据是否异常？",
+          "yes": "",
+          "no": ""
+        },
+        {
+          "point": "故障是否重复发生？",
+          "yes": "",
+          "no": ""
+        }
+      ],
+      "failure_modes": [
+        {
+          "name": "预防性维护过度或不足",
+          "impact": "过度维护浪费人力和备件成本；维护不足导致设备故障率升高",
+          "prevention": "基于设备历史数据和厂家建议优化维护周期，动态调整策略"
+        },
+        {
+          "name": "备件缺失导致维修等待",
+          "impact": "故障已定位但无备件更换，停机时间延长（MTTR超目标）",
+          "prevention": "关键备件建立安全库存并定期盘点，与供应商签订紧急供应协议"
         }
       ]
     }
   ],
   "docs": [
     {
-      "name": "制造业文档模板",
-      "task_type": "生产计划",
+      "name": "质量分析报告模板",
+      "task_type": "质量分析报告",
       "sections": [
         {
-          "title": "背景",
-          "prompt_hint": "介绍背景"
+          "title": "质量概况",
+          "prompt_hint": "本期质量数据的总体概述，包含统计周期、产品范围、总产量、不良率、直通率等核心指标汇总"
+        },
+        {
+          "title": "问题描述",
+          "prompt_hint": "详细描述本期发现的主要质量问题，包括缺陷类型、发生工序、影响范围、不良数量和占比"
+        },
+        {
+          "title": "根因分析",
+          "prompt_hint": "使用鱼骨图、5Why等工具进行系统性根因分析，区分人机料法环测各维度的原因，确定根本原因"
+        },
+        {
+          "title": "改善措施",
+          "prompt_hint": "针对根因制定具体可执行的改善措施，明确责任人和完成时限，区分短期围堵措施和长期纠正措施"
+        },
+        {
+          "title": "效果验证",
+          "prompt_hint": "改善措施实施后的效果数据对比，用控制图或不良率趋势图验证改善是否有效，是否需要固化标准化"
         }
       ],
-      "tone": "",
-      "common_mistakes": []
+      "tone": "数据驱动，客观严谨，可追溯",
+      "common_mistakes": [
+        "只描述现象不分析根因，停留在表面问题",
+        "改善措施空泛不可执行，缺乏责任人和时间节点",
+        "缺乏改善前后的量化数据对比，效果无法验证",
+        "原因分析仅凭经验猜测，没有数据或试验支撑"
+      ]
+    },
+    {
+      "name": "标准作业指导书模板",
+      "task_type": "标准作业指导书",
+      "sections": [
+        {
+          "title": "作业目的",
+          "prompt_hint": "说明该作业工序的目的和范围，包括在整体工艺中的位置和作用"
+        },
+        {
+          "title": "适用范围",
+          "prompt_hint": "明确适用的产品型号、工序编号、设备型号和物料规格范围"
+        },
+        {
+          "title": "工具与材料",
+          "prompt_hint": "列出该作业所需的工具、夹具、量具、辅助材料和PPE个人防护装备清单"
+        },
+        {
+          "title": "操作步骤",
+          "prompt_hint": "按顺序详细描述每一步操作内容、关键要领、工艺参数（温度/压力/速度等）和作业图示说明"
+        },
+        {
+          "title": "质量标准",
+          "prompt_hint": "明确每一步完成后的质量标准、检验方法和验收标准，包含关键尺寸公差范围"
+        },
+        {
+          "title": "安全注意事项",
+          "prompt_hint": "列出该作业的安全风险点、防护要求和异常应急处置措施"
+        }
+      ],
+      "tone": "简明准确，步骤化，图文并茂",
+      "common_mistakes": [
+        "步骤描述过于简略，新员工无法按SOP独立操作",
+        "缺少关键工艺参数的量化指标（如扭矩值、温度范围）",
+        "未区分正常操作和异常处理，操作工遇到异常时无指导",
+        "图片和文字脱节，图示标注不清晰或存在歧义"
+      ]
+    },
+    {
+      "name": "供应商评估报告模板",
+      "task_type": "供应商评估报告",
+      "sections": [
+        {
+          "title": "供应商概况",
+          "prompt_hint": "供应商基本信息（名称、地点、合作年限、供应物料类别、年采购金额、联系人等）"
+        },
+        {
+          "title": "质量体系评估",
+          "prompt_hint": "供应商的质量管理体系认证情况（ISO 9001/IATF 16949等）、来料合格率、过程能力CPK、客诉次数和8D关闭率"
+        },
+        {
+          "title": "交付表现评估",
+          "prompt_hint": "年度交货准时率、交货数量准确率、交期灵活性表现和紧急订单响应情况"
+        },
+        {
+          "title": "成本分析",
+          "prompt_hint": "价格竞争力对比（与市场均价和同类供应商对比）、年度降价配合度、付款条件竞争力"
+        },
+        {
+          "title": "综合评分",
+          "prompt_hint": "按质量/交付/成本/配合度/技术能力等维度加权评分，给出A/B/C/D分级结果"
+        },
+        {
+          "title": "改善建议",
+          "prompt_hint": "针对评估中发现的问题提出具体的改善要求和行动计划，设定下次评审的达标目标"
+        }
+      ],
+      "tone": "客观公正，数据支撑，建设性",
+      "common_mistakes": [
+        "评分主观性强，缺乏客观数据和具体事例支撑",
+        "只打分不提出改善要求，评估流于形式",
+        "忽略供应商配合度和长期合作意愿等软性因素",
+        "一次性评估缺乏跟踪，问题未闭环管理"
+      ]
+    },
+    {
+      "name": "生产排程计划模板",
+      "task_type": "生产排程计划",
+      "sections": [
+        {
+          "title": "排程依据",
+          "prompt_hint": "订单交货期、物料齐套情况、设备状态、人力出勤、外协资源等排程输入条件"
+        },
+        {
+          "title": "产能负荷分析",
+          "prompt_hint": "各工序/产线的产能与当前订单负荷的对比分析，识别瓶颈工序和产能缺口"
+        },
+        {
+          "title": "排程时间表",
+          "prompt_hint": "按日/周呈现的详细排程计划，包含工单号、产品型号、数量、工序路线、计划开始/结束时间、指定设备"
+        },
+        {
+          "title": "物料保障计划",
+          "prompt_hint": "各工单的物料齐套时间表和风险预警，关键长交期物料的追踪计划"
+        },
+        {
+          "title": "风险与缓冲",
+          "prompt_hint": "识别排程中的关键风险和不确定因素，设定产能缓冲和交期余量，制定应急预案"
+        }
+      ],
+      "tone": "结构化，可执行，灵活可调",
+      "common_mistakes": [
+        "排程过于理想化，未考虑设备故障和人员缺勤等现实因素",
+        "没有预留缓冲产能，插单和异常情况无法应对",
+        "物料齐套检查不充分，排程到执行有断档",
+        "排程计划与车间实际脱节，缺乏现场反馈和调整机制"
+      ]
+    },
+    {
+      "name": "生产成本分析模板",
+      "task_type": "生产成本分析",
+      "sections": [
+        {
+          "title": "成本概览",
+          "prompt_hint": "产品/订单/工段的成本总体构成，直接材料、直接人工、制造费用的占比和趋势分析"
+        },
+        {
+          "title": "直接材料成本分析",
+          "prompt_hint": "原材料成本构成、BOM用量与实际消耗对比、材料损耗率分析、价格波动影响评估"
+        },
+        {
+          "title": "直接人工成本分析",
+          "prompt_hint": "标准工时与实际工时对比分析、人工效率（OPE）评估、加班成本分析"
+        },
+        {
+          "title": "制造费用分析",
+          "prompt_hint": "设备折旧、水电能耗、维护费用、间接人工等制造费用的分摊和分析"
+        },
+        {
+          "title": "差异分析与改善",
+          "prompt_hint": "标准成本与实际成本的差异汇总，量差和价差的逐项分析，提出成本改善措施和降本目标"
+        }
+      ],
+      "tone": "财务严谨，数据精准，可追溯",
+      "common_mistakes": [
+        "成本数据口径不一致导致分析结果失真",
+        "只展示数字不做差异分析，找不到成本改善方向",
+        "忽略间接费用分摊的合理性，扭曲产品真实成本",
+        "成本改善建议缺乏量化测算和可行性评估"
+      ]
+    },
+    {
+      "name": "精益改善方案模板",
+      "task_type": "精益改善方案",
+      "sections": [
+        {
+          "title": "现状分析",
+          "prompt_hint": "当前流程的价值流图（VSM）、浪费识别（七大浪费）、关键指标基线数据（效率/质量/成本）"
+        },
+        {
+          "title": "改善目标",
+          "prompt_hint": "明确的改善目标值（如效率提升20%、在制品降低50%、换模时间缩短30%），用SMART原则定义"
+        },
+        {
+          "title": "改善方案设计",
+          "prompt_hint": "精益工具选型（5S/看板/价值流/标准作业/SMED等）、方案详细设计、实施路线图和步骤"
+        },
+        {
+          "title": "预期效益",
+          "prompt_hint": "改善前后的量化效益对比（效率/质量/成本/空间/安全），投资回报分析（如有投入）"
+        },
+        {
+          "title": "实施计划",
+          "prompt_hint": "改善活动的里程碑时间表、责任分工、资源需求和风险预案"
+        },
+        {
+          "title": "标准化与固化",
+          "prompt_hint": "改善成果的标准化文件更新、培训计划、定期审核机制以维持改善效果"
+        }
+      ],
+      "tone": "务实可行，数据支撑，持续改善导向",
+      "common_mistakes": [
+        "改善目标不量化，无法衡量效果",
+        "改善方案过于激进，缺乏分步实施计划",
+        "改善后缺乏标准化和维持机制，效果反弹",
+        "只关注硬性指标（效率/成本），忽略安全和员工参与"
+      ]
     }
   ],
   "follow_up_trees": [
     {
-      "task_type": "生产计划",
-      "root_node_id": "n1",
+      "task_type": "production_scheduling",
+      "root_node_id": "ps_q1",
       "nodes": {
-        "n1": {
-          "node_id": "n1",
-          "question_text": "生产计划",
+        "ps_q1": {
+          "node_id": "ps_q1",
+          "question_text": "生产类型是什么？",
           "question_type": "single_choice",
-          "info_key": "",
+          "info_key": "ps_production_type",
           "depth": 1,
           "options": [
             {
-              "value": "a",
-              "label": "周计划"
+              "value": "batch",
+              "label": "批量生产（按批量组织生产，多次换线）"
             },
             {
-              "value": "b",
-              "label": "月计划"
+              "value": "mto",
+              "label": "按订单生产（MTO，接到订单后排产）"
+            },
+            {
+              "value": "mts",
+              "label": "按库存生产（MTS，备货式生产）"
+            },
+            {
+              "value": "mixed",
+              "label": "混合模式（部分备货+部分按单）"
             }
           ],
           "children": {
-            "a": "nx",
-            "b": "nx"
+            "batch": "ps_q2_dim",
+            "mto": "ps_q2_dim",
+            "mts": "ps_q2_dim",
+            "mixed": "ps_q2_dim"
           },
-          "fallback_node_id": "nx",
+          "fallback_node_id": "ps_q2_dim",
           "is_leaf": false
         },
-        "nx": {
-          "node_id": "nx",
-          "question_text": "请补充具体需求",
-          "question_type": "text_input",
-          "info_key": "",
-          "depth": 1,
-          "options": [],
+        "ps_q2_dim": {
+          "node_id": "ps_q2_dim",
+          "question_text": "排产的主要约束维度是什么？",
+          "question_type": "single_choice",
+          "info_key": "ps_dimension",
+          "depth": 2,
+          "options": [
+            {
+              "value": "equipment",
+              "label": "设备约束（关键设备产能不足是瓶颈）"
+            },
+            {
+              "value": "labor",
+              "label": "人力约束（熟练工人数量限制产能）"
+            },
+            {
+              "value": "material",
+              "label": "物料约束（关键物料采购周期长）"
+            }
+          ],
+          "children": {
+            "equipment": "ps_q3_time",
+            "labor": "ps_q3_time",
+            "material": "ps_q3_time"
+          },
+          "fallback_node_id": "ps_q3_time",
+          "is_leaf": false
+        },
+        "ps_q3_time": {
+          "node_id": "ps_q3_time",
+          "question_text": "排程的时间范围是什么？",
+          "question_type": "single_choice",
+          "info_key": "ps_time_range",
+          "depth": 3,
+          "options": [
+            {
+              "value": "daily",
+              "label": "日排程（细化到小时的产线日计划）"
+            },
+            {
+              "value": "weekly",
+              "label": "周排程（本周重点订单和产能分配）"
+            },
+            {
+              "value": "monthly",
+              "label": "月排程（月度总产能规划和订单分配）"
+            }
+          ],
+          "children": {
+            "daily": "ps_q4_output",
+            "weekly": "ps_q4_output",
+            "monthly": "ps_q4_output"
+          },
+          "fallback_node_id": "ps_q4_output",
+          "is_leaf": false
+        },
+        "ps_q4_output": {
+          "node_id": "ps_q4_output",
+          "question_text": "需要哪些排程产出物？",
+          "question_type": "multi_choice",
+          "info_key": "ps_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "schedule_table",
+              "label": "排程计划表（工单排程时间表）"
+            },
+            {
+              "value": "gantt",
+              "label": "排程甘特图（可视化排程视图）"
+            },
+            {
+              "value": "load_report",
+              "label": "产能负荷分析报告"
+            },
+            {
+              "value": "material_plan",
+              "label": "物料需求拉动计划"
+            }
+          ],
           "children": {},
           "fallback_node_id": null,
           "is_leaf": true
@@ -162,39 +1898,1247 @@
       }
     },
     {
-      "task_type": "质量报告",
-      "root_node_id": "n1",
+      "task_type": "quality_analysis_report",
+      "root_node_id": "qa_q1",
       "nodes": {
-        "n1": {
-          "node_id": "n1",
-          "question_text": "质量报告",
+        "qa_q1": {
+          "node_id": "qa_q1",
+          "question_text": "质量问题属于什么类型？",
           "question_type": "single_choice",
-          "info_key": "",
+          "info_key": "qa_issue_type",
           "depth": 1,
           "options": [
             {
-              "value": "a",
-              "label": "来料"
+              "value": "incoming",
+              "label": "来料质量问题（物料/零部件不合格）"
             },
             {
-              "value": "b",
-              "label": "成品"
+              "value": "process",
+              "label": "过程质量问题（生产过程中的不良）"
+            },
+            {
+              "value": "final",
+              "label": "成品质量问题（成品检验不合格）"
+            },
+            {
+              "value": "complaint",
+              "label": "客户投诉（客户反馈质量问题）"
             }
           ],
           "children": {
-            "a": "nx",
-            "b": "nx"
+            "incoming": "qa_q2_method",
+            "process": "qa_q2_method",
+            "final": "qa_q2_method",
+            "complaint": "qa_q2_method"
           },
-          "fallback_node_id": "nx",
+          "fallback_node_id": "qa_q2_method",
           "is_leaf": false
         },
-        "nx": {
-          "node_id": "nx",
-          "question_text": "请补充具体需求",
-          "question_type": "text_input",
-          "info_key": "",
+        "qa_q2_method": {
+          "node_id": "qa_q2_method",
+          "question_text": "期望采用什么分析方法？",
+          "question_type": "single_choice",
+          "info_key": "qa_method",
+          "depth": 2,
+          "options": [
+            {
+              "value": "spc",
+              "label": "SPC分析（控制图和过程能力分析）"
+            },
+            {
+              "value": "8d",
+              "label": "8D问题解决法（系统性根因分析和改善）"
+            },
+            {
+              "value": "fmea",
+              "label": "FMEA分析（失效模式和风险分析）"
+            }
+          ],
+          "children": {
+            "spc": "qa_q3_data",
+            "8d": "qa_q3_data",
+            "fmea": "qa_q3_data"
+          },
+          "fallback_node_id": "qa_q3_data",
+          "is_leaf": false
+        },
+        "qa_q3_data": {
+          "node_id": "qa_q3_data",
+          "question_text": "可用的数据范围是什么？",
+          "question_type": "single_choice",
+          "info_key": "qa_data_range",
+          "depth": 3,
+          "options": [
+            {
+              "value": "recent",
+              "label": "近期数据（最近一周或一个批次）"
+            },
+            {
+              "value": "monthly",
+              "label": "月度数据（近1-3个月的趋势数据）"
+            },
+            {
+              "value": "historical",
+              "label": "历史数据（半年以上对比数据）"
+            }
+          ],
+          "children": {
+            "recent": "qa_q4_output",
+            "monthly": "qa_q4_output",
+            "historical": "qa_q4_output"
+          },
+          "fallback_node_id": "qa_q4_output",
+          "is_leaf": false
+        },
+        "qa_q4_output": {
+          "node_id": "qa_q4_output",
+          "question_text": "期望的分析深度和格式是什么？",
+          "question_type": "multi_choice",
+          "info_key": "qa_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "full_report",
+              "label": "完整质量分析报告（含图表和分析结论）"
+            },
+            {
+              "value": "8d_report",
+              "label": "8D报告（根因分析和改善跟踪）"
+            },
+            {
+              "value": "spc_chart",
+              "label": "SPC控制图（过程监控和预警）"
+            },
+            {
+              "value": "summary",
+              "label": "质量问题摘要（快速定位和跟进）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "supply_chain_risk_assess",
+      "root_node_id": "sc_q1",
+      "nodes": {
+        "sc_q1": {
+          "node_id": "sc_q1",
+          "question_text": "评估的风险类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "sc_risk_type",
           "depth": 1,
+          "options": [
+            {
+              "value": "supplier",
+              "label": "供应商风险（交付/质量/财务状况）"
+            },
+            {
+              "value": "logistics",
+              "label": "物流风险（运输中断/仓储问题）"
+            },
+            {
+              "value": "price",
+              "label": "价格风险（原材料价格波动）"
+            },
+            {
+              "value": "compliance",
+              "label": "合规风险（环保/贸易政策/制裁）"
+            }
+          ],
+          "children": {
+            "supplier": "sc_q2_scope",
+            "logistics": "sc_q2_scope",
+            "price": "sc_q2_scope",
+            "compliance": "sc_q2_scope"
+          },
+          "fallback_node_id": "sc_q2_scope",
+          "is_leaf": false
+        },
+        "sc_q2_scope": {
+          "node_id": "sc_q2_scope",
+          "question_text": "评估的范围是什么？",
+          "question_type": "single_choice",
+          "info_key": "sc_scope",
+          "depth": 2,
+          "options": [
+            {
+              "value": "single",
+              "label": "单一物料/供应商评估"
+            },
+            {
+              "value": "category",
+              "label": "物料品类评估（一类物料的整体风险）"
+            },
+            {
+              "value": "full",
+              "label": "全供应链评估（端到端风险扫描）"
+            }
+          ],
+          "children": {
+            "single": "sc_q3_method",
+            "category": "sc_q3_method",
+            "full": "sc_q3_method"
+          },
+          "fallback_node_id": "sc_q3_method",
+          "is_leaf": false
+        },
+        "sc_q3_method": {
+          "node_id": "sc_q3_method",
+          "question_text": "评估方法是什么？",
+          "question_type": "single_choice",
+          "info_key": "sc_method",
+          "depth": 3,
+          "options": [
+            {
+              "value": "qualitative",
+              "label": "定性评估（专家经验和风险矩阵）"
+            },
+            {
+              "value": "quantitative",
+              "label": "量化评估（数据驱动的风险评分模型）"
+            },
+            {
+              "value": "combined",
+              "label": "综合评估（定性和定量相结合）"
+            }
+          ],
+          "children": {
+            "qualitative": "sc_q4_output",
+            "quantitative": "sc_q4_output",
+            "combined": "sc_q4_output"
+          },
+          "fallback_node_id": "sc_q4_output",
+          "is_leaf": false
+        },
+        "sc_q4_output": {
+          "node_id": "sc_q4_output",
+          "question_text": "需要哪些产出物？",
+          "question_type": "multi_choice",
+          "info_key": "sc_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "risk_report",
+              "label": "风险评估报告（风险识别评分和应对建议）"
+            },
+            {
+              "value": "heatmap",
+              "label": "风险热力图（影响程度×发生概率可视化）"
+            },
+            {
+              "value": "register",
+              "label": "风险登记册（风险清单和应对措施）"
+            },
+            {
+              "value": "bcm_plan",
+              "label": "业务连续性计划（BCP）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "equipment_maintenance_plan",
+      "root_node_id": "em_q1",
+      "nodes": {
+        "em_q1": {
+          "node_id": "em_q1",
+          "question_text": "设备类型和重要性如何？",
+          "question_type": "single_choice",
+          "info_key": "em_equip_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "critical",
+              "label": "关键设备（单点故障会造成全线停机的核心设备）"
+            },
+            {
+              "value": "important",
+              "label": "重要设备（故障影响大但存在冗余或替代方案）"
+            },
+            {
+              "value": "general",
+              "label": "一般设备（故障影响有限，容易修复）"
+            }
+          ],
+          "children": {
+            "critical": "em_q2_strategy",
+            "important": "em_q2_strategy",
+            "general": "em_q2_strategy"
+          },
+          "fallback_node_id": "em_q2_strategy",
+          "is_leaf": false
+        },
+        "em_q2_strategy": {
+          "node_id": "em_q2_strategy",
+          "question_text": "维护策略偏好是什么？",
+          "question_type": "single_choice",
+          "info_key": "em_strategy",
+          "depth": 2,
+          "options": [
+            {
+              "value": "preventive",
+              "label": "预防性维护为主（按周期保养和更换）"
+            },
+            {
+              "value": "predictive",
+              "label": "预测性维护为主（基于状态监测数据）"
+            },
+            {
+              "value": "reactive",
+              "label": "事后维护为主（故障后再维修，适合非关键设备）"
+            }
+          ],
+          "children": {
+            "preventive": "em_q3_spare",
+            "predictive": "em_q3_spare",
+            "reactive": "em_q3_spare"
+          },
+          "fallback_node_id": "em_q3_spare",
+          "is_leaf": false
+        },
+        "em_q3_spare": {
+          "node_id": "em_q3_spare",
+          "question_text": "备件供应情况如何？",
+          "question_type": "single_choice",
+          "info_key": "em_spare_parts",
+          "depth": 3,
+          "options": [
+            {
+              "value": "adequate",
+              "label": "备件充足（关键备件有安全库存）"
+            },
+            {
+              "value": "limited",
+              "label": "备件有限（部分备件需采购，交期较长）"
+            },
+            {
+              "value": "critical",
+              "label": "备件紧缺（进口备件交期数月，需优化策略）"
+            }
+          ],
+          "children": {
+            "adequate": "em_q4_output",
+            "limited": "em_q4_output",
+            "critical": "em_q4_output"
+          },
+          "fallback_node_id": "em_q4_output",
+          "is_leaf": false
+        },
+        "em_q4_output": {
+          "node_id": "em_q4_output",
+          "question_text": "时间周期和产出格式是？",
+          "question_type": "multi_choice",
+          "info_key": "em_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "annual_plan",
+              "label": "年度维护计划（全年保养日历）"
+            },
+            {
+              "value": "monthly_schedule",
+              "label": "月度维护排程（本月具体保养任务）"
+            },
+            {
+              "value": "checklist",
+              "label": "设备点检标准书（日常和定期点检项目）"
+            },
+            {
+              "value": "spare_plan",
+              "label": "备件库存计划（备件清单和安全库存）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "capacity_assessment_report",
+      "root_node_id": "ca_q1",
+      "nodes": {
+        "ca_q1": {
+          "node_id": "ca_q1",
+          "question_text": "产能评估的目的是什么？",
+          "question_type": "single_choice",
+          "info_key": "ca_purpose",
+          "depth": 1,
+          "options": [
+            {
+              "value": "expansion",
+              "label": "扩产投资决策（评估是否需要增加设备或产线）"
+            },
+            {
+              "value": "order",
+              "label": "接单能力评估（确定能否接受新订单）"
+            },
+            {
+              "value": "bottleneck",
+              "label": "瓶颈分析（识别制约产能的关键工序）"
+            }
+          ],
+          "children": {
+            "expansion": "ca_q2_scope",
+            "order": "ca_q2_scope",
+            "bottleneck": "ca_q2_scope"
+          },
+          "fallback_node_id": "ca_q2_scope",
+          "is_leaf": false
+        },
+        "ca_q2_scope": {
+          "node_id": "ca_q2_scope",
+          "question_text": "评估范围是什么？",
+          "question_type": "single_choice",
+          "info_key": "ca_scope",
+          "depth": 2,
+          "options": [
+            {
+              "value": "line",
+              "label": "单条产线（针对特定产线的详细评估）"
+            },
+            {
+              "value": "workshop",
+              "label": "车间/工段（多产线和工序的整体评估）"
+            },
+            {
+              "value": "plant",
+              "label": "全厂范围（工厂级别的综合产能评估）"
+            }
+          ],
+          "children": {
+            "line": "ca_q3_time",
+            "workshop": "ca_q3_time",
+            "plant": "ca_q3_time"
+          },
+          "fallback_node_id": "ca_q3_time",
+          "is_leaf": false
+        },
+        "ca_q3_time": {
+          "node_id": "ca_q3_time",
+          "question_text": "分析的时间维度是什么？",
+          "question_type": "single_choice",
+          "info_key": "ca_time_dim",
+          "depth": 3,
+          "options": [
+            {
+              "value": "current",
+              "label": "当前产能（现有条件下的即时产能）"
+            },
+            {
+              "value": "monthly",
+              "label": "月度产能（近1-3个月的产能趋势）"
+            },
+            {
+              "value": "annual",
+              "label": "年度产能（全年综合产能评估和规划）"
+            }
+          ],
+          "children": {
+            "current": "ca_q4_output",
+            "monthly": "ca_q4_output",
+            "annual": "ca_q4_output"
+          },
+          "fallback_node_id": "ca_q4_output",
+          "is_leaf": false
+        },
+        "ca_q4_output": {
+          "node_id": "ca_q4_output",
+          "question_text": "评估的深度和产出格式？",
+          "question_type": "multi_choice",
+          "info_key": "ca_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "report",
+              "label": "产能评估报告（含负荷分析和结论建议）"
+            },
+            {
+              "value": "load_chart",
+              "label": "产能负荷图（各工序产能与负载对比可视化）"
+            },
+            {
+              "value": "bottleneck",
+              "label": "瓶颈分析专题（瓶颈识别和突破建议）"
+            },
+            {
+              "value": "investment_roi",
+              "label": "扩产投资方案和ROI分析"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "lean_improvement_plan",
+      "root_node_id": "li_q1",
+      "nodes": {
+        "li_q1": {
+          "node_id": "li_q1",
+          "question_text": "改善的领域是什么？",
+          "question_type": "single_choice",
+          "info_key": "li_area",
+          "depth": 1,
+          "options": [
+            {
+              "value": "production_eff",
+              "label": "生产效率改善（提升产出、缩短周期）"
+            },
+            {
+              "value": "quality",
+              "label": "质量改善（降低不良率、提升直通率）"
+            },
+            {
+              "value": "logistics",
+              "label": "物流改善（物料流动、在制品降低）"
+            },
+            {
+              "value": "office",
+              "label": "办公/管理流程改善（非制造环节）"
+            }
+          ],
+          "children": {
+            "production_eff": "li_q2_current",
+            "quality": "li_q2_current",
+            "logistics": "li_q2_current",
+            "office": "li_q2_current"
+          },
+          "fallback_node_id": "li_q2_current",
+          "is_leaf": false
+        },
+        "li_q2_current": {
+          "node_id": "li_q2_current",
+          "question_text": "当前状态的描述？",
+          "question_type": "text_input",
+          "info_key": "li_current_state",
+          "depth": 2,
           "options": [],
+          "children": {
+            "_any": "li_q3_target"
+          },
+          "fallback_node_id": "li_q3_target",
+          "is_leaf": false
+        },
+        "li_q3_target": {
+          "node_id": "li_q3_target",
+          "question_text": "目标状态的量化指标是什么？",
+          "question_type": "single_choice",
+          "info_key": "li_target",
+          "depth": 3,
+          "options": [
+            {
+              "value": "aggressive",
+              "label": "突破性目标（提升30%以上，需较大投入）"
+            },
+            {
+              "value": "moderate",
+              "label": "中等改善（提升10-30%，常规精益项目）"
+            },
+            {
+              "value": "incremental",
+              "label": "渐进改善（提升10%以内，持续Kaizen）"
+            }
+          ],
+          "children": {
+            "aggressive": "li_q4_tool",
+            "moderate": "li_q4_tool",
+            "incremental": "li_q4_tool"
+          },
+          "fallback_node_id": "li_q4_tool",
+          "is_leaf": false
+        },
+        "li_q4_tool": {
+          "node_id": "li_q4_tool",
+          "question_text": "倾向于使用哪些精益工具？",
+          "question_type": "multi_choice",
+          "info_key": "li_tools",
+          "depth": 3,
+          "options": [
+            {
+              "value": "vsm",
+              "label": "价值流图（VSM分析识别浪费）"
+            },
+            {
+              "value": "kanban",
+              "label": "看板拉动（建立拉动生产系统）"
+            },
+            {
+              "value": "smed",
+              "label": "快速换模（SMED缩短换线时间）"
+            },
+            {
+              "value": "standard_work",
+              "label": "标准化作业（建立作业标准并培训）"
+            },
+            {
+              "value": "5s",
+              "label": "5S与目视化管理"
+            }
+          ],
+          "children": {
+            "vsm": "li_q5_output",
+            "kanban": "li_q5_output",
+            "smed": "li_q5_output",
+            "standard_work": "li_q5_output",
+            "5s": "li_q5_output"
+          },
+          "fallback_node_id": "li_q5_output",
+          "is_leaf": false
+        },
+        "li_q5_output": {
+          "node_id": "li_q5_output",
+          "question_text": "期望的产出格式是什么？",
+          "question_type": "multi_choice",
+          "info_key": "li_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "improvement_plan",
+              "label": "精益改善方案书（完整的改善项目方案）"
+            },
+            {
+              "value": "vsm_future",
+              "label": "价值流未来状态图"
+            },
+            {
+              "value": "kaizen_record",
+              "label": "Kaizen改善活动记录"
+            },
+            {
+              "value": "standard_doc",
+              "label": "改善后的标准化文件"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "supplier_evaluation_report",
+      "root_node_id": "se_q1",
+      "nodes": {
+        "se_q1": {
+          "node_id": "se_q1",
+          "question_text": "供应商的类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "se_supplier_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "raw_material",
+              "label": "原材料供应商（金属/塑料/化工等原料）"
+            },
+            {
+              "value": "parts",
+              "label": "零部件供应商（外协加工件/标准件等）"
+            },
+            {
+              "value": "service",
+              "label": "服务供应商（维修/物流/IT等服务）"
+            }
+          ],
+          "children": {
+            "raw_material": "se_q2_dim",
+            "parts": "se_q2_dim",
+            "service": "se_q2_dim"
+          },
+          "fallback_node_id": "se_q2_dim",
+          "is_leaf": false
+        },
+        "se_q2_dim": {
+          "node_id": "se_q2_dim",
+          "question_text": "评估的重点维度是什么？",
+          "question_type": "single_choice",
+          "info_key": "se_dimension",
+          "depth": 2,
+          "options": [
+            {
+              "value": "quality",
+              "label": "质量重点（关注质量体系和来料合格率）"
+            },
+            {
+              "value": "delivery",
+              "label": "交付重点（关注准时交付和交期柔性）"
+            },
+            {
+              "value": "cost",
+              "label": "成本重点（关注价格竞争力和降本潜力）"
+            },
+            {
+              "value": "overall",
+              "label": "综合评估（质量/交付/成本/技术/配合度全覆盖）"
+            }
+          ],
+          "children": {
+            "quality": "se_q3_risk",
+            "delivery": "se_q3_risk",
+            "cost": "se_q3_risk",
+            "overall": "se_q3_risk"
+          },
+          "fallback_node_id": "se_q3_risk",
+          "is_leaf": false
+        },
+        "se_q3_risk": {
+          "node_id": "se_q3_risk",
+          "question_text": "供应风险等级如何？",
+          "question_type": "single_choice",
+          "info_key": "se_risk_level",
+          "depth": 3,
+          "options": [
+            {
+              "value": "high",
+              "label": "高风险（唯一供应商/财务状况差/历史问题多）"
+            },
+            {
+              "value": "medium",
+              "label": "中等风险（有备选方案/偶尔出现问题）"
+            },
+            {
+              "value": "low",
+              "label": "低风险（多家供应/长期合作/表现稳定）"
+            }
+          ],
+          "children": {
+            "high": "se_q4_output",
+            "medium": "se_q4_output",
+            "low": "se_q4_output"
+          },
+          "fallback_node_id": "se_q4_output",
+          "is_leaf": false
+        },
+        "se_q4_output": {
+          "node_id": "se_q4_output",
+          "question_text": "报告格式要求？",
+          "question_type": "multi_choice",
+          "info_key": "se_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "full_report",
+              "label": "完整评估报告（含评分矩阵和改进建议）"
+            },
+            {
+              "value": "scorecard",
+              "label": "供应商计分卡（量化评分和分级结果）"
+            },
+            {
+              "value": "audit_findings",
+              "label": "审核发现问题清单"
+            },
+            {
+              "value": "improvement_letter",
+              "label": "改善要求函（给供应商的正式书面要求）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "production_cost_analysis",
+      "root_node_id": "pc_q1",
+      "nodes": {
+        "pc_q1": {
+          "node_id": "pc_q1",
+          "question_text": "成本分析的侧重点是什么？",
+          "question_type": "single_choice",
+          "info_key": "pc_cost_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "material",
+              "label": "直接材料成本（BOM消耗和价格分析）"
+            },
+            {
+              "value": "labor",
+              "label": "直接人工成本（工时和效率分析）"
+            },
+            {
+              "value": "overhead",
+              "label": "制造费用（折旧/能耗/维护等间接费用）"
+            },
+            {
+              "value": "full",
+              "label": "全成本分析（涵盖所有成本要素）"
+            }
+          ],
+          "children": {
+            "material": "pc_q2_granularity",
+            "labor": "pc_q2_granularity",
+            "overhead": "pc_q2_granularity",
+            "full": "pc_q2_granularity"
+          },
+          "fallback_node_id": "pc_q2_granularity",
+          "is_leaf": false
+        },
+        "pc_q2_granularity": {
+          "node_id": "pc_q2_granularity",
+          "question_text": "分析的粒度是什么？",
+          "question_type": "single_choice",
+          "info_key": "pc_granularity",
+          "depth": 2,
+          "options": [
+            {
+              "value": "product",
+              "label": "产品级成本（按产品型号统计和分析）"
+            },
+            {
+              "value": "process",
+              "label": "工序级成本（按各工序详细分析）"
+            },
+            {
+              "value": "dept",
+              "label": "部门级成本（按车间/工段汇总分析）"
+            }
+          ],
+          "children": {
+            "product": "pc_q3_benchmark",
+            "process": "pc_q3_benchmark",
+            "dept": "pc_q3_benchmark"
+          },
+          "fallback_node_id": "pc_q3_benchmark",
+          "is_leaf": false
+        },
+        "pc_q3_benchmark": {
+          "node_id": "pc_q3_benchmark",
+          "question_text": "对比基准是什么？",
+          "question_type": "single_choice",
+          "info_key": "pc_benchmark",
+          "depth": 3,
+          "options": [
+            {
+              "value": "standard",
+              "label": "与标准成本对比（BOM标准+标准工时）"
+            },
+            {
+              "value": "historical",
+              "label": "与历史成本对比（去年同期或上期）"
+            },
+            {
+              "value": "industry",
+              "label": "与行业基准对比（行业平均水平对标）"
+            }
+          ],
+          "children": {
+            "standard": "pc_q4_output",
+            "historical": "pc_q4_output",
+            "industry": "pc_q4_output"
+          },
+          "fallback_node_id": "pc_q4_output",
+          "is_leaf": false
+        },
+        "pc_q4_output": {
+          "node_id": "pc_q4_output",
+          "question_text": "产出格式要求？",
+          "question_type": "multi_choice",
+          "info_key": "pc_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "analysis_report",
+              "label": "成本分析报告（含差异分析和改善建议）"
+            },
+            {
+              "value": "variance_table",
+              "label": "差异分析表（量差和价差逐项对比）"
+            },
+            {
+              "value": "trend_chart",
+              "label": "成本趋势图（多周期对比和趋势分析）"
+            },
+            {
+              "value": "improvement_plan",
+              "label": "降本方案（改善机会排序和行动计划）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "standard_work_instruction",
+      "root_node_id": "sw_q1",
+      "nodes": {
+        "sw_q1": {
+          "node_id": "sw_q1",
+          "question_text": "作业类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "sw_work_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "assembly",
+              "label": "装配作业（零组件组装工序）"
+            },
+            {
+              "value": "inspection",
+              "label": "检验作业（质量检查和测试工序）"
+            },
+            {
+              "value": "packaging",
+              "label": "包装作业（成品包装和贴标工序）"
+            },
+            {
+              "value": "machine_op",
+              "label": "设备操作（机加工/注塑/冲压等设备操作）"
+            }
+          ],
+          "children": {
+            "assembly": "sw_q2_complexity",
+            "inspection": "sw_q2_complexity",
+            "packaging": "sw_q2_complexity",
+            "machine_op": "sw_q2_complexity"
+          },
+          "fallback_node_id": "sw_q2_complexity",
+          "is_leaf": false
+        },
+        "sw_q2_complexity": {
+          "node_id": "sw_q2_complexity",
+          "question_text": "操作复杂度如何？",
+          "question_type": "single_choice",
+          "info_key": "sw_complexity",
+          "depth": 2,
+          "options": [
+            {
+              "value": "simple",
+              "label": "简单作业（步骤少于5步，易掌握）"
+            },
+            {
+              "value": "moderate",
+              "label": "中等复杂度（5-15步，需一定培训和经验）"
+            },
+            {
+              "value": "complex",
+              "label": "复杂作业（15步以上，需长时间培训）"
+            }
+          ],
+          "children": {
+            "simple": "sw_q3_audience",
+            "moderate": "sw_q3_audience",
+            "complex": "sw_q3_audience"
+          },
+          "fallback_node_id": "sw_q3_audience",
+          "is_leaf": false
+        },
+        "sw_q3_audience": {
+          "node_id": "sw_q3_audience",
+          "question_text": "SOP的使用对象是谁？",
+          "question_type": "single_choice",
+          "info_key": "sw_audience",
+          "depth": 3,
+          "options": [
+            {
+              "value": "new",
+              "label": "新员工（需要详细操作说明和图示）"
+            },
+            {
+              "value": "experienced",
+              "label": "熟练工（关注关键参数和异常处理）"
+            },
+            {
+              "value": "trainer",
+              "label": "培训用（用于操作工培训和考核）"
+            }
+          ],
+          "children": {
+            "new": "sw_q4_output",
+            "experienced": "sw_q4_output",
+            "trainer": "sw_q4_output"
+          },
+          "fallback_node_id": "sw_q4_output",
+          "is_leaf": false
+        },
+        "sw_q4_output": {
+          "node_id": "sw_q4_output",
+          "question_text": "详细程度和格式要求？",
+          "question_type": "multi_choice",
+          "info_key": "sw_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "detailed_sop",
+              "label": "详细SOP（图文并茂，步骤含工艺参数）"
+            },
+            {
+              "value": "job_breakdown",
+              "label": "作业分解表（分解到基本动作）"
+            },
+            {
+              "value": "one_point",
+              "label": "OPL单点课程（针对关键要点的简洁培训材料）"
+            },
+            {
+              "value": "checklist",
+              "label": "作业检查清单（操作要点和自检项目）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "process_improvement_plan",
+      "root_node_id": "pi_q1",
+      "nodes": {
+        "pi_q1": {
+          "node_id": "pi_q1",
+          "question_text": "工艺改进的驱动因素是什么？",
+          "question_type": "single_choice",
+          "info_key": "pi_driver",
+          "depth": 1,
+          "options": [
+            {
+              "value": "quality",
+              "label": "质量问题驱动（良率低、不良率高需改进工艺）"
+            },
+            {
+              "value": "efficiency",
+              "label": "效率驱动（节拍长、产能不足需优化）"
+            },
+            {
+              "value": "cost",
+              "label": "成本驱动（材料浪费大、制造成本高）"
+            },
+            {
+              "value": "safety",
+              "label": "安全/环保驱动（需改善作业安全和环境合规）"
+            }
+          ],
+          "children": {
+            "quality": "pi_q2_process_type",
+            "efficiency": "pi_q2_process_type",
+            "cost": "pi_q2_process_type",
+            "safety": "pi_q2_process_type"
+          },
+          "fallback_node_id": "pi_q2_process_type",
+          "is_leaf": false
+        },
+        "pi_q2_process_type": {
+          "node_id": "pi_q2_process_type",
+          "question_text": "涉及什么类型的工艺？",
+          "question_type": "single_choice",
+          "info_key": "pi_process_type",
+          "depth": 2,
+          "options": [
+            {
+              "value": "machining",
+              "label": "机加工艺（车/铣/磨/钻等切削加工）"
+            },
+            {
+              "value": "assembly",
+              "label": "装配工艺（零组件组装和连接工艺）"
+            },
+            {
+              "value": "surface",
+              "label": "表面处理（喷涂/电镀/氧化/热处理等）"
+            },
+            {
+              "value": "test_inspect",
+              "label": "检测工艺（测试和检验方法改进）"
+            }
+          ],
+          "children": {
+            "machining": "pi_q3_magnitude",
+            "assembly": "pi_q3_magnitude",
+            "surface": "pi_q3_magnitude",
+            "test_inspect": "pi_q3_magnitude"
+          },
+          "fallback_node_id": "pi_q3_magnitude",
+          "is_leaf": false
+        },
+        "pi_q3_magnitude": {
+          "node_id": "pi_q3_magnitude",
+          "question_text": "改进幅度和投资规模？",
+          "question_type": "single_choice",
+          "info_key": "pi_magnitude",
+          "depth": 3,
+          "options": [
+            {
+              "value": "minor",
+              "label": "小幅改进（参数优化/工装微调，改动小）"
+            },
+            {
+              "value": "moderate",
+              "label": "中等改进（工艺路线调整/新工装投入）"
+            },
+            {
+              "value": "major",
+              "label": "重大改进（引入新工艺/设备改造/自动化）"
+            }
+          ],
+          "children": {
+            "minor": "pi_q4_output",
+            "moderate": "pi_q4_output",
+            "major": "pi_q4_output"
+          },
+          "fallback_node_id": "pi_q4_output",
+          "is_leaf": false
+        },
+        "pi_q4_output": {
+          "node_id": "pi_q4_output",
+          "question_text": "方案深度和产出要求？",
+          "question_type": "multi_choice",
+          "info_key": "pi_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "improvement_plan",
+              "label": "工艺改进方案书（含对比分析和实施方案）"
+            },
+            {
+              "value": "doe",
+              "label": "DOE试验方案和数据分析报告"
+            },
+            {
+              "value": "new_process_doc",
+              "label": "新工艺文件（更新后的工艺流程图和参数卡）"
+            },
+            {
+              "value": "roi_analysis",
+              "label": "投资回报分析（投入产出比和回收期）"
+            }
+          ],
+          "children": {},
+          "fallback_node_id": null,
+          "is_leaf": true
+        }
+      }
+    },
+    {
+      "task_type": "new_product_introduction",
+      "root_node_id": "np_q1",
+      "nodes": {
+        "np_q1": {
+          "node_id": "np_q1",
+          "question_text": "新产品类型是什么？",
+          "question_type": "single_choice",
+          "info_key": "np_product_type",
+          "depth": 1,
+          "options": [
+            {
+              "value": "new",
+              "label": "全新产品（从零开始的新品开发）"
+            },
+            {
+              "value": "variant",
+              "label": "改型产品（在现有产品基础上改型）"
+            },
+            {
+              "value": "derivative",
+              "label": "派生系列（同平台多型号扩展）"
+            }
+          ],
+          "children": {
+            "new": "np_q2_stage",
+            "variant": "np_q2_stage",
+            "derivative": "np_q2_stage"
+          },
+          "fallback_node_id": "np_q2_stage",
+          "is_leaf": false
+        },
+        "np_q2_stage": {
+          "node_id": "np_q2_stage",
+          "question_text": "当前导入的阶段是什么？",
+          "question_type": "single_choice",
+          "info_key": "np_stage",
+          "depth": 2,
+          "options": [
+            {
+              "value": "trial",
+              "label": "试产阶段（小批量试制验证工艺）"
+            },
+            {
+              "value": "pilot",
+              "label": "小批阶段（小批量生产验证产线能力）"
+            },
+            {
+              "value": "ramp",
+              "label": "爬坡量产（从试产过渡到正式量产）"
+            }
+          ],
+          "children": {
+            "trial": "np_q3_dim",
+            "pilot": "np_q3_dim",
+            "ramp": "np_q3_dim"
+          },
+          "fallback_node_id": "np_q3_dim",
+          "is_leaf": false
+        },
+        "np_q3_dim": {
+          "node_id": "np_q3_dim",
+          "question_text": "需要重点准备的维度？",
+          "question_type": "multi_choice",
+          "info_key": "np_dimensions",
+          "depth": 3,
+          "options": [
+            {
+              "value": "process",
+              "label": "工艺准备（工艺设计/FMEA/控制计划）"
+            },
+            {
+              "value": "tooling",
+              "label": "工装夹具（模具/夹具/检具准备）"
+            },
+            {
+              "value": "training",
+              "label": "人员培训（操作工技能培训和认证）"
+            },
+            {
+              "value": "supply",
+              "label": "供应链准备（物料认证和供应商确认）"
+            }
+          ],
+          "children": {
+            "process": "np_q4_output",
+            "tooling": "np_q4_output",
+            "training": "np_q4_output",
+            "supply": "np_q4_output"
+          },
+          "fallback_node_id": "np_q4_output",
+          "is_leaf": false
+        },
+        "np_q4_output": {
+          "node_id": "np_q4_output",
+          "question_text": "方案的范围深度？",
+          "question_type": "multi_choice",
+          "info_key": "np_output",
+          "depth": 4,
+          "options": [
+            {
+              "value": "full_plan",
+              "label": "完整导入方案（含可行性/工艺/试产/爬坡全部内容）"
+            },
+            {
+              "value": "feasibility",
+              "label": "制造可行性评估报告（DFM分析和风险评估）"
+            },
+            {
+              "value": "ppap",
+              "label": "PPAP文件包（生产件批准程序文件）"
+            },
+            {
+              "value": "ramp_plan",
+              "label": "爬坡量产计划（产能爬坡和良率提升路径）"
+            }
+          ],
           "children": {},
           "fallback_node_id": null,
           "is_leaf": true
@@ -204,12 +3148,69 @@
   ],
   "pain_points": [
     {
-      "name": "制造业痛点",
-      "description": "行业共通挑战",
-      "why_happens": "",
-      "who_feels_it": "",
-      "typical_phrases": [],
-      "what_not_to_do": ""
+      "name": "设备故障停机",
+      "description": "突发设备故障导致产线停摆，非计划停工时间居高不下，严重影响交付计划和产能利用率。",
+      "why_happens": "预防性维护执行不到位、设备老化缺乏状态监测、操作工日保养流于形式、备件储备不足导致维修等待",
+      "who_feels_it": "生产主管、设备维护工程师、生产计划员、一线操作工",
+      "typical_phrases": [
+        "又停机了，这批货肯定赶不出来了",
+        "备件还没到，维修只能等",
+        "这台机器早就该保养了，一直排不上",
+        "昨天下班还好好的，早上一开机就报警"
+      ],
+      "what_not_to_do": "假设设备始终正常运行，不安排预防性维护和状态监测的计划"
+    },
+    {
+      "name": "来料质量不稳定",
+      "description": "不同批次供应商来料质量波动大，IQC抽检难以覆盖所有风险，不良品流入产线导致停线和返工。",
+      "why_happens": "供应商质量管理能力参差不齐、来料检验标准不明确或执行不严、供应商更换原材料或工艺未提前通知",
+      "who_feels_it": "质量工程师、生产主管、采购专员、IQC质检员",
+      "typical_phrases": [
+        "这批次和上批次完全是两个质量水平",
+        "抽检合格了，上线才发现大批量不良",
+        "供应商又偷偷换材料了",
+        "产线等着用，不合格也只能让步接收"
+      ],
+      "what_not_to_do": "假设来料质量始终稳定，按固定比例抽检就足以控制风险"
+    },
+    {
+      "name": "需求波动大",
+      "description": "客户订单变化频繁，紧急插单和订单取消时有发生，淡旺季需求不均导致产能规划困难。",
+      "why_happens": "终端市场需求不稳定、客户预测准确率低、销售端承诺交期时未充分评估产能、多客户订单互相抢占产能",
+      "who_feels_it": "生产计划员、生产主管、供应链经理、销售团队",
+      "typical_phrases": [
+        "这个订单很急，客户明天就要",
+        "刚排好的计划又被推翻了",
+        "旺季做不出来，淡季没活干",
+        "销售为了拿单什么都敢承诺"
+      ],
+      "what_not_to_do": "假设订单稳定可预测，按满负荷排产不留缓冲"
+    },
+    {
+      "name": "工艺标准不统一",
+      "description": "多条产线生产同一产品但工艺参数不一致，导致不同产线间的产品良率和质量存在显著差异。",
+      "why_happens": "工艺文件更新不及时或未下达到所有产线、老员工凭经验操作不按SOP执行、不同设备之间的性能差异未做补偿调整",
+      "who_feels_it": "工艺工程师、质量工程师、生产主管、一线操作工",
+      "typical_phrases": [
+        "A线做的好好的，B线就是做不好",
+        "我一直这么做的，从来没问题",
+        "SOP是SOP，实际做是另一套",
+        "这台设备和那台设备参数不一样"
+      ],
+      "what_not_to_do": "假设所有产线按同一标准自动执行，不需要定期审核和参数一致性管理"
+    },
+    {
+      "name": "信息孤岛",
+      "description": "MES/ERP/WMS各系统间数据不互通，生产现场数据靠手工记录传递，信息滞后且易出错，管理层无法实时掌握真实生产状况。",
+      "why_happens": "各系统来自不同供应商缺乏集成、车间数字化程度低仍依赖纸质流转单、IT预算不足未建立数据中台或接口",
+      "who_feels_it": "生产主管、管理层、供应链经理、IT/自动化团队",
+      "typical_phrases": [
+        "ERP里的库存数据和仓库实物对不上",
+        "生产日报还要人工统计，太落后了",
+        "这个数据你找我要我还得去问车间",
+        "几个系统各说各话，不知道该信哪个"
+      ],
+      "what_not_to_do": "假设各系统数据自动同步且一致，不验证数据准确性就用于决策"
     }
   ]
 }
