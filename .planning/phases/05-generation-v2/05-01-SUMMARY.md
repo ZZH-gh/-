@@ -160,6 +160,13 @@ These are explicitly per the plan spec: "Strategy stubs — add three placeholde
 - `generate_prompts_v2()` factory is available for direct import if needed
 - ConversationEngine.generate_complete() pipeline is fully wired and tested
 
+## Self-Check: PASSED
+
+- All 3 files modified verified present (generator.py, conversation_engine.py, app.py)
+- Both task commits verified (`a6158ba`, `384bbe3`)
+- SUMMARY.md verified present and committed (`103f151`)
+- No unintended side effects on existing functionality
+
 ---
 *Phase: 05-generation-v2*
 *Completed: 2026-06-04*
