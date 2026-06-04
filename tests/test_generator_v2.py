@@ -2,7 +2,7 @@
 PromptGeneratorV2 单元测试 — 知识注入、反模式过滤、策略生成
 """
 import pytest
-from prompt_tool.generator_v2 import PromptGeneratorV2, generate_prompts_v2
+from prompt_tool.generator import PromptGeneratorV2, generate_prompts_v2
 
 
 class TestGeneratorV2:
@@ -76,6 +76,16 @@ class TestGeneratorV2:
 class TestAntiPatternFilter:
     """GEN-04 反模式过滤测试"""
 
+    # ---- RED Phase: These tests fail because _build_anti_pattern_rules
+    #       and _filter do not exist on generator.py's PromptGeneratorV2 yet.
+    #       They will pass after GREEN implementation. ----
+
+    def test_build_anti_pattern_rules_returns_list(self):
+        gen = PromptGeneratorV2({"industry_name": "通用", "task_name": "", "original_input": "test"}, {})
+        rules = gen._build_anti_pattern_rules()
+        assert isinstance(rules, list)
+        assert len(rules) > 0
+
     def test_filters_authority_claim(self):
         gen = PromptGeneratorV2({"industry_name": "通用", "task_name": "", "original_input": "test"}, {})
         text = "作为全球资深专家，这是公认的正确做法。"
@@ -93,3 +103,9 @@ class TestAntiPatternFilter:
         text = "请根据行业最佳实践，输出一份PRD文档。"
         filtered = gen._filter(text)
         assert filtered == text  # Normal content unchanged
+
+    def test_filter_regex_supplements_without_pack(self):
+        gen = PromptGeneratorV2({"industry_name": "通用", "task_name": "", "original_input": "test"}, {})
+        text = "作为行业顶尖专家，这是公认的最佳方案。"
+        filtered = gen._filter(text)
+        assert len(filtered) < len(text)
