@@ -128,11 +128,20 @@ Plans:
   4. QA-02 评估显示 v4.0 生成质量显著优于 v3.0 模板式输出
   5. 生成基于对话上下文+知识包组合，而非 keyword-to-template 映射
 
-**Plans**: [To be planned]
+**Plans**: 3 plans
 
 Plans:
+**Wave 1**
 
-- (Planned in Phase 5)
+- [ ] 05-01-PLAN.md — PromptGeneratorV2核心类 + 4级知识注入 (KnowledgePack直连修复、注入方法、ConversationEngine接线、app.py去直接导入) — GEN-01, GEN-02
+
+**Wave 2** *(blocked on Wave 1 completion — file overlap on generator.py)*
+
+- [ ] 05-02-PLAN.md — 三种策略升级 + 差异化注入剖面 (_direct 1点/_roleplay 2点/_detailed 4点注入) — GEN-03
+
+**Wave 3** *(blocked on Wave 1 + Wave 2 completion)*
+
+- [ ] 05-03-PLAN.md — 反模式过滤 (痛点驱动+正则补充) + 测试套件升级 (conftest fixtures, 注入点断言, QA-02对比) — GEN-04, QA-02
 
 ### Phase 6: UI
 
@@ -203,7 +212,7 @@ Plans:
 | 2. Knowledge Layer | 2/2 | Complete    | 2026-06-03 |
 | 3. Context Layer | 1/1 | Complete    | 2026-06-03 |
 | 4. Conversation Core | 1/3 | Complete    | 2026-06-03 |
-| 5. Generation v2 | 0/0 | Not started | - |
+| 5. Generation v2 | 0/3 | Planned | - |
 | 6. UI | 0/0 | Not started | - |
 | 7. Scale | 0/0 | Not started | - |
 | 8. Packaging | 0/0 | Not started | - |
@@ -211,3 +220,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-06-03*
+*Last updated: 2026-06-04 — Phase 5 plans created*
