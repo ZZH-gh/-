@@ -358,6 +358,152 @@ class PromptToolApp:
                 msg += f"  简介: {entry.get('description', '暂无')}\n\n"
         messagebox.showinfo("知识包概览", msg)
 
+    def _on_show_knowledge_pack_v4(self):
+        """v4.0 知识包概览弹窗 — 模态 CTkToplevel 窗口 (UI-04)
+
+        显示所有行业的统计信息、当前行业高亮、加载状态。
+        """
+        index = knowledge_manager.get_index()
+
+        popup = ctk.CTkToplevel(self.root)
+        popup.title("📚 知识包概览")
+        popup.geometry("520x480")
+        popup.minsize(400, 320)
+        popup.grab_set()  # 模态
+        popup.transient(self.root)
+
+        # Center on parent
+        popup.update_idletasks()
+        px = self.root.winfo_x() + (self.root.winfo_width() - 520) // 2
+        py = self.root.winfo_y() + (self.root.winfo_height() - 480) // 2
+        popup.geometry(f"+{px}+{py}")
+
+        # --- Header ---
+        header = ctk.CTkFrame(popup, fg_color=self.colors["primary"],
+                              corner_radius=0, height=60)
+        header.pack(fill="x")
+        header.pack_propagate(False)
+
+        ctk.CTkLabel(
+            header, text="📚 当前可用知识包",
+            font=ctk.CTkFont(size=16, weight="bold"),
+            text_color="white",
+        ).pack(side="left", padx=20, pady=10)
+
+        # Status label
+        if knowledge_manager.is_fallback_active():
+            status_text = "⚠️ 使用 v3.0 兼容模式"
+            status_color = "#FFC107"
+        else:
+            status_text = "✅ v4.0 知识包已加载"
+            status_color = "#4CAF50"
+
+        ctk.CTkLabel(
+            header, text=status_text,
+            font=ctk.CTkFont(size=11, weight="bold"),
+            text_color=status_color,
+        ).pack(side="right", padx=20, pady=10)
+
+        # --- Scrollable content ---
+        scrollable = ctk.CTkScrollableFrame(
+            popup, fg_color=self.colors["body"]
+        )
+        scrollable.pack(fill="both", expand=True, padx=12, pady=12)
+
+        # Determine current industry for highlighting
+        current_industry = ""
+        try:
+            if self._v4_controller is not None:
+                current_industry = (
+                    self._v4_controller._engine._last_analysis.get("industry_id", "")
+                )
+        except Exception:
+            pass
+
+        if not index:
+            ctk.CTkLabel(
+                scrollable,
+                text="暂无可用知识包数据",
+                font=ctk.CTkFont(size=13),
+                text_color=self.colors["text_light"],
+            ).pack(padx=20, pady=40)
+        else:
+            for kid, entry in index.items():
+                name = entry.get("name", kid)
+                icon = entry.get("icon", "🏢")
+                description = entry.get("description", "")
+                stats = entry.get("stats", {})
+                is_current = (kid == current_industry)
+
+                # Card background: light blue for current industry, white for others
+                card_bg = "#E8F0FE" if is_current else "white"
+                card = ctk.CTkFrame(
+                    scrollable, fg_color=card_bg,
+                    corner_radius=8, border_width=1,
+                    border_color=self.colors["border"],
+                )
+                card.pack(fill="x", padx=6, pady=4)
+
+                # Title row
+                title_frame = ctk.CTkFrame(card, fg_color="transparent")
+                title_frame.pack(fill="x", padx=12, pady=(8, 2))
+
+                icon_label = ctk.CTkLabel(
+                    title_frame, text=f"{icon}  {name}",
+                    font=ctk.CTkFont(size=13, weight="bold"),
+                    text_color=self.colors["text"],
+                )
+                icon_label.pack(side="left")
+
+                if is_current:
+                    ctk.CTkLabel(
+                        title_frame, text="← 当前",
+                        font=ctk.CTkFont(size=11, weight="bold"),
+                        text_color=self.colors["primary"],
+                    ).pack(side="right", padx=(4, 0))
+
+                # Stats row
+                stat_parts = []
+                if stats.get("term_count", 0) > 0:
+                    stat_parts.append(f"📖 术语 {stats['term_count']}")
+                if stats.get("scenario_count", 0) > 0:
+                    stat_parts.append(f"📋 场景 {stats['scenario_count']}")
+                if stats.get("tree_count", 0) > 0:
+                    stat_parts.append(f"🌲 追问树 {stats['tree_count']}")
+                if stats.get("role_count", 0) > 0:
+                    stat_parts.append(f"👤 角色 {stats['role_count']}")
+                if stats.get("workflow_count", 0) > 0:
+                    stat_parts.append(f"⚙️ 流程 {stats['workflow_count']}")
+                stat_line = "  |  ".join(stat_parts) if stat_parts else "暂无统计数据"
+
+                ctk.CTkLabel(
+                    card, text=stat_line,
+                    font=ctk.CTkFont(size=11),
+                    text_color=self.colors["text_light"],
+                ).pack(anchor="w", padx=12, pady=0)
+
+                # Description (truncated to 80 chars)
+                if description:
+                    desc = description[:80]
+                    if len(description) > 80:
+                        desc += "..."
+                    ctk.CTkLabel(
+                        card, text=desc,
+                        font=ctk.CTkFont(size=11),
+                        text_color=self.colors["text_light"],
+                        wraplength=460,
+                        justify="left",
+                    ).pack(anchor="w", padx=12, pady=(2, 8))
+
+        # --- Close button ---
+        close_btn = ctk.CTkButton(
+            popup, text="✕ 关闭",
+            font=ctk.CTkFont(size=12),
+            fg_color=self.colors["primary"],
+            command=popup.destroy,
+        )
+        close_btn.pack(pady=(0, 16))
+
     def _switch_strategy(self, key):
         self.current_strategy = key
         self._show_prompt()
@@ -591,13 +737,13 @@ class PromptToolApp:
                      font=ctk.CTkFont(size=18, weight="bold"),
                      text_color="white").grid(row=0, column=0, padx=20, sticky="w")
 
-        # Knowledge pack button (placeholder — enabled in Plan 06-03)
+        # Knowledge pack button (UI-04: enabled in Plan 06-03)
         self._v4_kb_btn = ctk.CTkButton(
             h, text="📚 知识包", width=80, height=24,
             font=ctk.CTkFont(size=11),
             fg_color="transparent", text_color="white",
             border_color="white", border_width=1,
-            state="disabled",
+            command=self._on_show_knowledge_pack_v4,
         )
         self._v4_kb_btn.grid(row=0, column=1, padx=15, sticky="e")
 
@@ -1050,13 +1196,13 @@ class PromptToolApp:
         )
         self.opt_toggle_btn.pack(side="left", padx=(0, 8))
 
-        # Knowledge pack button (placeholder — wired in Task 3)
+        # Knowledge pack button (UI-04)
         self._v4_result_kb_btn = ctk.CTkButton(
             btn_frame, text="📚 知识包", width=80, height=28,
             font=ctk.CTkFont(size=11),
             fg_color="transparent", text_color="white",
             border_color="white", border_width=1,
-            # command will be set in Task 3
+            command=self._on_show_knowledge_pack_v4,
         )
         self._v4_result_kb_btn.pack(side="left", padx=(0, 8))
 
